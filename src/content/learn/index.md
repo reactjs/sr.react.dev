@@ -19,7 +19,7 @@ Dobrodošli u React dokumentaciju! Ova stranica pružiće vam uvod u 80% React k
 
 </YouWillLearn>
 
-## Kreiranje i strukturiranje komponenti {/*components*/}
+## Kreiranje i umetanje komponenti {/*components*/}
 
 React app-ovi su sačinjeni od *komponenti*. Komponenta je deo UI-a (korisničkog interfejsa) koji ima svoju logiku i izgled. Komponenta može biti mala kao dugme, ili velika kao cela stranica.
 
@@ -73,9 +73,9 @@ export default function MyApp() {
 
 </Sandpack>
 
-The `export default` keywords specify the main component in the file. If you're not familiar with some piece of JavaScript syntax, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) and [javascript.info](https://javascript.info/import-export) have great references.
+Ključne reči `export default` određuju glavnu komponentu u fajlu. Ukoliko niste upoznati sa nekim delom JavaScript sintakse, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) i [javascript.info](https://javascript.info/import-export) imaju odlične reference.
 
-## Writing markup with JSX {/*writing-markup-with-jsx*/}
+## Pisanje markupa sa JSX {/*writing-markup-with-jsx*/}
 
 The markup syntax you've seen above is called *JSX*. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
 
