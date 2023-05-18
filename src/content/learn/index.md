@@ -10,7 +10,7 @@ Dobrodošli u React dokumentaciju! Ova stranica pruža vam uvod u 80% esencijaln
 
 <YouWillLearn>
 
-- Kako kreirati i struktuirati komponente
+- Kako kreirati i umetati komponente
 - Kako dodavati markup i style-ove
 - Kako prikazivati podatke
 - Kako renderovati condition-e i liste
@@ -19,36 +19,36 @@ Dobrodošli u React dokumentaciju! Ova stranica pruža vam uvod u 80% esencijaln
 
 </YouWillLearn>
 
-## Creating and nesting components {/*components*/}
+## Kreiranje i strukturiranje komponenti {/*components*/}
 
-React apps are made out of *components*. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
+React app-ovi su sačinjeni od *komponenti*. Komponenta je deo UI-a (korisničkog interfejsa) koji ima svoju logiku i izgled. Komponenta može biti mala kao dugme, ili velika kao cela stranica.
 
-React components are JavaScript functions that return markup:
+React komponente su JavaScript funkcije koje vraćaju markup:
 
 ```js
 function MyButton() {
   return (
-    <button>I'm a button</button>
+    <button>Ja sam dugme</button>
   );
 }
 ```
 
-Now that you've declared `MyButton`, you can nest it into another component:
+Sada kada ste deklarisali `MyButton`, možete ga umetnuti unutar druge komponente:
 
 ```js {5}
 export default function MyApp() {
   return (
     <div>
-      <h1>Welcome to my app</h1>
+      <h1>Dobrodošli u moj app</h1>
       <MyButton />
     </div>
   );
 }
 ```
 
-Notice that `<MyButton />` starts with a capital letter. That's how you know it's a React component. React component names must always start with a capital letter, while HTML tags must be lowercase.
+Primetite da `<MyButton />` počinje velikim slovom. Tako znate da je to React komponenta. Nazivi React komponenti uvek moraju počinjati velikim slovom, dok HTML tagovi moraju biti pisani malim slovima.
 
-Have a look at the result:
+Pogledajte rezultat:
 
 <Sandpack>
 
@@ -56,7 +56,7 @@ Have a look at the result:
 function MyButton() {
   return (
     <button>
-      I'm a button
+      Ja sam dugme
     </button>
   );
 }
@@ -64,7 +64,7 @@ function MyButton() {
 export default function MyApp() {
   return (
     <div>
-      <h1>Welcome to my app</h1>
+      <h1>Dobrodošli u moj app</h1>
       <MyButton />
     </div>
   );
