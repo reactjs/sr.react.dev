@@ -4,7 +4,7 @@ title: Brzi Uvod
 
 <Intro>
 
-Dobrodošli u React dokumentaciju! Ova stranica pruža vam uvod u 80% esencijalnih React koncepta koje ćete koristiti u svakodnevnom radu.
+Dobrodošli u React dokumentaciju! Ova stranica pružiće vam uvod u 80% React koncepata koje ćete koristiti u svakodnevnom radu.
 
 </Intro>
 
