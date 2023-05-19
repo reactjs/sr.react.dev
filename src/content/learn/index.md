@@ -77,7 +77,7 @@ Ključne reči `export default` određuju glavnu komponentu u fajlu. Ukoliko nis
 
 ## Pisanje markupa sa JSX {/*writing-markup-with-jsx*/}
 
-Sintaksa markupa koju ste videli iznad se zove *JSX*. Ona nije obavezna, ali većina React projekata koristi JSX zbog njegove praktičnosti. Svi [alati koje preporučujemo za lokalni razvoj](/learn/installation) podržavaju JSX odmah po instalaciji.
+Sintaksa markup-a koju ste videli iznad se zove *JSX*. Ona nije obavezna, ali većina React projekata koristi JSX zbog njegove praktičnosti. Svi [alati koje preporučujemo za lokalni razvoj](/learn/installation) podržavaju JSX odmah po instalaciji.
 
 JSX je striktniji od HTML-a. Morate zatvoriti tagove poput `<br />`. Vaša komponenta takođe ne može vraćati više JSX tagova. Morate ih obuhvatiti zajedničkim roditeljem, poput `<div>...</div>` ili praznog `<>...</>` omotača:
 
@@ -94,24 +94,24 @@ function AboutPage() {
 
 Ukoliko imate mnogo HTML-a koje treba preneti u JSX, možete koristiti [online konventor.](https://transform.tools/html-to-jsx)
 
-## Adding styles {/*adding-styles*/}
+## Dodavanje style-ova {/*adding-styles*/}
 
-In React, you specify a CSS class with `className`. It works the same way as the HTML [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) attribute:
+U React-u, CSS klasu specificirate sa `className`. To funkcioniše na isti način kao HTML [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) atribut:
 
 ```js
 <img className="avatar" />
 ```
 
-Then you write the CSS rules for it in a separate CSS file:
+Potom CSS pravila za zadatu klasu pišete u odvojenom CSS fajlu:
 
 ```css
-/* In your CSS */
+/* U vašem CSS-u */
 .avatar {
   border-radius: 50%;
 }
 ```
 
-React does not prescribe how you add CSS files. In the simplest case, you'll add a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tag to your HTML. If you use a build tool or a framework, consult its documentation to learn how to add a CSS file to your project.
+React ne propisuje kako dodajete CSS fajlove. U najjednostavnijem slučaju, dodajete [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tag u vaš HTML. Ako koristite build alat ili framework, konsultujte dokumentaciju istog, da biste saznali kako da dodate CSS fajl u vaš projekat.
 
 ## Displaying data {/*displaying-data*/}
 
