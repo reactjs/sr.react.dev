@@ -14,7 +14,7 @@ Dobrodošli u React dokumentaciju! Ova stranica pružiće vam uvod u 80% React k
 - Kako dodavati markup i style-ove
 - Kako prikazivati podatke
 - Kako renderovati kondicione izraze i liste
-- Kako reagovati na event-e i ažurirati prikaz na ekranu
+- Kako odgovarati na event-e i ažurirati prikaz na ekranu
 - Kako prosleđivati podatke među komponentama
 
 </YouWillLearn>
@@ -278,9 +278,9 @@ export default function ShoppingList() {
 
 </Sandpack>
 
-## Reagovanje na event-e {/*responding-to-events*/}
+## Odgovaranje na event-e {/*responding-to-events*/}
 
-Možete reagovati na event-e deklarisanjem *event handler-a* funkcija za obradu event-a unutar vaših komponenti:
+Možete odgovarati na event-e deklarisanjem *event handler-a* funkcija za obradu event-a unutar vaših komponenti:
 
 ```js {2-4,7}
 function MyButton() {
