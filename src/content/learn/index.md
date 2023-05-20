@@ -13,7 +13,7 @@ Dobrodošli u React dokumentaciju! Ova stranica pružiće vam uvod u 80% React k
 - Kako kreirati i umetati komponente
 - Kako dodavati markup i style-ove
 - Kako prikazivati podatke
-- Kako renderovati condition-e i liste
+- Kako renderovati kondicione izraze i liste
 - Kako reagovati na event-e i ažurirati prikaz na ekranu
 - Kako prosleđivati podatke među komponentama
 
@@ -179,9 +179,9 @@ export default function Profile() {
 
 U gore navedenom primeru, `style={{}}` nije posebna sintaksa, već običan `{}` objekat unutar `style={ }` JSX kovrdžavih zagrada. Možete koristiti `style` atribut kada se vaši style-ovi oslanjaju na JavaScript varijable.
 
-## Conditional rendering {/*conditional-rendering*/}
+## Kondicionalno renderovanje {/*conditional-rendering*/}
 
-In React, there is no special syntax for writing conditions. Instead, you'll use the same techniques as you use when writing regular JavaScript code. For example, you can use an [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) statement to conditionally include JSX:
+U React-u, nema posebne sintakse za pisanje kondicionih izraza. Umesto toga, koristićete iste tehnike kao kada pišete običan JavaScript kod. Na primer, možete koristiti [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) izraz za kondicionalno uključivanje JSX-a:
 
 ```js
 let content;
@@ -197,7 +197,7 @@ return (
 );
 ```
 
-If you prefer more compact code, you can use the [conditional `?` operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) Unlike `if`, it works inside JSX:
+Ako preferirate kompaktniji kod, možete koristiti [kondicionalni `?` operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) Za razliku od `if`, on radi unutar JSX-a:
 
 ```js
 <div>
@@ -209,7 +209,7 @@ If you prefer more compact code, you can use the [conditional `?` operator.](htt
 </div>
 ```
 
-When you don't need the `else` branch, you can also use a shorter [logical `&&` syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
+Kada vam nije potrebna `else` grana, možete koristiti i kraću [logičku `&&` sintaksu](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
 
 ```js
 <div>
@@ -217,7 +217,7 @@ When you don't need the `else` branch, you can also use a shorter [logical `&&` 
 </div>
 ```
 
-All of these approaches also work for conditionally specifying attributes. If you're unfamiliar with some of this JavaScript syntax, you can start by always using `if...else`.
+Svi ovi pristupi takođe rade i za kondicionalno specificiranje atributa. Ako niste upoznati sa oovim delovima JavaScript sintakse, možete početi tako što ćete uvek koristiti `if...else`.
 
 ## Rendering lists {/*rendering-lists*/}
 
