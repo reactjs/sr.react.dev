@@ -219,21 +219,21 @@ Kada vam nije potrebna `else` grana, možete koristiti i kraću [logičku `&&` s
 
 Svi ovi pristupi takođe rade i za kondicionalno specificiranje atributa. Ako niste upoznati sa oovim delovima JavaScript sintakse, možete početi tako što ćete uvek koristiti `if...else`.
 
-## Rendering lists {/*rendering-lists*/}
+## Renderovanje listi {/*rendering-lists*/}
 
-You will rely on JavaScript features like [`for` loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) and the [array `map()` function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to render lists of components.
+Oslanjaćete se na JavaScript funkcionalnosti poput [`for` loop-a](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) i [array `map()` funkcije](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)  za renderovanje listi komponenata.
 
-For example, let's say you have an array of products:
+Na primer, pretpostavimo da imate niz proizvoda:
 
 ```js
 const products = [
-  { title: 'Cabbage', id: 1 },
-  { title: 'Garlic', id: 2 },
-  { title: 'Apple', id: 3 },
+  { title: 'Kupus', id: 1 },
+  { title: 'Luk', id: 2 },
+  { title: 'Jabuka', id: 3 },
 ];
 ```
 
-Inside your component, use the `map()` function to transform an array of products into an array of `<li>` items:
+Unutar vaše komponente, koristite `map()`  funkciju da transformišete niz proizvoda u niz `<li>` stavki:
 
 ```js
 const listItems = products.map(product =>
@@ -247,15 +247,15 @@ return (
 );
 ```
 
-Notice how `<li>` has a `key` attribute. For each item in a list, you should pass a string or a number that uniquely identifies that item among its siblings. Usually, a key should be coming from your data, such as a database ID. React uses your keys to know what happened if you later insert, delete, or reorder the items.
+Primetite kako `<li>` poseduje `key` atribut. Za svaku stavku u listi, trebalo bi da prosledite string ili broj koji jedinstveno identifikuje tu stavku među njenim susedima. Obično, ključ (key) bi trebalo da dolazi iz vaših podataka, kao što je ID iz baze podataka. React koristi vaše ključeve (keys) da bi znao šta se dogodilo ako kasnije ubacite, izbrišete ili preuredite stavke.
 
 <Sandpack>
 
 ```js
 const products = [
-  { title: 'Cabbage', isFruit: false, id: 1 },
-  { title: 'Garlic', isFruit: false, id: 2 },
-  { title: 'Apple', isFruit: true, id: 3 },
+  { title: 'Kupus', isFruit: false, id: 1 },
+  { title: 'Luk', isFruit: false, id: 2 },
+  { title: 'Jabuka', isFruit: true, id: 3 },
 ];
 
 export default function ShoppingList() {
@@ -278,9 +278,9 @@ export default function ShoppingList() {
 
 </Sandpack>
 
-## Responding to events {/*responding-to-events*/}
+## Reagovanje na event-e {/*responding-to-events*/}
 
-You can respond to events by declaring *event handler* functions inside your components:
+Možete reagovati na event-e deklarisanjem *event handler-a* funkcija za obradu event-a unutar vaših komponenti:
 
 ```js {2-4,7}
 function MyButton() {
