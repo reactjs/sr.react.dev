@@ -170,7 +170,7 @@ export default function Profile() {
   border-radius: 50%;
 }
 
-.large {
+.large {x
   border: 4px solid gold;
 }
 ```
