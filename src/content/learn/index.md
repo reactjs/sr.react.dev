@@ -381,15 +381,15 @@ button {
 
 Primetite kako svako dugme "pamti" svoj sopstveni state brojača `count` i ne utiče na drugu dugmad.
 
-## Using Hooks {/*using-hooks*/}
+## Korišćenje Hookova {/*using-hooks*/}
 
-Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [API reference.](/reference/react) You can also write your own Hooks by combining the existing ones.
+Funkcije koje počinju sa `use` nazivaju se *Hookovi*. `useState` je ugrađeni Hook koji pruža React. Možete pronaći i druge ugrađene Hookove u [API referenci.](/reference/react) Takođe, možete pisati svoje sopstvene Hookove kombinovanjem postojećih.
 
-Hooks are more restrictive than other functions. You can only call Hooks *at the top* of your components (or other Hooks). If you want to use `useState` in a condition or a loop, extract a new component and put it there.
+Hookovi su restriktivniji od ostalih funkcija. Hookove možete pozivati samo na vrhu svojih komponenata (ili drugih Hookova). Ukoliko nameravate koristiti `useState` u nekom condition-u ili loop-u, izdvojite novu komponentu i stavite ga tamo.
 
-## Sharing data between components {/*sharing-data-between-components*/}
+## Prosleđivanje podataka među komponentama {/*sharing-data-between-components*/}
 
-In the previous example, each `MyButton` had its own independent `count`, and when each button was clicked, only the `count` for the button clicked changed:
+U prethodnom primeru, svaki `MyButton` je imao nezavisni `count`, i kada je svako pojedinačno dugme bilo pritisnuto,`count` se menjao samo za trenutno pritisnuto dugme:
 
 <DiagramGroup>
 
