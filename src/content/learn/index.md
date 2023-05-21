@@ -79,7 +79,7 @@ Ključne reči `export default` određuju glavnu komponentu u fajlu. Ukoliko nis
 
 Sintaksa markup-a koju ste videli iznad se zove *JSX*. Ona nije obavezna, ali većina React projekata koristi JSX zbog njegove praktičnosti. Svi [alati koje preporučujemo za lokalni razvoj](/learn/installation) podržavaju JSX odmah po instalaciji.
 
-JSX je striktniji od HTML-a. Morate zatvoriti tagove poput `<br />`. Vaša komponenta takođe ne može vraćati više JSX tagova. Morate ih obuhvatiti zajedničkim roditeljem, poput `<div>...</div>` ili praznog `<>...</>` omotača:
+JSX je striktniji od HTML-a. Morate zatvoriti tagove poput `<br />`. Vaša komponenta takođe ne može vraćati više JSX tagova. Morate ih obuhvatiti zajedničkim parent-om, poput `<div>...</div>` ili praznog `<>...</>` omotača:
 
 ```js {3,6}
 function AboutPage() {
@@ -393,25 +393,25 @@ U prethodnom primeru, svaki `MyButton` je imao nezavisni `count`, i kada je svak
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_child" height={367} width={407} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. Both MyButton components contain a count with value zero.">
+<Diagram name="sharing_data_child" height={367} width={407} alt="Dijagram koji prikazuje stablo od tri komponente, jednu parent sa oznakom MyApp i dve children označene sa MyButton. Obe MyButton komponente sadrže brojač sa vrednošću nula.">
 
-Initially, each `MyButton`'s `count` state is `0`
+Inicijalno, obe `MyButton` komponente imaju `count` state `0`
 
 </Diagram>
 
-<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="The same diagram as the previous, with the count of the first child MyButton component highlighted indicating a click with the count value incremented to one. The second MyButton component still contains value zero." >
+<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="Isti dijagram kao prethodni, sa istaknutim brojačem prve chilld komponente MyButton koji pokazuje da je kliknuto i da je vrednost brojača povećana na jedan. Druga MyButton komponenta još uvek sadrži vrednost nula." >
 
-The first `MyButton` updates its `count` to `1`
+Prva `MyButton` komponenta ažurira svoj `count` na `1`
 
 </Diagram>
 
 </DiagramGroup>
 
-However, often you'll need components to *share data and always update together*.
+Međutim, često će vam biti potrebno da komponente *prosleđuju podatke međusobno i uvek se zajedno ažuriraju*.
 
-To make both `MyButton` components display the same `count` and update together, you need to move the state from the individual buttons "upwards" to the closest component containing all of them.
+Da biste obe `MyButton` komponente prikazali sa istim `count` i ažurirali zajedno, morate premestiti state iz pojedinačnih dugmeta "nagore" do najbliže komponente koja sadrži sve njih.
 
-In this example, it is `MyApp`:
+U ovom primeru, to je `MyApp`:
 
 <DiagramGroup>
 
