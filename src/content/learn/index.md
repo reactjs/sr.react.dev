@@ -285,30 +285,30 @@ Možete odgovarati na event-e deklarisanjem *event handler-a* funkcija za obradu
 ```js {2-4,7}
 function MyButton() {
   function handleClick() {
-    alert('You clicked me!');
+    alert('Kliknuli ste me!');
   }
 
   return (
     <button onClick={handleClick}>
-      Click me
+      Kliknite me
     </button>
   );
 }
 ```
 
-Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ the event handler function: you only need to *pass it down*. React will call your event handler when the user clicks the button.
+Obratite pažnju na to kako `onClick={handleClick}` nema zagrade na kraju! Ne treba da *pozivate* event handler funkciju: smo je treba *proslediti*. React će pozvati vaš event handler kada korisnik klikne na dugme.
 
-## Updating the screen {/*updating-the-screen*/}
+## Ažuriranje ekrana {/*updating-the-screen*/}
 
-Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component.
+Često ćete želite da vaša komponenta "zapamti" neke informacije i prikaže ih. Na primer, možda želite da prebrojite koliko puta je dugme kliknuto. To do this, add *stanje (state)* u svoju komponentu.
 
-First, import [`useState`](/reference/react/useState) from React:
+Prvo, uvezite [`useState`](/reference/react/useState) iz React-a:
 
 ```js
 import { useState } from 'react';
 ```
 
-Now you can declare a *state variable* inside your component:
+Sada možete deklarisati *state varijablu* unutar vaše komponente:
 
 ```js
 function MyButton() {
@@ -316,9 +316,9 @@ function MyButton() {
   // ...
 ```
 
-You’ll get two things from `useState`: the current state (`count`), and the function that lets you update it (`setCount`). You can give them any names, but the convention is to write `[something, setSomething]`.
+Od`useState` dobićete dobiti dve stvari: trenutni state (`count`), i funkciju koja vam omogućava da ga ažurirate  (`setCount`). Možete im dati bilo koja imena, ali je konvencija da pišete `[nešto, setNešto]`.
 
-The first time the button is displayed, `count` will be `0` because you passed `0` to `useState()`. When you want to change state, call `setCount()` and pass the new value to it. Clicking this button will increment the counter:
+Prvi put kada se dugme prikaže, `count` će biti `0` jer ste `0` prosledili u `useState()`. Kada želite da promenite state, pozovite `setCount()` i prosledite joj novu vrednost. Klikom na ovo dugme inkrementujte brojač:
 
 ```js {5}
 function MyButton() {
@@ -330,15 +330,15 @@ function MyButton() {
 
   return (
     <button onClick={handleClick}>
-      Clicked {count} times
+      Kliknuto je {count} puta
     </button>
   );
 }
 ```
 
-React will call your component function again. This time, `count` will be `1`. Then it will be `2`. And so on.
+React će ponovo pozvati funkciju vaše komponente. Ovaj put, `count` će biti `1`. Zatim će biti `2`. I tako dalje.
 
-If you render the same component multiple times, each will get its own state. Click each button separately:
+Ako renderujete istu komponentu više puta, svaka će dobiti svoje sopstveni state. Kliknite svako dugme posebno:
 
 <Sandpack>
 
@@ -348,7 +348,7 @@ import { useState } from 'react';
 export default function MyApp() {
   return (
     <div>
-      <h1>Counters that update separately</h1>
+      <h1>Brojači koji se ažuriraju nezavisno</h1>
       <MyButton />
       <MyButton />
     </div>
@@ -364,7 +364,7 @@ function MyButton() {
 
   return (
     <button onClick={handleClick}>
-      Clicked {count} times
+      Kliknuto je {count} puta
     </button>
   );
 }
@@ -379,7 +379,7 @@ button {
 
 </Sandpack>
 
-Notice how each button "remembers" its own `count` state and doesn't affect other buttons.
+Primetite kako svako dugme "pamti" svoj sopstveni state brojača `count` i ne utiče na drugu dugmad.
 
 ## Using Hooks {/*using-hooks*/}
 
