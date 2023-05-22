@@ -415,23 +415,23 @@ U ovom primeru, to je `MyApp`:
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_parent" height={385} width={410} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. MyApp contains a count value of zero which is passed down to both of the MyButton components, which also show value zero." >
+<Diagram name="sharing_data_parent" height={385} width={410} alt="Dijagram prikazuje stablo od tri komponente, jedne parent oznake MyApp i dve children sa oznakom MyButton. MyApp sadrži vrednost brojača nula, koja se prosleđuje u obe MyButton komponente, koje takođe prikazuju vrednost nula." >
 
-Initially, `MyApp`'s `count` state is `0` and is passed down to both children
+Inicijalno, `MyApp` ima `count` state vrednosti `0` i prosleđuje se u obe children komponente
 
 </Diagram>
 
-<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="The same diagram as the previous, with the count of the parent MyApp component highlighted indicating a click with the value incremented to one. The flow to both of the children MyButton components is also highlighted, and the count value in each child is set to one indicating the value was passed down." >
+<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="Isti dijagram kao prethodni, sa istaknutim brojačem parent MyApp komponente, koji ukazuje na klik sa vrednošću uvećanom na jedan. Protok do obe children MyButton komponente je takođe istaknut, a vrednost brojača u svakoj child komponenti je postavljena na jedan što ukazuje da je vrednost prosleđena." >
 
-On click, `MyApp` updates its `count` state to `1` and passes it down to both children
+Pri kliku, `MyApp` ažurira svoj `count` state na `1` i prosleđuje ga u obe children komponente
 
 </Diagram>
 
 </DiagramGroup>
 
-Now when you click either button, the `count` in `MyApp` will change, which will change both of the counts in `MyButton`. Here's how you can express this in code.
+Sada, kada kliknete na bilo koje dugme, `count` u `MyApp` će se promeniti, što će promeniti oba brojača u `MyButton`. Evo kako to možete izraziti u kodu.
 
-First, *move the state up* from `MyButton` into `MyApp`:
+Prvo, *pdignite state nagore* from `MyButton` u `MyApp`:
 
 ```js {2-6,18}
 export default function MyApp() {
@@ -443,7 +443,7 @@ export default function MyApp() {
 
   return (
     <div>
-      <h1>Counters that update separately</h1>
+      <h1>Brojači koji se ažuriraju odvojeno</h1>
       <MyButton />
       <MyButton />
     </div>
@@ -451,12 +451,12 @@ export default function MyApp() {
 }
 
 function MyButton() {
-  // ... we're moving code from here ...
+  // ... premestamo kod odavde ...
 }
 
 ```
 
-Then, *pass the state down* from `MyApp` to each `MyButton`, together with the shared click handler. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
+Zatim, *prosleđujemo state nadole* iz `MyApp` u oba `MyButton`, zajedno sa zajedničkim handlerom za klik. Informacije možete proslediti u `MyButton` koristeći kovrdžaste zagrade u JSX-u, baš kao što ste to ranije radili sa ugrađenim tagovima poput `<img>`:
 
 ```js {11-12}
 export default function MyApp() {
@@ -468,7 +468,7 @@ export default function MyApp() {
 
   return (
     <div>
-      <h1>Counters that update together</h1>
+      <h1>Brojači koji se ažuriraju zajedno</h1>
       <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
     </div>
@@ -476,21 +476,21 @@ export default function MyApp() {
 }
 ```
 
-The information you pass down like this is called _props_. Now the `MyApp` component contains the `count` state and the `handleClick` event handler, and *passes both of them down as props* to each of the buttons.
+Informacije koje na ovaj način prosleđujete nazivaju se *props*. Sada `MyApp` komponenta sadrži `count` state i `handleClick` event handler, i *prosleđuje obe nadole kao props* svakom od dugmeta.
 
-Finally, change `MyButton` to *read* the props you have passed from its parent component:
+Konačno, promenite `MyButton` da *čita* props koje ste prosledili iz njegove parent komponente:
 
 ```js {1,3}
 function MyButton({ count, onClick }) {
   return (
     <button onClick={onClick}>
-      Clicked {count} times
+      Kliknuto {count} puta
     </button>
   );
 }
 ```
 
-When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount(count + 1)`, incrementing the `count` state variable. The new `count` value is passed as a prop to each button, so they all show the new value. This is called "lifting state up". By moving state up, you've shared it between components.
+Kada kliknete na dugme, `onClick` handler se aktivira.`onClick` prop svakog dugmeta postavljen je na funkciju `handleClick` unutar `MyApp` pa se kod unutar nje izvršava. Taj kod poziva `setCount(count + 1)`, inkrementira `count` state varijablu. Nova `count` vrednost se prosleđuje kao prop svakom dugmetu, pa svi prikazuju novu vrednost. Ovo se naziva "podizanje state-a nagore". Pomeranjema state-a nagore, podelili ste ga između komponenata.
 
 <Sandpack>
 
@@ -506,7 +506,7 @@ export default function MyApp() {
 
   return (
     <div>
-      <h1>Counters that update together</h1>
+      <h1>Brojači koji se ažuriraju zajedno</h1>
       <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
     </div>
@@ -516,7 +516,7 @@ export default function MyApp() {
 function MyButton({ count, onClick }) {
   return (
     <button onClick={onClick}>
-      Clicked {count} times
+      Kliknuto {count} puta
     </button>
   );
 }
@@ -531,8 +531,8 @@ button {
 
 </Sandpack>
 
-## Next Steps {/*next-steps*/}
+## Sledeći koraci {/*next-steps*/}
 
-By now, you know the basics of how to write React code!
+Sada već znate osnove pisanja React koda!
 
-Check out the [Tutorial](/learn/tutorial-tic-tac-toe) to put them into practice and build your first mini-app with React.
+Pogledajte [Tutorijal](/learn/tutorial-tic-tac-toe) biste primenili naučeno i izgradili svoj prvi mini-app sa React-om.
