@@ -282,15 +282,15 @@ export default function TopNav({
             <div className="text-base justify-center items-center gap-1.5 flex 3xl:flex-1 flex-row 3xl:justify-end">
               <div className="mx-2.5 gap-1.5 hidden lg:flex">
                 <NavItem isActive={section === 'learn'} url="/learn">
-                  Naučite
+                  Learn
                 </NavItem>
                 <NavItem
                   isActive={section === 'reference'}
                   url="/reference/react">
-                  Referenca
+                  Reference
                 </NavItem>
                 <NavItem isActive={section === 'community'} url="/community">
-                  Zajednica
+                  Community
                 </NavItem>
                 <NavItem isActive={section === 'blog'} url="/blog">
                   Blog
@@ -361,17 +361,17 @@ export default function TopNav({
                 <Suspense fallback={null}>
                   <div className="pl-3 xs:pl-5 xs:gap-0.5 xs:text-base overflow-x-auto flex flex-row lg:hidden text-base font-bold text-secondary dark:text-secondary-dark">
                     <NavItem isActive={section === 'learn'} url="/learn">
-                      Naučite
+                      Learn
                     </NavItem>
                     <NavItem
                       isActive={section === 'reference'}
                       url="/reference/react">
-                      Referenca
+                      Reference
                     </NavItem>
                     <NavItem
                       isActive={section === 'community'}
                       url="/community">
-                      Zajednica
+                      Community
                     </NavItem>
                     <NavItem isActive={section === 'blog'} url="/blog">
                       Blog

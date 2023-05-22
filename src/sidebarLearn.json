@@ -1,58 +1,58 @@
 {
-  "title": "Naučite React",
+  "title": "Learn React",
   "path": "/learn",
   "routes": [
     {
       "hasSectionHeader": true,
-      "sectionHeader": "ZAPOČNITE"
+      "sectionHeader": "GET STARTED"
     },
     {
-      "title": "Brzi Uvod",
+      "title": "Quick Start",
       "path": "/learn",
       "routes": [
         {
-          "title": "Tutorijal: Iks-Oks",
+          "title": "Tutorial: Tic-Tac-Toe",
           "path": "/learn/tutorial-tic-tac-toe"
         },
         {
-          "title": "Razmišljanje na React način",
+          "title": "Thinking in React",
           "path": "/learn/thinking-in-react"
         }
       ]
     },
     {
-      "title": "Instalacija",
+      "title": "Installation",
       "path": "/learn/installation",
       "routes": [
         {
-          "title": "Započnite novi React projekat",
+          "title": "Start a New React Project",
           "path": "/learn/start-a-new-react-project"
         },
         {
-          "title": "Dodajte React u postojeći projekat",
+          "title": "Add React to an Existing Project",
           "path": "/learn/add-react-to-an-existing-project"
         },
         {
-          "title": "Podešavanje Editora",
+          "title": "Editor Setup",
           "path": "/learn/editor-setup"
         },
         {
-          "title": "React Developer Alati",
+          "title": "React Developer Tools",
           "path": "/learn/react-developer-tools"
         }
       ]
     },
     {
       "hasSectionHeader": true,
-      "sectionHeader": "NAUČITE REACT"
+      "sectionHeader": "LEARN REACT"
     },
     {
-      "title": "Opisivanje UI",
+      "title": "Describing the UI",
       "tags": [],
       "path": "/learn/describing-the-ui",
       "routes": [
         {
-          "title": "Vaša Prva Komponenta",
+          "title": "Your First Component",
           "path": "/learn/your-first-component"
         },
         {
