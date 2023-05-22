@@ -399,7 +399,7 @@ Inicijalno, obe `MyButton` komponente imaju `count` state `0`
 
 </Diagram>
 
-<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="Isti dijagram kao prethodni, sa istaknutim brojačem prve chilld komponente MyButton koji pokazuje da je kliknuto i da je vrednost brojača povećana na jedan. Druga MyButton komponenta još uvek sadrži vrednost nula." >
+<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="Isti dijagram kao prethodni, sa podvučenim brojačem prve chilld komponente MyButton koji pokazuje da je kliknuto i da je vrednost brojača povećana na jedan. Druga MyButton komponenta još uvek sadrži vrednost nula." >
 
 Prva `MyButton` komponenta ažurira svoj `count` na `1`
 
@@ -421,7 +421,7 @@ Inicijalno, `MyApp` ima `count` state vrednosti `0` i prosleđuje se u obe child
 
 </Diagram>
 
-<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="Isti dijagram kao prethodni, sa istaknutim brojačem parent MyApp komponente, koji ukazuje na klik sa vrednošću uvećanom na jedan. Protok do obe children MyButton komponente je takođe istaknut, a vrednost brojača u svakoj child komponenti je postavljena na jedan što ukazuje da je vrednost prosleđena." >
+<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="Isti dijagram kao prethodni, sa podvučenim brojačem parent MyApp komponente, koji ukazuje na klik sa vrednošću uvećanom na jedan. Protok do obe children MyButton komponente je takođe podvučen, a vrednost brojača u svakoj child komponenti je postavljena na jedan što ukazuje da je vrednost prosleđena." >
 
 Pri kliku, `MyApp` ažurira svoj `count` state na `1` i prosleđuje ga u obe children komponente
 
