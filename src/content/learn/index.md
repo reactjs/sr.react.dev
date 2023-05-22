@@ -1,54 +1,54 @@
 ---
-title: Quick Start
+title: Brzi Uvod
 ---
 
 <Intro>
 
-Welcome to the React documentation! This page will give you an introduction to the 80% of React concepts that you will use on a daily basis.
+Dobrodošli u React dokumentaciju! Ova stranica pružiće vam uvod u 80% React koncepata koje ćete koristiti u svakodnevnom radu.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to create and nest components
-- How to add markup and styles
-- How to display data
-- How to render conditions and lists
-- How to respond to events and update the screen
-- How to share data between components
+- Kako kreirati i umetati komponente
+- Kako dodavati markup i style-ove
+- Kako prikazivati podatke
+- Kako renderovati kondicione izraze i liste
+- Kako odgovarati na event-e i ažurirati prikaz na ekranu
+- Kako prosleđivati podatke među komponentama
 
 </YouWillLearn>
 
-## Creating and nesting components {/*components*/}
+## Kreiranje i umetanje komponenti {/*components*/}
 
-React apps are made out of *components*. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
+React app-ovi su sačinjeni od *komponenti*. Komponenta je deo UI-a (korisničkog interfejsa) koji ima svoju logiku i izgled. Komponenta može biti mala kao dugme, ili velika kao cela stranica.
 
-React components are JavaScript functions that return markup:
+React komponente su JavaScript funkcije koje vraćaju markup:
 
 ```js
 function MyButton() {
   return (
-    <button>I'm a button</button>
+    <button>Ja sam dugme</button>
   );
 }
 ```
 
-Now that you've declared `MyButton`, you can nest it into another component:
+Sada kada ste deklarisali `MyButton`, možete ga umetnuti unutar druge komponente:
 
 ```js {5}
 export default function MyApp() {
   return (
     <div>
-      <h1>Welcome to my app</h1>
+      <h1>Dobrodošli u moj app</h1>
       <MyButton />
     </div>
   );
 }
 ```
 
-Notice that `<MyButton />` starts with a capital letter. That's how you know it's a React component. React component names must always start with a capital letter, while HTML tags must be lowercase.
+Primetite da `<MyButton />` počinje velikim slovom. Tako znate da je to React komponenta. Nazivi React komponenti uvek moraju počinjati velikim slovom, dok HTML tagovi moraju biti pisani malim slovima.
 
-Have a look at the result:
+Pogledajte rezultat:
 
 <Sandpack>
 
@@ -56,7 +56,7 @@ Have a look at the result:
 function MyButton() {
   return (
     <button>
-      I'm a button
+      Ja sam dugme
     </button>
   );
 }
@@ -64,7 +64,7 @@ function MyButton() {
 export default function MyApp() {
   return (
     <div>
-      <h1>Welcome to my app</h1>
+      <h1>Dobrodošli u moj app</h1>
       <MyButton />
     </div>
   );
@@ -73,49 +73,49 @@ export default function MyApp() {
 
 </Sandpack>
 
-The `export default` keywords specify the main component in the file. If you're not familiar with some piece of JavaScript syntax, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) and [javascript.info](https://javascript.info/import-export) have great references.
+Ključne reči `export default` određuju glavnu komponentu u fajlu. Ukoliko niste upoznati sa nekim delom JavaScript sintakse, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) i [javascript.info](https://javascript.info/import-export) imaju odlične reference.
 
-## Writing markup with JSX {/*writing-markup-with-jsx*/}
+## Pisanje markupa sa JSX {/*writing-markup-with-jsx*/}
 
-The markup syntax you've seen above is called *JSX*. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
+Sintaksa markup-a koju ste videli iznad se zove *JSX*. Ona nije obavezna, ali većina React projekata koristi JSX zbog njegove praktičnosti. Svi [alati koje preporučujemo za lokalni razvoj](/learn/installation) podržavaju JSX odmah po instalaciji.
 
-JSX is stricter than HTML. You have to close tags like `<br />`. Your component also can't return multiple JSX tags. You have to wrap them into a shared parent, like a `<div>...</div>` or an empty `<>...</>` wrapper:
+JSX je striktniji od HTML-a. Morate zatvoriti tagove poput `<br />`. Vaša komponenta takođe ne može vraćati više JSX tagova. Morate ih obuhvatiti zajedničkim parent-om, poput `<div>...</div>` ili praznog `<>...</>` omotača:
 
 ```js {3,6}
 function AboutPage() {
   return (
     <>
-      <h1>About</h1>
-      <p>Hello there.<br />How do you do?</p>
+      <h1>O nama</h1>
+      <p>Zdravo<br />Kako se ste?</p>
     </>
   );
 }
 ```
 
-If you have a lot of HTML to port to JSX, you can use an [online converter.](https://transform.tools/html-to-jsx)
+Ukoliko imate mnogo HTML-a koje treba preneti u JSX, možete koristiti [online konventor.](https://transform.tools/html-to-jsx)
 
-## Adding styles {/*adding-styles*/}
+## Dodavanje style-ova {/*adding-styles*/}
 
-In React, you specify a CSS class with `className`. It works the same way as the HTML [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) attribute:
+U React-u, CSS klasu specificirate sa `className`. To funkcioniše na isti način kao HTML [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) atribut:
 
 ```js
 <img className="avatar" />
 ```
 
-Then you write the CSS rules for it in a separate CSS file:
+Potom CSS pravila za zadatu klasu pišete u odvojenom CSS fajlu:
 
 ```css
-/* In your CSS */
+/* U vašem CSS-u */
 .avatar {
   border-radius: 50%;
 }
 ```
 
-React does not prescribe how you add CSS files. In the simplest case, you'll add a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tag to your HTML. If you use a build tool or a framework, consult its documentation to learn how to add a CSS file to your project.
+React ne propisuje kako dodajete CSS fajlove. U najjednostavnijem slučaju, dodajete [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tag u vaš HTML. Ako koristite build alat ili framework, konsultujte dokumentaciju istog, da biste saznali kako da dodate CSS fajl u vaš projekat.
 
-## Displaying data {/*displaying-data*/}
+## Prikazivanje podataka {/*displaying-data*/}
 
-JSX lets you put markup into JavaScript. Curly braces let you "escape back" into JavaScript so that you can embed some variable from your code and display it to the user. For example, this will display `user.name`:
+JSX vam omogućava da ubacite markup u JavaScript. Kovrdžave zagrade vam omogućavaju da se "prebacite nazad" u JavaScript tako da možete ugraditi neku varijablu iz vašeg koda i prikazati je korisniku. Na primer, ovo će prikazati `user.name`:
 
 ```js {3}
 return (
@@ -125,7 +125,7 @@ return (
 );
 ```
 
-You can also "escape into JavaScript" from JSX attributes, but you have to use curly braces *instead of* quotes. For example, `className="avatar"` passes the `"avatar"` string as the CSS class, but `src={user.imageUrl}` reads the JavaScript `user.imageUrl` variable value, and then passes that value as the `src` attribute:
+Takođe možete se "prebaciti u JavaScript" iz JSX atributa, ali morate koristiti kovrdžave zagrade *umesto* navodnika. Na primer, `className="avatar"` prosleđuje `"avatar"` string kao CSS klasu, ali `src={user.imageUrl}` čita vrednost JavaScript `user.imageUrl` varijable, a zatim tu vrednost prosleđuje kao `src` atribut:
 
 ```js {3,4}
 return (
@@ -136,7 +136,7 @@ return (
 );
 ```
 
-You can put more complex expressions inside the JSX curly braces too, for example, [string concatenation](https://javascript.info/operators#string-concatenation-with-binary):
+Možete staviti i složenije izraze unutar JSX kovrdžavih zagrada, na primer, [konkatenaciju stringova](https://javascript.info/operators#string-concatenation-with-binary):
 
 <Sandpack>
 
@@ -154,7 +154,7 @@ export default function Profile() {
       <img
         className="avatar"
         src={user.imageUrl}
-        alt={'Photo of ' + user.name}
+        alt={'Fotografija od ' + user.name}
         style={{
           width: user.imageSize,
           height: user.imageSize
@@ -170,18 +170,18 @@ export default function Profile() {
   border-radius: 50%;
 }
 
-.large {
+.large {x
   border: 4px solid gold;
 }
 ```
 
 </Sandpack>
 
-In the above example, `style={{}}` is not a special syntax, but a regular `{}` object inside the `style={ }` JSX curly braces. You can use the `style` attribute when your styles depend on JavaScript variables.
+U gore navedenom primeru, `style={{}}` nije posebna sintaksa, već običan `{}` objekat unutar `style={ }` JSX kovrdžavih zagrada. Možete koristiti `style` atribut kada se vaši style-ovi oslanjaju na JavaScript varijable.
 
-## Conditional rendering {/*conditional-rendering*/}
+## Kondicionalno renderovanje {/*conditional-rendering*/}
 
-In React, there is no special syntax for writing conditions. Instead, you'll use the same techniques as you use when writing regular JavaScript code. For example, you can use an [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) statement to conditionally include JSX:
+U React-u, nema posebne sintakse za pisanje kondicionih izraza. Umesto toga, koristićete iste tehnike kao kada pišete običan JavaScript kod. Na primer, možete koristiti [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) izraz za kondicionalno uključivanje JSX-a:
 
 ```js
 let content;
@@ -197,7 +197,7 @@ return (
 );
 ```
 
-If you prefer more compact code, you can use the [conditional `?` operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) Unlike `if`, it works inside JSX:
+Ako preferirate kompaktniji kod, možete koristiti [kondicionalni `?` operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) Za razliku od `if`, on radi unutar JSX-a:
 
 ```js
 <div>
@@ -209,7 +209,7 @@ If you prefer more compact code, you can use the [conditional `?` operator.](htt
 </div>
 ```
 
-When you don't need the `else` branch, you can also use a shorter [logical `&&` syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
+Kada vam nije potrebna `else` grana, možete koristiti i kraću [logičku `&&` sintaksu](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
 
 ```js
 <div>
@@ -217,23 +217,23 @@ When you don't need the `else` branch, you can also use a shorter [logical `&&` 
 </div>
 ```
 
-All of these approaches also work for conditionally specifying attributes. If you're unfamiliar with some of this JavaScript syntax, you can start by always using `if...else`.
+Svi ovi pristupi takođe rade i za kondicionalno specificiranje atributa. Ako niste upoznati sa oovim delovima JavaScript sintakse, možete početi tako što ćete uvek koristiti `if...else`.
 
-## Rendering lists {/*rendering-lists*/}
+## Renderovanje listi {/*rendering-lists*/}
 
-You will rely on JavaScript features like [`for` loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) and the [array `map()` function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to render lists of components.
+Oslanjaćete se na JavaScript funkcionalnosti poput [`for` loop-a](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) i [array `map()` funkcije](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)  za renderovanje listi komponenata.
 
-For example, let's say you have an array of products:
+Na primer, pretpostavimo da imate niz proizvoda:
 
 ```js
 const products = [
-  { title: 'Cabbage', id: 1 },
-  { title: 'Garlic', id: 2 },
-  { title: 'Apple', id: 3 },
+  { title: 'Kupus', id: 1 },
+  { title: 'Luk', id: 2 },
+  { title: 'Jabuka', id: 3 },
 ];
 ```
 
-Inside your component, use the `map()` function to transform an array of products into an array of `<li>` items:
+Unutar vaše komponente, koristite `map()`  funkciju da transformišete niz proizvoda u niz `<li>` stavki:
 
 ```js
 const listItems = products.map(product =>
@@ -247,15 +247,15 @@ return (
 );
 ```
 
-Notice how `<li>` has a `key` attribute. For each item in a list, you should pass a string or a number that uniquely identifies that item among its siblings. Usually, a key should be coming from your data, such as a database ID. React uses your keys to know what happened if you later insert, delete, or reorder the items.
+Primetite kako `<li>` poseduje `key` atribut. Za svaku stavku u listi, trebalo bi da prosledite string ili broj koji jedinstveno identifikuje tu stavku među njenim susedima. Obično, ključ (key) bi trebalo da dolazi iz vaših podataka, kao što je ID iz baze podataka. React koristi vaše ključeve (keys) da bi znao šta se dogodilo ako kasnije ubacite, izbrišete ili preuredite stavke.
 
 <Sandpack>
 
 ```js
 const products = [
-  { title: 'Cabbage', isFruit: false, id: 1 },
-  { title: 'Garlic', isFruit: false, id: 2 },
-  { title: 'Apple', isFruit: true, id: 3 },
+  { title: 'Kupus', isFruit: false, id: 1 },
+  { title: 'Luk', isFruit: false, id: 2 },
+  { title: 'Jabuka', isFruit: true, id: 3 },
 ];
 
 export default function ShoppingList() {
@@ -278,37 +278,37 @@ export default function ShoppingList() {
 
 </Sandpack>
 
-## Responding to events {/*responding-to-events*/}
+## Odgovaranje na event-e {/*responding-to-events*/}
 
-You can respond to events by declaring *event handler* functions inside your components:
+Možete odgovarati na event-e deklarisanjem *event handler-a* funkcija za obradu event-a unutar vaših komponenti:
 
 ```js {2-4,7}
 function MyButton() {
   function handleClick() {
-    alert('You clicked me!');
+    alert('Kliknuli ste me!');
   }
 
   return (
     <button onClick={handleClick}>
-      Click me
+      Kliknite me
     </button>
   );
 }
 ```
 
-Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ the event handler function: you only need to *pass it down*. React will call your event handler when the user clicks the button.
+Obratite pažnju na to kako `onClick={handleClick}` nema zagrade na kraju! Ne treba da *pozivate* event handler funkciju: smo je treba *proslediti*. React će pozvati vaš event handler kada korisnik klikne na dugme.
 
-## Updating the screen {/*updating-the-screen*/}
+## Ažuriranje ekrana {/*updating-the-screen*/}
 
-Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component.
+Često ćete želite da vaša komponenta "zapamti" neke informacije i prikaže ih. Na primer, možda želite da prebrojite koliko puta je dugme kliknuto. To do this, add *stanje (state)* u svoju komponentu.
 
-First, import [`useState`](/reference/react/useState) from React:
+Prvo, uvezite [`useState`](/reference/react/useState) iz React-a:
 
 ```js
 import { useState } from 'react';
 ```
 
-Now you can declare a *state variable* inside your component:
+Sada možete deklarisati *state varijablu* unutar vaše komponente:
 
 ```js
 function MyButton() {
@@ -316,9 +316,9 @@ function MyButton() {
   // ...
 ```
 
-You’ll get two things from `useState`: the current state (`count`), and the function that lets you update it (`setCount`). You can give them any names, but the convention is to write `[something, setSomething]`.
+Od`useState` dobićete dobiti dve stvari: trenutni state (`count`), i funkciju koja vam omogućava da ga ažurirate  (`setCount`). Možete im dati bilo koja imena, ali je konvencija da pišete `[nešto, setNešto]`.
 
-The first time the button is displayed, `count` will be `0` because you passed `0` to `useState()`. When you want to change state, call `setCount()` and pass the new value to it. Clicking this button will increment the counter:
+Prvi put kada se dugme prikaže, `count` će biti `0` jer ste `0` prosledili u `useState()`. Kada želite da promenite state, pozovite `setCount()` i prosledite joj novu vrednost. Klikom na ovo dugme inkrementujte brojač:
 
 ```js {5}
 function MyButton() {
@@ -330,15 +330,15 @@ function MyButton() {
 
   return (
     <button onClick={handleClick}>
-      Clicked {count} times
+      Kliknuto je {count} puta
     </button>
   );
 }
 ```
 
-React will call your component function again. This time, `count` will be `1`. Then it will be `2`. And so on.
+React će ponovo pozvati funkciju vaše komponente. Ovaj put, `count` će biti `1`. Zatim će biti `2`. I tako dalje.
 
-If you render the same component multiple times, each will get its own state. Click each button separately:
+Ako renderujete istu komponentu više puta, svaka će dobiti svoje sopstveni state. Kliknite svako dugme posebno:
 
 <Sandpack>
 
@@ -348,7 +348,7 @@ import { useState } from 'react';
 export default function MyApp() {
   return (
     <div>
-      <h1>Counters that update separately</h1>
+      <h1>Brojači koji se ažuriraju nezavisno</h1>
       <MyButton />
       <MyButton />
     </div>
@@ -364,7 +364,7 @@ function MyButton() {
 
   return (
     <button onClick={handleClick}>
-      Clicked {count} times
+      Kliknuto je {count} puta
     </button>
   );
 }
@@ -379,59 +379,59 @@ button {
 
 </Sandpack>
 
-Notice how each button "remembers" its own `count` state and doesn't affect other buttons.
+Primetite kako svako dugme "pamti" svoj sopstveni state brojača `count` i ne utiče na drugu dugmad.
 
-## Using Hooks {/*using-hooks*/}
+## Korišćenje Hookova {/*using-hooks*/}
 
-Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [API reference.](/reference/react) You can also write your own Hooks by combining the existing ones.
+Funkcije koje počinju sa `use` nazivaju se *Hookovi*. `useState` je ugrađeni Hook koji pruža React. Možete pronaći i druge ugrađene Hookove u [API referenci.](/reference/react) Takođe, možete pisati svoje sopstvene Hookove kombinovanjem postojećih.
 
-Hooks are more restrictive than other functions. You can only call Hooks *at the top* of your components (or other Hooks). If you want to use `useState` in a condition or a loop, extract a new component and put it there.
+Hookovi su restriktivniji od ostalih funkcija. Hookove možete pozivati samo na vrhu svojih komponenata (ili drugih Hookova). Ukoliko nameravate koristiti `useState` u nekom condition-u ili loop-u, izdvojite novu komponentu i stavite ga tamo.
 
-## Sharing data between components {/*sharing-data-between-components*/}
+## Prosleđivanje podataka među komponentama {/*sharing-data-between-components*/}
 
-In the previous example, each `MyButton` had its own independent `count`, and when each button was clicked, only the `count` for the button clicked changed:
+U prethodnom primeru, svaki `MyButton` je imao nezavisni `count`, i kada je svako pojedinačno dugme bilo pritisnuto,`count` se menjao samo za trenutno pritisnuto dugme:
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_child" height={367} width={407} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. Both MyButton components contain a count with value zero.">
+<Diagram name="sharing_data_child" height={367} width={407} alt="Dijagram koji prikazuje stablo od tri komponente, jednu parent sa oznakom MyApp i dve children označene sa MyButton. Obe MyButton komponente sadrže brojač sa vrednošću nula.">
 
-Initially, each `MyButton`'s `count` state is `0`
+Inicijalno, obe `MyButton` komponente imaju `count` state `0`
 
 </Diagram>
 
-<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="The same diagram as the previous, with the count of the first child MyButton component highlighted indicating a click with the count value incremented to one. The second MyButton component still contains value zero." >
+<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="Isti dijagram kao prethodni, sa podvučenim brojačem prve chilld komponente MyButton koji pokazuje da je kliknuto i da je vrednost brojača povećana na jedan. Druga MyButton komponenta još uvek sadrži vrednost nula." >
 
-The first `MyButton` updates its `count` to `1`
+Prva `MyButton` komponenta ažurira svoj `count` na `1`
 
 </Diagram>
 
 </DiagramGroup>
 
-However, often you'll need components to *share data and always update together*.
+Međutim, često će vam biti potrebno da komponente *prosleđuju podatke međusobno i uvek se zajedno ažuriraju*.
 
-To make both `MyButton` components display the same `count` and update together, you need to move the state from the individual buttons "upwards" to the closest component containing all of them.
+Da biste obe `MyButton` komponente prikazali sa istim `count` i ažurirali zajedno, morate premestiti state iz pojedinačnih dugmeta "nagore" do najbliže komponente koja sadrži sve njih.
 
-In this example, it is `MyApp`:
+U ovom primeru, to je `MyApp`:
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_parent" height={385} width={410} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. MyApp contains a count value of zero which is passed down to both of the MyButton components, which also show value zero." >
+<Diagram name="sharing_data_parent" height={385} width={410} alt="Dijagram prikazuje stablo od tri komponente, jedne parent oznake MyApp i dve children sa oznakom MyButton. MyApp sadrži vrednost brojača nula, koja se prosleđuje u obe MyButton komponente, koje takođe prikazuju vrednost nula." >
 
-Initially, `MyApp`'s `count` state is `0` and is passed down to both children
+Inicijalno, `MyApp` ima `count` state vrednosti `0` i prosleđuje se u obe children komponente
 
 </Diagram>
 
-<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="The same diagram as the previous, with the count of the parent MyApp component highlighted indicating a click with the value incremented to one. The flow to both of the children MyButton components is also highlighted, and the count value in each child is set to one indicating the value was passed down." >
+<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="Isti dijagram kao prethodni, sa podvučenim brojačem parent MyApp komponente, koji ukazuje na klik sa vrednošću uvećanom na jedan. Protok do obe children MyButton komponente je takođe podvučen, a vrednost brojača u svakoj child komponenti je postavljena na jedan što ukazuje da je vrednost prosleđena." >
 
-On click, `MyApp` updates its `count` state to `1` and passes it down to both children
+Pri kliku, `MyApp` ažurira svoj `count` state na `1` i prosleđuje ga u obe children komponente
 
 </Diagram>
 
 </DiagramGroup>
 
-Now when you click either button, the `count` in `MyApp` will change, which will change both of the counts in `MyButton`. Here's how you can express this in code.
+Sada, kada kliknete na bilo koje dugme, `count` u `MyApp` će se promeniti, što će promeniti oba brojača u `MyButton`. Evo kako to možete izraziti u kodu.
 
-First, *move the state up* from `MyButton` into `MyApp`:
+Prvo, *pdignite state nagore* from `MyButton` u `MyApp`:
 
 ```js {2-6,18}
 export default function MyApp() {
@@ -443,7 +443,7 @@ export default function MyApp() {
 
   return (
     <div>
-      <h1>Counters that update separately</h1>
+      <h1>Brojači koji se ažuriraju odvojeno</h1>
       <MyButton />
       <MyButton />
     </div>
@@ -451,12 +451,12 @@ export default function MyApp() {
 }
 
 function MyButton() {
-  // ... we're moving code from here ...
+  // ... premestamo kod odavde ...
 }
 
 ```
 
-Then, *pass the state down* from `MyApp` to each `MyButton`, together with the shared click handler. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
+Zatim, *prosleđujemo state nadole* iz `MyApp` u oba `MyButton`, zajedno sa zajedničkim handlerom za klik. Informacije možete proslediti u `MyButton` koristeći kovrdžaste zagrade u JSX-u, baš kao što ste to ranije radili sa ugrađenim tagovima poput `<img>`:
 
 ```js {11-12}
 export default function MyApp() {
@@ -468,7 +468,7 @@ export default function MyApp() {
 
   return (
     <div>
-      <h1>Counters that update together</h1>
+      <h1>Brojači koji se ažuriraju zajedno</h1>
       <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
     </div>
@@ -476,21 +476,21 @@ export default function MyApp() {
 }
 ```
 
-The information you pass down like this is called _props_. Now the `MyApp` component contains the `count` state and the `handleClick` event handler, and *passes both of them down as props* to each of the buttons.
+Informacije koje na ovaj način prosleđujete nazivaju se *props*. Sada `MyApp` komponenta sadrži `count` state i `handleClick` event handler, i *prosleđuje obe nadole kao props* svakom od dugmeta.
 
-Finally, change `MyButton` to *read* the props you have passed from its parent component:
+Konačno, promenite `MyButton` da *čita* props koje ste prosledili iz njegove parent komponente:
 
 ```js {1,3}
 function MyButton({ count, onClick }) {
   return (
     <button onClick={onClick}>
-      Clicked {count} times
+      Kliknuto {count} puta
     </button>
   );
 }
 ```
 
-When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount(count + 1)`, incrementing the `count` state variable. The new `count` value is passed as a prop to each button, so they all show the new value. This is called "lifting state up". By moving state up, you've shared it between components.
+Kada kliknete na dugme, `onClick` handler se aktivira.`onClick` prop svakog dugmeta postavljen je na funkciju `handleClick` unutar `MyApp` pa se kod unutar nje izvršava. Taj kod poziva `setCount(count + 1)`, inkrementira `count` state varijablu. Nova `count` vrednost se prosleđuje kao prop svakom dugmetu, pa svi prikazuju novu vrednost. Ovo se naziva "podizanje state-a nagore". Pomeranjema state-a nagore, podelili ste ga između komponenata.
 
 <Sandpack>
 
@@ -506,7 +506,7 @@ export default function MyApp() {
 
   return (
     <div>
-      <h1>Counters that update together</h1>
+      <h1>Brojači koji se ažuriraju zajedno</h1>
       <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
     </div>
@@ -516,7 +516,7 @@ export default function MyApp() {
 function MyButton({ count, onClick }) {
   return (
     <button onClick={onClick}>
-      Clicked {count} times
+      Kliknuto {count} puta
     </button>
   );
 }
@@ -531,8 +531,8 @@ button {
 
 </Sandpack>
 
-## Next Steps {/*next-steps*/}
+## Sledeći koraci {/*next-steps*/}
 
-By now, you know the basics of how to write React code!
+Sada već znate osnove pisanja React koda!
 
-Check out the [Tutorial](/learn/tutorial-tic-tac-toe) to put them into practice and build your first mini-app with React.
+Pogledajte [Tutorijal](/learn/tutorial-tic-tac-toe) biste primenili naučeno i izgradili svoj prvi mini-app sa React-om.
