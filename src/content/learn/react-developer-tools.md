@@ -4,30 +4,31 @@ title: React Developer Tools
 
 <Intro>
 
-Use React Developer Tools to inspect React [components](/learn/your-first-component), edit [props](/learn/passing-props-to-a-component) and [state](/learn/state-a-components-memory), and identify performance problems.
+Koristite React Developer Tools da inspekcijom React [komponenti](/learn/your-first-component), izmenite [props](/learn/passing-props-to-a-component) i [state](/learn/state-a-components-memory), i identifikujete probleme sa performansama.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to install React Developer Tools
+* Kako da instalirate React Developer Tools
 
 </YouWillLearn>
 
-## Browser extension {/*browser-extension*/}
+## Browser ekstenzija {/*browser-extension*/}
 
-The easiest way to debug websites built with React is to install the React Developer Tools browser extension. It is available for several popular browsers:
+Najlakši način da debagujete sajtove napravljene sa React-om je da instalirate React Developer Tools ekstenziju za pretraživač. Dostupna je za nekoliko popularnih pretraživača:
 
-* [Install for **Chrome**](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
-* [Install for **Firefox**](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
-* [Install for **Edge**](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil)
+* [Instalirajte za **Chrome**](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
+* [Instalirajte za **Firefox**](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
+* [Instalirajte za **Edge**](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil)
 
-Now, if you visit a website **built with React,** you will see the _Components_ and _Profiler_ panels.
+Sada, ako posetite sajt **napravljen sa React-om,** videćete _Components_ i _Profiler_ panele.
 
-![React Developer Tools extension](/images/docs/react-devtools-extension.png)
+![React Developer Tools ekstenzija](/images/docs/react-devtools-extension.png)
 
-### Safari and other browsers {/*safari-and-other-browsers*/}
-For other browsers (for example, Safari), install the [`react-devtools`](https://www.npmjs.com/package/react-devtools) npm package:
+### Safari i drugi pretraživači {/*safari-and-other-browsers*/}
+
+Za svaki pretraživač (na primer, Safari), instalirajte [`react-devtools`](https://www.npmjs.com/package/react-devtools) npm paket:
 ```bash
 # Yarn
 yarn global add react-devtools
@@ -36,26 +37,26 @@ yarn global add react-devtools
 npm install -g react-devtools
 ```
 
-Next open the developer tools from the terminal:
+Sledeće, otvorite developer tools iz terminala:
 ```bash
 react-devtools
 ```
 
-Then connect your website by adding the following `<script>` tag to the beginning of your website's `<head>`:
+Onda konektujte vaš sajt dodavanjem sledećeg `<script>` taga na početak `<head>` vašeg sajta:
 ```html {3}
 <html>
   <head>
     <script src="http://localhost:8097"></script>
 ```
 
-Reload your website in the browser now to view it in developer tools.
+Reloadujte vaš sajt u pretraživaču da bi ga videli u developer tools.
 
 ![React Developer Tools standalone](/images/docs/react-devtools-standalone.png)
 
-## Mobile (React Native) {/*mobile-react-native*/}
-React Developer Tools can be used to inspect apps built with [React Native](https://reactnative.dev/) as well.
+## Mobilni telefoni (React Native) {/*mobile-react-native*/}
+React Developer Tools može se koristiti za inspekciju aplikacija napravljenih sa [React Native](https://reactnative.dev/).
 
-The easiest way to use React Developer Tools is to install it globally:
+Najlakeši način da koristite React Developer Tools je da ga instalirate globalno:
 ```bash
 # Yarn
 yarn global add react-devtools
@@ -64,13 +65,14 @@ yarn global add react-devtools
 npm install -g react-devtools
 ```
 
-Next open the developer tools from the terminal.
+Zatim otvorite Developer Tools iz terminala:
 ```bash
 react-devtools
 ```
 
-It should connect to any local React Native app that's running.
+Trebalo bi da se poveže sa bilo kojom lokalnom React Native aplikacijom koja je pokrenuta.
 
-> Try reloading the app if developer tools doesn't connect after a few seconds.
+> Pokušajte da reloadujete aplikaciju ako developer tools ne uspe da se poveže nakon nekoliko sekundi.
 
-[Learn more about debugging React Native.](https://reactnative.dev/docs/debugging)
+[Naučite više o debagovanju React Native.](https://reactnative.dev/docs/debugging)
+
