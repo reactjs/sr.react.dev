@@ -1,62 +1,62 @@
 ---
-title: Editor Setup
+title: Postavka Radnog okruženja (Editora)
 ---
 
 <Intro>
 
-A properly configured editor can make code clearer to read and faster to write. It can even help you catch bugs as you write them! If this is your first time setting up an editor or you're looking to tune up your current editor, we have a few recommendations.
+Dobro kofigurisan editor može učiniti kod jasnijim za čitanje i bržim za pisanje. Može vam čak pomoći da primetite greške dok ih pišete! Ako je ovo prvi put da postavljate editor ili želite da podesite vaš trenutni editor, imamo nekoliko preporuka.
 
 </Intro>
 
 <YouWillLearn>
 
-* What the most popular editors are
-* How to format your code automatically
+* Koji editori su najpopularniji
+* Kako da automatski formatirate vaš kod
 
 </YouWillLearn>
 
-## Your editor {/*your-editor*/}
+## Vaš editor {/*your-editor*/}
 
-[VS Code](https://code.visualstudio.com/) is one of the most popular editors in use today. It has a large marketplace of extensions and integrates well with popular services like GitHub. Most of the features listed below can be added to VS Code as extensions as well, making it highly configurable!
+[VS Code](https://code.visualstudio.com/) je jedan od najpopularnijih editora koji se koriste danas. Ima veliko tržište ekstenzija i dobro se integriše sa popularnim servisima kao što je GitHub. Većina funkcija navedenih ispod mogu se dodati u VS Code kao ekstenzije, što ga čini visoko konfigurabilnim!
 
-Other popular text editors used in the React community include:
+Drugi popularni editori koji se koriste u React zajednici su:
 
-* [WebStorm](https://www.jetbrains.com/webstorm/) is an integrated development environment designed specifically for JavaScript.
-* [Sublime Text](https://www.sublimetext.com/) has support for JSX and TypeScript, [syntax highlighting](https://stackoverflow.com/a/70960574/458193) and autocomplete built in.
-* [Vim](https://www.vim.org/) is a highly configurable text editor built to make creating and changing any kind of text very efficient. It is included as "vi" with most UNIX systems and with Apple OS X.
+* [WebStorm](https://www.jetbrains.com/webstorm/) je integrisano razvojno okruženje dizajnirano posebno za JavaScript.
+* [Sublime Text](https://www.sublimetext.com/) ima ugrađenu podršku za JSX i TypeScript, [podršku za sintaksu](https://stackoverflow.com/a/70960574/458193) i automatsko završavanje.
+* [Vim](https://www.vim.org/) je visoko konfigurabilan tekst editor napravljen da pravljenje i menjanje bilo kog tipa teksta bude veoma efikasno. Uključen je kao "vi" sa većinom UNIX sistema i sa Apple OS X.
 
-## Recommended text editor features {/*recommended-text-editor-features*/}
+## Preporučene funkcije editora {/*recommended-editor-features*/}
 
-Some editors come with these features built in, but others might require adding an extension. Check to see what support your editor of choice provides to be sure!
+Neki editori dolaze sa ugrađenim funkcijama, dok drugi zahtevaju dodavanje ekstenzija. Proverite koje funkcije podržava vaš editor koji ste izabrali!
 
 ### Linting {/*linting*/}
 
-Code linters find problems in your code as you write, helping you fix them early. [ESLint](https://eslint.org/) is a popular, open source linter for JavaScript. 
+Linting alati pronalaze probleme u vašem kodu dok ga pišete, pomažući vam da ih ispravite na vreme. [ESLint](https://eslint.org/) je popularan, open source linter za JavaScript.
 
-* [Install ESLint with the recommended configuration for React](https://www.npmjs.com/package/eslint-config-react-app) (be sure you have [Node installed!](https://nodejs.org/en/download/current/))
-* [Integrate ESLint in VSCode with the official extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+* [Instalirajte ESLint sa preporučenom konfiguracijom za React](https://www.npmjs.com/package/eslint-config-react-app) (budite sigurni da imate [Node instaliran!](https://nodejs.org/en/download/current/))
+* [Integrišite ESLint u VSCode sa zvaničnom ekstenzijom](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-**Make sure that you've enabled all the [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) rules for your project.** They are essential and catch the most severe bugs early. The recommended [`eslint-config-react-app`](https://www.npmjs.com/package/eslint-config-react-app) preset already includes them.
+**Budite sigurni da ste omogućili sve [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) pravila za vaš projekat.** Oni su esencijalni i hvataju najozbiljnije greške na vreme. Preporučena [`eslint-config-react-app`](https://www.npmjs.com/package/eslint-config-react-app) konfiguracija već ih uključuje.
 
-### Formatting {/*formatting*/}
+### Formatiranje {/*formatting*/}
 
-The last thing you want to do when sharing your code with another contributor is get into an discussion about [tabs vs spaces](https://www.google.com/search?q=tabs+vs+spaces)! Fortunately, [Prettier](https://prettier.io/) will clean up your code by reformatting it to conform to preset, configurable rules. Run Prettier, and all your tabs will be converted to spaces—and your indentation, quotes, etc will also all be changed to conform to the configuration. In the ideal setup, Prettier will run when you save your file, quickly making these edits for you.
+Poslednja stvar koju želite da radite kada delite vaš kod sa drugim saradnicima je da se upustite u diskusiju o [tabovima vs razmacima](https://www.google.com/search?q=tabs+vs+spaces)! Srećom, [Prettier](https://prettier.io/) će očistiti vaš kod tako što će ga preformatirati u skladu sa unapred podešenim, konfigurabilnim pravilima. Pokrenite Prettier i svi vaši tabovi će biti konvertovani u razmake - i vaša uvlačenja, navodnici, itd. će takođe biti promenjeni u skladu sa konfiguracijom. U idealnom slučaju, Prettier će se pokrenuti kada sačuvate vaš fajl, brzo praveći ove izmene za vas.
 
-You can install the [Prettier extension in VSCode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) by following these steps:
+Možete instalirati [Prettier ekstenziju u VSCode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) prateći ove korake:
 
-1. Launch VS Code
-2. Use Quick Open (press Ctrl/Cmd+P)
-3. Paste in `ext install esbenp.prettier-vscode`
-4. Press Enter
+1. Pokrenite VS Code
+2. Koristite Brzo otvaranje (pritisnite Ctrl/Cmd+P)
+3. Zalepite `ext install esbenp.prettier-vscode`
+4. Pritisnite Enter
 
-#### Formatting on save {/*formatting-on-save*/}
+#### Formatiranje pri čuvanju {/*formatting-on-save*/}
 
-Ideally, you should format your code on every save. VS Code has settings for this!
+Idealno, trebalo bi da formatirate vaš kod pri svakom čuvanju. VS Code ima podešavanja za ovo!
 
-1. In VS Code, press `CTRL/CMD + SHIFT + P`.
-2. Type "settings"
-3. Hit Enter
-4. In the search bar, type "format on save"
-5. Be sure the "format on save" option is ticked!
+1. U VS Code, pritisnite `CTRL/CMD + SHIFT + P`.
+2. Ukucajte "settings"
+3. Pritisnite Enter
+4. U pretraživaču, ukucajte "format on save"
+5. Budite sigurni da je "format on save" opcija označena!
 
-> If your ESLint preset has formatting rules, they may conflict with Prettier. We recommend disabling all formatting rules in your ESLint preset using [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) so that ESLint is *only* used for catching logical mistakes. If you want to enforce that files are formatted before a pull request is merged, use [`prettier --check`](https://prettier.io/docs/en/cli.html#--check) for your continuous integration.
+> Ako vaš ESLint preset ima pravila za formatiranje, ona mogu biti u konfliktu sa Prettier-om. Preporučujemo da onemogućite sva pravila za formatiranje u vašem ESLint presetu koristeći [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) tako da ESLint bude *samo* korišćen za hvatanje logičkih grešaka. Ako želite da primoravate da se fajlovi formatiraju pre nego što se spoje u glavnu granu, koristite [`prettier --check`](https://prettier.io/docs/en/cli.html#--check) za vašu kontinuiranu integraciju.

@@ -1,29 +1,29 @@
 ---
-title: Describing the UI
+title: Opisivanje korisničkog interfejsa (UI)
 ---
 
 <Intro>
 
-React is a JavaScript library for rendering user interfaces (UI). UI is built from small units like buttons, text, and images. React lets you combine them into reusable, nestable *components.* From web sites to phone apps, everything on the screen can be broken down into components. In this chapter, you'll learn to create, customize, and conditionally display React components.
+React je JavaScript biblioteka za prikazivanje korisničkog interfejsa (UI). UI se sastoji od malih jedinica kao što su dugmad, tekst i slike. React vam omogućava da ih kombinujete u ponovljive, nested (ugnježdene) *komponente.* Od veb sajtova do telefonskih aplikacija, sve na ekranu može se razbiti na komponente. U ovoj glavi naučićete kako da kreirate, prilagodite i uslovno prikažete React komponente.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to write your first React component](/learn/your-first-component)
-* [When and how to create multi-component files](/learn/importing-and-exporting-components)
-* [How to add markup to JavaScript with JSX](/learn/writing-markup-with-jsx)
-* [How to use curly braces with JSX to access JavaScript functionality from your components](/learn/javascript-in-jsx-with-curly-braces)
-* [How to configure components with props](/learn/passing-props-to-a-component)
-* [How to conditionally render components](/learn/conditional-rendering)
-* [How to render multiple components at a time](/learn/rendering-lists)
-* [How to avoid confusing bugs by keeping components pure](/learn/keeping-components-pure)
+* [Kako da napišete svoju prvu React komponentu](/learn/your-first-component)
+* [Kada i kako da kreirate više komponenti u jednom fajlu](/learn/importing-and-exporting-components)
+* [Kako da dodate markup u JavaScript pomoću JSX](/learn/writing-markup-with-jsx)
+* [Kako da koristite vitičaste zagrade u JSX-u da biste pristupili funkcionalnosti JavaScript-a iz vaših komponenti](/learn/javascript-in-jsx-with-curly-braces)
+* [Kako da konfigurišete komponente sa props](/learn/passing-props-to-a-component)
+* [Kako da uslovno prikažete komponente](/learn/conditional-rendering)
+* [Kako da prikažete više komponenti odjednom](/learn/rendering-lists)
+* [Kako da izbegnete zbunjujuće greške tako što ćete komponente držati čistim](/learn/keeping-components-pure)
 
 </YouWillLearn>
 
-## Your first component {/*your-first-component*/}
+## Vaša prva komponenta {/*your-first-component*/}
 
-React applications are built from isolated pieces of UI called *components*. A React component is a JavaScript function that you can sprinkle with markup. Components can be as small as a button, or as large as an entire page. Here is a `Gallery` component rendering three `Profile` components:
+React aplikacije su izgrađene of izoliranih delova korisničkog interfejsa (UI) koje se zovu *komponente*. React komponenta je Javascript funkcija koju možete začiniti markup-om. Komponente mogu biti male kao dugme ili velike kao cela stranica. Ovde je `Gallery` komponenta koja prikazuje tri `Profile` komponente:
 
 <Sandpack>
 
@@ -40,7 +40,7 @@ function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Zadivljujući naučnik</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -57,13 +57,13 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <LearnMore path="/learn/your-first-component">
 
-Read **[Your First Component](/learn/your-first-component)** to learn how to declare and use React components.
+Pročitajte **[Vaša prva komponenta](/learn/your-first-component)** da biste naučili kako da deklarišete i koristite React komponente.
 
 </LearnMore>
 
-## Importing and exporting components {/*importing-and-exporting-components*/}
+## Importovanje i exportovanje komponenti {/*importing-and-exporting-components*/}
 
-You can declare many components in one file, but large files can get difficult to navigate. To solve this, you can *export* a component into its own file, and then *import* that component from another file:
+Možete deklarisati mnogo komponenti u jednom fajlu, ali veliki fajlovi mogu postati teški za navigaciju. Da biste to rešili, možete *exportovati* komponentu u svoj fajl, a zatim *importovati* tu komponentu iz drugog fajla:
 
 
 <Sandpack>
@@ -84,7 +84,7 @@ import Profile from './Profile.js';
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Zadivljujući naučnik</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -112,15 +112,15 @@ img { margin: 0 10px 10px 0; }
 
 <LearnMore path="/learn/importing-and-exporting-components">
 
-Read **[Importing and Exporting Components](/learn/importing-and-exporting-components)** to learn how to split components into their own files.
+Pročitajte **[Importovanje i exportovanje komponenti](/learn/importing-and-exporting-components)** da biste naučili kako da podelite komponente u svoje fajlove.
 
 </LearnMore>
 
-## Writing markup with JSX {/*writing-markup-with-jsx*/}
+## Pisanje markup-a sa JSX {/*writing-markup-with-jsx*/}
 
-Each React component is a JavaScript function that may contain some markup that React renders into the browser. React components use a syntax extension called JSX to represent that markup. JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information.
+Svaka React komponenta je JavaScript funkcija koja može sadržati neki markup koji React prikazuje u browser-u. React komponente koriste sintaksu proširenja zvanu JSX da predstave taj markup. JSX izgleda mnogo kao HTML, ali je malo stroži i može prikazati dinamičke informacije.
 
-If we paste existing HTML markup into a React component, it won't always work:
+Ako kopirate postojeći HTML markup u React komponentu, neće uvek raditi:
 
 <Sandpack>
 
@@ -128,16 +128,16 @@ If we paste existing HTML markup into a React component, it won't always work:
 export default function TodoList() {
   return (
     // This doesn't quite work!
-    <h1>Hedy Lamarr's Todos</h1>
+    <h1>Hedy Lamarr's Todo lista</h1>
     <img
       src="https://i.imgur.com/yXOvdOSs.jpg"
       alt="Hedy Lamarr"
       class="photo"
     >
     <ul>
-      <li>Invent new traffic lights
-      <li>Rehearse a movie scene
-      <li>Improve spectrum technology
+      <li>Izmisli nove semafore
+      <li>Vežbaj scenu iz filma
+      <li>Unapredi tehnologiju spektra
     </ul>
   );
 }
@@ -149,7 +149,7 @@ img { height: 90px; }
 
 </Sandpack>
 
-If you have existing HTML like this, you can fix it using a [converter](https://transform.tools/html-to-jsx):
+Ako imate postojeći HTML kao što je ovaj, možete ga popraviti pomoću [konvertera](https://transform.tools/html-to-jsx):
 
 <Sandpack>
 
@@ -164,9 +164,9 @@ export default function TodoList() {
         className="photo"
       />
       <ul>
-        <li>Invent new traffic lights</li>
-        <li>Rehearse a movie scene</li>
-        <li>Improve spectrum technology</li>
+        <li>Izmisli nove semafore</li>
+        <li>Vežbaj scenu iz filma</li>
+        <li>Unapredi tehnologiju spektra</li>
       </ul>
     </>
   );
@@ -181,13 +181,13 @@ img { height: 90px; }
 
 <LearnMore path="/learn/writing-markup-with-jsx">
 
-Read **[Writing Markup with JSX](/learn/writing-markup-with-jsx)** to learn how to write valid JSX.
+Pročitajte **[Pisanje markup-a sa JSX](/learn/writing-markup-with-jsx)** da biste naučili kako da napišete validan JSX.
 
 </LearnMore>
 
-## JavaScript in JSX with curly braces {/*javascript-in-jsx-with-curly-braces*/}
+## JavaScript u JSX-u sa vitičastim zagradama {/*javascript-in-jsx-with-curly-braces*/}
 
-JSX lets you write HTML-like markup inside a JavaScript file, keeping rendering logic and content in the same place. Sometimes you will want to add a little JavaScript logic or reference a dynamic property inside that markup. In this situation, you can use curly braces in your JSX to "open a window" to JavaScript:
+JSX vam dozvoljava da pišete HTML sličan markup unutar JavaScript fajla, čuvajući logiku prikazivanja i sadržaja na istom mestu. Ponekad ćete želeti da dodate malo JavaScript logike ili da referencirate dinamičko svojstvo unutar tog markup-a. U ovoj situaciji možete koristiti vitičaste zagrade u vašem JSX-u da "otvorite prozor" ka JavaScript-u:
 
 <Sandpack>
 
@@ -210,9 +210,9 @@ export default function TodoList() {
         alt="Gregorio Y. Zara"
       />
       <ul>
-        <li>Improve the videophone</li>
-        <li>Prepare aeronautics lectures</li>
-        <li>Work on the alcohol-fuelled engine</li>
+        <li>Unapredi the videophone</li>
+        <li>Pripremi predavanja iz aeronautike</li>
+        <li>Radi na motoru koji radi na alkohol</li>
       </ul>
     </div>
   );
@@ -229,13 +229,13 @@ body > div > div { padding: 20px; }
 
 <LearnMore path="/learn/javascript-in-jsx-with-curly-braces">
 
-Read **[JavaScript in JSX with Curly Braces](/learn/javascript-in-jsx-with-curly-braces)** to learn how to access JavaScript data from JSX.
+Pročitajte **[JavaScript u JSX-u sa vitičastim zagradama](/learn/javascript-in-jsx-with-curly-braces)** da biste naučili kako da pristupite JavaScript podacima iz JSX-a.
 
 </LearnMore>
 
-## Passing props to a component {/*passing-props-to-a-component*/}
+## Prosleđivanje props-a komponenti {/*passing-props-to-a-component*/}
 
-React components use *props* to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, functions, and even JSX!
+React komponente koriste *props* da bi komunicirale jedna sa drugom. Svaki roditeljski(parent) komponent može proslediti neke informacije svojoj deci(children) pomoću props-a. Props vam mogu podsetiti na HTML atribute, ali možete proslediti bilo koju JavaScript vrednost kroz njih, uključujući objekte, nizove, funkcije i čak JSX!
 
 <Sandpack>
 
@@ -310,15 +310,15 @@ export function getImageUrl(person, size = 's') {
 
 <LearnMore path="/learn/passing-props-to-a-component">
 
-Read **[Passing Props to a Component](/learn/passing-props-to-a-component)** to learn how to pass and read props.
+Pročitajte **[Prosleđivanje props-a komponenti](/learn/passing-props-to-a-component)** da biste naučili kako da prosledite i čitate props.
 
 </LearnMore>
 
-## Conditional rendering {/*conditional-rendering*/}
+## Uslovno prikazivanje komponenti {/*conditional-rendering*/}
 
-Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like `if` statements, `&&`, and `? :` operators.
+Vaše komponente će često morati da prikažu različite stvari u zavisnosti od različitih uslova. U React-u, možete uslovno prikazati JSX koristeći JavaScript sintaksu kao što su `if` naredbe, `&&` i `? :` operatori.
 
-In this example, the JavaScript `&&` operator is used to conditionally render a checkmark:
+U ovom primeru, JavaScript `&&` operator se koristi da bi se uslovno prikazala kvačica:
 
 <Sandpack>
 
@@ -334,19 +334,19 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-      <h1>Sally Ride's Packing List</h1>
+    <h1>Sally Ride lista za pakovanje</h1>
       <ul>
         <Item
           isPacked={true}
-          name="Space suit"
+          name="Svemirsko odelo"
         />
         <Item
           isPacked={true}
-          name="Helmet with a golden leaf"
+          name="Kaciga sa zlatnim listom"
         />
         <Item
           isPacked={false}
-          name="Photo of Tam"
+          name="Foto od Tam"
         />
       </ul>
     </section>
@@ -358,15 +358,15 @@ export default function PackingList() {
 
 <LearnMore path="/learn/conditional-rendering">
 
-Read **[Conditional Rendering](/learn/conditional-rendering)** to learn the different ways to render content conditionally.
+Pročitajte **[Uslovno prikazivanje komponenti](/learn/conditional-rendering)** da biste naučili različite načine za uslovno prikazivanje sadržaja.
 
 </LearnMore>
 
-## Rendering lists {/*rendering-lists*/}
+## Renderovanje liste {/*rendering-lists*/}
 
-You will often want to display multiple similar components from a collection of data. You can use JavaScript's `filter()` and `map()` with React to filter and transform your array of data into an array of components.
+Često ćete želeti da prikažete više sličnih komponenti iz kolekcije podataka. Možete koristiti JavaScript `filter()` i `map()` sa React-om da biste filtrirali i transformisali vaš niz podataka u niz komponenti.
 
-For each array item, you will need to specify a `key`. Usually, you will want to use an ID from the database as a `key`. Keys let React keep track of each item's place in the list even if the list changes.
+Za svaki element u nizu, moraćete da odredite `key` prop. Obično ćete koristiti ID iz baze podataka kao `key`. Ključevi omogućavaju React-u da prati mesto svakog elementa u listi čak i ako se lista promeni.
 
 <Sandpack>
 
@@ -384,7 +384,7 @@ export default function List() {
       <p>
         <b>{person.name}:</b>
         {' ' + person.profession + ' '}
-        known for {person.accomplishment}
+        poznat je zbog {person.accomplishment}
       </p>
     </li>
   );
@@ -402,31 +402,31 @@ export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
   profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  accomplishment: 'formula za svemirske letove',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
   profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  accomplishment: 'otkriće Arktičke rupe u ozonu',
   imageId: 'mynHUSa'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
   profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  accomplishment: 'teorija o elektromagnetizmu',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
   profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  accomplishment: 'pionirski kortizon, steroide i pilule za kontrolu rađanja',
   imageId: 'IOjWm71'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
   profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  accomplishment: 'računanje mase belog patuljka',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -458,18 +458,19 @@ h2 { font-size: 20px; }
 
 <LearnMore path="/learn/rendering-lists">
 
-Read **[Rendering Lists](/learn/rendering-lists)** to learn how to render a list of components, and how to choose a key.
+Pročitajte **[Renderovanje liste](/learn/rendering-lists)** da biste naučili kako da renderujete listu komponenti i kako da odaberete ključ.
 
 </LearnMore>
 
-## Keeping components pure {/*keeping-components-pure*/}
+## Održavanje komponenti čistim (Pure components) {/*keeping-components-pure*/}
 
-Some JavaScript functions are *pure.* A pure function:
+Neke JavaScript funkcije su *čiste.* Čista funkcija:
 
-* **Minds its own business.** It does not change any objects or variables that existed before it was called.
-* **Same inputs, same output.** Given the same inputs, a pure function should always return the same result.
+* **Gleda svoj posao.** Ne zavisi od bilo kakvih globalnih promenljivih ili stanja aplikacije.
+* **Isti input, isti output.** Dajući isti input, čista funkcija uvek treba da vrati isti rezultat.
 
-By strictly only writing your components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. Here is an example of an impure component:
+Striktno pisanje vaših komponenti kao čistih funkcija može da izbegne čitavu klasu zbunjujućih grešaka i nepredvidivog ponašanja kako vaša baza koda raste. Ovde je primer nečiste komponente:
+
 
 <Sandpack>
 
@@ -479,7 +480,7 @@ let guest = 0;
 function Cup() {
   // Bad: changing a preexisting variable!
   guest = guest + 1;
-  return <h2>Tea cup for guest #{guest}</h2>;
+  return <h2>Šolja čaja za gosta #{guest}</h2>;
 }
 
 export default function TeaSet() {
@@ -495,13 +496,13 @@ export default function TeaSet() {
 
 </Sandpack>
 
-You can make this component pure by passing a prop instead of modifying a preexisting variable:
+Možete napraviti ovu komponentu čistom tako što ćete proslediti prop umesto što ćete modifikovati prethodno postojeću promenljivu:
 
 <Sandpack>
 
 ```js
 function Cup({ guest }) {
-  return <h2>Tea cup for guest #{guest}</h2>;
+  return <h2>Šolja čaja za gosta #{guest}</h2>;
 }
 
 export default function TeaSet() {
@@ -519,12 +520,13 @@ export default function TeaSet() {
 
 <LearnMore path="/learn/keeping-components-pure">
 
-Read **[Keeping Components Pure](/learn/keeping-components-pure)** to learn how to write components as pure, predictable functions.
+Pročitajte **[Održavanje komponenti čistim](/learn/keeping-components-pure)** da biste naučili kako da napišete komponente kao čiste funkcije.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## Šta dalje? {/*whats-next*/}
 
-Head over to [Your First Component](/learn/your-first-component) to start reading this chapter page by page!
+Idite do [Vaša prva komponenta](/learn/your-first-component) da biste počeli da čitate ovo poglavlje stranicu po stranicu!
 
-Or, if you're already familiar with these topics, why not read about [Adding Interactivity](/learn/adding-interactivity)?
+Ili ako ste već upoznati sa ovim temama, zašto ne biste pročitali o [Dodavanju interaktivnosti](/learn/adding-interactivity)?
+

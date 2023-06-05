@@ -54,5 +54,5 @@ Ako žeite da isprobate React u vašem postojećem sajtu ili aplikaciji, [dodajt
 
 ## Sledeći koraci {/*next-steps*/}
 
-Idite na [Brzi Start](/learn) vodič za turu najvažnijih React koncepta sa kojima ćete se susretati svakodnevno.
+Idite na [Brzi Uvod](/learn) vodič za turu najvažnijih React koncepta sa kojima ćete se susretati svakodnevno.
 
