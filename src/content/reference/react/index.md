@@ -3,6 +3,7 @@ title: React Reference Overview
 ---
 
 <Intro>
+
 This section provides detailed reference documentation for working with React. For an introduction to React, please visit the [Learn](/learn) section.
 
 </Intro>

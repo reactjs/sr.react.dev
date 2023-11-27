@@ -175,6 +175,7 @@ Note that like most Hooks, `useFormState` can only be called in <CodeStep step={
 
 Server Actions are exposed server endpoints and can be called anywhere in client code.
 
+When using a Server Action outside of a [form](/reference/react-dom/components/form), call the Server Action in a [transition](/reference/react/useTransition), which allows you to display a loading indicator, show [optimistic state updates](/reference/react/useOptimistic), and handle unexpected errors. Forms will automatically wrap Server Actions in transitions.
 ```js {9-12}
 import incrementLike from './actions';
 import { useState, useTransition } from 'react';
