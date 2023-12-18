@@ -67,7 +67,7 @@ Onda dodajte ove linije koda na vrh vašeg glavnog JavaScript fajla (možda se z
 </html>
 ```
 
-```js index.js active
+```js src/index.js active
 import { createRoot } from 'react-dom/client';
 
 // Clear the existing HTML content
@@ -133,7 +133,7 @@ Ovo vam omogućava da pronađete taj HTML element sa [`document.getElementById`]
 </html>
 ```
 
-```js index.js active
+```js src/index.js active
 import { createRoot } from 'react-dom/client';
 
 function NavigationBar() {
