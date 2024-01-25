@@ -24,11 +24,7 @@ Ako želite da napravite novu aplikaciju ili novi sajt koristeći samo React, pr
 npx create-next-app@latest
 </TerminalBlock>
 
-<<<<<<< HEAD
-Ako vam je Next.js nepoynat, proverite ovaj [Next.js tutorijal.](https://nextjs.org/learn/foundations/about-nextjs)
-=======
-If you're new to Next.js, check out the [learn Next.js course.](https://nextjs.org/learn)
->>>>>>> af54fc873819892f6050340df236f33a18ba5fb8
+Ako vam je Next.js nepoynat, proverite ovaj [Next.js tutorijal.](https://nextjs.org/learn)
 
 Next.js je održavan od strane [Vercel](https://vercel.com/). Možete [deploy-ovati Next.js aplikaciju](https://nextjs.org/docs/deployment) na bilo koji Node.js ili serverless hosting, ili na vaš sopstveni server. Next.js takođe podržava [static export](https://nextjs.org/docs/advanced-features/static-html-export) koji ne zahteva server.
 

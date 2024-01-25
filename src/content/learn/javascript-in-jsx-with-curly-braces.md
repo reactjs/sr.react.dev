@@ -562,13 +562,8 @@ export default function TodoList() {
 }
 ```
 
-<<<<<<< HEAD
 ```js utils.js
 export function getImageUrl(osoba) {
-=======
-```js src/utils.js
-export function getImageUrl(person) {
->>>>>>> 303ecae3dd4c7b570cf18e0115b94188f6aad5a1
   return (
     'https://i.imgur.com/' +
     osoba.imageId +
