@@ -40,7 +40,11 @@ Linting alati pronalaze probleme u vašem kodu dok ga pišete, pomažući vam da
 
 ### Formatiranje {/*formatting*/}
 
+<<<<<<< HEAD
 Poslednja stvar koju želite da radite kada delite vaš kod sa drugim saradnicima je da se upustite u diskusiju o [tabovima vs razmacima](https://www.google.com/search?q=tabs+vs+spaces)! Srećom, [Prettier](https://prettier.io/) će očistiti vaš kod tako što će ga preformatirati u skladu sa unapred podešenim, konfigurabilnim pravilima. Pokrenite Prettier i svi vaši tabovi će biti konvertovani u razmake - i vaša uvlačenja, navodnici, itd. će takođe biti promenjeni u skladu sa konfiguracijom. U idealnom slučaju, Prettier će se pokrenuti kada sačuvate vaš fajl, brzo praveći ove izmene za vas.
+=======
+The last thing you want to do when sharing your code with another contributor is get into a discussion about [tabs vs spaces](https://www.google.com/search?q=tabs+vs+spaces)! Fortunately, [Prettier](https://prettier.io/) will clean up your code by reformatting it to conform to preset, configurable rules. Run Prettier, and all your tabs will be converted to spaces—and your indentation, quotes, etc will also all be changed to conform to the configuration. In the ideal setup, Prettier will run when you save your file, quickly making these edits for you.
+>>>>>>> 97489434323b0c4cce78588cd0f48e3808e0eba4
 
 Možete instalirati [Prettier ekstenziju u VSCode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) prateći ove korake:
 
