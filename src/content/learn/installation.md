@@ -38,7 +38,11 @@ export default function App() {
 
 Možete ga direktno menjati ili otvoriti u novom tabu pritiskom na "Fork" dugme u gornjem desnom uglu.
 
+<<<<<<< HEAD
 Većina stranica u React dokumentaciji sadrži sandbokse kao ovaj. Van React dokumentacije, postoje mnogi online sandboksi koji podržavaju React: na primer, [CodeSandbox](https://codesandbox.io/s/new), [StackBlitz](https://stackblitz.com/fork/react), ili [CodePen.](https://codepen.io/pen?&editors=0010&layout=left&prefill_data_id=3f4569d1-1b11-4bce-bd46-89090eed5ddb)
+=======
+Most pages in the React documentation contain sandboxes like this. Outside of the React documentation, there are many online sandboxes that support React: for example, [CodeSandbox](https://codesandbox.io/s/new), [StackBlitz](https://stackblitz.com/fork/react), or [CodePen.](https://codepen.io/pen?template=QWYVwWN)
+>>>>>>> 56df8af577407c69889f24a4c7d9ddb54745a26b
 
 ### Isprobajte React lokalno {/*try-react-locally*/}
 
