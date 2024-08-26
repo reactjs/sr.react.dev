@@ -327,7 +327,7 @@ U ovom primeru, JavaScript `&&` operator se koristi da bi se uslovno prikazala k
 function Item({ name, isPacked }) {
   return (
     <li className="item">
-      {name} {isPacked && '✔'}
+      {name} {isPacked && '✅'}
     </li>
   );
 }
