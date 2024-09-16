@@ -103,7 +103,7 @@ function formatDate(date) {
 
 export default function TodoList() {
   return (
-    <h1>Lista stvari iza uraditi za {formatDate(today)}</h1>
+    <h1>Lista stvari za uraditi za {formatDate(today)}</h1>
   );
 }
 ```
