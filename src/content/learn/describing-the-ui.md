@@ -4,7 +4,7 @@ title: Opisivanje korisničkog interfejsa (UI)
 
 <Intro>
 
-React je JavaScript biblioteka za prikazivanje korisničkog interfejsa (UI). UI se sastoji od malih jedinica kao što su dugmad, tekst i slike. React vam omogućava da ih kombinujete u ponovljive, nested (ugnježdene) *komponente.* Od veb sajtova do telefonskih aplikacija, sve na ekranu može se razbiti na komponente. U ovoj glavi naučićete kako da kreirate, prilagodite i uslovno prikažete React komponente.
+React je JavaScript biblioteka za prikazivanje korisničkog interfejsa (UI). UI se sastoji od malih jedinica kao što su dugmad, tekst i slike. React vam omogućava da ih kombinujete u ponovljive, nested (ugnježdene) *komponente.* Od veb sajtova do telefonskih aplikacija, sve na ekranu može se razbiti na komponente. U ovom poglavlju naučićete kako da kreirate, prilagodite i uslovno prikažete React komponente.
 
 </Intro>
 
@@ -24,7 +24,7 @@ React je JavaScript biblioteka za prikazivanje korisničkog interfejsa (UI). UI 
 
 ## Vaša prva komponenta {/*your-first-component*/}
 
-React aplikacije su izgrađene of izoliranih delova korisničkog interfejsa (UI) koje se zovu *komponente*. React komponenta je Javascript funkcija koju možete začiniti markup-om. Komponente mogu biti male kao dugme ili velike kao cela stranica. Ovde je `Gallery` komponenta koja prikazuje tri `Profile` komponente:
+React aplikacije su izgrađene od izolovanih delova korisničkog interfejsa (UI) koje se zovu *komponente*. React komponenta je JavaScript funkcija koju možete začiniti markup-om. Komponente mogu biti male kao dugme ili velike kao cela stranica. Ovde je `Gallery` komponenta koja prikazuje tri `Profile` komponente:
 
 <Sandpack>
 
@@ -62,9 +62,9 @@ Pročitajte **[Vaša prva komponenta](/learn/your-first-component)** da biste na
 
 </LearnMore>
 
-## Importovanje i exportovanje komponenti {/*importing-and-exporting-components*/}
+## Import-ovanje i export-ovanje komponenti {/*importing-and-exporting-components*/}
 
-Možete deklarisati mnogo komponenti u jednom fajlu, ali veliki fajlovi mogu postati teški za navigaciju. Da biste to rešili, možete *exportovati* komponentu u svoj fajl, a zatim *importovati* tu komponentu iz drugog fajla:
+Možete deklarisati mnogo komponenti u jednom fajlu, ali veliki fajlovi mogu postati teški za navigaciju. Da biste to rešili, možete *export-ovati* komponentu u svoj fajl, a zatim *import-ovati* tu komponentu iz drugog fajla:
 
 
 <Sandpack>
@@ -113,13 +113,13 @@ img { margin: 0 10px 10px 0; }
 
 <LearnMore path="/learn/importing-and-exporting-components">
 
-Pročitajte **[Importovanje i exportovanje komponenti](/learn/importing-and-exporting-components)** da biste naučili kako da podelite komponente u svoje fajlove.
+Pročitajte **[Import-ovanje i export-ovanje komponenti](/learn/importing-and-exporting-components)** da biste naučili kako da podelite komponente u svoje fajlove.
 
 </LearnMore>
 
 ## Pisanje markup-a sa JSX {/*writing-markup-with-jsx*/}
 
-Svaka React komponenta je JavaScript funkcija koja može sadržati neki markup koji React prikazuje u browser-u. React komponente koriste sintaksu proširenja zvanu JSX da predstave taj markup. JSX izgleda mnogo kao HTML, ali je malo stroži i može prikazati dinamičke informacije.
+Svaka React komponenta je JavaScript funkcija koja može sadržati neki markup koji React prikazuje u browser-u. React komponente koriste sintaksu proširenja zvanu JSX da predstave taj markup. JSX dosta liči na HTML, ali je malo strožiji i može prikazati dinamičke informacije.
 
 Ako kopirate postojeći HTML markup u React komponentu, neće uvek raditi:
 
@@ -128,8 +128,8 @@ Ako kopirate postojeći HTML markup u React komponentu, neće uvek raditi:
 ```js
 export default function TodoList() {
   return (
-    // This doesn't quite work!
-    <h1>Hedy Lamarr's Todo lista</h1>
+    // Ovo baš i ne radi!
+    <h1>Hedy Lamarr-ina Todo lista</h1>
     <img
       src="https://i.imgur.com/yXOvdOSs.jpg"
       alt="Hedy Lamarr"
@@ -158,7 +158,7 @@ Ako imate postojeći HTML kao što je ovaj, možete ga popraviti pomoću [konver
 export default function TodoList() {
   return (
     <>
-      <h1>Hedy Lamarr's Todos</h1>
+      <h1>Hedy Lamarr-ina Todo lista</h1>
       <img
         src="https://i.imgur.com/yXOvdOSs.jpg"
         alt="Hedy Lamarr"
@@ -188,7 +188,7 @@ Pročitajte **[Pisanje markup-a sa JSX](/learn/writing-markup-with-jsx)** da bis
 
 ## JavaScript u JSX-u sa vitičastim zagradama {/*javascript-in-jsx-with-curly-braces*/}
 
-JSX vam dozvoljava da pišete HTML sličan markup unutar JavaScript fajla, čuvajući logiku prikazivanja i sadržaja na istom mestu. Ponekad ćete želeti da dodate malo JavaScript logike ili da referencirate dinamičko svojstvo unutar tog markup-a. U ovoj situaciji možete koristiti vitičaste zagrade u vašem JSX-u da "otvorite prozor" ka JavaScript-u:
+JSX vam dozvoljava da pišete markup sličan HTML-u unutar JavaScript fajla, čuvajući logiku prikazivanja i sadržaja na istom mestu. Ponekad ćete želeti da dodate malo JavaScript logike ili da referencirate dinamičko svojstvo unutar tog markup-a. U ovoj situaciji možete koristiti vitičaste zagrade u vašem JSX-u da "otvorite prozor" ka JavaScript-u:
 
 <Sandpack>
 
@@ -211,7 +211,7 @@ export default function TodoList() {
         alt="Gregorio Y. Zara"
       />
       <ul>
-        <li>Unapredi the videophone</li>
+        <li>Unapredi video telefon</li>
         <li>Pripremi predavanja iz aeronautike</li>
         <li>Radi na motoru koji radi na alkohol</li>
       </ul>
@@ -236,7 +236,7 @@ Pročitajte **[JavaScript u JSX-u sa vitičastim zagradama](/learn/javascript-in
 
 ## Prosleđivanje props-a komponenti {/*passing-props-to-a-component*/}
 
-React komponente koriste *props* da bi komunicirale jedna sa drugom. Svaki roditeljski(parent) komponent može proslediti neke informacije svojoj deci(children) pomoću props-a. Props vam mogu podsetiti na HTML atribute, ali možete proslediti bilo koju JavaScript vrednost kroz njih, uključujući objekte, nizove, funkcije i čak JSX!
+React komponente koriste *props* da bi komunicirale jedna sa drugom. Svaka roditeljska (parent) komponenta može proslediti neke informacije svojoj deci (children) komponentama pomoću props-a. Props vas mogu podsetiti na HTML atribute, ali možete proslediti bilo koju JavaScript vrednost kroz njih, uključujući objekte, nizove, funkcije, čak i JSX!
 
 <Sandpack>
 
@@ -347,7 +347,7 @@ export default function PackingList() {
         />
         <Item
           isPacked={false}
-          name="Foto od Tam"
+          name="Fotografija od Tam"
         />
       </ul>
     </section>
@@ -391,7 +391,7 @@ export default function List() {
   );
   return (
     <article>
-      <h1>Scientists</h1>
+      <h1>Naučnici</h1>
       <ul>{listItems}</ul>
     </article>
   );
@@ -402,31 +402,31 @@ export default function List() {
 export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
+  profession: 'matematičarka',
   accomplishment: 'formula za svemirske letove',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
+  profession: 'hemičar',
   accomplishment: 'otkriće Arktičke rupe u ozonu',
   imageId: 'mynHUSa'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
+  profession: 'fizičar',
   accomplishment: 'teorija o elektromagnetizmu',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pionirski kortizon, steroide i pilule za kontrolu rađanja',
+  profession: 'hemičar',
+  accomplishment: 'pionirski kortizon, steroidi i pilule za kontrolu rađanja',
   imageId: 'IOjWm71'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
+  profession: 'astrofizičar',
   accomplishment: 'računanje mase belog patuljka',
   imageId: 'lrWQx8l'
 }];
@@ -468,7 +468,7 @@ Pročitajte **[Renderovanje liste](/learn/rendering-lists)** da biste naučili k
 Neke JavaScript funkcije su *čiste.* Čista funkcija:
 
 * **Gleda svoj posao.** Ne zavisi od bilo kakvih globalnih promenljivih ili stanja aplikacije.
-* **Isti input, isti output.** Dajući isti input, čista funkcija uvek treba da vrati isti rezultat.
+* **Isti input, isti output.** Dobijajući isti input, čista funkcija uvek treba da vrati isti rezultat.
 
 Striktno pisanje vaših komponenti kao čistih funkcija može da izbegne čitavu klasu zbunjujućih grešaka i nepredvidivog ponašanja kako vaša baza koda raste. Ovde je primer nečiste komponente:
 
@@ -479,7 +479,7 @@ Striktno pisanje vaših komponenti kao čistih funkcija može da izbegne čitavu
 let guest = 0;
 
 function Cup() {
-  // Bad: changing a preexisting variable!
+  // Loše: promena postojeće promenljive!
   guest = guest + 1;
   return <h2>Šolja čaja za gosta #{guest}</h2>;
 }
@@ -497,7 +497,7 @@ export default function TeaSet() {
 
 </Sandpack>
 
-Možete napraviti ovu komponentu čistom tako što ćete proslediti prop umesto što ćete modifikovati prethodno postojeću promenljivu:
+Možete napraviti ovu komponentu čistom tako što ćete proslediti prop umesto što ćete modifikovati postojeću promenljivu:
 
 <Sandpack>
 
@@ -548,7 +548,7 @@ Primer modul zavisnosti stabla.
 
 </Diagram>
 
-Drvo zavisnosti čest ose korišćeno od strane alata za izgradnju da bi se sve relevantne JavaScript datoteke za klijenta spakovalo u jednu datoteku. Velika veličina paketa regresira korisničko iskustvo za React aplikacije. Razumevanje modul zavisnosti stabla je korisno za otklanjanje grešaka.
+Drvo zavisnosti često je korišćeno od strane alata za izgradnju da bi se sve JavaScript datoteke relevantne za klijenta spakovale u jednu datoteku. Velika veličina paketa regresira korisničko iskustvo za React aplikacije. Razumevanje modul zavisnosti stabla je korisno za otklanjanje grešaka.
 
 <LearnMore path="/learn/understanding-your-ui-as-a-tree">
 
