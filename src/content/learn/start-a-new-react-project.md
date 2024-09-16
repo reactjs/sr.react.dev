@@ -33,7 +33,7 @@ Ako vaša aplikacija ima neobične zahteve koji nisu dobro podržani od strane o
 
 ## React framework-ovi za produkciju {/*production-grade-react-frameworks*/}
 
-Ovi framework-ovi podržavaju sve funkcionalnosti koje su vam potrebne za deploy i skaliranje aplikacija u produkciji i rade na podršci naše [vizije full-stack arhitekture](#which-features-make-up-the-react-teams-full-stack-architecture-vision). Svi framework-ovi koje preporučujemo su otvorenog koda sa aktivnom podrškom zajednice i mogu biti deploy-ovani na vaš server ili na hosting provider-a. Ako ste autor framework-a koji zainteresovan da bude na ovoj listi, [molimo vas da nam javite](https://github.com/reactjs/react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+).
+Ovi framework-ovi podržavaju sve funkcionalnosti koje su vam potrebne za deploy i skaliranje aplikacija u produkciji i rade na podršci naše [vizije full-stack arhitekture](#which-features-make-up-the-react-teams-full-stack-architecture-vision). Svi framework-ovi koje preporučujemo su open source sa aktivnom podrškom zajednice i mogu biti deploy-ovani na vaš server ili na hosting provider-a. Ako ste autor framework-a koji zainteresovan da bude na ovoj listi, [molimo vas da nam javite](https://github.com/reactjs/react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+).
 
 ### Next.js {/*nextjs-pages-router*/}
 

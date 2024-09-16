@@ -31,7 +31,7 @@ Neki editori dolaze sa ugrađenim funkcijama, dok drugi zahtevaju dodavanje ekst
 
 ### Linting {/*linting*/}
 
-Linting alati pronalaze probleme u vašem kodu dok ga pišete, pomažući vam da ih ispravite na vreme. [ESLint](https://eslint.org/) je popularan linter otvorenog koda za JavaScript.
+Linting alati pronalaze probleme u vašem kodu dok ga pišete, pomažući vam da ih ispravite na vreme. [ESLint](https://eslint.org/) je popularan open source linter za JavaScript.
 
 * [Instalirajte ESLint sa preporučenom konfiguracijom za React](https://www.npmjs.com/package/eslint-config-react-app) (budite sigurni da imate [Node instaliran!](https://nodejs.org/en/download/current/))
 * [Integrišite ESLint u VSCode sa zvaničnom ekstenzijom](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)

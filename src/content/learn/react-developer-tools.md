@@ -4,7 +4,7 @@ title: React Developer Tools
 
 <Intro>
 
-Koristite React Developer Tools da inspekcijom React [komponenti](/learn/your-first-component), izmenite [props](/learn/passing-props-to-a-component) i [state](/learn/state-a-components-memory), i identifikujete probleme sa performansama.
+Koristite React Developer Tools da inspekcijom React [komponenti](/learn/your-first-component), izmenite [props](/learn/passing-props-to-a-component) i [state](/learn/state-a-components-memory) i identifikujete probleme sa performansama.
 
 </Intro>
 
@@ -42,21 +42,21 @@ Sledeće, otvorite developer tools iz terminala:
 react-devtools
 ```
 
-Onda konektujte vaš sajt dodavanjem sledećeg `<script>` taga na početak `<head>` vašeg sajta:
+Onda konektujte vaš sajt dodavanjem sledećeg `<script>` taga na početak `<head>` taga vašeg sajta:
 ```html {3}
 <html>
   <head>
     <script src="http://localhost:8097"></script>
 ```
 
-Reloadujte vaš sajt u pretraživaču da bi ga videli u developer tools.
+Reload-ujte vaš sajt u pretraživaču da bi ga videli u developer tools.
 
 ![React Developer Tools standalone](/images/docs/react-devtools-standalone.png)
 
 ## Mobilni telefoni (React Native) {/*mobile-react-native*/}
 React Developer Tools može se koristiti za inspekciju aplikacija napravljenih sa [React Native](https://reactnative.dev/).
 
-Najlakeši način da koristite React Developer Tools je da ga instalirate globalno:
+Najlakši način da koristite React Developer Tools je da ga instalirate globalno:
 ```bash
 # Yarn
 yarn global add react-devtools
@@ -72,7 +72,7 @@ react-devtools
 
 Trebalo bi da se poveže sa bilo kojom lokalnom React Native aplikacijom koja je pokrenuta.
 
-> Pokušajte da reloadujete aplikaciju ako developer tools ne uspe da se poveže nakon nekoliko sekundi.
+> Pokušajte da reload-ujete aplikaciju ako developer tools ne uspe da se poveže nakon nekoliko sekundi.
 
 [Naučite više o debagovanju React Native.](https://reactnative.dev/docs/debugging)
 
