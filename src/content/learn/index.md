@@ -115,7 +115,7 @@ React ne propisuje kako dodajete CSS fajlove. U najjednostavnijem slučaju, doda
 
 ## Prikazivanje podataka {/*displaying-data*/}
 
-JSX vam omogućava da ubacite markup u JavaScript. Kovrdžave zagrade vam omogućavaju da se "prebacite nazad" u JavaScript tako da možete ugraditi neku varijablu iz vašeg koda i prikazati je korisniku. Na primer, ovo će prikazati `user.name`:
+JSX vam omogućava da ubacite markup u JavaScript. Vitičaste zagrade vam omogućavaju da se "prebacite nazad" u JavaScript tako da možete ugraditi neku varijablu iz vašeg koda i prikazati je korisniku. Na primer, ovo će prikazati `user.name`:
 
 ```js {3}
 return (
@@ -125,7 +125,7 @@ return (
 );
 ```
 
-Takođe možete se "prebaciti u JavaScript" iz JSX atributa, ali morate koristiti kovrdžave zagrade *umesto* navodnika. Na primer, `className="avatar"` prosleđuje `"avatar"` string kao CSS klasu, ali `src={user.imageUrl}` čita vrednost JavaScript `user.imageUrl` varijable, a zatim tu vrednost prosleđuje kao `src` atribut:
+Takođe možete se "prebaciti u JavaScript" iz JSX atributa, ali morate koristiti vitičaste zagrade *umesto* navodnika. Na primer, `className="avatar"` prosleđuje `"avatar"` string kao CSS klasu, ali `src={user.imageUrl}` čita vrednost JavaScript `user.imageUrl` varijable, a zatim tu vrednost prosleđuje kao `src` atribut:
 
 ```js {3,4}
 return (
@@ -136,7 +136,7 @@ return (
 );
 ```
 
-Možete staviti i složenije izraze unutar JSX kovrdžavih zagrada, na primer, [konkatenaciju stringova](https://javascript.info/operators#string-concatenation-with-binary):
+Možete staviti i složenije izraze unutar JSX vitičastih zagrada, na primer, [konkatenaciju stringova](https://javascript.info/operators#string-concatenation-with-binary):
 
 <Sandpack>
 
@@ -177,7 +177,7 @@ export default function Profile() {
 
 </Sandpack>
 
-U gore navedenom primeru, `style={{}}` nije posebna sintaksa, već običan `{}` objekat unutar `style={ }` JSX kovrdžavih zagrada. Možete koristiti `style` atribut kada se vaši style-ovi oslanjaju na JavaScript varijable.
+U gore navedenom primeru, `style={{}}` nije posebna sintaksa, već običan `{}` objekat unutar `style={ }` JSX vitičastih zagrada. Možete koristiti `style` atribut kada se vaši style-ovi oslanjaju na JavaScript varijable.
 
 ## Kondicionalno renderovanje {/*conditional-rendering*/}
 
@@ -456,7 +456,7 @@ function MyButton() {
 
 ```
 
-Zatim, *prosleđujemo state nadole* iz `MyApp` u oba `MyButton`, zajedno sa zajedničkim handler-om za klik. Informacije možete proslediti u `MyButton` koristeći kovrdžave zagrade u JSX-u, baš kao što ste to ranije radili sa ugrađenim tagovima poput `<img>`:
+Zatim, *prosleđujemo state nadole* iz `MyApp` u oba `MyButton`, zajedno sa zajedničkim handler-om za klik. Informacije možete proslediti u `MyButton` koristeći vitičaste zagrade u JSX-u, baš kao što ste to ranije radili sa ugrađenim tagovima poput `<img>`:
 
 ```js {11-12}
 export default function MyApp() {

@@ -211,9 +211,9 @@ export default function TodoList() {
         alt="Gregorio Y. Zara"
       />
       <ul>
-        <li>Unapredi video telefon</li>
-        <li>Pripremi predavanja iz aeronautike</li>
-        <li>Radi na motoru koji radi na alkohol</li>
+        <li>Unaprediti video-telefon</li>
+        <li>Pripremiti predavanja iz aeronautike</li>
+        <li>Raditi na motoru na alkohol</li>
       </ul>
     </div>
   );
