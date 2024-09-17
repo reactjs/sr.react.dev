@@ -4,7 +4,7 @@ title: Instalacija
 
 <Intro>
 
-React je dizajniran od početka za postepeno usvajanje. Možete koristiti koliko god React-a želite. Bez obzira da li želite da probate React, dodate neku interaktivnost na HTML stranicu, ili da započnete kompleksnu React aplikaciju, ova sekcija će vam pomoći da počnete.
+React je dizajniran od početka za postepeno usvajanje. Možete koristiti koliko god React-a želite. Bez obzira da li želite da probate React, dodate neku interaktivnost na HTML stranicu ili da započnete kompleksnu React aplikaciju, ova sekcija će vam pomoći da počnete.
 
 
 </Intro>
@@ -38,7 +38,7 @@ export default function App() {
 
 Možete ga direktno menjati ili otvoriti u novom tabu pritiskom na "Fork" dugme u gornjem desnom uglu.
 
-Većina stranica u React dokumentaciji sadrži sandbokse kao ovaj. Van React dokumentacije, postoje mnogi online sandboksi koji podržavaju React: na primer, [CodeSandbox](https://codesandbox.io/s/new), [StackBlitz](https://stackblitz.com/fork/react), ili [CodePen.](https://codepen.io/pen?template=QWYVwWN)
+Većina stranica u React dokumentaciji sadrži sandbox-e kao ovaj. Van React dokumentacije postoje mnogi online sandbox-i koji podržavaju React: [CodeSandbox](https://codesandbox.io/s/new), [StackBlitz](https://stackblitz.com/fork/react) ili [CodePen](https://codepen.io/pen?template=QWYVwWN).
 
 ### Isprobajte React lokalno {/*try-react-locally*/}
 
@@ -46,7 +46,7 @@ Da isprobate React lokalno na vašem računaru, [preuzmite ovu HTML stranicu.](h
 
 ## Započnite novi React projekat {/*start-a-new-react-project*/}
 
-Ako želite da napravite aplikaciju ili sajt koristeći samo React, [zapocnite novi React projekat.](/learn/start-a-new-react-project)
+Ako želite da napravite aplikaciju ili sajt koristeći samo React, [započnite novi React projekat.](/learn/start-a-new-react-project)
 
 ## Dodajte React u postojeći projekat {/*add-react-to-an-existing-project*/}
 
@@ -55,4 +55,3 @@ Ako žeite da isprobate React u vašem postojećem sajtu ili aplikaciji, [dodajt
 ## Sledeći koraci {/*next-steps*/}
 
 Idite na [Brzi Uvod](/learn) vodič za turu najvažnijih React koncepta sa kojima ćete se susretati svakodnevno.
-

@@ -16,7 +16,7 @@ Ako želite da dodate neku interaktivnost na postojeći projekat, ne morate ga p
 
 ## Koristite React za ceo subroute vašeg postojećeg sajta {/*using-react-for-an-entire-subroute-of-your-existing-website*/}
 
-Recimo da imate postojeći veb sajt na `example.com` napravljen sa nekom drugom tehnologijom (kao što je Rails), i želite da implementirate sve rute koje počinju sa `example.com/some-app/` u potpunosti sa React-om.
+Recimo da imate postojeći veb sajt na `example.com` napravljen sa nekom drugom tehnologijom (kao što je Rails) i želite da implementirate sve rute koje počinju sa `example.com/some-app/` u potpunosti sa React-om.
 
 Evo kako preporučujemo da to uradite:
 
@@ -30,11 +30,11 @@ Mnogi React-based framework-ovi su full-stack i omogućavaju vašoj React aplika
 
 ## Koristite React za deo vaše postojeće stranice {/*using-react-for-a-part-of-your-existing-page*/}
 
-Recimo da imate postojeću stranicu napravljenu sa nekom drugom tehnologijom (ili na serveru kao Rails, ili na klijentu kao Backbone), i želite da renderujete interaktivne React komponente negde na toj stranici. To je uobičajen način da se integriše React - zapravo, to je kako je većina React koda izgledala na Meta-u mnogo godina!
+Recimo da imate postojeću stranicu napravljenu sa nekom drugom tehnologijom (ili na serveru kao Rails, ili na klijentu kao Backbone), i želite da renderujete interaktivne React komponente negde na toj stranici. To je uobičajen način da se integriše React - zapravo, to je kako je većina React koda izgledala na Meta-i mnogo godina!
 
 Ovo možete uraditi u dva koraka:
 
-1. **Postavite JavaScript okruženje** koje vam omogućava da koristite [JSX sintaksu](/learn/writing-markup-with-jsx), podelite svoj kod u module sa [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) / [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) sintaksom, i koristite pakete (na primer, React) iz [npm](https://www.npmjs.com/) registra paketa.
+1. **Postavite JavaScript okruženje** koje vam omogućava da koristite [JSX sintaksu](/learn/writing-markup-with-jsx), podelite svoj kod u module sa [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) / [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) sintaksom i koristite pakete (na primer, React) iz [npm](https://www.npmjs.com/) registra paketa.
 2. **Renderujte vaše React komponente** gde želite da ih vidite na stranici.
 
 Tačan pristup zavisi od vašeg postojećeg podešavanja stranice, pa hajde da prođemo kroz neke detalje.
@@ -43,11 +43,11 @@ Tačan pristup zavisi od vašeg postojećeg podešavanja stranice, pa hajde da p
 
 Modularno JavaScript okruženje vam omogućava da pišete vaše React komponente u pojedinačnim fajlovima, umesto da pišete sav vaš kod u jednom fajlu. Takođe vam omogućava da koristite sve divne pakete koje su objavili drugi programeri na [npm](https://www.npmjs.com/) registru - uključujući i React! Kako ćete to uraditi zavisi od vašeg postojećeg podešavanja:
 
-* **Ako je vaša stranica već podeljena u fajlove koji koriste `import` naredbe,** pokušajte da koristite to podešavanje. Proverite da li pisanje `<div />` u vašem JS kodu izaziva sintaksnu grešku. Ako izaziva sintaksnu grešku, možda ćete morati da [transformišete vaš JS kod sa Babel-om](https://babeljs.io/setup), i omogućite [Babel React preset](https://babeljs.io/docs/babel-preset-react) da biste koristili JSX.
+* **Ako je vaša stranica već podeljena u fajlove koji koriste `import` naredbe,** pokušajte da koristite to podešavanje. Proverite da li pisanje `<div />` u vašem JS kodu izaziva sintaksnu grešku. Ako izaziva sintaksnu grešku, možda ćete morati da [transformišete vaš JS kod sa Babel-om](https://babeljs.io/setup) i omogućite [Babel React preset](https://babeljs.io/docs/babel-preset-react) da biste koristili JSX.
 
-* **Ako vaša stranica nema postojeće podešavanje za kompajliranje JavaScript modula,** postavite ga sa [Vite](https://vitejs.dev/). Vite zajednica održava [mnoge integracije sa backend framework-ovima](<https://github.com/vitejs/awesome-vite#integrations-with-backends>), ukjučujući Rails, Django, i Laravel. Ako vaš backend framework nije na listi, [pratite ovaj vodič](https://vitejs.dev/guide/backend-integration.html) da biste ručno integrisali Vite build-ove sa vašim backend-om.
+* **Ako vaša stranica nema postojeće podešavanje za kompajliranje JavaScript modula,** postavite ga sa [Vite-om](https://vitejs.dev/). Vite zajednica održava [mnoge integracije sa backend framework-ovima](<https://github.com/vitejs/awesome-vite#integrations-with-backends>), ukjučujući Rails, Django i Laravel. Ako vaš backend framework nije na listi, [pratite ovaj vodič](https://vitejs.dev/guide/backend-integration.html) da biste ručno integrisali Vite build-ove sa vašim backend-om.
 
-Da proverite da li vaše podešavanje radi, pokrenite ovu komandu u vašem projekt folderu:
+Da proverite da li vaše podešavanje radi, pokrenite ovu komandu u folderu vašeg projekta:
 
 <TerminalBlock>
 npm install react react-dom
@@ -70,10 +70,10 @@ Onda dodajte ove linije koda na vrh vašeg glavnog JavaScript fajla (možda se z
 ```js src/index.js active
 import { createRoot } from 'react-dom/client';
 
-// Clear the existing HTML content
+// Brisanje postojećeg HTML sadržaja
 document.body.innerHTML = '<div id="app"></div>';
 
-// Render your React component instead
+// Renderovanje vaše React komponente umesto toga
 const root = createRoot(document.getElementById('app'));
 root.render(<h1>Zdravo, svete!</h1>);
 ```
@@ -96,10 +96,10 @@ U prethodnom koraku, dodali ste ovaj kod na vrh vašeg glavnog fajla:
 ```js
 import { createRoot } from 'react-dom/client';
 
-// Clear the existing HTML content
+// Brisanje postojećeg HTML sadržaja
 document.body.innerHTML = '<div id="app"></div>';
 
-// Render your React component instead
+// Renderovanje vaše React komponente umesto toga
 const root = createRoot(document.getElementById('app'));
 root.render(<h1>Zdravo, svete!</h1>);
 ```
@@ -112,9 +112,9 @@ Umesto toga, verovatno želite da renderujete vaše React komponente na specifi�
 
 ```html
 
-<!-- ... somewhere in your html ... -->
+<!-- ... negde u vašem HTML-u ... -->
 <nav id="navigation"></nav>
-<!-- ... more html ... -->
+<!-- ... ostatak HTML-a ... -->
 ```
 
 Ovo vam omogućava da pronađete taj HTML element sa [`document.getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) i prosledite ga [`createRoot`](/reference/react-dom/client/createRoot) tako da možete da renderujete vašu React komponentu unutra:
@@ -137,7 +137,7 @@ Ovo vam omogućava da pronađete taj HTML element sa [`document.getElementById`]
 import { createRoot } from 'react-dom/client';
 
 function NavigationBar() {
-  // TODO: Actually implement a navigation bar
+  // TODO: Zapravo implementirajte NavigationBar
   return <h1>Pozdrav od React-a!</h1>;
 }
 

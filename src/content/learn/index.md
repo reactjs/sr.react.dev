@@ -4,7 +4,7 @@ title: Brzi Uvod
 
 <Intro>
 
-Dobrodošli u React dokumentaciju! Ova stranica pružiće vam uvod u 80% React koncepata koje ćete koristiti u svakodnevnom radu.
+Dobro došli u React dokumentaciju! Ova stranica pružiće vam uvod u 80% React koncepata koje ćete koristiti u svakodnevnom radu.
 
 </Intro>
 
@@ -21,7 +21,7 @@ Dobrodošli u React dokumentaciju! Ova stranica pružiće vam uvod u 80% React k
 
 ## Kreiranje i umetanje komponenti {/*components*/}
 
-React app-ovi su sačinjeni od *komponenti*. Komponenta je deo UI-a (korisničkog interfejsa) koji ima svoju logiku i izgled. Komponenta može biti mala kao dugme, ili velika kao cela stranica.
+React aplikacije su sačinjene od *komponenti*. Komponenta je deo UI-a (korisničkog interfejsa) koji ima svoju logiku i izgled. Komponenta može biti mala kao dugme ili velika kao cela stranica.
 
 React komponente su JavaScript funkcije koje vraćaju markup:
 
@@ -75,7 +75,7 @@ export default function MyApp() {
 
 Ključne reči `export default` određuju glavnu komponentu u fajlu. Ukoliko niste upoznati sa nekim delom JavaScript sintakse, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) i [javascript.info](https://javascript.info/import-export) imaju odlične reference.
 
-## Pisanje markupa sa JSX {/*writing-markup-with-jsx*/}
+## Pisanje markup-a sa JSX {/*writing-markup-with-jsx*/}
 
 Sintaksa markup-a koju ste videli iznad se zove *JSX*. Ona nije obavezna, ali većina React projekata koristi JSX zbog njegove praktičnosti. Svi [alati koje preporučujemo za lokalni razvoj](/learn/installation) podržavaju JSX odmah po instalaciji.
 
@@ -115,7 +115,7 @@ React ne propisuje kako dodajete CSS fajlove. U najjednostavnijem slučaju, doda
 
 ## Prikazivanje podataka {/*displaying-data*/}
 
-JSX vam omogućava da ubacite markup u JavaScript. Kovrdžave zagrade vam omogućavaju da se "prebacite nazad" u JavaScript tako da možete ugraditi neku varijablu iz vašeg koda i prikazati je korisniku. Na primer, ovo će prikazati `user.name`:
+JSX vam omogućava da ubacite markup u JavaScript. Vitičaste zagrade vam omogućavaju da se "prebacite nazad" u JavaScript tako da možete ugraditi neku varijablu iz vašeg koda i prikazati je korisniku. Na primer, ovo će prikazati `user.name`:
 
 ```js {3}
 return (
@@ -125,7 +125,7 @@ return (
 );
 ```
 
-Takođe možete se "prebaciti u JavaScript" iz JSX atributa, ali morate koristiti kovrdžave zagrade *umesto* navodnika. Na primer, `className="avatar"` prosleđuje `"avatar"` string kao CSS klasu, ali `src={user.imageUrl}` čita vrednost JavaScript `user.imageUrl` varijable, a zatim tu vrednost prosleđuje kao `src` atribut:
+Takođe možete se "prebaciti u JavaScript" iz JSX atributa, ali morate koristiti vitičaste zagrade *umesto* navodnika. Na primer, `className="avatar"` prosleđuje `"avatar"` string kao CSS klasu, ali `src={user.imageUrl}` čita vrednost JavaScript `user.imageUrl` varijable, a zatim tu vrednost prosleđuje kao `src` atribut:
 
 ```js {3,4}
 return (
@@ -136,7 +136,7 @@ return (
 );
 ```
 
-Možete staviti i složenije izraze unutar JSX kovrdžavih zagrada, na primer, [konkatenaciju stringova](https://javascript.info/operators#string-concatenation-with-binary):
+Možete staviti i složenije izraze unutar JSX vitičastih zagrada, na primer, [konkatenaciju stringova](https://javascript.info/operators#string-concatenation-with-binary):
 
 <Sandpack>
 
@@ -177,11 +177,11 @@ export default function Profile() {
 
 </Sandpack>
 
-U gore navedenom primeru, `style={{}}` nije posebna sintaksa, već običan `{}` objekat unutar `style={ }` JSX kovrdžavih zagrada. Možete koristiti `style` atribut kada se vaši style-ovi oslanjaju na JavaScript varijable.
+U gore navedenom primeru, `style={{}}` nije posebna sintaksa, već običan `{}` objekat unutar `style={ }` JSX vitičastih zagrada. Možete koristiti `style` atribut kada se vaši style-ovi oslanjaju na JavaScript varijable.
 
 ## Kondicionalno renderovanje {/*conditional-rendering*/}
 
-U React-u, nema posebne sintakse za pisanje kondicionih izraza. Umesto toga, koristićete iste tehnike kao kada pišete običan JavaScript kod. Na primer, možete koristiti [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) izraz za kondicionalno uključivanje JSX-a:
+U React-u nema posebne sintakse za pisanje kondicionih izraza. Umesto toga, koristićete iste tehnike kao kada pišete običan JavaScript kod. Na primer, možete koristiti [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) izraz za kondicionalno uključivanje JSX-a:
 
 ```js
 let content;
@@ -217,7 +217,7 @@ Kada vam nije potrebna `else` grana, možete koristiti i kraću [logičku `&&` s
 </div>
 ```
 
-Svi ovi pristupi takođe rade i za kondicionalno specificiranje atributa. Ako niste upoznati sa oovim delovima JavaScript sintakse, možete početi tako što ćete uvek koristiti `if...else`.
+Svi ovi pristupi takođe rade i za kondicionalno specificiranje atributa. Ako niste upoznati sa ovim delovima JavaScript sintakse, možete početi tako što ćete uvek koristiti `if...else`.
 
 ## Renderovanje listi {/*rendering-lists*/}
 
@@ -280,7 +280,7 @@ export default function ShoppingList() {
 
 ## Odgovaranje na event-e {/*responding-to-events*/}
 
-Možete odgovarati na event-e deklarisanjem *event handler-a* funkcija za obradu event-a unutar vaših komponenti:
+Možete odgovarati na event-e deklarisanjem *event handler* funkcija za obradu event-a unutar vaših komponenti:
 
 ```js {2-4,7}
 function MyButton() {
@@ -296,11 +296,11 @@ function MyButton() {
 }
 ```
 
-Obratite pažnju na to kako `onClick={handleClick}` nema zagrade na kraju! Ne treba da *pozivate* event handler funkciju: smo je treba *proslediti*. React će pozvati vaš event handler kada korisnik klikne na dugme.
+Obratite pažnju na to kako `onClick={handleClick}` nema zagrade na kraju! Ne treba da *pozivate* event handler funkciju: samo je treba *proslediti*. React će pozvati vaš event handler kada korisnik klikne na dugme.
 
 ## Ažuriranje ekrana {/*updating-the-screen*/}
 
-Često ćete želite da vaša komponenta "zapamti" neke informacije i prikaže ih. Na primer, možda želite da prebrojite koliko puta je dugme kliknuto. To do this, add *stanje (state)* u svoju komponentu.
+Često ćete želeti da vaša komponenta "zapamti" neke informacije i prikaže ih. Na primer, možda želite da prebrojite koliko puta je dugme kliknuto. Da biste to uradili, dodajte *stanje (state)* u svoju komponentu.
 
 Prvo, uvezite [`useState`](/reference/react/useState) iz React-a:
 
@@ -316,7 +316,7 @@ function MyButton() {
   // ...
 ```
 
-Od`useState` dobićete dobiti dve stvari: trenutni state (`count`), i funkciju koja vam omogućava da ga ažurirate  (`setCount`). Možete im dati bilo koja imena, ali je konvencija da pišete `[nešto, setNešto]`.
+Od `useState` dobićete dve stvari: trenutni state (`count`), i funkciju koja vam omogućava da ga ažurirate  (`setCount`). Možete im dati bilo koja imena, ali je konvencija da pišete `[nešto, setNešto]`.
 
 Prvi put kada se dugme prikaže, `count` će biti `0` jer ste `0` prosledili u `useState()`. Kada želite da promenite state, pozovite `setCount()` i prosledite joj novu vrednost. Klikom na ovo dugme inkrementujte brojač:
 
@@ -381,15 +381,15 @@ button {
 
 Primetite kako svako dugme "pamti" svoj sopstveni state brojača `count` i ne utiče na drugu dugmad.
 
-## Korišćenje Hookova {/*using-hooks*/}
+## Korišćenje Hook-ova {/*using-hooks*/}
 
-Funkcije koje počinju sa `use` nazivaju se *Hookovi*. `useState` je ugrađeni Hook koji pruža React. Možete pronaći i druge ugrađene Hookove u [API referenci.](/reference/react) Takođe, možete pisati svoje sopstvene Hookove kombinovanjem postojećih.
+Funkcije koje počinju sa `use` nazivaju se *Hook-ovi*. `useState` je ugrađeni Hook koji pruža React. Možete pronaći i druge ugrađene Hook-ove u [API referenci.](/reference/react) Takođe, možete pisati svoje sopstvene Hook-ove kombinovanjem postojećih.
 
-Hookovi su restriktivniji od ostalih funkcija. Hookove možete pozivati samo na vrhu svojih komponenata (ili drugih Hookova). Ukoliko nameravate koristiti `useState` u nekom condition-u ili loop-u, izdvojite novu komponentu i stavite ga tamo.
+Hook-ovi su restriktivniji od ostalih funkcija. Hook-ove možete pozivati samo na vrhu svojih komponenata (ili drugih Hook-ova). Ukoliko nameravate koristiti `useState` u nekom condition-u ili loop-u, izdvojite novu komponentu i stavite ga tamo.
 
 ## Prosleđivanje podataka među komponentama {/*sharing-data-between-components*/}
 
-U prethodnom primeru, svaki `MyButton` je imao nezavisni `count`, i kada je svako pojedinačno dugme bilo pritisnuto,`count` se menjao samo za trenutno pritisnuto dugme:
+U prethodnom primeru, svaki `MyButton` je imao nezavisni `count`, i kada je svako pojedinačno dugme bilo pritisnuto, `count` se menjao samo za trenutno pritisnuto dugme:
 
 <DiagramGroup>
 
@@ -409,7 +409,7 @@ Prva `MyButton` komponenta ažurira svoj `count` na `1`
 
 Međutim, često će vam biti potrebno da komponente *prosleđuju podatke međusobno i uvek se zajedno ažuriraju*.
 
-Da biste obe `MyButton` komponente prikazali sa istim `count` i ažurirali zajedno, morate premestiti state iz pojedinačnih dugmeta "nagore" do najbliže komponente koja sadrži sve njih.
+Da biste obe `MyButton` komponente prikazali sa istim `count` i ažurirali zajedno, morate premestiti state iz pojedinačnih dugmadi "nagore" do najbliže komponente koja sadrži sve njih.
 
 U ovom primeru, to je `MyApp`:
 
@@ -431,7 +431,7 @@ Pri kliku, `MyApp` ažurira svoj `count` state na `1` i prosleđuje ga u obe chi
 
 Sada, kada kliknete na bilo koje dugme, `count` u `MyApp` će se promeniti, što će promeniti oba brojača u `MyButton`. Evo kako to možete izraziti u kodu.
 
-Prvo, *pdignite state nagore* from `MyButton` u `MyApp`:
+Prvo, *podignite state nagore* iz `MyButton` u `MyApp`:
 
 ```js {2-6,18}
 export default function MyApp() {
@@ -451,12 +451,12 @@ export default function MyApp() {
 }
 
 function MyButton() {
-  // ... premestamo kod odavde ...
+  // ... premeštamo kod odavde ...
 }
 
 ```
 
-Zatim, *prosleđujemo state nadole* iz `MyApp` u oba `MyButton`, zajedno sa zajedničkim handlerom za klik. Informacije možete proslediti u `MyButton` koristeći kovrdžaste zagrade u JSX-u, baš kao što ste to ranije radili sa ugrađenim tagovima poput `<img>`:
+Zatim, *prosleđujemo state nadole* iz `MyApp` u oba `MyButton`, zajedno sa zajedničkim handler-om za klik. Informacije možete proslediti u `MyButton` koristeći vitičaste zagrade u JSX-u, baš kao što ste to ranije radili sa ugrađenim tagovima poput `<img>`:
 
 ```js {11-12}
 export default function MyApp() {
@@ -476,7 +476,7 @@ export default function MyApp() {
 }
 ```
 
-Informacije koje na ovaj način prosleđujete nazivaju se *props*. Sada `MyApp` komponenta sadrži `count` state i `handleClick` event handler, i *prosleđuje obe nadole kao props* svakom od dugmeta.
+Informacije koje na ovaj način prosleđujete nazivaju se *props*. Sada `MyApp` komponenta sadrži `count` state i `handleClick` event handler i *prosleđuje obe nadole kao props* svakom dugmetu.
 
 Konačno, promenite `MyButton` da *čita* props koje ste prosledili iz njegove parent komponente:
 
@@ -490,7 +490,7 @@ function MyButton({ count, onClick }) {
 }
 ```
 
-Kada kliknete na dugme, `onClick` handler se aktivira.`onClick` prop svakog dugmeta postavljen je na funkciju `handleClick` unutar `MyApp` pa se kod unutar nje izvršava. Taj kod poziva `setCount(count + 1)`, inkrementira `count` state varijablu. Nova `count` vrednost se prosleđuje kao prop svakom dugmetu, pa svi prikazuju novu vrednost. Ovo se naziva "podizanje state-a nagore". Pomeranjema state-a nagore, podelili ste ga između komponenata.
+Kada kliknete na dugme, `onClick` handler se aktivira. `onClick` prop svakog dugmeta postavljen je na funkciju `handleClick` unutar `MyApp` pa se kod unutar nje izvršava. Taj kod poziva `setCount(count + 1)`, inkrementirajući `count` state varijablu. Nova `count` vrednost se prosleđuje kao prop svakom dugmetu, pa svi prikazuju novu vrednost. Ovo se naziva "podizanje state-a nagore". Pomeranjem state-a nagore, podelili ste ga između komponenata.
 
 <Sandpack>
 
