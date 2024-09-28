@@ -4,19 +4,19 @@ title: Opisivanje korisničkog interfejsa (UI)
 
 <Intro>
 
-React je JavaScript biblioteka za prikazivanje korisničkog interfejsa (UI). UI se sastoji od malih jedinica kao što su dugmad, tekst i slike. React vam omogućava da ih kombinujete u ponovljive, nested (ugnježdene) *komponente.* Od veb sajtova do telefonskih aplikacija, sve na ekranu može se razbiti na komponente. U ovom poglavlju naučićete kako da kreirate, prilagodite i uslovno prikažete React komponente.
+React je JavaScript biblioteka za prikazivanje korisničkog interfejsa (UI). UI se sastoji od malih jedinica kao što su dugmad, tekst i slike. React vam omogućava da ih kombinujete u reusable, nested (ugnježdene) *komponente.* Od web sajtova do telefonskih aplikacija, sve na ekranu može se razbiti na komponente. U ovom poglavlju naučićete kako da kreirate, prilagodite i uslovno prikažete React komponente.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
 * [Kako da napišete svoju prvu React komponentu](/learn/your-first-component)
-* [Kada i kako da kreirate više komponenti u jednom fajlu](/learn/importing-and-exporting-components)
+* [Kada i kako da kreirate više komponenata u jednom fajlu](/learn/importing-and-exporting-components)
 * [Kako da dodate markup u JavaScript pomoću JSX](/learn/writing-markup-with-jsx)
-* [Kako da koristite vitičaste zagrade u JSX-u da biste pristupili funkcionalnosti JavaScript-a iz vaših komponenti](/learn/javascript-in-jsx-with-curly-braces)
+* [Kako da koristite vitičaste zagrade u JSX-u da biste pristupili funkcionalnosti JavaScript-a iz vaših komponenata](/learn/javascript-in-jsx-with-curly-braces)
 * [Kako da konfigurišete komponente sa props](/learn/passing-props-to-a-component)
 * [Kako da uslovno prikažete komponente](/learn/conditional-rendering)
-* [Kako da prikažete više komponenti odjednom](/learn/rendering-lists)
+* [Kako da prikažete više komponenata odjednom](/learn/rendering-lists)
 * [Kako da izbegnete zbunjujuće greške tako što ćete komponente držati čistim](/learn/keeping-components-pure)
 * [Kako da razumete vaš UI kao stablo](/learn/understanding-your-ui-as-a-tree)
 
@@ -41,7 +41,7 @@ function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Zadivljujući naučnik</h1>
+      <h1>Zadivljujući naučnici</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -62,9 +62,9 @@ Pročitajte **[Vaša prva komponenta](/learn/your-first-component)** da biste na
 
 </LearnMore>
 
-## Import-ovanje i export-ovanje komponenti {/*importing-and-exporting-components*/}
+## Import-ovanje i export-ovanje komponenata {/*importing-and-exporting-components*/}
 
-Možete deklarisati mnogo komponenti u jednom fajlu, ali veliki fajlovi mogu postati teški za navigaciju. Da biste to rešili, možete *export-ovati* komponentu u svoj fajl, a zatim *import-ovati* tu komponentu iz drugog fajla:
+Možete deklarisati mnogo komponenata u jednom fajlu, ali veliki fajlovi mogu postati teški za navigaciju. Da biste to rešili, možete *export-ovati* komponentu u svoj fajl, a zatim *import-ovati* tu komponentu iz drugog fajla:
 
 
 <Sandpack>
@@ -85,7 +85,7 @@ import Profile from './Profile.js';
 export default function Gallery() {
   return (
     <section>
-      <h1>Zadivljujući naučnik</h1>
+      <h1>Zadivljujući naučnici</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -113,7 +113,7 @@ img { margin: 0 10px 10px 0; }
 
 <LearnMore path="/learn/importing-and-exporting-components">
 
-Pročitajte **[Import-ovanje i export-ovanje komponenti](/learn/importing-and-exporting-components)** da biste naučili kako da podelite komponente u svoje fajlove.
+Pročitajte **[Import-ovanje i export-ovanje komponenata](/learn/importing-and-exporting-components)** da biste naučili kako da podelite komponente u svoje fajlove.
 
 </LearnMore>
 
@@ -315,7 +315,7 @@ Pročitajte **[Prosleđivanje props-a komponenti](/learn/passing-props-to-a-comp
 
 </LearnMore>
 
-## Uslovno prikazivanje komponenti {/*conditional-rendering*/}
+## Uslovno prikazivanje komponenata {/*conditional-rendering*/}
 
 Vaše komponente će često morati da prikažu različite stvari u zavisnosti od različitih uslova. U React-u, možete uslovno prikazati JSX koristeći JavaScript sintaksu kao što su `if` naredbe, `&&` i `? :` operatori.
 
@@ -359,13 +359,13 @@ export default function PackingList() {
 
 <LearnMore path="/learn/conditional-rendering">
 
-Pročitajte **[Uslovno prikazivanje komponenti](/learn/conditional-rendering)** da biste naučili različite načine za uslovno prikazivanje sadržaja.
+Pročitajte **[Uslovno prikazivanje komponenata](/learn/conditional-rendering)** da biste naučili različite načine za uslovno prikazivanje sadržaja.
 
 </LearnMore>
 
 ## Renderovanje liste {/*rendering-lists*/}
 
-Često ćete želeti da prikažete više sličnih komponenti iz kolekcije podataka. Možete koristiti JavaScript `filter()` i `map()` sa React-om da biste filtrirali i transformisali vaš niz podataka u niz komponenti.
+Često ćete želeti da prikažete više sličnih komponenata iz kolekcije podataka. Možete koristiti JavaScript `filter()` i `map()` sa React-om da biste filtrirali i transformisali vaš niz podataka u niz komponenata.
 
 Za svaki element u nizu, moraćete da odredite `key` prop. Obično ćete koristiti ID iz baze podataka kao `key`. Ključevi omogućavaju React-u da prati mesto svakog elementa u listi čak i ako se lista promeni.
 
@@ -459,18 +459,18 @@ h2 { font-size: 20px; }
 
 <LearnMore path="/learn/rendering-lists">
 
-Pročitajte **[Renderovanje liste](/learn/rendering-lists)** da biste naučili kako da renderujete listu komponenti i kako da odaberete ključ.
+Pročitajte **[Renderovanje liste](/learn/rendering-lists)** da biste naučili kako da renderujete listu komponenata i kako da odaberete ključ.
 
 </LearnMore>
 
-## Održavanje komponenti čistim (Pure components) {/*keeping-components-pure*/}
+## Održavanje komponenata čistim (Pure components) {/*keeping-components-pure*/}
 
 Neke JavaScript funkcije su *čiste.* Čista funkcija:
 
 * **Gleda svoj posao.** Ne zavisi od bilo kakvih globalnih promenljivih ili stanja aplikacije.
 * **Isti input, isti output.** Dobijajući isti input, čista funkcija uvek treba da vrati isti rezultat.
 
-Striktno pisanje vaših komponenti kao čistih funkcija može da izbegne čitavu klasu zbunjujućih grešaka i nepredvidivog ponašanja kako vaša baza koda raste. Ovde je primer nečiste komponente:
+Striktno pisanje vaših komponenata kao čistih funkcija može da izbegne čitavu klasu zbunjujućih grešaka i nepredvidivog ponašanja kako vaša baza koda raste. Ovde je primer nečiste komponente:
 
 
 <Sandpack>
@@ -521,15 +521,15 @@ export default function TeaSet() {
 
 <LearnMore path="/learn/keeping-components-pure">
 
-Pročitajte **[Održavanje komponenti čistim](/learn/keeping-components-pure)** da biste naučili kako da napišete komponente kao čiste funkcije.
+Pročitajte **[Održavanje komponenata čistim](/learn/keeping-components-pure)** da biste naučili kako da napišete komponente kao čiste funkcije.
 
 </LearnMore>
 
 ## Razumevanje vašeg UI kao stabla {/*understanding-your-ui-as-a-tree*/}
 
-React koristi stabla da modeluje odnose između komponenti i modula.
+React koristi stabla da modeluje odnose između komponenata i modula.
 
-React render stablo je reprezentacija odnosa roditelj-dete između komponenti.
+React render stablo je reprezentacija odnosa roditelj-dete između komponenata.
 
 
 <Diagram name="generic_render_tree" height={250} width={500} alt="A tree graph with five nodes, with each node representing a component. The root node is located at the top the tree graph and is labelled 'Root Component'. It has two arrows extending down to two nodes labelled 'Component A' and 'Component C'. Each of the arrows is labelled with 'renders'. 'Component A' has a single 'renders' arrow to a node labelled 'Component B'. 'Component C' has a single 'renders' arrow to a node labelled 'Component D'.">
@@ -538,7 +538,7 @@ Primer render stabla.
 
 </Diagram>
 
-Komponente koje se nalaze bliže vrhu stabla, bliže korenu komponente, smatraju se komponentama najvišeg nivoa. Komponente bez podkomponenti su list komponente. Ova kategorizacija komponenti je korisna za razumevanje toka podataka i performansi renderovanja.
+Komponente koje se nalaze bliže vrhu stabla, bliže korenu komponente, smatraju se komponentama najvišeg nivoa. Komponente bez podkomponenata su list komponente. Ova kategorizacija komponenata je korisna za razumevanje toka podataka i performansi renderovanja.
 
 Modelovanje odnosa između JavaScript modula je još jedan koristan način za razumevanje vaše aplikacije. Mi ga nazivamo modul zavisnosti stablo.
 
