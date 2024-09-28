@@ -198,7 +198,7 @@ td {
 
 (Ako vam ovaj kod deluje zastrašujuće, prvo prođite kroz [Brzi Uvod](/learn/)!)
 
-Nakon što napravite komponente, imaćete biblioteku komponenata koje renderuju model podataka i mogu se iskoristiti na više mesta. Pošto je ovo statička aplikacija, komponente će vraćati samo JSX. Komponenta na vrhu hijerarhije (`FilterableProductTable`) uzeće vaš model podataka kao prop. To se zove _jednosmerni data flow_ zato što se podaci prosleđuju od komponente na vrhu ka komponentama na dnu stabla.
+Nakon što napravite komponente, imaćete biblioteku reusable komponenata koje renderuju model podataka. Pošto je ovo statička aplikacija, komponente će vraćati samo JSX. Komponenta na vrhu hijerarhije (`FilterableProductTable`) uzeće vaš model podataka kao prop. To se zove _jednosmerni data flow_ zato što se podaci prosleđuju od komponente na vrhu ka komponentama na dnu stabla.
 
 <Pitfall>
 

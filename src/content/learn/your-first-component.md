@@ -1,47 +1,47 @@
 ---
-title: Your First Component
+title: Vaša prva komponenta
 ---
 
 <Intro>
 
-*Components* are one of the core concepts of React. They are the foundation upon which you build user interfaces (UI), which makes them the perfect place to start your React journey!
+*Komponente* su jedan od glavnih koncepata u React-u. One predstavljaju osnovu pomoću koje pravite UI, što ih čini savršenim mestom za početak vaše React avanture!
 
 </Intro>
 
 <YouWillLearn>
 
-* What a component is
-* What role components play in a React application
-* How to write your first React component
+* Šta je to komponenta
+* Koju ulogu komponente igraju u React aplikaciji
+* Kako da napišete vašu prvu React komponentu
 
 </YouWillLearn>
 
-## Components: UI building blocks {/*components-ui-building-blocks*/}
+## Komponente: Blokovi za pravljenje UI-a {/*components-ui-building-blocks*/}
 
-On the Web, HTML lets us create rich structured documents with its built-in set of tags like `<h1>` and `<li>`:
+HTML nam omogućava da na web-u kreiramo bogato struktuirane dokumente pomoću ugrađenog skupa tag-ova poput `<h1>` ili `<li>`:
 
 ```html
 <article>
-  <h1>My First Component</h1>
+  <h1>Moja prva komponenta</h1>
   <ol>
-    <li>Components: UI Building Blocks</li>
-    <li>Defining a Component</li>
-    <li>Using a Component</li>
+    <li>Komponente: Blokovi za pravljenje UI-a</li>
+    <li>Definisanje komponente</li>
+    <li>Upotreba komponente</li>
   </ol>
 </article>
 ```
 
-This markup represents this article `<article>`, its heading `<h1>`, and an (abbreviated) table of contents as an ordered list `<ol>`. Markup like this, combined with CSS for style, and JavaScript for interactivity, lies behind every sidebar, avatar, modal, dropdown—every piece of UI you see on the Web.
+Ovaj markup predstavlja ovaj članak `<article>`, njegov naslov `<h1>` i (skraćenu) tabelu sa sadržajem kao ordered list-u `<ol>`. Markup poput ovog, u kombinaciji sa CSS-om za stilizovanje i JavaScript-om za interaktivnost, stoji iza svakog sidebar-a, avatar-a, modal-a, dropdown-a, odnosno iza svakog dela UI-a kojeg vidite na web-u.
 
-React lets you combine your markup, CSS, and JavaScript into custom "components", **reusable UI elements for your app.** The table of contents code you saw above could be turned into a `<TableOfContents />` component you could render on every page. Under the hood, it still uses the same HTML tags like `<article>`, `<h1>`, etc.
+React vam omogućava da kombinujete markup, CSS i JavaScript u custom "komponente", **reusable UI elemente za vašu aplikaciju**. Kod za tabelu sadržaja koji ste videli gore može biti pretvoren u `<TableOfContents />` komponentu koju možete renderovati na svakoj stranici. Ispod haube, i dalje će se koristiti isti HTML tag-ovi poput `<article>`, `<h1>`, itd.
 
-Just like with HTML tags, you can compose, order and nest components to design whole pages. For example, the documentation page you're reading is made out of React components:
+Kao i sa HTML tag-ovima, komponente možete sastavljati, praviti im redosled i ugnježdavati ih kako bi dizajnirali cele stranice. Na primer, stranica za dokumentaciju koju upravo čitate je napravljena pomoću React komponenata:
 
 ```js
 <PageLayout>
   <NavigationHeader>
     <SearchBar />
-    <Link to="/docs">Docs</Link>
+    <Link to="/docs">Dokumentacija</Link>
   </NavigationHeader>
   <Sidebar />
   <PageContent>
@@ -51,11 +51,11 @@ Just like with HTML tags, you can compose, order and nest components to design w
 </PageLayout>
 ```
 
-As your project grows, you will notice that many of your designs can be composed by reusing components you already wrote, speeding up your development. Our table of contents above could be added to any screen with `<TableOfContents />`! You can even jumpstart your project with the thousands of components shared by the React open source community like [Chakra UI](https://chakra-ui.com/) and [Material UI.](https://material-ui.com/)
+Kako vaš projekat raste, uvidećete da dobar deo dizajna može biti sastavljen upotrebom komponenata koje ste već napisali. To može ubrzati vaš razvoj. Tabela sadržaja od gore može biti dodata bilo gde pomoću `<TableOfContents />`! Možete čak i započeti projekat velikom brzinom uz pomoć ogromnog broja komponenata dostupnih u React-ovoj open source zajednici poput [Chakra UI](https://chakra-ui.com/) i [Material UI](https://material-ui.com/).
 
-## Defining a component {/*defining-a-component*/}
+## Definisanje komponente {/*defining-a-component*/}
 
-Traditionally when creating web pages, web developers marked up their content and then added interaction by sprinkling on some JavaScript. This worked great when interaction was a nice-to-have on the web. Now it is expected for many sites and all apps. React puts interactivity first while still using the same technology: **a React component is a JavaScript function that you can _sprinkle with markup_.** Here's what that looks like (you can edit the example below):
+Tradicionalno, developeri su tokom pravljenja web stranica prvo kreirali sadržaj, a nakon toga su ga obogatili interakcijom pomoću JavaScript-a. Ovo je radilo dobro dok je interakcija bila poželjna na web-u. Danas je ona očekivana na većini sajtova i u svim aplikacijama. React stavlja interakciju na prvo mesto, iako još uvek koristi istu tehnologiju: **React komponenta je JavaScript funkcija koju možete _obogatiti sa markup-om_**. Ovako to izgleda (možete menjati primer ispod):
 
 <Sandpack>
 
@@ -76,33 +76,33 @@ img { height: 200px; }
 
 </Sandpack>
 
-And here's how to build a component:
+A ovako možete napraviti komponentu:
 
-### Step 1: Export the component {/*step-1-export-the-component*/}
+### Korak 1: Export-ovati komponentu {/*step-1-export-the-component*/}
 
-The `export default` prefix is a [standard JavaScript syntax](https://developer.mozilla.org/docs/web/javascript/reference/statements/export) (not specific to React). It lets you mark the main function in a file so that you can later import it from other files. (More on importing in [Importing and Exporting Components](/learn/importing-and-exporting-components)!)
+`export default` prefiks je [standardna JavaScript sintaksa](https://developer.mozilla.org/docs/web/javascript/reference/statements/export) (nije specifično za React). Omogućava vam da obeležite glavnu funkciju u fajlu kako biste je mogli import-ovati u drugim fajlovima. (Više o import-ovanju u [Import-ovanje i export-ovanje komponenata](/learn/importing-and-exporting-components)!)
 
-### Step 2: Define the function {/*step-2-define-the-function*/}
+### Korak 2: Definisati funkciju {/*step-2-define-the-function*/}
 
-With `function Profile() { }` you define a JavaScript function with the name `Profile`.
+Pomoću `function Profile() { }` definišete JavaScript funkciju čije je ime `Profile`.
 
 <Pitfall>
 
-React components are regular JavaScript functions, but **their names must start with a capital letter** or they won't work!
+React komponente su obične JavaScript funkcije, ali **njihova imena moraju da počnu sa velikim slovom** ili neće raditi!
 
 </Pitfall>
 
-### Step 3: Add markup {/*step-3-add-markup*/}
+### Korak 3: Dodati markup {/*step-3-add-markup*/}
 
-The component returns an `<img />` tag with `src` and `alt` attributes. `<img />` is written like HTML, but it is actually JavaScript under the hood! This syntax is called [JSX](/learn/writing-markup-with-jsx), and it lets you embed markup inside JavaScript.
+Komponenta vraća `<img />` tag sa `src` i `alt` atributima. `<img />` je napisan kao HTML, ali je, ispod haube, zapravo JavaScript! Ova sintaksa se naziva [JSX](/learn/writing-markup-with-jsx) i omogućava vam da ugradite markup unutar JavaScript-a.
 
-Return statements can be written all on one line, as in this component:
+Return iskazi mogu biti napisani u jednoj liniji, kao u ovoj komponenti:
 
 ```js
 return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
 ```
 
-But if your markup isn't all on the same line as the `return` keyword, you must wrap it in a pair of parentheses:
+Ako vaš markup nije u istoj liniji kao i ključna reč `return`, morate koristiti zagrade:
 
 ```js
 return (
@@ -114,13 +114,13 @@ return (
 
 <Pitfall>
 
-Without parentheses, any code on the lines after `return` [will be ignored](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)!
+Bez zagrada, sav kod koji je napisan u linijama ispod `return`-a [biće ignorisan](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)!
 
 </Pitfall>
 
-## Using a component {/*using-a-component*/}
+## Upotreba komponente {/*using-a-component*/}
 
-Now that you've defined your `Profile` component, you can nest it inside other components. For example, you can export a `Gallery` component that uses multiple `Profile` components:
+Kada ste definisali vašu `Profile` komponentu, možete je ugnjezditi unutar ostalih komponenata. Na primer, možete export-ovati `Gallery` komponentu koja koristi više `Profile` komponenata:
 
 <Sandpack>
 
@@ -137,7 +137,7 @@ function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Zadivljujući naučnici</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -152,37 +152,37 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-### What the browser sees {/*what-the-browser-sees*/}
+### Šta pretraživač vidi {/*what-the-browser-sees*/}
 
-Notice the difference in casing:
+Primetite razliku u veličini slova:
 
-* `<section>` is lowercase, so React knows we refer to an HTML tag.
-* `<Profile />` starts with a capital `P`, so React knows that we want to use our component called `Profile`.
+* `<section>` je napisano malim slovima, pa React zna da se to odnosi na HTML tag.
+* `<Profile />` počinje velikim slovom `P`, pa React zna da želimo koristiti našu komponentu po imenu `Profile`.
 
-And `Profile` contains even more HTML: `<img />`. In the end, this is what the browser sees:
+`Profile` sadrži još više HTML-a: `<img />`. Na kraju, ovo je ono što pretraživač vidi:
 
 ```html
 <section>
-  <h1>Amazing scientists</h1>
+  <h1>Zadivljujući naučnici</h1>
   <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
   <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
   <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />
 </section>
 ```
 
-### Nesting and organizing components {/*nesting-and-organizing-components*/}
+### Ugnježdavanje i organizacija komponenata {/*nesting-and-organizing-components*/}
 
-Components are regular JavaScript functions, so you can keep multiple components in the same file. This is convenient when components are relatively small or tightly related to each other. If this file gets crowded, you can always move `Profile` to a separate file. You will learn how to do this shortly on the [page about imports.](/learn/importing-and-exporting-components)
+Komponente su obične JavaScript funkcije, tako da možete imati više komponenata u jednom fajlu. Ovo je zgodno kada su komponente relativno male ili su usko povezane međusobno. Ako fajl postane prenatrpan, uvek možete pomeriti `Profile` u poseban fajl. Naučićete kako se to radi ubrzo na [stranici o import-ovanju](/learn/importing-and-exporting-components).
 
-Because the `Profile` components are rendered inside `Gallery`—even several times!—we can say that `Gallery` is a **parent component,** rendering each `Profile` as a "child". This is part of the magic of React: you can define a component once, and then use it in as many places and as many times as you like.
+Pošto su `Profile` komponente renderovane unutar `Gallery`-a (i to više puta), možemo reći da je `Gallery` **roditeljska komponenta** koja renderuje svaki `Profile` kao "dete". Ovo je deo React-ove magije: komponentu definišete jednom, a onda je koristite koliko god i gde god želite.
 
 <Pitfall>
 
-Components can render other components, but **you must never nest their definitions:**
+Komponente mogu renderovati druge komponente, ali **nikad ne smete ugnježdavati njihove definicije**:
 
 ```js {2-5}
 export default function Gallery() {
-  // 🔴 Never define a component inside another component!
+  // 🔴 Nikada nemojte definisati komponentu unutar druge komponente!
   function Profile() {
     // ...
   }
@@ -190,57 +190,55 @@ export default function Gallery() {
 }
 ```
 
-The snippet above is [very slow and causes bugs.](/learn/preserving-and-resetting-state#different-components-at-the-same-position-reset-state) Instead, define every component at the top level:
+Snippet iznad je [veoma spor i prouzrokuje bug-ove](/learn/preserving-and-resetting-state#different-components-at-the-same-position-reset-state). Umesto toga, definišite svaku komponentu na najvišem nivou unutar fajla:
 
 ```js {5-8}
 export default function Gallery() {
   // ...
 }
 
-// ✅ Declare components at the top level
+// ✅ Definišite komponente na najvišem nivou unutar fajla
 function Profile() {
   // ...
 }
 ```
 
-When a child component needs some data from a parent, [pass it by props](/learn/passing-props-to-a-component) instead of nesting definitions.
+Kada detetu (child) komponenti trebaju podaci od roditelja (parent), [prosledite ih preko props-a](/learn/passing-props-to-a-component) umesto da ugnježdavate definicije.
 
 </Pitfall>
 
 <DeepDive>
 
-#### Components all the way down {/*components-all-the-way-down*/}
+#### Komponente nemaju granice {/*components-all-the-way-down*/}
 
-Your React application begins at a "root" component. Usually, it is created automatically when you start a new project. For example, if you use [CodeSandbox](https://codesandbox.io/) or if you use the framework [Next.js](https://nextjs.org/), the root component is defined in `pages/index.js`. In these examples, you've been exporting root components.
+Vaša React aplikacija počinje sa "root" komponentom. Obično je ona kreirana kada započnete novi projekat. Na primer, ako koristite [CodeSandbox](https://codesandbox.io/) ili [Next.js](https://nextjs.org/) framework, root komponenta je definisana u `pages/index.js`. U ovim primerima ste export-ovali root komponente.
 
-Most React apps use components all the way down. This means that you won't only use components for reusable pieces like buttons, but also for larger pieces like sidebars, lists, and ultimately, complete pages! Components are a handy way to organize UI code and markup, even if some of them are only used once.
+Većina React aplikacija koristi komponente svuda. To znači da nećete koristiti komponente samo za reusable delove poput dugmića, već i za veće, kao što su sidebar-ovi, liste, pa čak i cele stranice! Komponente su zgodan način za organizaciju UI koda i markup-a, iako su neke se od njih koriste samo na jednom mestu.
 
-[React-based frameworks](/learn/start-a-new-react-project) take this a step further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React components. This allows your app to show some content before the JavaScript code loads.
+[React-based framework-ovi](/learn/start-a-new-react-project) odlaze korak dalje. Umesto da koristite prazan HTML fajl i da pustite React-u "da preuzme" upravljanje stranicom uz pomoć JavaScript-a, oni *takođe* automatski generišu HTML na osnovu vaših React komponenata. Na ovaj način vaša aplikacija može prikazati neki sadržaj pre neko što se JavaScript kod učita.
 
-Still, many websites only use React to [add interactivity to existing HTML pages.](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page) They have many root components instead of a single one for the entire page. You can use as much—or as little—React as you need.
+Međutim, veliki broj sajtova koristi React samo za [dodavanje interaktivnosti na postojeće HTML stranice](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page). Oni imaju više root komponenata umesto jedne za čitavu stranicu. Možete koristiti React koliko god mnogo, ili malo, da vam treba.
 
 </DeepDive>
 
 <Recap>
 
-You've just gotten your first taste of React! Let's recap some key points.
+Upravo ste dobili prvi utisak o React-u! Hajde da rezimiramo par ključnih stvari.
 
-* React lets you create components, **reusable UI elements for your app.**
-* In a React app, every piece of UI is a component.
-* React components are regular JavaScript functions except:
+* React vam omogućava da kreirate komponente, **reusable UI elemente za vašu aplikaciju**.
+* U React aplikaciji, svaki deo UI-a je komponenta.
+* React komponente su obične JavaScript funkcije osim što:
 
-  1. Their names always begin with a capital letter.
-  2. They return JSX markup.
+  1. Njihova imena počinju sa velikim slovom.
+  2. One vraćaju JSX markup.
 
 </Recap>
 
-
-
 <Challenges>
 
-#### Export the component {/*export-the-component*/}
+#### Export-ovati komponentu {/*export-the-component*/}
 
-This sandbox doesn't work because the root component is not exported:
+Ovaj sandbox ne radi jer root komponenta export-ovana:
 
 <Sandpack>
 
@@ -261,11 +259,11 @@ img { height: 181px; }
 
 </Sandpack>
 
-Try to fix it yourself before looking at the solution!
+Pokušajte da ga popravite pre nego što pogledate rešenje!
 
 <Solution>
 
-Add `export default` before the function definition like so:
+Dodajte `export default` ispred definicije funkcije:
 
 <Sandpack>
 
@@ -286,17 +284,17 @@ img { height: 181px; }
 
 </Sandpack>
 
-You might be wondering why writing `export` alone is not enough to fix this example. You can learn the difference between `export` and `export default` in [Importing and Exporting Components.](/learn/importing-and-exporting-components)
+Možda se pitate zašto dodavanje `export` ključne reči nije dovoljno za ispravku ovog primera. Možete naučiti razliku između `export` i `export default` u [Import-ovanje i export-ovanje komponenata](/learn/importing-and-exporting-components).
 
 </Solution>
 
-#### Fix the return statement {/*fix-the-return-statement*/}
+#### Popraviti return iskaz {/*fix-the-return-statement*/}
 
-Something isn't right about this `return` statement. Can you fix it?
+Nešto nije u redu sa `return` iskazom. Možete li ga popraviti?
 
 <Hint>
 
-You may get an "Unexpected token" error while trying to fix this. In that case, check that the semicolon appears *after* the closing parenthesis. Leaving a semicolon inside `return ( )` will cause an error.
+Možete dobiti "Unexpected token" grešku dok pokušavate da rešite problem. U tom slučaju, proverite da li se tačka-zarez nalazi *izvan* zatvarajuće zagrade. Ostavljanjem tačke-zareza unutar `return ( )` dobićete tu grešku.
 
 </Hint>
 
@@ -318,7 +316,7 @@ img { height: 180px; }
 
 <Solution>
 
-You can fix this component by moving the return statement to one line like so:
+Možete popraviti ovu komponentu pomeranjem return iskaza u jednu liniju:
 
 <Sandpack>
 
@@ -334,7 +332,7 @@ img { height: 180px; }
 
 </Sandpack>
 
-Or by wrapping the returned JSX markup in parentheses that open right after `return`:
+Ili tako što ćete dodati zagrade oko JSX markup-a odmah nakon `return`-a:
 
 <Sandpack>
 
@@ -357,9 +355,9 @@ img { height: 180px; }
 
 </Solution>
 
-#### Spot the mistake {/*spot-the-mistake*/}
+#### Uočiti grešku {/*spot-the-mistake*/}
 
-Something's wrong with how the `Profile` component is declared and used. Can you spot the mistake? (Try to remember how React distinguishes components from the regular HTML tags!)
+Nešto nije u redu u vezi definicijom i upotrebom `Profile` komponente. Uočavate li grešku? (Pokušajte da se setite kako React razlikuje komponente i obične HTML tag-ove!)
 
 <Sandpack>
 
@@ -376,7 +374,7 @@ function profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Zadivljujući naučnici</h1>
       <profile />
       <profile />
       <profile />
@@ -393,9 +391,9 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 <Solution>
 
-React component names must start with a capital letter.
+Imena React komponenata moraju početi velikim slovom.
 
-Change `function profile()` to `function Profile()`, and then change every `<profile />` to `<Profile />`:
+Promenite `function profile()` u `function Profile()`, a onda promenite svaki `<profile />` u `<Profile />`:
 
 <Sandpack>
 
@@ -412,7 +410,7 @@ function Profile() {
 export default function Gallery() {
   return (
     <section>
-      <h1>Amazing scientists</h1>
+      <h1>Zadivljujući naučnici</h1>
       <Profile />
       <Profile />
       <Profile />
@@ -429,14 +427,14 @@ img { margin: 0 10px 10px 0; }
 
 </Solution>
 
-#### Your own component {/*your-own-component*/}
+#### Vaša sopstvena komponenta {/*your-own-component*/}
 
-Write a component from scratch. You can give it any valid name and return any markup. If you're out of ideas, you can write a `Congratulations` component that shows `<h1>Good job!</h1>`. Don't forget to export it!
+Napišite komponentu od nule. Možete joj dati bilo koje validno ime i vratiti bilo kakav markup. Ako nemate ideju, možete napisati `Congratulations` komponentu koja prikazuje `<h1>Dobar posao!</h1>`. Ne zaboravite da je export-ujete!
 
 <Sandpack>
 
 ```js
-// Write your component below!
+// Napišite vašu komponentu ispod!
 
 ```
 
@@ -449,7 +447,7 @@ Write a component from scratch. You can give it any valid name and return any ma
 ```js
 export default function Congratulations() {
   return (
-    <h1>Good job!</h1>
+    <h1>Dobar posao!</h1>
   );
 }
 ```
