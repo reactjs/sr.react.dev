@@ -101,7 +101,7 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
           <span className="me-1">
             <IconChevron displayDirection={isExpanded ? 'up' : 'down'} />
           </span>
-          {isExpanded ? 'Sakrij Detaljnije' : 'Prikaži detaljnije'}
+          {isExpanded ? 'Sakrij detaljnije' : 'Prikaži detaljnije'}
         </Button>
       </summary>
       <div
