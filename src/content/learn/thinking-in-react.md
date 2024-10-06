@@ -438,7 +438,7 @@ td {
 
 </Sandpack>
 
-Primetićete da promena forme još uvek ne radi. Pojavio se problem u konzoli u sandbox-u iznad koji objašnjava zašto:
+Primetićete da promena forme još uvek ne radi. Pojavila se greška u konzoli u sandbox-u iznad koji objašnjava zašto:
 
 <ConsoleBlock level="error">
 
