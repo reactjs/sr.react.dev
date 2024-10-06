@@ -1,24 +1,24 @@
 ---
-title: Writing Markup with JSX
+title: Pisanje markup-a sa JSX-om
 ---
 
 <Intro>
 
-*JSX* is a syntax extension for JavaScript that lets you write HTML-like markup inside a JavaScript file. Although there are other ways to write components, most React developers prefer the conciseness of JSX, and most codebases use it.
+*JSX* je sintaksna ekstenzija za JavaScript koja vam omogućava da pišete markup sličan HTML-u unutar JavaScript fajla. Iako postoje i drugi načini za pisanje komponenata, većina React developera preferira sažetost JSX-a, pa se zato koristi na većini projekata.
 
 </Intro>
 
 <YouWillLearn>
 
-* Why React mixes markup with rendering logic
-* How JSX is different from HTML
-* How to display information with JSX
+* Zašto React kombinuje markup i logiku renderovanja
+* Kako se JSX razlikuje od HTML-a
+* Kako da prikažete informacije pomoću JSX-a
 
 </YouWillLearn>
 
-## JSX: Putting markup into JavaScript {/*jsx-putting-markup-into-javascript*/}
+## JSX: Stavljanje markup-a unutar JavaScript-a {/*jsx-putting-markup-into-javascript*/}
 
-The Web has been built on HTML, CSS, and JavaScript. For many years, web developers kept content in HTML, design in CSS, and logic in JavaScript—often in separate files! Content was marked up inside HTML while the page's logic lived separately in JavaScript:
+Web je izgrađen pomoću HTML-a, CSS-a i JavaScript-a. Godinama su web developeri čuvali sadržaj u HTML-u, dizajn u CSS-u, a logiku u JavaScript-u, i to često u odvojenim fajlovima! Sadržaj se nalazio unutar HTML-a, dok je logika živela odvojeno u JavaScript-u:
 
 <DiagramGroup>
 
@@ -36,53 +36,53 @@ JavaScript
 
 </DiagramGroup>
 
-But as the Web became more interactive, logic increasingly determined content. JavaScript was in charge of the HTML! This is why **in React, rendering logic and markup live together in the same place—components.**
+Kako je web postajao interaktivniji, logika je značajno određivala sadržaj. JavaScript je bio zadužen za HTML! Zato, **u React-u, logika renderovanja i markup žive zajedno na jednom mestu—u komponentama**.
 
 <DiagramGroup>
 
 <Diagram name="writing_jsx_sidebar" height={330} width={325} alt="React component with HTML and JavaScript from previous examples mixed. Function name is Sidebar which calls the function isLoggedIn, highlighted in yellow. Nested inside the function highlighted in purple is the p tag from before, and a Form tag referencing the component shown in the next diagram.">
 
-`Sidebar.js` React component
+`Sidebar.js` React komponenta
 
 </Diagram>
 
 <Diagram name="writing_jsx_form" height={330} width={325} alt="React component with HTML and JavaScript from previous examples mixed. Function name is Form containing two handlers onClick and onSubmit highlighted in yellow. Following the handlers is HTML highlighted in purple. The HTML contains a form element with a nested input element, each with an onClick prop.">
 
-`Form.js` React component
+`Form.js` React komponenta
 
 </Diagram>
 
 </DiagramGroup>
 
-Keeping a button's rendering logic and markup together ensures that they stay in sync with each other on every edit. Conversely, details that are unrelated, such as the button's markup and a sidebar's markup, are isolated from each other, making it safer to change either of them on their own.
+Držanje logike renderovanja i markup-a za dugme na jednom mestu osigurava da će oni ostati sinhronizovani nakon svake promene. Nasuprot toga, detalji koji nisu povezani, kao što su markup-i za dugme i sidebar, izolovani su jedan od drugog, što omogućava lakšu promenu svakog od njih.
 
-Each React component is a JavaScript function that may contain some markup that React renders into the browser. React components use a syntax extension called JSX to represent that markup. JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information. The best way to understand this is to convert some HTML markup to JSX markup.
+Svaka React komponenta je JavaScript funkcija koja može sadržati markup koji će React renderovati u pretraživaču. React komponente koriste sintaksnu ekstenziju pod imenom JSX da bi predstavile taj markup. JSX veoma liči na HTML, ali je malo strožiji i može prikazati dinamičke podatke. Najbolji način da ovo razumete je da konvertujete neki HTML markup u JSX markup.
 
 <Note>
 
-JSX and React are two separate things. They're often used together, but you *can* [use them independently](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform) of each other. JSX is a syntax extension, while React is a JavaScript library.
+JSX i React su dve odvojene stvari. Često se koriste zajedno, ali *možete* [ih koristiti odvojeno](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform). JSX je sintaksna ekstenzija, dok je React JavaScript biblioteka.
 
 </Note>
 
-## Converting HTML to JSX {/*converting-html-to-jsx*/}
+## Konvertovanje HTML-a u JSX {/*converting-html-to-jsx*/}
 
-Suppose that you have some (perfectly valid) HTML:
+Pretpostavimo da imate neki (potpuno validan) HTML:
 
 ```html
-<h1>Hedy Lamarr's Todos</h1>
+<h1>Hedy Lamarr-ina Todo lista</h1>
 <img 
   src="https://i.imgur.com/yXOvdOSs.jpg" 
   alt="Hedy Lamarr" 
   class="photo"
 >
 <ul>
-    <li>Invent new traffic lights
-    <li>Rehearse a movie scene
-    <li>Improve the spectrum technology
+    <li>Izmisli nove semafore
+    <li>Vežbaj scenu iz filma
+    <li>Unapredi tehnologiju spektra
 </ul>
 ```
 
-And you want to put it into your component:
+I želite da ga pomerite u vašu komponentu:
 
 ```js
 export default function TodoList() {
@@ -92,7 +92,7 @@ export default function TodoList() {
 }
 ```
 
-If you copy and paste it as is, it will not work:
+Ako uradite samo copy/paste, to neće raditi:
 
 
 <Sandpack>
@@ -100,17 +100,17 @@ If you copy and paste it as is, it will not work:
 ```js
 export default function TodoList() {
   return (
-    // This doesn't quite work!
-    <h1>Hedy Lamarr's Todos</h1>
+    // Ovo baš i ne radi!
+    <h1>Hedy Lamarr-ina Todo lista</h1>
     <img 
       src="https://i.imgur.com/yXOvdOSs.jpg" 
       alt="Hedy Lamarr" 
       class="photo"
     >
     <ul>
-      <li>Invent new traffic lights
-      <li>Rehearse a movie scene
-      <li>Improve the spectrum technology
+      <li>Izmisli nove semafore
+      <li>Vežbaj scenu iz filma
+      <li>Unapredi tehnologiju spektra
     </ul>
   );
 }
@@ -122,25 +122,25 @@ img { height: 90px }
 
 </Sandpack>
 
-This is because JSX is stricter and has a few more rules than HTML! If you read the error messages above, they'll guide you to fix the markup, or you can follow the guide below.
+To je zato što je JSX strožiji i ima par pravila više od HTML-a! Ako pročitate poruke o greškama iznad, uputiće vas kako da popravite markup. Takođe, možete pratiti i uputstvo ispod.
 
 <Note>
 
-Most of the time, React's on-screen error messages will help you find where the problem is. Give them a read if you get stuck!
+U većini slučajeva, React-ove poruke o greškama će vam pomoći da pronađete u čemu je problem. Pročitajte ih ako se zaglavite!
 
 </Note>
 
-## The Rules of JSX {/*the-rules-of-jsx*/}
+## Pravila JSX-a {/*the-rules-of-jsx*/}
 
-### 1. Return a single root element {/*1-return-a-single-root-element*/}
+### 1. Vratite jedan root element {/*1-return-a-single-root-element*/}
 
-To return multiple elements from a component, **wrap them with a single parent tag.**
+Da biste vratili više elemenata iz komponente, **zamotajte ih u jedan roditeljski tag**.
 
-For example, you can use a `<div>`:
+Na primer, možete koristiti `<div>`:
 
 ```js {1,11}
 <div>
-  <h1>Hedy Lamarr's Todos</h1>
+  <h1>Hedy Lamarr-ina Todo lista</h1>
   <img 
     src="https://i.imgur.com/yXOvdOSs.jpg" 
     alt="Hedy Lamarr" 
@@ -153,11 +153,11 @@ For example, you can use a `<div>`:
 ```
 
 
-If you don't want to add an extra `<div>` to your markup, you can write `<>` and `</>` instead:
+Ako ne želite da dodate novi `<div>` u vaš markup, možete umesto toga koristiti `<>` i `</>`:
 
 ```js {1,11}
 <>
-  <h1>Hedy Lamarr's Todos</h1>
+  <h1>Hedy Lamarr-ina Todo lista</h1>
   <img 
     src="https://i.imgur.com/yXOvdOSs.jpg" 
     alt="Hedy Lamarr" 
@@ -169,21 +169,21 @@ If you don't want to add an extra `<div>` to your markup, you can write `<>` and
 </>
 ```
 
-This empty tag is called a *[Fragment.](/reference/react/Fragment)* Fragments let you group things without leaving any trace in the browser HTML tree.
+Ovaj prazan tag se naziva *[Fragment](/reference/react/Fragment)*. Fragmenti vam omogućavaju da grupišete stvari bez uticaja na HTML stablo u pretraživaču.
 
 <DeepDive>
 
-#### Why do multiple JSX tags need to be wrapped? {/*why-do-multiple-jsx-tags-need-to-be-wrapped*/}
+#### Zašto morate zamotati više JSX tag-ova? {/*why-do-multiple-jsx-tags-need-to-be-wrapped*/}
 
-JSX looks like HTML, but under the hood it is transformed into plain JavaScript objects. You can't return two objects from a function without wrapping them into an array. This explains why you also can't return two JSX tags without wrapping them into another tag or a Fragment.
+JSX liči na HTML, ali je ispod haube transformisan u obične JavaScript objekte. Ne možete vratiti dva objekta iz funkcije ako ih ne zamotate u niz. Ovo takođe objašnjava i zašto ne možete vratiti dva JSX tag-a bez da ih zamotate u drugi tag ili Fragment.
 
 </DeepDive>
 
-### 2. Close all the tags {/*2-close-all-the-tags*/}
+### 2. Zatvorite sve tag-ove {/*2-close-all-the-tags*/}
 
-JSX requires tags to be explicitly closed: self-closing tags like `<img>` must become `<img />`, and wrapping tags like `<li>oranges` must be written as `<li>oranges</li>`.
+JSX zahteva da svi tag-ovi budu eksplicitno zatvoreni: samozatvarajući tag-ovi kao što je `<img>` moraju postati `<img />`, a obmotavajući tag-ovi poput `<li>pomorandže` moraju biti napisani kao `<li>pomorandže</li>`.
 
-This is how Hedy Lamarr's image and list items look closed:
+Ovako izgledaju Hedy Lamarr-ina slika i lista zatvoreni:
 
 ```js {2-6,8-10}
 <>
@@ -193,18 +193,18 @@ This is how Hedy Lamarr's image and list items look closed:
     class="photo"
    />
   <ul>
-    <li>Invent new traffic lights</li>
-    <li>Rehearse a movie scene</li>
-    <li>Improve the spectrum technology</li>
+    <li>Izmisli nove semafore</li>
+    <li>Vežbaj scenu iz filma</li>
+    <li>Unapredi tehnologiju spektra</li>
   </ul>
 </>
 ```
 
-### 3. camelCase <s>all</s> most of the things! {/*3-camelcase-salls-most-of-the-things*/}
+### 3. Koristite camelCase za <s>sve</s> većinu stvari! {/*3-camelcase-salls-most-of-the-things*/}
 
-JSX turns into JavaScript and attributes written in JSX become keys of JavaScript objects. In your own components, you will often want to read those attributes into variables. But JavaScript has limitations on variable names. For example, their names can't contain dashes or be reserved words like `class`.
+JSX se pretvara u JavaScript i atributi napisani u JSX-u postaju ključevi za JavaScript objekte. U vašim komponentama, često ćete želeti da pročitate te atribute u promenljive. Ali JavaScript ima ograničenja za imena promenljivih. Na primer, imena ne mogu sadržati crtice ili rezervisane reči kao što je `class`.
 
-This is why, in React, many HTML and SVG attributes are written in camelCase. For example, instead of `stroke-width` you use `strokeWidth`. Since `class` is a reserved word, in React you write `className` instead, named after the [corresponding DOM property](https://developer.mozilla.org/en-US/docs/Web/API/Element/className):
+Zato se, u React-u, većina HTML i SVG atributa pišu u camelCase-u. Na primer, umesto `stroke-width` koristićete `strokeWidth`. Pošto je `class` rezervisana reč, u React-u ćete pisati `className`, koji je nastao na osnovu [odgovarajućeg polja u DOM-u](https://developer.mozilla.org/en-US/docs/Web/API/Element/className):
 
 ```js {4}
 <img 
@@ -214,19 +214,19 @@ This is why, in React, many HTML and SVG attributes are written in camelCase. Fo
 />
 ```
 
-You can [find all these attributes in the list of DOM component props.](/reference/react-dom/components/common) If you get one wrong, don't worry—React will print a message with a possible correction to the [browser console.](https://developer.mozilla.org/docs/Tools/Browser_Console)
+Možete [pronaći sve te atribute u listi props-a DOM komponente](/reference/react-dom/components/common). Ako neki i pogrešite, ne brinite—React će napisati poruku sa mogućom ispravkom u [konzoli pretraživača](https://developer.mozilla.org/docs/Tools/Browser_Console).
 
 <Pitfall>
 
-For historical reasons, [`aria-*`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA) and [`data-*`](https://developer.mozilla.org/docs/Learn/HTML/Howto/Use_data_attributes) attributes are written as in HTML with dashes.
+Iz istorijskih razloga, [`aria-*`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA) i [`data-*`](https://developer.mozilla.org/docs/Learn/HTML/Howto/Use_data_attributes) atributi se pišu sa crticama kao i u HTML-u.
 
 </Pitfall>
 
-### Pro-tip: Use a JSX Converter {/*pro-tip-use-a-jsx-converter*/}
+### Pro-savet: Koristite JSX konverter {/*pro-tip-use-a-jsx-converter*/}
 
-Converting all these attributes in existing markup can be tedious! We recommend using a [converter](https://transform.tools/html-to-jsx) to translate your existing HTML and SVG to JSX. Converters are very useful in practice, but it's still worth understanding what is going on so that you can comfortably write JSX on your own.
+Konvertovanje svih tih atributa u postojeći markup može biti naporno! Preporučujemo vam da koristite [konverter](https://transform.tools/html-to-jsx) za pretvaranje postojećeg HTML-a i SVG-a u JSX. Konverteri su veoma zgodni u praksi, ali je i dalje važno da razumete šta se događa kako biste lagodno mogli da pišete JSX.
 
-Here is your final result:
+Ovo je konačni rezultat:
 
 <Sandpack>
 
@@ -234,16 +234,16 @@ Here is your final result:
 export default function TodoList() {
   return (
     <>
-      <h1>Hedy Lamarr's Todos</h1>
+      <h1>Hedy Lamarr-ina Todo lista</h1>
       <img 
         src="https://i.imgur.com/yXOvdOSs.jpg" 
         alt="Hedy Lamarr" 
         className="photo" 
       />
       <ul>
-        <li>Invent new traffic lights</li>
-        <li>Rehearse a movie scene</li>
-        <li>Improve the spectrum technology</li>
+        <li>Izmisli nove semafore</li>
+        <li>Vežbaj scenu iz filma</li>
+        <li>Unapredi tehnologiju spektra</li>
       </ul>
     </>
   );
@@ -258,11 +258,11 @@ img { height: 90px }
 
 <Recap>
 
-Now you know why JSX exists and how to use it in components:
+Sada znate zašto JSX postoji i kako da ga koristite u komponentama:
 
-* React components group rendering logic together with markup because they are related.
-* JSX is similar to HTML, with a few differences. You can use a [converter](https://transform.tools/html-to-jsx) if you need to.
-* Error messages will often point you in the right direction to fixing your markup.
+* React komponente grupišu logiku renderovanja i markup zato što su povezani.
+* JSX je sličan HTML-u, ali ima par razlika. Ako vam je potrebno, možete koristiti [konverter](https://transform.tools/html-to-jsx).
+* Poruke o greškama će vam često ukazati na pravac u kom možete popraviti vaš markup.
 
 </Recap>
 
@@ -270,9 +270,9 @@ Now you know why JSX exists and how to use it in components:
 
 <Challenges>
 
-#### Convert some HTML to JSX {/*convert-some-html-to-jsx*/}
+#### Konvertujte HTML u JSX {/*convert-some-html-to-jsx*/}
 
-This HTML was pasted into a component, but it's not valid JSX. Fix it:
+Ovaj HTML je samo ubačen u komponentu, ali nije validan JSX. Popravite ga:
 
 <Sandpack>
 
@@ -280,12 +280,12 @@ This HTML was pasted into a component, but it's not valid JSX. Fix it:
 export default function Bio() {
   return (
     <div class="intro">
-      <h1>Welcome to my website!</h1>
+      <h1>Dobro došli na moj sajt!</h1>
     </div>
     <p class="summary">
-      You can find my thoughts here.
+      Ovde možete pronaći moje ideje.
       <br><br>
-      <b>And <i>pictures</b></i> of scientists!
+      <b>I <i>slike</b></i> naučnika!
     </p>
   );
 }
@@ -308,7 +308,7 @@ export default function Bio() {
 
 </Sandpack>
 
-Whether to do it by hand or using the converter is up to you!
+Možete to uraditi samostalno ili pomoću konvertera. Na vama je!
 
 <Solution>
 
@@ -319,12 +319,12 @@ export default function Bio() {
   return (
     <div>
       <div className="intro">
-        <h1>Welcome to my website!</h1>
+        <h1>Dobro došli na moj sajt!</h1>
       </div>
       <p className="summary">
-        You can find my thoughts here.
+        Ovde možete pronaći moje ideje.
         <br /><br />
-        <b>And <i>pictures</i></b> of scientists!
+        <b>I <i>slike</i></b> naučnika!
       </p>
     </div>
   );
