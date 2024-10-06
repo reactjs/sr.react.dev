@@ -210,7 +210,7 @@ Ne biste trebali da koristite nijednu state vrednost u ovom trenutku. To je nare
 
 Da bi vaš UI bio interaktivan, neophodno je dopustiti korisnicima da menjaju model podataka. Za to ćete upotrebiti *state*.
 
-State bi trebao biti najmanji skup promenljivih podataka koji su neophodni vašoj aplikaciji. Najbitnija stavka za definisanje state-a je da poštujete [DRY (Don't Repeat Yourself)](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) princip. Pokušajte da shvatite apsolutno minimalan state koji je potreban vašoj aplikaciji, a sve ostalo računajte po potrebi. Na primer, ako pravite spisak za kupovinu, možete držati listu proizvoda kao state. Ako želite da prikažete i broj proizvoda u listi, ne morate čuvati broj proizvoda u state-u, već ga možete izračunati kao dužinu liste.
+State bi trebao biti najmanji skup promenljivih podataka koji su neophodni vašoj aplikaciji. Najbitnija stavka za definisanje state-a je da poštujete [DRY (Don't Repeat Yourself)](https://sr.wikipedia.org/wiki/Don%27t_repeat_yourself) princip. Pokušajte da shvatite apsolutno minimalan state koji je potreban vašoj aplikaciji, a sve ostalo računajte po potrebi. Na primer, ako pravite spisak za kupovinu, možete držati listu proizvoda kao state. Ako želite da prikažete i broj proizvoda u listi, ne morate čuvati broj proizvoda u state-u, već ga možete izračunati kao dužinu liste.
 
 Sada razmislite o svim podacima u našoj aplikaciji:
 
