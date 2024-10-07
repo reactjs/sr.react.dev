@@ -266,19 +266,11 @@ U prethodnom koraku, pronašli ste dva state-a u aplikaciji: tekst za pretragu i
 
 Primenimo našu strategiju za njih:
 
-<<<<<<< HEAD
 1. **Identifikovati komponente koje koriste state:**
     * `ProductTable` treba da filtrira listu proizvoda na osnovu state-a (tekst za pretragu i vrednost checkbox-a). 
     * `SearchBar` treba da prikaže state (tekst za pretragu i vrednost checkbox-a).
 2. **Pronaći zajedničkog roditelja:** Prva komponenta koja sadrži obe komponente je `FilterableProductTable`.
 3. **Odlučiti gde živi state:** Držaćemo tekst za pretragu i vrednost checkbox-a u `FilterableProductTable`.
-=======
-1. **Identify components that use state:**
-    * `ProductTable` needs to filter the product list based on that state (search text and checkbox value). 
-    * `SearchBar` needs to display that state (search text and checkbox value).
-2. **Find their common parent:** The first parent component both components share is `FilterableProductTable`.
-3. **Decide where the state lives**: We'll keep the filter text and checked state values in `FilterableProductTable`.
->>>>>>> 1697ae89a3bbafd76998dd7496754e5358bc1e9a
 
 Znači, state vrednosti će živeti u `FilterableProductTable`.
 
