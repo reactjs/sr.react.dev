@@ -53,7 +53,7 @@ Na ovom ekranu imamo pet komponenti:
 <img src="/images/docs/s_thinking-in-react_ui_outline.png" width="500" style={{margin: '0 auto'}} />
 
 1. `FilterableProductTable` (sivo) sadrži celu aplikaciju.
-2. `SearchBar` (plavo) prima koristički input.
+2. `SearchBar` (plavo) prima korisnički input.
 3. `ProductTable` (ljubičasto) prikazuje i filtrira listu na osnovu korisničkog input-a.
 4. `ProductCategoryRow` (zeleno) prikazuje naslov za svaku kategoriju.
 5. `ProductRow`	(žuto) prikazuje red za svaki proizvod.

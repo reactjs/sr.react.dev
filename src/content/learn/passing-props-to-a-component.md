@@ -1,26 +1,26 @@
 ---
-title: Passing Props to a Component
+title: Prosleđivanje props-a u komponentu
 ---
 
 <Intro>
 
-React components use *props* to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, and functions.
+React komponente koriste *props* da bi međusobno komunicirale. Svaka roditeljska komponenta može proslediti informacije svojoj deci tako što im daje props. Props-i vas možda podsećaju na HTML atribute, ali pomoću njih možete proslediti bilo koju JavaScript vrednost, uključujući objekte, nizove i funkcije.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to pass props to a component
-* How to read props from a component
-* How to specify default values for props
-* How to pass some JSX to a component
-* How props change over time
+* Kako da prosledite props-e u komponentu
+* Kako da pročitate props-e u komponenti
+* Kako da definišete default vrednosti za props
+* Kako da prosledite JSX komponenti
+* Kako se props-i menjaju tokom vremena
 
 </YouWillLearn>
 
-## Familiar props {/*familiar-props*/}
+## Poznati props-i {/*familiar-props*/}
 
-Props are the information that you pass to a JSX tag. For example, `className`, `src`, `alt`, `width`, and `height` are some of the props you can pass to an `<img>`:
+Props-i su informacije koje prosleđujete u JSX tag. Na primer, `className`, `src`, `alt`, `width` i `height` su samo neki od props-a koje možete proslediti u `<img>`:
 
 <Sandpack>
 
@@ -51,11 +51,11 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-The props you can pass to an `<img>` tag are predefined (ReactDOM conforms to [the HTML standard](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). But you can pass any props to *your own* components, such as `<Avatar>`, to customize them. Here's how!
+Props-i koje prosleđujete u `<img>` tag su predefinisani (ReactDOM se prilagođava [HTML standardu](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). Vi možete proslediti bilo koji props *vašim* komponentama, poput `<Avatar>`-a, da biste ih prilagodili svojim potrebama. Evo i kako!
 
-## Passing props to a component {/*passing-props-to-a-component*/}
+## Prosleđivanje props-a u komponentu {/*passing-props-to-a-component*/}
 
-In this code, the `Profile` component isn't passing any props to its child component, `Avatar`:
+U ovom primeru, `Profile` komponenta ne prosleđuje nikakav props svom detetu, `Avatar` komponenti:
 
 ```js
 export default function Profile() {
@@ -65,11 +65,11 @@ export default function Profile() {
 }
 ```
 
-You can give `Avatar` some props in two steps.
+U dva koraka možete dodati props u `Avatar`.
 
-### Step 1: Pass props to the child component {/*step-1-pass-props-to-the-child-component*/}
+### Korak 1: Proslediti props u dete komponentu {/*step-1-pass-props-to-the-child-component*/}
 
-First, pass some props to `Avatar`. For example, let's pass two props: `person` (an object), and `size` (a number):
+Prvo, prosledite props u `Avatar`. Na primer, prosledimo dva props-a: `person` (objekat) i `size` (broj):
 
 ```js
 export default function Profile() {
@@ -84,25 +84,25 @@ export default function Profile() {
 
 <Note>
 
-If double curly braces after `person=` confuse you, recall [they're merely an object](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx) inside the JSX curlies.
+Ako vas duple vitičaste zagrade nakon `person=` zbunjuju, setite se da [one samo predstavljaju objekat](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx) unutar JSX vitičastih zagrada.
 
 </Note>
 
-Now you can read these props inside the `Avatar` component.
+Sada ove props-e možete pročitati unutar `Avatar` komponente.
 
-### Step 2: Read props inside the child component {/*step-2-read-props-inside-the-child-component*/}
+### Korak 2: Pročitati props unutar dečje komponente {/*step-2-read-props-inside-the-child-component*/}
 
-You can read these props by listing their names `person, size` separated by the commas inside `({` and `})` directly after `function Avatar`. This lets you use them inside the `Avatar` code, like you would with a variable.
+Možete pročitati ove props-e izlistavanjem njihovih imena `person, size` odvojenih zarezima unutar `({` i `})` odmah nakon `function Avatar`. Ovo vam omogućava da ih koristite unutar `Avatar` funkcije, kao bilo koju drugu promenljivu.
 
 ```js
 function Avatar({ person, size }) {
-  // person and size are available here
+  // person i size su dostupni ovde
 }
 ```
 
-Add some logic to `Avatar` that uses the `person` and `size` props for rendering, and you're done.
+Dodajte neku logiku u `Avatar` koja će koristiti `person` i `size` props-e za renderovanje i gotovi ste.
 
-Now you can configure `Avatar` to render in many different ways with different props. Try tweaking the values!
+Sada možete konfigurisati `Avatar` da renderuje različite stvari uz pomoć različitih props-a. Probajte da menjate vrednosti!
 
 <Sandpack>
 
@@ -168,9 +168,9 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-Props let you think about parent and child components independently. For example, you can change the `person` or the `size` props inside `Profile` without having to think about how `Avatar` uses them. Similarly, you can change how the `Avatar` uses these props, without looking at the `Profile`.
+Props-i vam omogućavaju da odvojeno razmišljate o roditeljskim i dečjim komponentama. Na primer, možete promeniti `person` ili `size` props unutar `Profile`-a bez potrebe da razmišljate kako ih `Avatar` koristi. Slično tome, možete promeniti kako `Avatar` koristi te props-e bez gledanja u `Profile`.
 
-You can think of props like "knobs" that you can adjust. They serve the same role as arguments serve for functions—in fact, props _are_ the only argument to your component! React component functions accept a single argument, a `props` object:
+Props-e možete zamisliti kao "dugmiće" koje možete podešavati. Oni igraju istu ulogu kao i argumenti u funkcijama—u suštini, props-i _jesu_ jedini argument u vašoj komponenti! Funckije React komponenata prihvataju samo jedan argument, `props` objekat:
 
 ```js
 function Avatar(props) {
@@ -180,11 +180,11 @@ function Avatar(props) {
 }
 ```
 
-Usually you don't need the whole `props` object itself, so you destructure it into individual props.
+Uglavnom vam neće biti potreban ceo `props` objekat, već ćete ga dekonstruisati na pojedinačne props-e.
 
 <Pitfall>
 
-**Don't miss the pair of `{` and `}` curlies** inside of `(` and `)` when declaring props:
+**Nemojte propustiti par vitičastih zagrada** unutar `(` i `)` prilikom deklaracije props-a:
 
 ```js
 function Avatar({ person, size }) {
@@ -192,7 +192,7 @@ function Avatar({ person, size }) {
 }
 ```
 
-This syntax is called ["destructuring"](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter) and is equivalent to reading properties from a function parameter:
+Ova sintaksa se naziva ["dekonstruisanje"](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter) i jednaka je čitanju polja od parametra funkcije:
 
 ```js
 function Avatar(props) {
@@ -204,9 +204,9 @@ function Avatar(props) {
 
 </Pitfall>
 
-## Specifying a default value for a prop {/*specifying-a-default-value-for-a-prop*/}
+## Definisanje default vrednosti za prop {/*specifying-a-default-value-for-a-prop*/}
 
-If you want to give a prop a default value to fall back on when no value is specified, you can do it with the destructuring by putting `=` and the default value right after the parameter:
+Ako želite da zadate default vrednost prop-u, koja će se koristiti kada vrednost nije definisana, to možete uraditi pomoću dekonstruisanja stavljajući `=` i default vrednost odmah nakon parametra:
 
 ```js
 function Avatar({ person, size = 100 }) {
@@ -214,13 +214,13 @@ function Avatar({ person, size = 100 }) {
 }
 ```
 
-Now, if `<Avatar person={...} />` is rendered with no `size` prop, the `size` will be set to `100`.
+Sada, ako se `<Avatar person={...} />` renderuje bez `size` prop-a, `size` će biti setovano na `100`.
 
-The default value is only used if the `size` prop is missing or if you pass `size={undefined}`. But if you pass `size={null}` or `size={0}`, the default value will **not** be used.
+Default vrednost je upotrebljena samo ako izostavite `size` prop ili ako prosledite `size={undefined}`. Ali, ako prosledite `size={null}` ili `size={0}`, default vrednost **neće** biti upotrebljena.
 
-## Forwarding props with the JSX spread syntax {/*forwarding-props-with-the-jsx-spread-syntax*/}
+## Prosleđivanje props-a sa JSX spread sintaksom {/*forwarding-props-with-the-jsx-spread-syntax*/}
 
-Sometimes, passing props gets very repetitive:
+Ponekad se prosleđivanje props-a može ponavljati:
 
 ```js
 function Profile({ person, size, isSepia, thickBorder }) {
@@ -237,7 +237,7 @@ function Profile({ person, size, isSepia, thickBorder }) {
 }
 ```
 
-There's nothing wrong with repetitive code—it can be more legible. But at times you may value conciseness. Some components forward all of their props to their children, like how this `Profile` does with `Avatar`. Because they don't use any of their props directly, it can make sense to use a more concise "spread" syntax:
+Nema ništa loše u ponavljanju koda—ponekad može biti čitljivije. Ali, nekada vam je potrebna sažetost. Neke komponente prosleđuju sve svoje props-e deci, kao što to `Profile` radi sa `Avatar`-om. Pošto one direktno ne koriste nijedan svoj prop, ima smisla upotrebiti koncizniju "spread" sintaksu:
 
 ```js
 function Profile(props) {
@@ -249,13 +249,13 @@ function Profile(props) {
 }
 ```
 
-This forwards all of `Profile`'s props to the `Avatar` without listing each of their names.
+Ovo prosleđuje sve props-e od `Profile`-a u `Avatar` bez izlistavanja njihovih imena pojedinačno.
 
-**Use spread syntax with restraint.** If you're using it in every other component, something is wrong. Often, it indicates that you should split your components and pass children as JSX. More on that next!
+**Koristite spread sintaksu odmereno.** Ako je koristite u svakoj komponenti, nešto nije u redu. To često označava da biste trebali podeliti komponente i proslediti decu kao JSX. Više u nastavku!
 
-## Passing JSX as children {/*passing-jsx-as-children*/}
+## Prosleđivanje JSX-a kao dece {/*passing-jsx-as-children*/}
 
-It is common to nest built-in browser tags:
+Ugnježdavanje ugrađenih (built-in) tag-ova je često:
 
 ```js
 <div>
@@ -263,7 +263,7 @@ It is common to nest built-in browser tags:
 </div>
 ```
 
-Sometimes you'll want to nest your own components the same way:
+Ponekad želite da ugnjezdite vaše komponente na isti način:
 
 ```js
 <Card>
@@ -271,7 +271,7 @@ Sometimes you'll want to nest your own components the same way:
 </Card>
 ```
 
-When you nest content inside a JSX tag, the parent component will receive that content in a prop called `children`. For example, the `Card` component below will receive a `children` prop set to `<Avatar />` and render it in a wrapper div:
+Kada ugnjezdite sadržaj unutar JSX tag-a, roditeljska komponenta će primiti taj sadržaj kroz prop po imenu `children`. Na primer, `Card` komponenta ispod će primiti `children` prop setovan na `<Avatar />` i renderovati ga u wrapper div-u:
 
 <Sandpack>
 
@@ -347,17 +347,17 @@ export function getImageUrl(person, size = 's') {
 
 </Sandpack>
 
-Try replacing the `<Avatar>` inside `<Card>` with some text to see how the `Card` component can wrap any nested content. It doesn't need to "know" what's being rendered inside of it. You will see this flexible pattern in many places.
+Pokušajte da promenite `<Avatar>` unutar `<Card>`-a sa nekim tekstom da biste videli kako `Card` komponenta može da obmota bilo koji ugnježdeni sadržaj. Ona ne mora da "zna" šta će biti renderovano unutar nje. Videćete ovaj fleksibilni obrazac na mnogim mestima.
 
-You can think of a component with a `children` prop as having a "hole" that can be "filled in" by its parent components with arbitrary JSX. You will often use the `children` prop for visual wrappers: panels, grids, etc.
+Komponentu sa `children` prop možete zamisliti kao da ima "šupljinu" koja će biti "popunjena" u njenim roditeljskim komponentama sa proizvoljnim JSX-om. Često ćete koristiti `children` prop za vizuelne wrapper-e: panel-e, grid-ove, itd.
 
 <Illustration src="/images/docs/illustrations/i_children-prop.png" alt='A puzzle-like Card tile with a slot for "children" pieces like text and Avatar' />
 
-## How props change over time {/*how-props-change-over-time*/}
+## Kako se props-i menjaju tokom vremena {/*how-props-change-over-time*/}
 
-The `Clock` component below receives two props from its parent component: `color` and `time`. (The parent component's code is omitted because it uses [state](/learn/state-a-components-memory), which we won't dive into just yet.)
+`Clock` komponenta ispod prima dva props-a od svog roditelja: `color` i `time`. (Kod roditeljske komponente je izostavljen zato što koristi [state](/learn/state-a-components-memory), u koji nećemo zalaziti još uvek.)
 
-Try changing the color in the select box below:
+Pokušajte da promenite boju u primeru ispod:
 
 <Sandpack>
 
@@ -392,7 +392,7 @@ export default function App() {
   return (
     <div>
       <p>
-        Pick a color:{' '}
+        Izaberite boju:{' '}
         <select value={color} onChange={e => setColor(e.target.value)}>
           <option value="lightcoral">lightcoral</option>
           <option value="midnightblue">midnightblue</option>
@@ -407,21 +407,21 @@ export default function App() {
 
 </Sandpack>
 
-This example illustrates that **a component may receive different props over time.** Props are not always static! Here, the `time` prop changes every second, and the `color` prop changes when you select another color. Props reflect a component's data at any point in time, rather than only in the beginning.
+Ovaj primer ilustruje kako **komponenta može primiti različite props-e tokom vremena**. Props-i nisu uvek statički! Ovde se `time` prop menja svake sekunde, a `color` prop se menja kada odaberete drugu boju. Props-i odražavaju podatke u komponenti u bilo kom trenutku, a ne samo na početku.
 
-However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)—a term from computer science meaning "unchangeable". When a component needs to change its props (for example, in response to a user interaction or new data), it will have to "ask" its parent component to pass it _different props_—a new object! Its old props will then be cast aside, and eventually the JavaScript engine will reclaim the memory taken by them.
+Međutim, props-i su [immutable](https://en.wikipedia.org/wiki/Immutable_object)—pojam koji u informatici označava nešto "nepromenljivo". Kada komponenta treba da promeni svoje props-e (na primer, nakon interakcije korisnika ili na osnovu novih podataka), moraće da "pita" svog roditelja da joj prosledi _druge props-e_—novi objekat! Njeni stari props-i će biti odbačeni, a JavaScript će se u nekom trenutku pobrinuti da oslobodi memoriju koju su zauzeli.
 
-**Don't try to "change props".** When you need to respond to the user input (like changing the selected color), you will need to "set state", which you can learn about in [State: A Component's Memory.](/learn/state-a-components-memory)
+**Ne pokušavajte da "menjate props".** Kada želite da reagujete na korisnički input (kao što je promena odabrane boje), moraćete da "set-ujete state", što možete naučiti u [State: Memorija komponente](/learn/state-a-components-memory).
 
 <Recap>
 
-* To pass props, add them to the JSX, just like you would with HTML attributes.
-* To read props, use the `function Avatar({ person, size })` destructuring syntax.
-* You can specify a default value like `size = 100`, which is used for missing and `undefined` props.
-* You can forward all props with `<Avatar {...props} />` JSX spread syntax, but don't overuse it!
-* Nested JSX like `<Card><Avatar /></Card>` will appear as `Card` component's `children` prop.
-* Props are read-only snapshots in time: every render receives a new version of props.
-* You can't change props. When you need interactivity, you'll need to set state.
+* Da biste prosledili props, dodajte ih u JSX, kao što bi to uradili sa HTML atributima.
+* Da biste pročitali props, koristite `function Avatar({ person, size })` sintaksu dekonstruisanja.
+* Možete definisati default vrednost poput `size = 100`, koja se koristi za izostavljene i `undefined` props-e.
+* Možete proslediti sve props-e sa `<Avatar {...props} />` JSX spread sintaksom, ali nemojte je previše koristiti!
+* Ugnježdeni JSX poput `<Card><Avatar /></Card>` će se pojaviti u `Card` komponenti kao `children` prop.
+* Props-i su read-only snapshot-ovi u vremenu: svako renderovanje prima novu verziju props-a.
+* Ne možete menjati props-e. Kada vam je potrebna interaktivnost, trebate da setujete state.
 
 </Recap>
 
@@ -429,9 +429,9 @@ However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)�
 
 <Challenges>
 
-#### Extract a component {/*extract-a-component*/}
+#### Izdvojiti komponentu {/*extract-a-component*/}
 
-This `Gallery` component contains some very similar markup for two profiles. Extract a `Profile` component out of it to reduce the duplication. You'll need to choose what props to pass to it.
+Ova `Gallery` komponenta sadrži veoma sličan markup za dva profila. Izdvojite `Profile` komponentu kako biste smanjili ponavljanje. Moraćete da izaberete koje props-e da joj prosledite.
 
 <Sandpack>
 
@@ -441,7 +441,7 @@ import { getImageUrl } from './utils.js';
 export default function Gallery() {
   return (
     <div>
-      <h1>Notable Scientists</h1>
+      <h1>Značajni naučnici</h1>
       <section className="profile">
         <h2>Maria Skłodowska-Curie</h2>
         <img
@@ -453,16 +453,16 @@ export default function Gallery() {
         />
         <ul>
           <li>
-            <b>Profession: </b> 
-            physicist and chemist
+            <b>Profesija: </b> 
+            fizičar i hemičar
           </li>
           <li>
-            <b>Awards: 4 </b> 
-            (Nobel Prize in Physics, Nobel Prize in Chemistry, Davy Medal, Matteucci Medal)
+            <b>Nagrade: 4 </b> 
+            (Nobelova nagrada za fiziku, Nobelova nagrada za hemiju, Davy medalja, Matteucci medalja)
           </li>
           <li>
-            <b>Discovered: </b>
-            polonium (chemical element)
+            <b>Otkrića: </b>
+            polonijum (hemijski element)
           </li>
         </ul>
       </section>
@@ -477,16 +477,16 @@ export default function Gallery() {
         />
         <ul>
           <li>
-            <b>Profession: </b> 
-            geochemist
+            <b>Profesija: </b> 
+            geohemičar
           </li>
           <li>
-            <b>Awards: 2 </b> 
-            (Miyake Prize for geochemistry, Tanaka Prize)
+            <b>Nagrade: 2 </b> 
+            (Miyake nagrada za geohemiju, Tanaka nagrada)
           </li>
           <li>
-            <b>Discovered: </b>
-            a method for measuring carbon dioxide in seawater
+            <b>Otkrića: </b>
+            metoda za merenje ugljen-dioksida u morskoj vodi
           </li>
         </ul>
       </section>
@@ -524,15 +524,15 @@ li { margin: 5px; }
 
 <Hint>
 
-Start by extracting the markup for one of the scientists. Then find the pieces that don't match it in the second example, and make them configurable by props.
+Započnite sa izdvajanjem markup-a za jednog od naučnika. Nakon toga, pronađite koji delovi ne odgovaraju u drugom primeru, pa ih konfigurišite pomoću props-a.
 
 </Hint>
 
 <Solution>
 
-In this solution, the `Profile` component accepts multiple props: `imageId` (a string), `name` (a string), `profession` (a string), `awards` (an array of strings), `discovery` (a string), and `imageSize` (a number).
+U ovom primeru, `Profile` komponenta prihvata više props-a: `imageId` (string), `name` (string), `profession` (string), `awards` (niz string-ova), `discovery` (string) i `imageSize` (broj).
 
-Note that the `imageSize` prop has a default value, which is why we don't pass it to the component.
+Primetite da `imageSize` prop ima default vrednost, pa je zato ne prosleđujemo u komponentu.
 
 <Sandpack>
 
@@ -558,13 +558,13 @@ function Profile({
         height={imageSize}
       />
       <ul>
-        <li><b>Profession:</b> {profession}</li>
+        <li><b>Profesija:</b> {profession}</li>
         <li>
-          <b>Awards: {awards.length} </b>
+          <b>Nagrade: {awards.length} </b>
           ({awards.join(', ')})
         </li>
         <li>
-          <b>Discovered: </b>
+          <b>Otkrića: </b>
           {discovery}
         </li>
       </ul>
@@ -575,27 +575,27 @@ function Profile({
 export default function Gallery() {
   return (
     <div>
-      <h1>Notable Scientists</h1>
+      <h1>Značajni naučnici</h1>
       <Profile
         imageId="szV5sdG"
         name="Maria Skłodowska-Curie"
-        profession="physicist and chemist"
-        discovery="polonium (chemical element)"
+        profession="fizičar i hemičar"
+        discovery="polonijum (hemijski element)"
         awards={[
-          'Nobel Prize in Physics',
-          'Nobel Prize in Chemistry',
-          'Davy Medal',
-          'Matteucci Medal'
+          'Nobelova nagrada za fiziku',
+          'Nobelova nagrada za hemiju',
+          'Davy medalja',
+          'Matteucci medalja'
         ]}
       />
       <Profile
         imageId='YfeOqp2'
         name='Katsuko Saruhashi'
-        profession='geochemist'
-        discovery="a method for measuring carbon dioxide in seawater"
+        profession='geohemičar'
+        discovery="metoda za merenje ugljen-dioksida u morskoj vodi"
         awards={[
-          'Miyake Prize for geochemistry',
-          'Tanaka Prize'
+          'Miyake nagrada za geohemiju',
+          'Tanaka nagrada'
         ]}
       />
     </div>
@@ -630,9 +630,9 @@ li { margin: 5px; }
 
 </Sandpack>
 
-Note how you don't need a separate `awardCount` prop if `awards` is an array. Then you can use `awards.length` to count the number of awards. Remember that props can take any values, and that includes arrays too!
+Zapazite da ne morate prosleđivati poseban `awardCount` prop ako je `awards` niz. Možete koristiti `awards.length` da izračunate broj nagrada. Zapamtite da props-i mogu imati bilo koju vrednost, što uključuje i nizove!
 
-Another solution, which is more similar to the earlier examples on this page, is to group all information about a person in a single object, and pass that object as one prop:
+Drugo rešenje, koje je sličnije ranijim primerima na ovoj stranici, je da grupišete sve informacije o osobi u jedan objekat i da prosledite taj objekat kao jedinstven prop:
 
 <Sandpack>
 
@@ -654,14 +654,14 @@ function Profile({ person, imageSize = 70 }) {
       />
       <ul>
         <li>
-          <b>Profession:</b> {person.profession}
+          <b>Profesija:</b> {person.profession}
         </li>
         <li>
-          <b>Awards: {person.awards.length} </b>
+          <b>Nagrade: {person.awards.length} </b>
           ({person.awards.join(', ')})
         </li>
         <li>
-          <b>Discovered: </b>
+          <b>Otkrića: </b>
           {person.discovery}
         </li>
       </ul>
@@ -672,27 +672,27 @@ function Profile({ person, imageSize = 70 }) {
 export default function Gallery() {
   return (
     <div>
-      <h1>Notable Scientists</h1>
+      <h1>Značajni naučnici</h1>
       <Profile person={{
         imageId: 'szV5sdG',
         name: 'Maria Skłodowska-Curie',
-        profession: 'physicist and chemist',
-        discovery: 'polonium (chemical element)',
+        profession: 'fizičar i hemičar',
+        discovery: 'polonijum (hemijski element)',
         awards: [
-          'Nobel Prize in Physics',
-          'Nobel Prize in Chemistry',
-          'Davy Medal',
-          'Matteucci Medal'
+          'Nobelova nagrada za fiziku',
+          'Nobelova nagrada za hemiju',
+          'Davy medalja',
+          'Matteucci medalja'
         ],
       }} />
       <Profile person={{
         imageId: 'YfeOqp2',
         name: 'Katsuko Saruhashi',
-        profession: 'geochemist',
-        discovery: 'a method for measuring carbon dioxide in seawater',
+        profession: 'geohemičar',
+        discovery: 'metoda za merenje ugljen-dioksida u morskoj vodi',
         awards: [
-          'Miyake Prize for geochemistry',
-          'Tanaka Prize'
+          'Miyake nagrada za geohemiju',
+          'Tanaka nagrada'
         ],
       }} />
     </div>
@@ -727,15 +727,15 @@ li { margin: 5px; }
 
 </Sandpack>
 
-Although the syntax looks slightly different because you're describing properties of a JavaScript object rather than a collection of JSX attributes, these examples are mostly equivalent, and you can pick either approach.
+Iako sintaksa izgleda drugačije, pošto koristite polja JavaScript objekta umesto kolekcije JSX atributa, oba primera su u mnogome slična i možete odabrati bilo koji pristup.
 
 </Solution>
 
-#### Adjust the image size based on a prop {/*adjust-the-image-size-based-on-a-prop*/}
+#### Prilagoditi veličinu slike u zavisnosti od prop-a {/*adjust-the-image-size-based-on-a-prop*/}
 
-In this example, `Avatar` receives a numeric `size` prop which determines the `<img>` width and height. The `size` prop is set to `40` in this example. However, if you open the image in a new tab, you'll notice that the image itself is larger (`160` pixels). The real image size is determined by which thumbnail size you're requesting.
+U ovom primeru, `Avatar` prima brojčani `size` prop koji određuje visinu i širinu za `<img>` tag. Ovde je vrednost `size` prop-a setovana na `40`. Međutim, ako otvorite sliku u novom tab-u, primetićete da je slika veća (`160` piksela). Stvarna veličina slike zavisi od toga koju veličinu thumbnail-a zatražite.
 
-Change the `Avatar` component to request the closest image size based on the `size` prop. Specifically, if the `size` is less than `90`, pass `'s'` ("small") rather than `'b'` ("big") to the `getImageUrl` function. Verify that your changes work by rendering avatars with different values of the `size` prop and opening images in a new tab.
+Izmenite `Avatar` komponentu da zatraži najbližu veličinu u zavisnosti od `size` prop-a. Konkretno, ako je `size` manje od `90`, prosledite `'s'` ("small" tj. "malo") umesto `'b'` ("big" tj. "veliko") u `getImageUrl` funkciju. Potvrdite da vaše promene rade renderovanjem avatara sa različitim vrednostima za `size` prop i otvaranjem slika u novom tab-u.
 
 <Sandpack>
 
@@ -786,7 +786,7 @@ export function getImageUrl(person, size) {
 
 <Solution>
 
-Here is how you could go about it:
+Ovako to možete uraditi:
 
 <Sandpack>
 
@@ -848,7 +848,7 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-You could also show a sharper image for high DPI screens by taking [`window.devicePixelRatio`](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio) into account:
+Možete prikazati i oštriju sliku za ekrane koji imaju visok DPI uzimajući u obzir [`window.devicePixelRatio`](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio):
 
 <Sandpack>
 
@@ -919,13 +919,13 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-Props let you encapsulate logic like this inside the `Avatar` component (and change it later if needed) so that everyone can use the `<Avatar>` component without thinking about how the images are requested and resized.
+Props-i vam omogućavaju da enkapsulirate logiku unutar `Avatar` komponente (i menjate je po potrebi) kako bi svi mogli da koriste `<Avatar>` bez razmišljanja o tome kako da potražuju slike i menjaju im veličinu.
 
 </Solution>
 
-#### Passing JSX in a `children` prop {/*passing-jsx-in-a-children-prop*/}
+#### Proslediti JSX u `children` prop {/*passing-jsx-in-a-children-prop*/}
 
-Extract a `Card` component from the markup below, and use the `children` prop to pass different JSX to it:
+Izdvojite `Card` komponentu iz markup-a ispod i koristite `children` prop da joj prosledite različit JSX:
 
 <Sandpack>
 
@@ -935,7 +935,7 @@ export default function Profile() {
     <div>
       <div className="card">
         <div className="card-content">
-          <h1>Photo</h1>
+          <h1>Slika</h1>
           <img
             className="avatar"
             src="https://i.imgur.com/OKS67lhm.jpg"
@@ -947,8 +947,8 @@ export default function Profile() {
       </div>
       <div className="card">
         <div className="card-content">
-          <h1>About</h1>
-          <p>Aklilu Lemma was a distinguished Ethiopian scientist who discovered a natural treatment to schistosomiasis.</p>
+          <h1>Opis</h1>
+          <p>Aklilu Lemma je bio istaknuti etiopijski naučnik koji je izumeo prirodni tretman za šistozomijazu.</p>
         </div>
       </div>
     </div>
@@ -983,13 +983,13 @@ h1 {
 
 <Hint>
 
-Any JSX you put inside of a component's tag will be passed as the `children` prop to that component.
+JSX koji postavite unutar tag-a neke komponente, biće joj prosleđen kao `children` prop.
 
 </Hint>
 
 <Solution>
 
-This is how you can use the `Card` component in both places:
+Ovako možete koristiti `Card` komponentu na oba mesta:
 
 <Sandpack>
 
@@ -1008,7 +1008,7 @@ export default function Profile() {
   return (
     <div>
       <Card>
-        <h1>Photo</h1>
+        <h1>Slika</h1>
         <img
           className="avatar"
           src="https://i.imgur.com/OKS67lhm.jpg"
@@ -1018,8 +1018,8 @@ export default function Profile() {
         />
       </Card>
       <Card>
-        <h1>About</h1>
-        <p>Aklilu Lemma was a distinguished Ethiopian scientist who discovered a natural treatment to schistosomiasis.</p>
+        <h1>Opis</h1>
+        <p>Aklilu Lemma je bio istaknuti etiopijski naučnik koji je izumeo prirodni tretman za šistozomijazu.</p>
       </Card>
     </div>
   );
@@ -1051,7 +1051,7 @@ h1 {
 
 </Sandpack>
 
-You can also make `title` a separate prop if you want every `Card` to always have a title:
+Možete izdvojiti `title` u odvojeni prop ako želite da svaka `Card` komponenta ima naslov:
 
 <Sandpack>
 
@@ -1070,7 +1070,7 @@ function Card({ children, title }) {
 export default function Profile() {
   return (
     <div>
-      <Card title="Photo">
+      <Card title="Slika">
         <img
           className="avatar"
           src="https://i.imgur.com/OKS67lhm.jpg"
@@ -1079,8 +1079,8 @@ export default function Profile() {
           height={100}
         />
       </Card>
-      <Card title="About">
-        <p>Aklilu Lemma was a distinguished Ethiopian scientist who discovered a natural treatment to schistosomiasis.</p>
+      <Card title="Opis">
+        <p>Aklilu Lemma je bio istaknuti etiopijski naučnik koji je izumeo prirodni tretman za šistozomijazu.</p>
       </Card>
     </div>
   );

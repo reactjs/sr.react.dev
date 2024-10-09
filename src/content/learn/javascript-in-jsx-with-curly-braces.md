@@ -245,7 +245,7 @@ Sada znate skoro sve o JSX-u:
 
 <Challenges>
 
-#### Popravite grešku {/*fix-the-mistake*/}
+#### Popraviti grešku {/*fix-the-mistake*/}
 
 Ovaj kod ne radi sa greškom koja kaže `Objects are not valid as a React child`:
 
@@ -337,7 +337,7 @@ body > div > div { padding: 20px; }
 
 </Solution>
 
-#### Izdvojite informacije u objekat {/*extract-information-into-an-object*/}
+#### Izdvojiti informacije u objekat {/*extract-information-into-an-object*/}
 
 Izdvojite URL slike u `person` objekat.
 
@@ -425,7 +425,7 @@ body > div > div { padding: 20px; }
 </Solution>
 
 
-#### Napišite jedan izraz unutar vitičastih zagrada {/*write-one-expression-inside-curly-braces*/}
+#### Napisati jedan izraz unutar vitičastih zagrada {/*write-one-expression-inside-curly-braces*/}
 
 U objektu ispod, puni URL slike je podeljen na četiri dela: bazni URL, `imageId`, `imageSize` i ekstenzija fajla.
 
