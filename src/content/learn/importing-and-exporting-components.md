@@ -245,7 +245,7 @@ Na ovoj stranici ste naučili:
 
 <Challenges>
 
-#### Delite komponente dalje {/*split-the-components-further*/}
+#### Deliti komponente dalje {/*split-the-components-further*/}
 
 Trenutno, `Gallery.js` export-uje i `Profile` i `Gallery`, što je malo zbunjujuće.
 

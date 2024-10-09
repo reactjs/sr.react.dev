@@ -270,7 +270,7 @@ Sada znate zašto JSX postoji i kako da ga koristite u komponentama:
 
 <Challenges>
 
-#### Konvertujte HTML u JSX {/*convert-some-html-to-jsx*/}
+#### Konvertovati HTML u JSX {/*convert-some-html-to-jsx*/}
 
 Ovaj HTML je samo ubačen u komponentu, ali nije validan JSX. Popravite ga:
 
