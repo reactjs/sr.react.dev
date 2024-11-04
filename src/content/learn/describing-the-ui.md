@@ -188,7 +188,7 @@ Pročitajte **[Pisanje markup-a sa JSX](/learn/writing-markup-with-jsx)** da bis
 
 ## JavaScript u JSX-u sa vitičastim zagradama {/*javascript-in-jsx-with-curly-braces*/}
 
-JSX vam dozvoljava da pišete markup sličan HTML-u unutar JavaScript fajla, čuvajući logiku prikazivanja i sadržaja na istom mestu. Ponekad ćete želeti da dodate malo JavaScript logike ili da referencirate dinamičko svojstvo unutar tog markup-a. U ovoj situaciji možete koristiti vitičaste zagrade u vašem JSX-u da "otvorite prozor" ka JavaScript-u:
+JSX vam dozvoljava da pišete markup sličan HTML-u unutar JavaScript fajla, čuvajući logiku prikazivanja i sadržaja na istom mestu. Ponekad ćete želeti da dodate malo JavaScript logike ili da referencirate dinamičko polje unutar tog markup-a. U ovoj situaciji možete koristiti vitičaste zagrade u vašem JSX-u da "otvorite prozor" ka JavaScript-u:
 
 <Sandpack>
 
