@@ -335,7 +335,7 @@ function Item({ name, isPacked }) {
 export default function PackingList() {
   return (
     <section>
-    <h1>Sally Ride lista za pakovanje</h1>
+    <h1>Lista za pakovanje od Sally Ride</h1>
       <ul>
         <Item
           isPacked={true}
