@@ -57,9 +57,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Pobednik: ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Sledeći igrač : ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -103,9 +103,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Prebacite se na potez #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Prebacite se na početak';
     }
     return (
       <li key={move}>
@@ -917,17 +917,17 @@ Za rad u lokalnom okruženju, React DevTools je dostupan kao ekstenzija za [Chro
 
 Do ovog trenutka, imate sve osnovne građevinske blokove za vašu iks-oks igru. Da biste je kompletirali, potrebno da naizmenično postavljate "X" i "O" na tablu, i potreban vam je način da odredite pobednika.
 
-### Lifting state up {/*lifting-state-up*/}
+### Podizanje state-a  {/*lifting-state-up*/}
 
-Currently, each `Square` component maintains a part of the game's state. To check for a winner in a tic-tac-toe game, the `Board` would need to somehow know the state of each of the 9 `Square` components.
+Trenutno svaka `Square` komponenta čuva deo state-a igre. Da bi se proverilo ko je pobednik u igri iks-oks, `Board` bi morao nekako da zna state svake od 9 `Square` komponenti.
 
-How would you approach that? At first, you might guess that the `Board` needs to "ask" each `Square` for that `Square`'s state. Although this approach is technically possible in React, we discourage it because the code becomes difficult to understand, susceptible to bugs, and hard to refactor. Instead, the best approach is to store the game's state in the parent `Board` component instead of in each `Square`. The `Board` component can tell each `Square` what to display by passing a prop, like you did when you passed a number to each Square.
+Kako biste to rešili? Možda biste pomislili da `Board` treba da „pita” svaku `Square` komponentu za njen state. Iako je ovaj pristup tehnički moguć u React-u, ne preporučujemo ga jer kod postaje težak za razumevanje, podložan je greškama i teško ga je refaktorisati. Umesto toga, najbolji pristup je da se state igre čuva u parent komponenti `Board`, umesto u svakoj `Square` komponenti. Komponenta `Board` može da kaže svakoj `Square` komponenti šta treba da prikaže prosleđivanjem props-a, kao što ste ranije prosleđivali broj svakoj `Square` komponenti.
 
-**To collect data from multiple children, or to have two child components communicate with each other, declare the shared state in their parent component instead. The parent component can pass that state back down to the children via props. This keeps the child components in sync with each other and with their parent.**
+**Da biste sakupili podatke od više child komponenti ili omogućili komunikaciju između dve child komponente, definišite zajednički state u njihovoj parent komponenti. Parent komponenta može da prosledi taj state nazad child komponentama putem props-a. Na ovaj način child komponente ostaju sinhronizovane međusobno i sa parent komponentom.**
 
-Lifting state into a parent component is common when React components are refactored.
+Podizanje state-a u parent komponentu je uobičajena praksa pri refaktorisanju React komponenti.
 
-Let's take this opportunity to try it out. Edit the `Board` component so that it declares a state variable named `squares` that defaults to an array of 9 nulls corresponding to the 9 squares:
+Hajde da iskoristimo ovu priliku i isprobamo ovo. Izmenite komponentu `Board` tako da deklariše varijablu state-a pod nazivom `squares`, koja ima podrazumevanu vrednost u vidu niza od 9 `null` vrednosti koje odgovaraju za svaki od 9 kvadrata:
 
 ```js {3}
 // ...
@@ -939,13 +939,13 @@ export default function Board() {
 }
 ```
 
-`Array(9).fill(null)` creates an array with nine elements and sets each of them to `null`. The `useState()` call around it declares a `squares` state variable that's initially set to that array. Each entry in the array corresponds to the value of a square. When you fill the board in later, the `squares` array will look like this:
+`Array(9).fill(null)` kreira niz sa devet elemenata i postavlja svaki od njih na `null`. Poziv `useState()` oko njega deklariše varijablu state-a pod nazivom `squares`, koja je inicijalno postavljena za taj niz. Svaki element u nizu odgovara vrednosti jednog kvadrata. Kada kasnije popunite tablu, niz `squares` će izgledati ovako:
 
 ```jsx
 ['O', null, 'X', 'X', 'X', 'O', 'O', null, null]
 ```
 
-Now your `Board` component needs to pass the `value` prop down to each `Square` that it renders:
+Sada vaša `Board` komponenta treba da prosledi `value` prop svakoj `Square` komponenti koju renderuje:
 
 ```js {6-8,11-13,16-18}
 export default function Board() {
@@ -972,7 +972,7 @@ export default function Board() {
 }
 ```
 
-Next, you'll edit the `Square` component to receive the `value` prop from the Board component. This will require removing the Square component's own stateful tracking of `value` and the button's `onClick` prop:
+Zatim ćete izmeniti `Square` komponentu da prima `value` prop iz `Board` komponente. Ovo će zahtevati uklanjanje sopstvenog state-a `value` iz `Square` komponente, kao i `onClick` props-a dugmeta:
 
 ```js {1,2}
 function Square({value}) {
@@ -980,11 +980,11 @@ function Square({value}) {
 }
 ```
 
-At this point you should see an empty tic-tac-toe board:
+U ovom trenutku trebalo bi da vidite praznu tablu za igru iks-oks:
 
-![empty board](../images/tutorial/empty-board.png)
+![prazna tabla](../images/tutorial/empty-board.png)
 
-And your code should look like this:
+A vaš kod bi trebalo da izgleda ovako:
 
 <Sandpack>
 
@@ -1066,11 +1066,11 @@ body {
 
 </Sandpack>
 
-Each Square will now receive a `value` prop that will either be `'X'`, `'O'`, or `null` for empty squares.
+Svaka `Square` komponenta će sada primati `value` prop koji može imati vrednost `'X'`, `'O'` ili `null` za prazne kvadrate.
 
-Next, you need to change what happens when a `Square` is clicked. The `Board` component now maintains which squares are filled. You'll need to create a way for the `Square` to update the `Board`'s state. Since state is private to a component that defines it, you cannot update the `Board`'s state directly from `Square`.
+Sledeće, treba da promenite šta se dešava kada se klikne na `Square`. `Board` komponenta sada vodi računa o tome koji su kvadrati popunjeni. Biće vam potrebno da napravite način na koji `Square` može da update-uje state komponente `Board`. Pošto je state privatan za komponentu koja ga definiše, ne možete  update-ovati state komponente `Board` direktno iz `Square`.
 
-Instead, you'll pass down a function from the `Board` component to the `Square` component, and you'll have `Square` call that function when a square is clicked. You'll start with the function that the `Square` component will call when it is clicked. You'll call that function `onSquareClick`:
+Umesto toga, prosledićete funkciju iz `Board` komponente u `Square` komponentu, i `Square` će pozvati tu funkciju kada se na nju klikne. Počećete sa funkcijom koju će `Square` komponenta pozvati kada se klikne na nju. Tu funkciju ćete nazvati `onSquareClick`:
 
 ```js {3}
 function Square({ value }) {
@@ -1082,7 +1082,7 @@ function Square({ value }) {
 }
 ```
 
-Next, you'll add the `onSquareClick` function to the `Square` component's props:
+Zatim, dodaćete funkciju `onSquareClick` u props `Square` komponente:
 
 ```js {1}
 function Square({ value, onSquareClick }) {
