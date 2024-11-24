@@ -366,7 +366,7 @@ Dobićete ovu grešku:
 
 </ConsoleBlock>
 
-React component-e moraju da return-uju jedinstven JSX element, a ne više susednih JSX elemenata poput dva dugmeta. Da biste to ispravili, možete koristiti *Fragmente* (`<>` i `</>`) kako biste obuhvatili više susednih JSX elemenata ovako:
+React component-e moraju da vraćaju jedinstven JSX element, a ne više susednih JSX elemenata poput dva dugmeta. Da biste to ispravili, možete koristiti *Fragmente* (`<>` i `</>`) kako biste obuhvatili više susednih JSX elemenata ovako:
 
 ```js {3-6}
 export default function Square() {
@@ -1406,7 +1406,7 @@ Ali čekajte, postoji problem. Pokušajte da kliknete na isti kvadrat više puta
 
 `X` je prepisan sa `O`! Iako bi ovo moglo dodati veoma zanimljiv preokret igri, za sada ćemo se držati originalnih pravila.
 
-Kada označite kvadrat sa `X` ili `O`, ne proveravate prvo da li kvadrat već ima vrednost `X` ili `O`. Ovo možete popraviti tako što ćete *ranije izaći* iz funkcije. Proverićete da li kvadrat već ima vrednost `X` ili `O`. Ako je kvadrat već popunjen, u funkciji `handleClick` vratićete se rano pomoću `return`—pre nego što funkcija pokuša da ažurira state table.
+Kada označite kvadrat sa `X` ili `O`, ne proveravate prvo da li kvadrat već ima vrednost `X` ili `O`. Ovo možete popraviti tako što ćete *ranije izaći* iz funkcije. Proverićete da li kvadrat već ima vrednost `X` ili `O`. Ako je kvadrat već popunjen, u funkciji `handleClick` vratićete se rano pomoću `return`—pre nego što funkcija pokuša da update-uje state table.
 
 ```js {2,3,4}
 function handleClick(i) {
@@ -1568,7 +1568,7 @@ function handleClick(i) {
 }
 ```
 
-Da biste obavestili igrače kada je igra završena, možete prikazati tekst poput "Pobednik: X" ili "Pobednik: O". Da biste to postigli, dodaćete sekciju `status` u `Board` komponentu. `Status` će prikazati pobednika ako je igra završena, a ako igra još traje, prikazaće koji igrač je sledeći na potezu:
+Da biste obavestili igrače kada je igra završena, možete prikazati tekst poput "Pobednik: X" ili "Pobednik: O". Da biste to postigli, dodaćete sekciju `status` u `Board` component-u. `Status` će prikazati pobednika ako je igra završena, a ako igra još traje, prikazaće koji igrač je sledeći na potezu:
 
 ```js {3-9,13}
 export default function Board() {
@@ -1759,7 +1759,7 @@ Međutim, koristili ste `slice()` za kreiranje nove kopije array-a `squares` nak
 
 Sada ćete napisati novu component-u na najvišem nivou pod nazivom `Game`, kako biste prikazali listu prošlih poteza. Tu ćete smestiti state `history`, koji sadrži kompletnu istoriju igre.
 
-Postavljanjem state-a `history` u component-u `Game`, možete ukloniti state `squares` iz njene child component-e `Board`. Baš kao što ste "podigli state" iz komponente `Square` u komponentu `Board`, sada ćete ga podići iz component-e `Board` u component-u najvišeg nivoa, `Game`. Ovo omogućava component-i `Game` da ima potpunu kontrolu nad podacima component-e `Board` i da joj zadaje uputstva da prikaže prethodne poteze iz `history`.
+Postavljanjem state-a `history` u component-u `Game`, možete ukloniti state `squares` iz njene child component-e `Board`. Baš kao što ste "podigli state" iz component-e `Square` u component-u `Board`, sada ćete ga podići iz component-e `Board` u component-u najvišeg nivoa, `Game`. Ovo omogućava component-i `Game` da ima potpunu kontrolu nad podacima component-e `Board` i da joj zadaje uputstva da prikaže prethodne poteze iz `history`.
 
 Prvo, dodajte component-u `Game` koristeći `export default`. Neka renderuje component-u `Board` i malo markup-a:
 
@@ -1857,7 +1857,7 @@ function Board({ xIsNext, squares, onPlay }) {
 }
 ```
 
-Component-a `Board` je potpuno kontrolisana preko props-a koje joj prosleđuje komponenta `Game`. Potrebno je da implementirate funkciju `handlePlay` u component-i `Game` kako bi igra ponovo funkcionisala.
+Component-a `Board` je potpuno kontrolisana preko props-a koje joj prosleđuje component-a `Game`. Potrebno je da implementirate funkciju `handlePlay` u component-i `Game` kako bi igra ponovo funkcionisala.
 
 Šta bi funkcija `handlePlay` trebalo da uradi kada se pozove? Zapamtite da je `Board` ranije pozivao `setSquares` sa update-ovanim array-om; sada prosleđuje update=ovani array `squares` funkciji `onPlay`.
 
@@ -1874,7 +1874,7 @@ export default function Game() {
 }
 ```
 
-Ovde, `[...history, nextSquares]` kreira novi array koji sadrži sve stavke iz `history`, praćene nizom `nextSquares`. (Možete čitati `...history` [*spread sintaksu*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) kao „nabroj sve stavke u `history`”.)
+Ovde, `[...history, nextSquares]` kreira novi array koji sadrži sve stavke iz `history`, praćene array-om `nextSquares`. (Možete čitati `...history` [*spread sintaksu*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) kao „nabroj sve stavke u `history`”.)
 
 Na primer, ako je `history` `[[null,null,null], ["X",null,null]]`, a `nextSquares` je `["X",null,"O"]`, novi array `[...history, nextSquares]` biće `[[null,null,null], ["X",null,null], ["X",null,"O"]]`.
 
@@ -2713,7 +2713,7 @@ body {
 
 Ako pažljivo pogledate kod, primetićete da je `xIsNext === true` kada je `currentMove` paran i `xIsNext === false` kada je `currentMove` neparan. Drugim rečima, ako znate vrednost `currentMove`, uvek možete odrediti šta treba da bude `xIsNext`.
 
-Nema potrebe da čuvate obe ove vrednosti u state-u. Zapravo, uvek pokušajte da izbegavate redundantni state. Pojednostavljivanje onoga što čuvate u state-u smanjuje broj grešaka i čini vaš kod lakšim za razumevanje. Izmenite komponentu `Game` tako da ne čuva `xIsNext` kao zasebnu state varijablu, već da ga izračunava na osnovu vrednosti `currentMove`:
+Nema potrebe da čuvate obe ove vrednosti u state-u. Zapravo, uvek pokušajte da izbegavate redundantni state. Pojednostavljivanje onoga što čuvate u state-u smanjuje broj grešaka i čini vaš kod lakšim za razumevanje. Izmenite component-u `Game` tako da ne čuva `xIsNext` kao zasebnu state varijablu, već da ga izračunava na osnovu vrednosti `currentMove`:
 
 ```js {4,11,15}
 export default function Game() {
@@ -2735,7 +2735,7 @@ export default function Game() {
 }
 ```
 
-Više vam nije potrebna deklaracija state varijable `xIsNext` niti pozivi funkcije `setXIsNext`. Sada ne postoji mogućnost da `xIsNext` bude van sinhronizacije sa `currentMove`, čak i ako napravite grešku dok kodirate komponente.
+Više vam nije potrebna deklaracija state varijable `xIsNext` niti pozivi funkcije `setXIsNext`. Sada ne postoji mogućnost da `xIsNext` bude van sinhronizacije sa `currentMove`, čak i ako napravite grešku dok kodirate component-e.
 
 ### Završetak {/*wrapping-up*/}
 
@@ -2920,9 +2920,9 @@ body {
 Ako imate dodatno vreme ili želite da vežbate svoje nove React veštine, evo nekoliko ideja za unapređenja igre iks-oks, poređanih po rastućem nivou težine:
 
 1. Samo za trenutni potez prikažite poruku "Nalazite se na potezu #..." umesto dugmeta.
-2. Prepišite komponentu `Board` da koristi dve petlje za kreiranje kvadrata umesto da ih hardkodirate.
+2. Prepišite component-u `Board` da koristi dve petlje za kreiranje kvadrata umesto da ih hardkodirate.
 3. Dodajte dugme za prebacivanje koje omogućava sortiranje poteza u rastućem ili opadajućem redosledu.
 4. Kada neko pobedi, istaknite tri kvadrata koja su dovela do pobede (a kada niko ne pobedi, prikažite poruku o nerešenom rezultatu).
 5. Prikazujte lokaciju svakog poteza u formatu (red, kolona) na listi istorije poteza.
 
-Kroz ovaj tutorijal ste obradili React koncepte uključujući elemente, komponente, props i state. Sada kada ste videli kako ovi koncepti funkcionišu pri izradi igre, pogledajte [Razmišljanje u React-u](/learn/thinking-in-react) da biste videli kako isti React koncepti funkcionišu pri izradi korisničkog interfejsa aplikacije.
+Kroz ovaj tutorijal ste obradili React koncepte uključujući elemente, component-e, props i state. Sada kada ste videli kako ovi koncepti funkcionišu pri izradi igre, pogledajte [Razmišljanje u React-u](/learn/thinking-in-react) da biste videli kako isti React koncepti funkcionišu pri izradi korisničkog interfejsa aplikacije.
