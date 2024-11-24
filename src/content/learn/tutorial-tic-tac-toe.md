@@ -1,31 +1,31 @@
 ---
-title: 'Tutorial: Tic-Tac-Toe'
+title: 'Tutorijal: Iks-Oks'
 ---
 
 <Intro>
 
-You will build a small tic-tac-toe game during this tutorial. This tutorial does not assume any existing React knowledge. The techniques you'll learn in the tutorial are fundamental to building any React app, and fully understanding it will give you a deep understanding of React.
+Tokom ovog tutorijala napravićete jednostavnu igru iks-oks. Ovaj tutorijal ne zahteva prethodno znanje o React-u. Tehnike koje ćete naučiti su fundamentalne za pravljenje bilo koje React aplikacije, a potpuno razumevanje ovog tutorijala će vam pružiti duboko razumevanje React-a.
 
 </Intro>
 
 <Note>
 
-This tutorial is designed for people who prefer to **learn by doing** and want to quickly try making something tangible. If you prefer learning each concept step by step, start with [Describing the UI.](/learn/describing-the-ui)
+Ovaj tutorijal je dizajniran za one koji preferiraju da ***uče kroz praksu*** i žele brzo da probaju napraviti nešto konkretno. Ukoliko više volite da učite svaki koncept korak po korak, za početak uzmite [Opisivanje UI-a](/learn/describing-the-ui)
 
 </Note>
 
-The tutorial is divided into several sections:
+Tutorijal je podeljen u nekoliko sekcija:
 
-- [Setup for the tutorial](#setup-for-the-tutorial) will give you **a starting point** to follow the tutorial.
-- [Overview](#overview) will teach you **the fundamentals** of React: components, props, and state.
-- [Completing the game](#completing-the-game) will teach you **the most common techniques** in React development.
-- [Adding time travel](#adding-time-travel) will give you **a deeper insight** into the unique strengths of React.
+- [Setup tutorijala](#setup-for-the-tutorial) pružiće vam ***početnu tačku*** za praćenje tutorijala.
+- [Pregled](#overview) će vas naučiti ***osnovama*** React-a: komponentama, props-ima i state-u.
+- [Završavanje igre](#completing-the-game) će vas naučiti ***najčešćim tehnikama*** u radu sa React-om.
+- [Dodavanje putovanja kroz vreme](#adding-time-travel) pružiće vam ***dublji uvid*** u jedinstvene prednosti React-a.
 
-### What are you building? {/*what-are-you-building*/}
+### Šta pravite? {/*what-are-you-building*/}
 
-In this tutorial, you'll build an interactive tic-tac-toe game with React.
+U ovom tutorijalu napravićete interaktivnu igru iks-oks koristeći React.
 
-You can see what it will look like when you're finished here:
+Ovde možete videti kako će izgledati gotov projekat:
 
 <Sandpack>
 
@@ -194,15 +194,15 @@ body {
 
 </Sandpack>
 
-If the code doesn't make sense to you yet, or if you are unfamiliar with the code's syntax, don't worry! The goal of this tutorial is to help you understand React and its syntax.
+Ako vam kod još uvek nije jasan, ili ako niste upoznati sa sintaksom, ne brinite! Cilj ovog tutorijala je da vam pomogne da razumete React i njegovu sintaksu.
 
-We recommend that you check out the tic-tac-toe game above before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and it is updated as the game progresses.
+Preporučujemo vam da se prvo poigrate sa završenom igrom pre nego što nastavite sa tutorijalom. Jedna od funkcionalnosti koju ćete primetiti je numerisana lista sa desne strane table igre. Ova lista vam pruža istoriju svih poteza koji su se odigrali tokom igre, i ažurira se kako igra napreduje.
 
-Once you've played around with the finished tic-tac-toe game, keep scrolling. You'll start with a simpler template in this tutorial. Our next step is to set you up so that you can start building the game.
+Nakon što se upoznate sa završenom igrom, nastavite sa čitanjem. Sledeći korak je da vas postavimo u poziciju da počnete sa pravljenjem igre.
 
-## Setup for the tutorial {/*setup-for-the-tutorial*/}
+## Setup tutorijala {/*setup-for-the-tutorial*/}
 
-In the live code editor below, click **Fork** in the top-right corner to open the editor in a new tab using the website CodeSandbox. CodeSandbox lets you write code in your browser and preview how your users will see the app you've created. The new tab should display an empty square and the starter code for this tutorial.
+U live code editor ispod, kliknite na ***Fork*** u gornjem desnom uglu kako bi otvorili editor u novom tabu koristeći CodeSandbox. CodeSandbox vam omogućava da pišete kod direktno u browseru i pregledate kako će aplikacija izgledati korisnicima. Novi tab bi trebalo da prikaže prazan kvadrat i početni kod za ovaj tutorijal.
 
 <Sandpack>
 
@@ -261,33 +261,33 @@ body {
 
 <Note>
 
-You can also follow this tutorial using your local development environment. To do this, you need to:
+Takođe možete pratiti ovaj vodič koristeći vaše lokalno okruženje. Da biste to uradili, potrebno je da:
 
-1. Install [Node.js](https://nodejs.org/en/)
-1. In the CodeSandbox tab you opened earlier, press the top-left corner button to open the menu, and then choose **Download Sandbox** in that menu to download an archive of the files locally
-1. Unzip the archive, then open a terminal and `cd` to the directory you unzipped
-1. Install the dependencies with `npm install`
-1. Run `npm start` to start a local server and follow the prompts to view the code running in a browser
+1. Instalirate [Node.js](https://nodejs.org/en/)
+1. U CodeSandbox tab-u koju ste ranije otvorili, kliknite dugme u gornjem levom uglu da otvorite meni, a zatim izaberite **Download Sandbox** u tom meniju kako biste preuzeli arhivu fajlova lokalno
+1. Otpakujte arhivu, zatim otvorite terminal i `cd` do direktorijuma u koji ste otpakovali fajlove
+1. Instalirajte zavisnosti (dependancies) sa `npm install`
+1. Pokrenite `npm start` da biste startovali lokalni server i pratite uputstva da biste videli kako kod radi u browseru
 
-If you get stuck, don't let this stop you! Follow along online instead and try a local setup again later.
+Ukoliko se u ovom procesu zaglavite, nemojte dozvoliti da vas to zaustavi! Pratite uputstva online i pokušajte ponovo docnije da postavite lokalno okruženje.
 
 </Note>
 
-## Overview {/*overview*/}
+## Pregled {/*overview*/}
 
-Now that you're set up, let's get an overview of React!
+Sada kada ste postavili okruženje, hajde da napravimo pregled React-a!
 
-### Inspecting the starter code {/*inspecting-the-starter-code*/}
+### Pregled starter koda {/*inspecting-the-starter-code*/}
 
-In CodeSandbox you'll see three main sections:
+U CodeSandbox-u ćete videti tri glavne sekcije:
 
-![CodeSandbox with starter code](../images/tutorial/react-starter-code-codesandbox.png)
+![CodeSandbox sa starter kodom](../images/tutorial/react-starter-code-codesandbox.png)
 
-1. The _Files_ section with a list of files like `App.js`, `index.js`, `styles.css` and a folder called `public`
-1. The _code editor_ where you'll see the source code of your selected file
-1. The _browser_ section where you'll see how the code you've written will be displayed
+1. Sekcija *Files* sa listom fajlova kao što su `App.js`, `index.js`, `styles.css` i folder pod nazivom `public`
+1. *code editor* gde ćete videti source kod odabranog fajla
+1. Sekcija *browser* gde ćete videti kako će kod koji ste napisali biti prikazan
 
-The `App.js` file should be selected in the _Files_ section. The contents of that file in the _code editor_ should be:
+Fajl `App.js` bi trebalo da bude izabran u sekciji *Files*. Sadržaj tog fajla u *code editor* bi trebalo da izgleda ovako:
 
 ```jsx
 export default function Square() {
@@ -295,15 +295,15 @@ export default function Square() {
 }
 ```
 
-The _browser_ section should be displaying a square with a X in it like this:
+Sekcija *browser* bi trebalo da prikazuje kvadrat sa X u njemu ovako:
 
-![x-filled square](../images/tutorial/x-filled-square.png)
+![kvadrat sa X](../images/tutorial/x-filled-square.png)
 
-Now let's have a look at the files in the starter code.
+Sada, hajde da pogledamo fajlove u starter kodu.
 
 #### `App.js` {/*appjs*/}
 
-The code in `App.js` creates a _component_. In React, a component is a piece of reusable code that represents a part of a user interface. Components are used to render, manage, and update the UI elements in your application. Let's look at the component line by line to see what's going on:
+Kod u fajlu `App.js` kreira *component-u*. U React-u, component-a je deo višekratnog koda koji predstavlja deo korisničkog interfejsa. Component-e se koriste za renderovanje, upravljanje i ažuriranje elemenata korisničkog interfejsa u vašoj aplikaciji. Hajde da analiziramo component-u liniju po liniju kako bismo uočili šta se dešava:
 
 ```js {1}
 export default function Square() {
@@ -311,7 +311,7 @@ export default function Square() {
 }
 ```
 
-The first line defines a function called `Square`. The `export` JavaScript keyword makes this function accessible outside of this file. The `default` keyword tells other files using your code that it's the main function in your file.
+Prva linija definiše funkciju pod nazivom `Square`. JavaScript ključna reč `export` omogućava da ova funkcija bude dostupna van ovog fajla. Ključna reč `default` označava da je to glavna funkcija u vašem fajlu koju će drugi fajlovi koristiti.
 
 ```js {2}
 export default function Square() {
@@ -319,15 +319,15 @@ export default function Square() {
 }
 ```
 
-The second line returns a button. The `return` JavaScript keyword means whatever comes after is returned as a value to the caller of the function. `<button>` is a *JSX element*. A JSX element is a combination of JavaScript code and HTML tags that describes what you'd like to display. `className="square"` is a button property or *prop* that tells CSS how to style the button. `X` is the text displayed inside of the button and `</button>` closes the JSX element to indicate that any following content shouldn't be placed inside the button.
+Druga linija *return*-uje dugme. JavaScript ključna reč `return` znači da se ono što dolazi posle nje vraća kao vrednost pozivaocu funkcije. `<button>` je *JSX element*. JSX element je kombinacija JavaScript koda i HTML oznaka koja opisuje šta želite da prikažete. `className="square"` je svojstvo dugmeta ili *prop* koje CSS-u govori kako da stilizuje dugme. `X` je tekst koji se prikazuje unutar dugmeta, a `</button>` zatvara JSX element, označavajući da bilo koji sadržaj nakon toga ne treba da bude postavljen unutar dugmeta.
 
 #### `styles.css` {/*stylescss*/}
 
-Click on the file labeled `styles.css` in the _Files_ section of CodeSandbox. This file defines the styles for your React app. The first two _CSS selectors_ (`*` and `body`) define the style of large parts of your app while the `.square` selector defines the style of any component where the `className` property is set to `square`. In your code, that would match the button from your Square component in the `App.js` file.
+Kliknite na fajl pod nazivom `styles.css` u sekciji *Files* u CodeSandbox-u. Ovaj fajl definiše stilove za vašu React aplikaciju. Prva dva *CSS selektora* (`*` i `body`) definišu stil za veće delove vaše aplikacije, dok selektor `.square` definiše stil za bilo koju komponentu gde je svojstvo `className` postavljeno na `square`. U vašem kodu, to bi odgovaralo dugmetu iz komponente Square u fajlu `App.js`.
 
 #### `index.js` {/*indexjs*/}
 
-Click on the file labeled `index.js` in the _Files_ section of CodeSandbox. You won't be editing this file during the tutorial but it is the bridge between the component you created in the `App.js` file and the web browser.
+Kliknite na fajl pod nazivom `index.js` u sekciji *Files* u CodeSandbox-u. Nećete editovati ovaj fajl tokom tutorijala, ali on predstavlja sponu između component-e koju ste kreirali u fajlu `App.js` i web browsera.
 
 ```jsx
 import { StrictMode } from 'react';
@@ -337,20 +337,20 @@ import './styles.css';
 import App from './App';
 ```
 
-Lines 1-5 bring all the necessary pieces together: 
+Linije 1-5 spajaju sve potrebne delove zajedno:
 
-* React
-* React's library to talk to web browsers (React DOM)
-* the styles for your components
-* the component you created in `App.js`.
+- React
+- React-ov library za komunikaciju sa web browserima (React DOM)
+- stilove za vaše component-e
+- component-u koju ste kreirali u `App.js`.
 
-The remainder of the file brings all the pieces together and injects the final product into `index.html` in the `public` folder.
+Ostatak fajla spaja sve delove i ubacuje finalni proizvod u `index.html` u folderu `public`.
 
-### Building the board {/*building-the-board*/}
+### Kreiranje table {/*building-the-board*/}
 
-Let's get back to `App.js`. This is where you'll spend the rest of the tutorial.
+Vratimo se na `App.js`. Ovdee ćete provesti ostatak tutorijala.
 
-Currently the board is only a single square, but you need nine! If you just try and copy paste your square to make two squares like this:
+Trenutno je tabla samo jedan kvadrat, ali vam je neophodno devet! Ukoliko pokušate samo da kopirate i nalepite vaš kvadrat kako biste napravili dva kvadrata ovako:
 
 ```js {2}
 export default function Square() {
@@ -358,7 +358,7 @@ export default function Square() {
 }
 ```
 
-You'll get this error:
+Dobićete ovu grešku:
 
 <ConsoleBlock level="error">
 
@@ -366,7 +366,7 @@ You'll get this error:
 
 </ConsoleBlock>
 
-React components need to return a single JSX element and not multiple adjacent JSX elements like two buttons. To fix this you can use *Fragments* (`<>` and `</>`) to wrap multiple adjacent JSX elements like this:
+React component-e moraju da return-uju jedinstven JSX element, a ne više susednih JSX elemenata poput dva dugmeta. Da biste to ispravili, možete koristiti *Fragmente* (`<>` i `</>`) kako biste obuhvatili više susednih JSX elemenata ovako:
 
 ```js {3-6}
 export default function Square() {
@@ -379,17 +379,17 @@ export default function Square() {
 }
 ```
 
-Now you should see:
+Sada bi trebalo da vidite:
 
-![two x-filled squares](../images/tutorial/two-x-filled-squares.png)
+![dva kvadrata sa X](../images/tutorial/two-x-filled-squares.png)
 
-Great! Now you just need to copy-paste a few times to add nine squares and...
+Odlično! Sada samo treba nekoliko puta da kopirate i nalepite kako biste dodali devet kvadrata i...
 
-![nine x-filled squares in a line](../images/tutorial/nine-x-filled-squares.png)
+![devet kvadrata sa X u liniji](../images/tutorial/nine-x-filled-squares.png)
 
-Oh no! The squares are all in a single line, not in a grid like you need for our board. To fix this you'll need to group your squares into rows with `div`s and add some CSS classes. While you're at it, you'll give each square a number to make sure you know where each square is displayed.
+Oh ne! Svi kvadrati su u jednoj liniji, a ne u mreži kakva vam je potrebna za našu tablu. Da biste to ispravili, moraćete da grupišete kvadrate u redove koristeći `div` i dodate nekoliko CSS klasa. Usput, dodelićete svakom kvadratu broj kako biste bili sigurni gde je svaki kvadrat prikazan.
 
-In the `App.js` file, update the `Square` component to look like this:
+U fajlu `App.js`, ažurirajte component-u `Square` da izgleda ovako:
 
 ```js {3-19}
 export default function Square() {
@@ -415,11 +415,11 @@ export default function Square() {
 }
 ```
 
-The CSS defined in `styles.css` styles the divs with the `className` of `board-row`. Now that you've grouped your components into rows with the styled `div`s you have your tic-tac-toe board:
+CSS definisan u fajlu `styles.css` stilizuje div-ove sa `className` postavljenim na `board-row`. Sada kada ste grupisali svoje komponente u redove sa stilizovanim `div`-ovima, imate vašu iks-oks tablu:
 
-![tic-tac-toe board filled with numbers 1 through 9](../images/tutorial/number-filled-board.png)
+![iks-oks tabla ispunjena brojevima od 1 do 9](../images/tutorial/number-filled-board.png)
 
-But you now have a problem. Your component named `Square`, really isn't a square anymore. Let's fix that by changing the name to `Board`:
+Ali sada imate problem. Vaša komponenta pod nazivom `Square` više zapravo nije kvadrat. Hajde da to ispravimo promenom imena u `Board`:
 
 ```js {1}
 export default function Board() {
@@ -427,7 +427,7 @@ export default function Board() {
 }
 ```
 
-At this point your code should look something like this:
+U ovom trenutku vaš kod bi trebalo da izgleda ovako:
 
 <Sandpack>
 
@@ -504,15 +504,15 @@ body {
 
 <Note>
 
-Psssst... That's a lot to type! It's okay to copy and paste code from this page. However, if you're up for a little challenge, we recommend only copying code that you've manually typed at least once yourself.
+Psssst... To je previše za kucanje! U redu je da kopirate i nalepite kod sa ove stranice. Međutim, ako ste raspoloženi za mali izazov, preporučujemo da kopirate samo onaj kod koji ste bar jednom već ručno otkucali.
 
 </Note>
 
-### Passing data through props {/*passing-data-through-props*/}
+### Prosleđivanje podataka putem props-a {/*passing-data-through-props*/}
 
-Next, you'll want to change the value of a square from empty to "X" when the user clicks on the square. With how you've built the board so far you would need to copy-paste the code that updates the square nine times (once for each square you have)! Instead of copy-pasting, React's component architecture allows you to create a reusable component to avoid messy, duplicated code.
+Sledeće, želećete da promenite vrednost kvadrata iz praznog u "X" kada korisnik klikne na kvadrat. Na osnovu toga kako ste do sada izgradili tablu, morali biste da kopirate i nalepite kod koji ažurira kvadrat devet puta (jednom za svaki kvadrat koji imate)! Umesto kopiranja i lepljenja, React-ova component-na arhitektura vam omogućava da kreirate ponovo iskoristivu component-u kako biste izbegli nered i dupliran kod.
 
-First, you are going to copy the line defining your first square (`<button className="square">1</button>`) from your `Board` component into a new `Square` component:
+Prvo, kopiraćete liniju koja definiše vaš prvi kvadrat (`<button className="square">1</button>`) iz component-e `Board` u novu komponentu `Square`:
 
 ```js {1-3}
 function Square() {
@@ -524,7 +524,7 @@ export default function Board() {
 }
 ```
 
-Then you'll update the Board component to render that `Square` component using JSX syntax:
+Zatim ćete ažurirati Board component-u da renderuje ovu `Square` component-u koristeći JSX sintaksu:
 
 ```js {5-19}
 // ...
@@ -551,15 +551,15 @@ export default function Board() {
 }
 ```
 
-Note how unlike the browser `div`s, your own components `Board` and `Square` must start with a capital letter. 
+Obratite pažnju na to da, za razliku od browser-ovih `div`-ova, vaše komponente `Board` i `Square` moraju počinjati velikim slovom.
 
-Let's take a look:
+Hajde da pogledamo:
 
-![one-filled board](../images/tutorial/board-filled-with-ones.png)
+![tabla popunjena jedinicama](../images/tutorial/board-filled-with-ones.png)
 
-Oh no! You lost the numbered squares you had before. Now each square says "1". To fix this, you will use *props* to pass the value each square should have from the parent component (`Board`) to its child (`Square`).
+Oh ne! Izgubili ste numerisane kvadrate koje ste imali ranije. Sada svaki kvadrat prikazuje "1". Da biste to ispravili, koristićete *props* za prosleđivanje vrednosti koju svaki kvadrat treba da ima iz parent component-e (`Board`) ka njenom child-u (`Square`).
 
-Update the `Square` component to read the `value` prop that you'll pass from the `Board`:
+Ažurirajte component-u `Square` da koristi `value` prop koji ćete proslediti iz component-e `Board`:
 
 ```js {1}
 function Square({ value }) {
@@ -567,9 +567,9 @@ function Square({ value }) {
 }
 ```
 
-`function Square({ value })` indicates the Square component can be passed a prop called `value`.
+`function Square({ value })` označava da Square component-a može primiti prop pod nazivom `value`.
 
-Now you want to display that `value` instead of `1` inside every square. Try doing it like this:
+Sada želite da prikažete taj `value` umesto `1` unutar svakog kvadrata. Pokušajte to da uradite ovako:
 
 ```js {2}
 function Square({ value }) {
@@ -577,11 +577,11 @@ function Square({ value }) {
 }
 ```
 
-Oops, this is not what you wanted:
+Ups, ovo nije ono što ste želeli:
 
-![value-filled board](../images/tutorial/board-filled-with-value.png)
+![tabla popunjena sa "value"](../images/tutorial/board-filled-with-value.png)
 
-You wanted to render the JavaScript variable called `value` from your component, not the word "value". To "escape into JavaScript" from JSX, you need curly braces. Add curly braces around `value` in JSX like so:
+Želeli ste da renderujete JavaScript promenljivu pod nazivom `value` iz vaše komponente, a ne reč "value". Da biste "pobegli u JavaScript" iz JSX-a, potrebno je da koristite vitičaste (kovrdžave) zagrade. Dodajte vitičaste zagrade oko `value` u JSX-u ovako:
 
 ```js {2}
 function Square({ value }) {
@@ -589,11 +589,11 @@ function Square({ value }) {
 }
 ```
 
-For now, you should see an empty board:
+Za sada, trebalo bi da vidite praznu tablu:
 
-![empty board](../images/tutorial/empty-board.png)
+![prazna tabla](../images/tutorial/empty-board.png)
 
-This is because the `Board` component hasn't passed the `value` prop to each `Square` component it renders yet. To fix it you'll add the `value` prop to each `Square` component rendered by the `Board` component:
+To je zato što komponenta `Board` još uvek nije prosledila `value` prop svakoj komponenti `Square` koju renderuje. Da biste to ispravili, dodaćete `value` prop svakoj komponenti `Square` koju renderuje komponenta `Board`:
 
 ```js {5-7,10-12,15-17}
 export default function Board() {
@@ -619,11 +619,11 @@ export default function Board() {
 }
 ```
 
-Now you should see a grid of numbers again:
+Sada bi trebalo ponovo da vidite mrežu sa brojevima:
 
-![tic-tac-toe board filled with numbers 1 through 9](../images/tutorial/number-filled-board.png)
+![iks-oks tabla ispunjena brojevima od 1 do 9](../images/tutorial/number-filled-board.png)
 
-Your updated code should look like this:
+Vaš ažurirani kod bi trebalo da izgleda ovako:
 
 <Sandpack>
 
@@ -702,9 +702,9 @@ body {
 
 </Sandpack>
 
-### Making an interactive component {/*making-an-interactive-component*/}
+### Izrada interaktivne component-e {/*making-an-interactive-component*/}
 
-Let's fill the `Square` component with an `X` when you click it. Declare a function called `handleClick` inside of the `Square`. Then, add `onClick` to the props of the button JSX element returned from the `Square`:
+Hajde da ispunimo `Square` component-u sa `X` kada kliknete na nju. Deklarišite funkciju pod nazivom `handleClick` unutar component-e `Square`. Zatim, dodajte `onClick` u props dugmeta koje se vraća iz JSX elementa u `Square` komponenti:
 
 ```js {2-4,9}
 function Square({ value }) {
@@ -723,19 +723,19 @@ function Square({ value }) {
 }
 ```
 
-If you click on a square now, you should see a log saying `"clicked!"` in the _Console_ tab at the bottom of the _Browser_ section in CodeSandbox. Clicking the square more than once will log `"clicked!"` again. Repeated console logs with the same message will not create more lines in the console. Instead, you will see an incrementing counter next to your first `"clicked!"` log.
+Ukoliko sada kliknete na kvadrat, trebalo bi da vidite log sa porukom `"clicked!"` u *Console* tab-u na dnu sekcije *Browser* u CodeSandbox-u. Klikovima na kvadrat više puta, logovaće se `"clicked!"` ponovo. Ponavljajući logovi sa istom porukom neće kreirati nove linije u konzoli. Umesto toga, videćete brojač koji se povećava pored vašeg prvog loga `"clicked!"`.
 
 <Note>
 
-If you are following this tutorial using your local development environment, you need to open your browser's Console. For example, if you use the Chrome browser, you can view the Console with the keyboard shortcut **Shift + Ctrl + J** (on Windows/Linux) or **Option + ⌘ + J** (on macOS).
+Ako pratite ovaj tuutorijal koristeći vaše lokalno okruženje, potrebno je da otvorite konzolu vašeg browsera. Na primer, ako koristite Chrome browser, možete pogledati konzolu pomoću prečice na tastaturi **Shift + Ctrl + J** (na Windows/Linux) ili **Option + ⌘ + J** (na macOS).
 
 </Note>
 
-As a next step, you want the Square component to "remember" that it got clicked, and fill it with an "X" mark. To "remember" things, components use *state*.
+Sledeći korak je da `Square` component-a "zapamti" da je kliknuta i da je ispuni oznakom "X". Da bi "zapamtile" stvari, component-e koriste *state*.
 
-React provides a special function called `useState` that you can call from your component to let it "remember" things. Let's store the current value of the `Square` in state, and change it when the `Square` is clicked.
+React obezbeđuje posebnu funkciju pod nazivom `useState` koju možete pozvati iz svoje komponente kako bi ona mogla da "pamti" stvari. Hajde da sačuvamo trenutnu vrednost `Square` component-e u state-u i promenimo je kada se klikne na `Square`.
 
-Import `useState` at the top of the file. Remove the `value` prop from the `Square` component. Instead, add a new line at the start of the `Square` that calls `useState`. Have it return a state variable called `value`:
+Importujte `useState` na vrhu fajla. Uklonite `value` prop iz component-e `Square`. Umesto toga, dodajte novu liniju na početku `Square` component-e koja poziva `useState`. Neka ona vrati promenljivu state-a pod nazivom `value`:
 
 ```js {1,3,4}
 import { useState } from 'react';
@@ -747,9 +747,9 @@ function Square() {
     //...
 ```
 
-`value` stores the value and `setValue` is a function that can be used to change the value. The `null` passed to `useState` is used as the initial value for this state variable, so `value` here starts off equal to `null`.
+`value` čuva vrednost, a `setValue` je funkcija koja se koristi za promenu te vrednosti. `null` koji je prosleđen u `useState` koristi se kao početna vrednost za ovu promenljivu stanja, tako da `value` ovde počinje sa vrednošću jednakom `null`.
 
-Since the `Square` component no longer accepts props anymore, you'll remove the `value` prop from all nine of the Square components created by the Board component:
+Pošto component-a `Square` više ne prihvata props, uklonićete `value` prop iz svih devet `Square` component-i koje kreira component-a `Board`:
 
 ```js {6-8,11-13,16-18}
 // ...
@@ -776,7 +776,7 @@ export default function Board() {
 }
 ```
 
-Now you'll change `Square` to display an "X" when clicked. Replace the `console.log("clicked!");` event handler with `setValue('X');`. Now your `Square` component looks like this:
+Sada ćete promeniti component-u `Square` da prikaže "X" kada se klikne. Zamenite event handler `console.log("clicked!");` sa `setValue('X');`. Sada vaša `Square` component-a izgleda ovako:
 
 ```js {5}
 function Square() {
@@ -797,13 +797,13 @@ function Square() {
 }
 ```
 
-By calling this `set` function from an `onClick` handler, you're telling React to re-render that `Square` whenever its `<button>` is clicked. After the update, the `Square`'s `value` will be `'X'`, so you'll see the "X" on the game board. Click on any Square, and "X" should show up:
+Pozivanjem ove `set` funkcije iz `onClick` handler-a, govorite React-u da ponovo renderuje taj `Square` kad god se klikne njegov `<button>`. Nakon ažuriranja, `value` component-e `Square` biće `'X'`, tako da ćete videti "X" na tabli. Kliknite na bilo koji kvadrat i "X" bi trebalo da se pojavi:
 
-![adding xes to board](../images/tutorial/tictac-adding-x-s.gif)
+![dodavanje X-ova na tablu](../images/tutorial/tictac-adding-x-s.gif)
 
-Each Square has its own state: the `value` stored in each Square is completely independent of the others. When you call a `set` function in a component, React automatically updates the child components inside too.
+Svaki kvadrat ima svoj state: `value` sačuvano u svakom kvadratu je potpuno nezavisno od drugih. Kada pozovete `set` funkciju u component-i, React automatski ažurira i njene unutarnje child component-e.
 
-After you've made the above changes, your code will look like this:
+Nakon što napravite gore navedene izmene, vaš kod će izgledati ovako:
 
 <Sandpack>
 
@@ -899,23 +899,23 @@ body {
 
 ### React Developer Tools {/*react-developer-tools*/}
 
-React DevTools let you check the props and the state of your React components. You can find the React DevTools tab at the bottom of the _browser_ section in CodeSandbox:
+React DevTools vam omogućava da proverite props i stanje vaših React komponenti. Možete pronaći karticu React DevTools na dnu sekcije *browser* u CodeSandbox-u:
 
-![React DevTools in CodeSandbox](../images/tutorial/codesandbox-devtools.png)
+![React DevTools u CodeSandbox-u](../images/tutorial/codesandbox-devtools.png)
 
-To inspect a particular component on the screen, use the button in the top left corner of React DevTools:
+Da biste pregledali određenu component-u na ekranu, koristite dugme u gornjem levom uglu React DevTools-a:
 
-![Selecting components on the page with React DevTools](../images/tutorial/devtools-select.gif)
+![Biranje komponenti na stranici sa React DevTools](../images/tutorial/devtools-select.gif)
 
 <Note>
 
-For local development, React DevTools is available as a [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), and [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browser extension. Install it, and the *Components* tab will appear in your browser Developer Tools for sites using React.
+Za rad u lokalnom okruženju, React DevTools je dostupan kao ekstenzija za [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), i [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browsere. Instalirajte je, i *Components* tab će se pojaviti u Developer Tools vašeg browser-a za sajtove koji koriste React.
 
 </Note>
 
-## Completing the game {/*completing-the-game*/}
+## Završavanje igre {/*completing-the-game*/}
 
-By this point, you have all the basic building blocks for your tic-tac-toe game. To have a complete game, you now need to alternate placing "X"s and "O"s on the board, and you need a way to determine a winner.
+Do ovog trenutka, imate sve osnovne građevinske blokove za vašu iks-oks igru. Da biste je kompletirali, potrebno da naizmenično postavljate "X" i "O" na tablu, i potreban vam je način da odredite pobednika.
 
 ### Lifting state up {/*lifting-state-up*/}
 
@@ -1094,7 +1094,7 @@ function Square({ value, onSquareClick }) {
 }
 ```
 
-Now you'll connect the `onSquareClick` prop to a function in the `Board` component that you'll name `handleClick`. To connect `onSquareClick` to `handleClick` you'll pass a function to the `onSquareClick` prop of the first `Square` component: 
+Now you'll connect the `onSquareClick` prop to a function in the `Board` component that you'll name `handleClick`. To connect `onSquareClick` to `handleClick` you'll pass a function to the `onSquareClick` prop of the first `Square` component:
 
 ```js {7}
 export default function Board() {
@@ -1337,7 +1337,7 @@ The DOM `<button>` element's `onClick` attribute has a special meaning to React 
 
 Note how in `handleClick`, you call `.slice()` to create a copy of the `squares` array instead of modifying the existing array. To explain why, we need to discuss immutability and why immutability is important to learn.
 
-There are generally two approaches to changing data. The first approach is to _mutate_ the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes. Here is what it would look like if you mutated the `squares` array:
+There are generally two approaches to changing data. The first approach is to *mutate* the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes. Here is what it would look like if you mutated the `squares` array:
 
 ```jsx
 const squares = [null, null, null, null, null, null, null, null, null];
@@ -1590,7 +1590,7 @@ export default function Board() {
 }
 ```
 
-Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So _you_ are the real winner here. Here is what the code should look like:
+Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So *you* are the real winner here. Here is what the code should look like:
 
 <Sandpack>
 
@@ -2073,7 +2073,7 @@ export default function Game() {
 }
 ```
 
-You can see what your code should look like below. Note that you should see an error in the developer tools console that says: 
+You can see what your code should look like below. Note that you should see an error in the developer tools console that says:
 
 <ConsoleBlock level="warning">
 Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of &#96;Game&#96;.
@@ -2272,7 +2272,7 @@ to
 <li>Alexa: 5 tasks left</li>
 ```
 
-In addition to the updated counts, a human reading this would probably say that you swapped Alexa and Ben's ordering and inserted Claudia between Alexa and Ben. However, React is a computer program and does not know what you intended, so you need to specify a _key_ property for each list item to differentiate each list item from its siblings. If your data was from a database, Alexa, Ben, and Claudia's database IDs could be used as keys.
+In addition to the updated counts, a human reading this would probably say that you swapped Alexa and Ben's ordering and inserted Claudia between Alexa and Ben. However, React is a computer program and does not know what you intended, so you need to specify a *key* property for each list item to differentiate each list item from its siblings. If your data was from a database, Alexa, Ben, and Claudia's database IDs could be used as keys.
 
 ```js {1}
 <li key={user.id}>
