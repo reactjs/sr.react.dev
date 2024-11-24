@@ -17,7 +17,7 @@ Ovaj tutorijal je dizajniran za one koji preferiraju da ***uče kroz praksu*** i
 Tutorijal je podeljen u nekoliko sekcija:
 
 - [Setup tutorijala](#setup-for-the-tutorial) pružiće vam ***početnu tačku*** za praćenje tutorijala.
-- [Pregled](#overview) će vas naučiti ***osnovama*** React-a: komponentama, props-ima i state-u.
+- [Pregled](#overview) će vas naučiti ***osnovama*** React-a: component-ama, props-ima i state-u.
 - [Završavanje igre](#completing-the-game) će vas naučiti ***najčešćim tehnikama*** u radu sa React-om.
 - [Dodavanje putovanja kroz vreme](#adding-time-travel) pružiće vam ***dublji uvid*** u jedinstvene prednosti React-a.
 
@@ -196,7 +196,7 @@ body {
 
 Ako vam kod još uvek nije jasan, ili ako niste upoznati sa sintaksom, ne brinite! Cilj ovog tutorijala je da vam pomogne da razumete React i njegovu sintaksu.
 
-Preporučujemo vam da se prvo poigrate sa završenom igrom pre nego što nastavite sa tutorijalom. Jedna od funkcionalnosti koju ćete primetiti je numerisana lista sa desne strane table igre. Ova lista vam pruža istoriju svih poteza koji su se odigrali tokom igre, i ažurira se kako igra napreduje.
+Preporučujemo vam da se prvo poigrate sa završenom igrom pre nego što nastavite sa tutorijalom. Jedna od funkcionalnosti koju ćete primetiti je numerisana lista sa desne strane table igre. Ova lista vam pruža istoriju svih poteza koji su se odigrali tokom igre, i update-je se kako igra napreduje.
 
 Nakon što se upoznate sa završenom igrom, nastavite sa čitanjem. Sledeći korak je da vas postavimo u poziciju da počnete sa pravljenjem igre.
 
@@ -303,7 +303,7 @@ Sada, hajde da pogledamo fajlove u starter kodu.
 
 #### `App.js` {/*appjs*/}
 
-Kod u fajlu `App.js` kreira *component-u*. U React-u, component-a je deo višekratnog koda koji predstavlja deo korisničkog interfejsa. Component-e se koriste za renderovanje, upravljanje i ažuriranje elemenata korisničkog interfejsa u vašoj aplikaciji. Hajde da analiziramo component-u liniju po liniju kako bismo uočili šta se dešava:
+Kod u fajlu `App.js` kreira *component-u*. U React-u, component-a je deo višekratnog koda koji predstavlja deo korisničkog interfejsa. Component-e se koriste za renderovanje, upravljanje i update-ovanje elemenata korisničkog interfejsa u vašoj aplikaciji. Hajde da analiziramo component-u liniju po liniju kako bismo uočili šta se dešava:
 
 ```js {1}
 export default function Square() {
@@ -323,7 +323,7 @@ Druga linija *return*-uje dugme. JavaScript ključna reč `return` znači da se 
 
 #### `styles.css` {/*stylescss*/}
 
-Kliknite na fajl pod nazivom `styles.css` u sekciji *Files* u CodeSandbox-u. Ovaj fajl definiše stilove za vašu React aplikaciju. Prva dva *CSS selektora* (`*` i `body`) definišu stil za veće delove vaše aplikacije, dok selektor `.square` definiše stil za bilo koju komponentu gde je svojstvo `className` postavljeno na `square`. U vašem kodu, to bi odgovaralo dugmetu iz komponente Square u fajlu `App.js`.
+Kliknite na fajl pod nazivom `styles.css` u sekciji *Files* u CodeSandbox-u. Ovaj fajl definiše stilove za vašu React aplikaciju. Prva dva *CSS selektora* (`*` i `body`) definišu stil za veće delove vaše aplikacije, dok selektor `.square` definiše stil za bilo koju component-u gde je svojstvo `className` postavljeno na `square`. U vašem kodu, to bi odgovaralo dugmetu iz component-e Square u fajlu `App.js`.
 
 #### `index.js` {/*indexjs*/}
 
@@ -389,7 +389,7 @@ Odlično! Sada samo treba nekoliko puta da kopirate i nalepite kako biste dodali
 
 Oh ne! Svi kvadrati su u jednoj liniji, a ne u mreži kakva vam je potrebna za našu tablu. Da biste to ispravili, moraćete da grupišete kvadrate u redove koristeći `div` i dodate nekoliko CSS klasa. Usput, dodelićete svakom kvadratu broj kako biste bili sigurni gde je svaki kvadrat prikazan.
 
-U fajlu `App.js`, ažurirajte component-u `Square` da izgleda ovako:
+U fajlu `App.js`, update-ujete component-u `Square` da izgleda ovako:
 
 ```js {3-19}
 export default function Square() {
@@ -415,11 +415,11 @@ export default function Square() {
 }
 ```
 
-CSS definisan u fajlu `styles.css` stilizuje div-ove sa `className` postavljenim na `board-row`. Sada kada ste grupisali svoje komponente u redove sa stilizovanim `div`-ovima, imate vašu iks-oks tablu:
+CSS definisan u fajlu `styles.css` stilizuje div-ove sa `className` postavljenim na `board-row`. Sada kada ste grupisali svoje component-e u redove sa stilizovanim `div`-ovima, imate vašu iks-oks tablu:
 
 ![iks-oks tabla ispunjena brojevima od 1 do 9](../images/tutorial/number-filled-board.png)
 
-Ali sada imate problem. Vaša komponenta pod nazivom `Square` više zapravo nije kvadrat. Hajde da to ispravimo promenom imena u `Board`:
+Ali sada imate problem. Vaša component-a pod nazivom `Square` više zapravo nije kvadrat. Hajde da to ispravimo promenom imena u `Board`:
 
 ```js {1}
 export default function Board() {
@@ -510,9 +510,9 @@ Psssst... To je previše za kucanje! U redu je da kopirate i nalepite kod sa ove
 
 ### Prosleđivanje podataka putem props-a {/*passing-data-through-props*/}
 
-Sledeće, želećete da promenite vrednost kvadrata iz praznog u "X" kada korisnik klikne na kvadrat. Na osnovu toga kako ste do sada izgradili tablu, morali biste da kopirate i nalepite kod koji ažurira kvadrat devet puta (jednom za svaki kvadrat koji imate)! Umesto kopiranja i lepljenja, React-ova component-na arhitektura vam omogućava da kreirate ponovo iskoristivu component-u kako biste izbegli nered i dupliran kod.
+Sledeće, želećete da promenite vrednost kvadrata iz praznog u "X" kada korisnik klikne na kvadrat. Na osnovu toga kako ste do sada izgradili tablu, morali biste da kopirate i nalepite kod koji update-uje kvadrat devet puta (jednom za svaki kvadrat koji imate)! Umesto kopiranja i lepljenja, React-ova component-na arhitektura vam omogućava da kreirate ponovo iskoristivu component-u kako biste izbegli nered i dupliran kod.
 
-Prvo, kopiraćete liniju koja definiše vaš prvi kvadrat (`<button className="square">1</button>`) iz component-e `Board` u novu komponentu `Square`:
+Prvo, kopiraćete liniju koja definiše vaš prvi kvadrat (`<button className="square">1</button>`) iz component-e `Board` u novu component-u `Square`:
 
 ```js {1-3}
 function Square() {
@@ -524,7 +524,7 @@ export default function Board() {
 }
 ```
 
-Zatim ćete ažurirati Board component-u da renderuje ovu `Square` component-u koristeći JSX sintaksu:
+Zatim ćete update-ovati Board component-u da renderuje ovu `Square` component-u koristeći JSX sintaksu:
 
 ```js {5-19}
 // ...
@@ -551,7 +551,7 @@ export default function Board() {
 }
 ```
 
-Obratite pažnju na to da, za razliku od browser-ovih `div`-ova, vaše komponente `Board` i `Square` moraju počinjati velikim slovom.
+Obratite pažnju na to da, za razliku od browser-ovih `div`-ova, vaše component-e `Board` i `Square` moraju počinjati velikim slovom.
 
 Hajde da pogledamo:
 
@@ -559,7 +559,7 @@ Hajde da pogledamo:
 
 Oh ne! Izgubili ste numerisane kvadrate koje ste imali ranije. Sada svaki kvadrat prikazuje "1". Da biste to ispravili, koristićete *props* za prosleđivanje vrednosti koju svaki kvadrat treba da ima iz parent component-e (`Board`) ka njenom child-u (`Square`).
 
-Ažurirajte component-u `Square` da koristi `value` prop koji ćete proslediti iz component-e `Board`:
+Update-ujte component-u `Square` da koristi `value` prop koji ćete proslediti iz component-e `Board`:
 
 ```js {1}
 function Square({ value }) {
@@ -581,7 +581,7 @@ Ups, ovo nije ono što ste želeli:
 
 ![tabla popunjena sa "value"](../images/tutorial/board-filled-with-value.png)
 
-Želeli ste da renderujete JavaScript promenljivu pod nazivom `value` iz vaše komponente, a ne reč "value". Da biste "pobegli u JavaScript" iz JSX-a, potrebno je da koristite vitičaste (kovrdžave) zagrade. Dodajte vitičaste zagrade oko `value` u JSX-u ovako:
+Želeli ste da renderujete JavaScript promenljivu pod nazivom `value` iz vaše component-e, a ne reč "value". Da biste "pobegli u JavaScript" iz JSX-a, potrebno je da koristite vitičaste (kovrdžave) zagrade. Dodajte vitičaste zagrade oko `value` u JSX-u ovako:
 
 ```js {2}
 function Square({ value }) {
@@ -593,7 +593,7 @@ Za sada, trebalo bi da vidite praznu tablu:
 
 ![prazna tabla](../images/tutorial/empty-board.png)
 
-To je zato što komponenta `Board` još uvek nije prosledila `value` prop svakoj komponenti `Square` koju renderuje. Da biste to ispravili, dodaćete `value` prop svakoj komponenti `Square` koju renderuje komponenta `Board`:
+To je zato što component-a `Board` još uvek nije prosledila `value` prop svakoj component-i `Square` koju renderuje. Da biste to ispravili, dodaćete `value` prop svakoj component-i `Square` koju renderuje component-a `Board`:
 
 ```js {5-7,10-12,15-17}
 export default function Board() {
@@ -623,7 +623,7 @@ Sada bi trebalo ponovo da vidite mrežu sa brojevima:
 
 ![iks-oks tabla ispunjena brojevima od 1 do 9](../images/tutorial/number-filled-board.png)
 
-Vaš ažurirani kod bi trebalo da izgleda ovako:
+Vaš update-ovani kod bi trebalo da izgleda ovako:
 
 <Sandpack>
 
@@ -704,7 +704,7 @@ body {
 
 ### Izrada interaktivne component-e {/*making-an-interactive-component*/}
 
-Hajde da ispunimo `Square` component-u sa `X` kada kliknete na nju. Deklarišite funkciju pod nazivom `handleClick` unutar component-e `Square`. Zatim, dodajte `onClick` u props dugmeta koje se vraća iz JSX elementa u `Square` komponenti:
+Hajde da ispunimo `Square` component-u sa `X` kada kliknete na nju. Deklarišite funkciju pod nazivom `handleClick` unutar component-e `Square`. Zatim, dodajte `onClick` u props dugmeta koje se vraća iz JSX elementa u `Square` component-i:
 
 ```js {2-4,9}
 function Square({ value }) {
@@ -733,7 +733,7 @@ Ako pratite ovaj tuutorijal koristeći vaše lokalno okruženje, potrebno je da 
 
 Sledeći korak je da `Square` component-a "zapamti" da je kliknuta i da je ispuni oznakom "X". Da bi "zapamtile" stvari, component-e koriste *state*.
 
-React obezbeđuje posebnu funkciju pod nazivom `useState` koju možete pozvati iz svoje komponente kako bi ona mogla da "pamti" stvari. Hajde da sačuvamo trenutnu vrednost `Square` component-e u state-u i promenimo je kada se klikne na `Square`.
+React obezbeđuje posebnu funkciju pod nazivom `useState` koju možete pozvati iz svoje component-e kako bi ona mogla da "pamti" stvari. Hajde da sačuvamo trenutnu vrednost `Square` component-e u state-u i promenimo je kada se klikne na `Square`.
 
 Importujte `useState` na vrhu fajla. Uklonite `value` prop iz component-e `Square`. Umesto toga, dodajte novu liniju na početku `Square` component-e koja poziva `useState`. Neka ona vrati promenljivu state-a pod nazivom `value`:
 
@@ -797,11 +797,11 @@ function Square() {
 }
 ```
 
-Pozivanjem ove `set` funkcije iz `onClick` handler-a, govorite React-u da ponovo renderuje taj `Square` kad god se klikne njegov `<button>`. Nakon ažuriranja, `value` component-e `Square` biće `'X'`, tako da ćete videti "X" na tabli. Kliknite na bilo koji kvadrat i "X" bi trebalo da se pojavi:
+Pozivanjem ove `set` funkcije iz `onClick` handler-a, govorite React-u da ponovo renderuje taj `Square` kad god se klikne njegov `<button>`. Nakon update-a, `value` component-e `Square` biće `'X'`, tako da ćete videti "X" na tabli. Kliknite na bilo koji kvadrat i "X" bi trebalo da se pojavi:
 
 ![dodavanje X-ova na tablu](../images/tutorial/tictac-adding-x-s.gif)
 
-Svaki kvadrat ima svoj state: `value` sačuvano u svakom kvadratu je potpuno nezavisno od drugih. Kada pozovete `set` funkciju u component-i, React automatski ažurira i njene unutarnje child component-e.
+Svaki kvadrat ima svoj state: `value` sačuvano u svakom kvadratu je potpuno nezavisno od drugih. Kada pozovete `set` funkciju u component-i, React automatski update-uje i njene unutarnje child component-e.
 
 Nakon što napravite gore navedene izmene, vaš kod će izgledati ovako:
 
@@ -899,13 +899,13 @@ body {
 
 ### React Developer Tools {/*react-developer-tools*/}
 
-React DevTools vam omogućava da proverite props i stanje vaših React komponenti. Možete pronaći karticu React DevTools na dnu sekcije *browser* u CodeSandbox-u:
+React DevTools vam omogućava da proverite props i stanje vaših React component-i. Možete pronaći karticu React DevTools na dnu sekcije *browser* u CodeSandbox-u:
 
 ![React DevTools u CodeSandbox-u](../images/tutorial/codesandbox-devtools.png)
 
 Da biste pregledali određenu component-u na ekranu, koristite dugme u gornjem levom uglu React DevTools-a:
 
-![Biranje komponenti na stranici sa React DevTools](../images/tutorial/devtools-select.gif)
+![Biranje component-i na stranici sa React DevTools](../images/tutorial/devtools-select.gif)
 
 <Note>
 
@@ -919,15 +919,15 @@ Do ovog trenutka, imate sve osnovne građevinske blokove za vašu iks-oks igru. 
 
 ### Podizanje state-a  {/*lifting-state-up*/}
 
-Trenutno svaka `Square` komponenta čuva deo state-a igre. Da bi se proverilo ko je pobednik u igri iks-oks, `Board` bi morao nekako da zna state svake od 9 `Square` komponenti.
+Trenutno svaka `Square` component-a čuva deo state-a igre. Da bi se proverilo ko je pobednik u igri iks-oks, `Board` bi morao nekako da zna state svake od 9 `Square` component-i.
 
-Kako biste to rešili? Možda biste pomislili da `Board` treba da „pita” svaku `Square` komponentu za njen state. Iako je ovaj pristup tehnički moguć u React-u, ne preporučujemo ga jer kod postaje težak za razumevanje, podložan je greškama i teško ga je refaktorisati. Umesto toga, najbolji pristup je da se state igre čuva u parent komponenti `Board`, umesto u svakoj `Square` komponenti. Komponenta `Board` može da kaže svakoj `Square` komponenti šta treba da prikaže prosleđivanjem props-a, kao što ste ranije prosleđivali broj svakoj `Square` komponenti.
+Kako biste to rešili? Možda biste pomislili da `Board` treba da „pita” svaku `Square` component-u za njen state. Iako je ovaj pristup tehnički moguć u React-u, ne preporučujemo ga jer kod postaje težak za razumevanje, podložan je greškama i teško ga je refaktorisati. Umesto toga, najbolji pristup je da se state igre čuva u parent component-i `Board`, umesto u svakoj `Square` component-i. component-a `Board` može da kaže svakoj `Square` component-i šta treba da prikaže prosleđivanjem props-a, kao što ste ranije prosleđivali broj svakoj `Square` component-i.
 
-**Da biste sakupili podatke od više child komponenti ili omogućili komunikaciju između dve child komponente, definišite zajednički state u njihovoj parent komponenti. Parent komponenta može da prosledi taj state nazad child komponentama putem props-a. Na ovaj način child komponente ostaju sinhronizovane međusobno i sa parent komponentom.**
+**Da biste sakupili podatke od više child component-i ili omogućili komunikaciju između dve child component-e, definišite zajednički state u njihovoj parent component-i. Parent component-a može da prosledi taj state nazad child component-ama putem props-a. Na ovaj način child component-e ostaju sinhroarray-ovane međusobno i sa parent component-om.**
 
-Podizanje state-a u parent komponentu je uobičajena praksa pri refaktorisanju React komponenti.
+Podizanje state-a u parent component-u je uobičajena praksa pri refaktorisanju React component-i.
 
-Hajde da iskoristimo ovu priliku i isprobamo ovo. Izmenite komponentu `Board` tako da deklariše varijablu state-a pod nazivom `squares`, koja ima podrazumevanu vrednost u vidu niza od 9 `null` vrednosti koje odgovaraju za svaki od 9 kvadrata:
+Hajde da iskoristimo ovu priliku i isprobamo ovo. Izmenite component-u `Board` tako da deklariše varijablu state-a pod nazivom `squares`, koja ima podrazumevanu vrednost u vidu array-a od 9 `null` vrednosti koje odgovaraju za svaki od 9 kvadrata:
 
 ```js {3}
 // ...
@@ -939,13 +939,13 @@ export default function Board() {
 }
 ```
 
-`Array(9).fill(null)` kreira niz sa devet elemenata i postavlja svaki od njih na `null`. Poziv `useState()` oko njega deklariše varijablu state-a pod nazivom `squares`, koja je inicijalno postavljena za taj niz. Svaki element u nizu odgovara vrednosti jednog kvadrata. Kada kasnije popunite tablu, niz `squares` će izgledati ovako:
+`Array(9).fill(null)` kreira array sa devet elemenata i postavlja svaki od njih na `null`. Poziv `useState()` oko njega deklariše varijablu state-a pod nazivom `squares`, koja je inicijalno postavljena na taj array. Svaki element u array-u odgovara vrednosti jednog kvadrata. Kada kasnije popunite tablu, array `squares` će izgledati ovako:
 
 ```jsx
 ['O', null, 'X', 'X', 'X', 'O', 'O', null, null]
 ```
 
-Sada vaša `Board` komponenta treba da prosledi `value` prop svakoj `Square` komponenti koju renderuje:
+Sada vaša `Board` component-a treba da prosledi `value` prop svakoj `Square` component-i koju renderuje:
 
 ```js {6-8,11-13,16-18}
 export default function Board() {
@@ -972,7 +972,7 @@ export default function Board() {
 }
 ```
 
-Zatim ćete izmeniti `Square` komponentu da prima `value` prop iz `Board` komponente. Ovo će zahtevati uklanjanje sopstvenog state-a `value` iz `Square` komponente, kao i `onClick` props-a dugmeta:
+Zatim ćete izmeniti `Square` component-u da prima `value` prop iz `Board` component-e. Ovo će zahtevati uklanjanje sopstvenog state-a `value` iz `Square` component-e, kao i `onClick` props-a dugmeta:
 
 ```js {1,2}
 function Square({value}) {
@@ -1066,11 +1066,11 @@ body {
 
 </Sandpack>
 
-Svaka `Square` komponenta će sada primati `value` prop koji može imati vrednost `'X'`, `'O'` ili `null` za prazne kvadrate.
+Svaka `Square` component-a će sada primati `value` prop koji može imati vrednost `'X'`, `'O'` ili `null` za prazne kvadrate.
 
-Sledeće, treba da promenite šta se dešava kada se klikne na `Square`. `Board` komponenta sada vodi računa o tome koji su kvadrati popunjeni. Biće vam potrebno da napravite način na koji `Square` može da update-uje state komponente `Board`. Pošto je state privatan za komponentu koja ga definiše, ne možete  update-ovati state komponente `Board` direktno iz `Square`.
+Sledeće, treba da promenite šta se dešava kada se klikne na `Square`. `Board` component-a sada vodi računa o tome koji su kvadrati popunjeni. Biće vam potrebno da napravite način na koji `Square` može da update-uje state component-e `Board`. Pošto je state privatan za component-u koja ga definiše, ne možete  update-ovati state component-e `Board` direktno iz `Square`.
 
-Umesto toga, prosledićete funkciju iz `Board` komponente u `Square` komponentu, i `Square` će pozvati tu funkciju kada se na nju klikne. Počećete sa funkcijom koju će `Square` komponenta pozvati kada se klikne na nju. Tu funkciju ćete nazvati `onSquareClick`:
+Umesto toga, prosledićete funkciju iz `Board` component-e u `Square` component-u, i `Square` će pozvati tu funkciju kada se na nju klikne. Počećete sa funkcijom koju će `Square` component-a pozvati kada se klikne na nju. Tu funkciju ćete nazvati `onSquareClick`:
 
 ```js {3}
 function Square({ value }) {
@@ -1082,7 +1082,7 @@ function Square({ value }) {
 }
 ```
 
-Zatim, dodaćete funkciju `onSquareClick` u props `Square` komponente:
+Zatim, dodaćete funkciju `onSquareClick` u props `Square` component-e:
 
 ```js {1}
 function Square({ value, onSquareClick }) {
@@ -1094,7 +1094,7 @@ function Square({ value, onSquareClick }) {
 }
 ```
 
-Sada ćete povezati `onSquareClick` prop sa funkcijom u `Board` komponenti koju ćete nazvati `handleClick`. Da biste povezali `onSquareClick` sa `handleClick`, prosledićete funkciju kao vrednost `onSquareClick` prop-u prve `Square` komponente:
+Sada ćete povezati `onSquareClick` prop sa funkcijom u `Board` component-i koju ćete nazvati `handleClick`. Da biste povezali `onSquareClick` sa `handleClick`, prosledićete funkciju kao vrednost `onSquareClick` prop-u prve `Square` component-e:
 
 ```js {7}
 export default function Board() {
@@ -1109,7 +1109,7 @@ export default function Board() {
 }
 ```
 
-Na kraju, definisaćete funkciju `handleClick` unutar `Board` komponente kako biste update-ovali niz `squares` koji čuva state vaše table:
+Na kraju, definisaćete funkciju `handleClick` unutar `Board` component-e kako biste update-ovali array- `squares` koji čuva state vaše table:
 
 ```js {4-8}
 export default function Board() {
@@ -1127,9 +1127,9 @@ export default function Board() {
 }
 ```
 
-Funkcija `handleClick` kreira kopiju niza `squares` (`nextSquares`) korišćenjem JavaScript metode `slice()` za nizove. Zatim, `handleClick` ažurira niz `nextSquares` tako što dodaje `X` na prvi kvadrat (indeks `[0]`).
+Funkcija `handleClick` kreira kopiju array-a `squares` (`nextSquares`) korišćenjem JavaScript metode `slice()` za array-ove. Zatim, `handleClick` update-uje array- `nextSquares` tako što dodaje `X` na prvi kvadrat (indeks `[0]`).
 
-Pozivanjem funkcije `setSquares` obaveštavate React da se state komponente promenio. Ovo će pokrenuti ponovno renderovanje komponenti koje koriste state `squares` (`Board`), kao i njenih child komponenti (`Square` komponente koje čine tablu).
+Pozivanjem funkcije `setSquares` obaveštavate React da se state component-e promenio. Ovo će pokrenuti ponovno renderovanje component-i koje koriste state `squares` (`Board`), kao i njenih child component-i (`Square` component-e koje čine tablu).
 
 <Note>
 
@@ -1137,7 +1137,7 @@ JavaScript podržava [closures](https://developer.mozilla.org/en-US/docs/Web/Jav
 
 </Note>
 
-Sada možete dodati X-ove na tablu... ali samo u gornji levi kvadrat. Vaša funkcija `handleClick` je trenutno hardkodirana da ažurira indeks gornjeg levog kvadrata (`0`). Hajde da ažuriramo `handleClick` tako da može ažurirati bilo koji kvadrat. Dodajte argument `i` funkciji `handleClick` koji prima indeks kvadrata koji treba ažurirati:
+Sada možete dodati X-ove na tablu... ali samo u gornji levi kvadrat. Vaša funkcija `handleClick` je trenutno hardkodirana da update-uje indeks gornjeg levog kvadrata (`0`). Napravimo update `handleClick` tako da može update-ovati bilo koji kvadrat. Dodajte argument `i` funkciji `handleClick` koji prima indeks kvadrata koji treba update-ovati:
 
 ```js {4,6}
 export default function Board() {
@@ -1155,13 +1155,13 @@ export default function Board() {
 }
 ```
 
-Next, you will need to pass that `i` to `handleClick`. You could try to set the `onSquareClick` prop of square to be `handleClick(0)` directly in the JSX like this, but it won't work:
+Potom ćete morati da prosledite taj `i` funkciji `handleClick`. Mogli biste pokušati da postavite `onSquareClick` prop kvadrata direktno na `handleClick(0)` u JSX-u, ovako, ali to neće funkcionisati:
 
 ```jsx
 <Square value={squares[0]} onSquareClick={handleClick(0)} />
 ```
 
-Here is why this doesn't work. The `handleClick(0)` call will be a part of rendering the board component. Because `handleClick(0)` alters the state of the board component by calling `setSquares`, your entire board component will be re-rendered again. But this runs `handleClick(0)` again, leading to an infinite loop:
+Evo zašto ovo ne funkcioniše. Poziv `handleClick(0)` postaje deo renderovanja component-e `Board`. Pošto `handleClick(0)` menja state component-e `Board` pozivanjem `setSquares`, cela component-a `Board` će ponovo biti renderovana. Međutim, to ponovo pokreće `handleClick(0)`, što dovodi do infinite loop-a:
 
 <ConsoleBlock level="error">
 
@@ -1169,13 +1169,13 @@ Too many re-renders. React limits the number of renders to prevent an infinite l
 
 </ConsoleBlock>
 
-Why didn't this problem happen earlier?
+Zašto se ovaj problem nije pojavio ranije?
 
-When you were passing `onSquareClick={handleClick}`, you were passing the `handleClick` function down as a prop. You were not calling it! But now you are *calling* that function right away--notice the parentheses in `handleClick(0)`--and that's why it runs too early. You don't *want* to call `handleClick` until the user clicks!
+Kada ste prosleđivali `onSquareClick={handleClick}`, prosleđivali ste funkciju `handleClick` kao prop. Niste je pozivali! Ali sada *pozivate* tu funkciju odmah—obratite pažnju na zagrade u `handleClick(0)`—zbog čega se funkcija pokreće prerano. Ne želite da pozovete `handleClick` dok korisnik ne klikne!
 
-You could fix this by creating a function like `handleFirstSquareClick` that calls `handleClick(0)`, a function like `handleSecondSquareClick` that calls `handleClick(1)`, and so on. You would pass (rather than call) these functions down as props like `onSquareClick={handleFirstSquareClick}`. This would solve the infinite loop.
+Ovaj problem biste mogli rešiti kreiranjem funkcije poput `handleFirstSquareClick`, koja poziva `handleClick(0)`, funkcije poput `handleSecondSquareClick`, koja poziva `handleClick(1)`, i tako dalje. Zatim biste te funkcije prosledili (umesto da ih pozovete) kao props, na primer `onSquareClick={handleFirstSquareClick}`. Ovo bi rešilo problem infinite loop-a.
 
-However, defining nine different functions and giving each of them a name is too verbose. Instead, let's do this:
+Međutim, definisanje devet različitih funkcija i davanje imena svakoj od njih bilo bi previše opširno. Umesto toga, hajde da uradimo sledeće:
 
 ```js {6}
 export default function Board() {
@@ -1189,9 +1189,9 @@ export default function Board() {
 }
 ```
 
-Notice the new `() =>` syntax. Here, `() => handleClick(0)` is an *arrow function,* which is a shorter way to define functions. When the square is clicked, the code after the `=>` "arrow" will run, calling `handleClick(0)`.
+Obratite pažnju na novu sintaksu `() =>`. Ovde, `() => handleClick(0)` predstavlja *arrow funkciju,* koja je kraći način za definisanje funkcija. Kada korisnik klikne na kvadrat, kod koji se nalazi posle strelice `=>` će se izvršiti, pozivajući `handleClick(0)`.
 
-Now you need to update the other eight squares to call `handleClick` from the arrow functions you pass. Make sure that the argument for each call of the `handleClick` corresponds to the index of the correct square:
+Sada treba da update-ujete ostalih osam kvadrata kako bi pozivali `handleClick` iz arrow funkcija koje prosleđujete. Uverite se da argument za svaki poziv funkcije `handleClick` odgovara indeksu odgovarajućeg kvadrata:
 
 ```js {6-8,11-13,16-18}
 export default function Board() {
@@ -1218,13 +1218,13 @@ export default function Board() {
 };
 ```
 
-Now you can again add X's to any square on the board by clicking on them:
+Sada ponovo možete dodavati X-ove na bilo koji kvadrat na tabli klikom na njih:
 
-![filling the board with X](../images/tutorial/tictac-adding-x-s.gif)
+![popunjavanje table sa X](../images/tutorial/tictac-adding-x-s.gif)
 
-But this time all the state management is handled by the `Board` component!
+Ali ovoga puta celokupno upravljanje state-om se obavlja u `Board` component-i!
 
-This is what your code should look like:
+Ovako bi vaš kod trebalo da izgleda:
 
 <Sandpack>
 
@@ -1317,27 +1317,27 @@ body {
 
 </Sandpack>
 
-Now that your state handling is in the `Board` component, the parent `Board` component passes props to the child `Square` components so that they can be displayed correctly. When clicking on a `Square`, the child `Square` component now asks the parent `Board` component to update the state of the board. When the `Board`'s state changes, both the `Board` component and every child `Square` re-renders automatically. Keeping the state of all squares in the `Board` component will allow it to determine the winner in the future.
+Sada kada se upravljanje state-om nalazi u `Board` component-i, parent component-a `Board` prosleđuje props child component-ama `Square`, omogućavajući im da se ispravno prikažu. Kada kliknete na `Square`, child component-a `Square` sada traži od parent component-e `Board` da update-uje state table. Kada se state `Board` component-e promeni, i `Board` component-a i svaka child component-a `Square` automatski se ponovo renderuju. Čuvanje state-a svih kvadrata u `Board` component-i omogućiće joj da u budućnosti odredi pobednika.
 
-Let's recap what happens when a user clicks the top left square on your board to add an `X` to it:
+Sumirajmo šta se dešava kada korisnik klikne na gornji levi kvadrat na vašoj tabli kako bi dodao `X`:
 
-1. Clicking on the upper left square runs the function that the `button` received as its `onClick` prop from the `Square`. The `Square` component received that function as its `onSquareClick` prop from the `Board`. The `Board` component defined that function directly in the JSX. It calls `handleClick` with an argument of `0`.
-1. `handleClick` uses the argument (`0`) to update the first element of the `squares` array from `null` to `X`.
-1. The `squares` state of the `Board` component was updated, so the `Board` and all of its children re-render. This causes the `value` prop of the `Square` component with index `0` to change from `null` to `X`.
+1. Klik na gornji levi kvadrat pokreće funkciju koju je `button` dobio kao svoj `onClick` prop iz `Square` component-e. `Square` component-a je tu funkciju dobila kao svoj `onSquareClick` prop iz `Board` component-e. `Board` component-a je tu funkciju definisala direktno u JSX-u i poziva `handleClick` sa argumentom `0`.
+2. Funkcija `handleClick` koristi argument (`0`) da update-uje prvi element array-a `squares` sa `null` na `X`.
+3. State `squares` iz `Board` component-e se update-uje, pa se `Board` i sve njene child component-e ponovo renderuju. Ovo izaziva promenu `value` prop-a component-e `Square` sa indeksom `0` iz `null` u `X`.
 
-In the end the user sees that the upper left square has changed from empty to having a `X` after clicking it.
+Na kraju, korisnik vidi da se gornji levi kvadrat promenio iz praznog u kvadrat sa `X` nakon što je kliknuo na njega.
 
 <Note>
 
-The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. You could give any name to the `Square`'s `onSquareClick` prop or `Board`'s `handleClick` function, and the code would work the same. In React, it's conventional to use `onSomething` names for props which represent events and `handleSomething` for the function definitions which handle those events.
+DOM atribut `onClick` elementa `<button>` ima posebno značenje za React jer je to ugrađena component-a. Kod prilagođenih component-i, poput `Square`, izbor imena je na vama. Možete dodeliti bilo koje ime za prop `onSquareClick` component-e `Square` ili za funkciju `handleClick` component-e `Board`, i kod će raditi isto. U React-u je uobičajeno koristiti imena `onSomething` za props koji predstavljaju događaje, i `handleSomething` za definicije funkcija koje upravljaju tim događajima.
 
 </Note>
 
-### Why immutability is important {/*why-immutability-is-important*/}
+### Zašto je nepromenljivost važna {/*why-immutability-is-important*/}
 
-Note how in `handleClick`, you call `.slice()` to create a copy of the `squares` array instead of modifying the existing array. To explain why, we need to discuss immutability and why immutability is important to learn.
+Obratite pažnju kako u funkciji `handleClick` koristite `.slice()` da biste kreirali kopiju array-a `squares` umesto da menjate postojeći array. Da bismo objasnili zašto je to važno, moramo razgovarati o nepromenljivosti i zašto je nepromenljivost važna za učenje.
 
-There are generally two approaches to changing data. The first approach is to *mutate* the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes. Here is what it would look like if you mutated the `squares` array:
+Generalno, postoje dva pristupa promeni podataka. Prvi pristup je *menjanje* (mutiranje) podataka direktnom promenom njihovih vrednosti. Drugi pristup je zamena podataka novom kopijom koja ima željene izmene. Ovako bi izgledalo kada biste promenili array `squares` mutacijom:
 
 ```jsx
 const squares = [null, null, null, null, null, null, null, null, null];
@@ -1345,7 +1345,7 @@ squares[0] = 'X';
 // Now `squares` is ["X", null, null, null, null, null, null, null, null];
 ```
 
-And here is what it would look like if you changed data without mutating the `squares` array:
+A ovako bi izgledalo kada biste promenili podatke bez mutiranja array-a `squares`:
 
 ```jsx
 const squares = [null, null, null, null, null, null, null, null, null];
@@ -1353,17 +1353,17 @@ const nextSquares = ['X', null, null, null, null, null, null, null, null];
 // Now `squares` is unchanged, but `nextSquares` first element is 'X' rather than `null`
 ```
 
-The result is the same but by not mutating (changing the underlying data) directly, you gain several benefits.
+Rezultat je isti, ali time što ne mutirate (ne menjate osnovne podatke) direktno, dobijate nekoliko prednosti.
 
-Immutability makes complex features much easier to implement. Later in this tutorial, you will implement a "time travel" feature that lets you review the game's history and "jump back" to past moves. This functionality isn't specific to games--an ability to undo and redo certain actions is a common requirement for apps. Avoiding direct data mutation lets you keep previous versions of the data intact, and reuse them later.
+Nepromenljivost (immutability) čini implementaciju složenih funkcionalnosti mnogo jednostavnijom. Kasnije u ovom tutorijalu implementiraćete funkcionalnost "putovanja kroz vreme" koja vam omogućava pregled istorije igre i "skok" nazad na prethodne poteze. Ova funkcionalnost nije specifična samo za igre—-mogućnost poništavanja i ponavljanja određenih akcija je čest zahtev za aplikacije. Izbegavanje direktne mutacije podataka omogućava vam da prethodne verzije podataka ostanu netaknute i da ih ponovo koristite kasnije.
 
-There is also another benefit of immutability. By default, all child components re-render automatically when the state of a parent component changes. This includes even the child components that weren't affected by the change. Although re-rendering is not by itself noticeable to the user (you shouldn't actively try to avoid it!), you might want to skip re-rendering a part of the tree that clearly wasn't affected by it for performance reasons. Immutability makes it very cheap for components to compare whether their data has changed or not. You can learn more about how React chooses when to re-render a component in [the `memo` API reference](/reference/react/memo).
+Postoji još jedna prednost nepromenljivosti. Podrazumevano, sve child component-e se ponovo renderuju automatski kada se state parent component-e promeni. Ovo uključuje čak i child component-e koje nisu bile pogođene promenom. Iako ponovni renderi sami po sebi nisu primetni korisniku (i ne bi trebalo aktivno da ih izbegavate!), možda ćete želeti da preskočite ponovni render dela stabla koji očigledno nije pogođen, iz razloga performansi. Nepromenljivost čini poređenje podataka component-i vrlo jeftinim, omogućavajući da lako utvrdite da li su podaci promenjeni ili ne. Više o tome kako React odlučuje kada da ponovo renderuje component-u možete saznati u [referenci za `memo`](/reference/react/memo).
 
-### Taking turns {/*taking-turns*/}
+### Preduzimanje poteza {/*taking-turns*/}
 
-It's now time to fix a major defect in this tic-tac-toe game: the "O"s cannot be marked on the board.
+Sada je vreme da popravimo veliki nedostatak ove igre iks-oks: "O" ne može biti označen na tabli.
 
-You'll set the first move to be "X" by default. Let's keep track of this by adding another piece of state to the Board component:
+Prvi potez će podrazumevano biti "X". Da bismo to mogli pratiti, dodaćemo još jedan state u component-u `Board`:
 
 ```js {2}
 function Board() {
@@ -1374,7 +1374,7 @@ function Board() {
 }
 ```
 
-Each time a player moves, `xIsNext` (a boolean) will be flipped to determine which player goes next and the game's state will be saved. You'll update the `Board`'s `handleClick` function to flip the value of `xIsNext`:
+Svaki put kada igrač odigra potez, `xIsNext` (boolean) će se promeniti kako bi odredio koji igrač igra sledeći, a state igre će biti sačuvan. Update-ovaćete funkciju `handleClick` u component-i `Board` kako biste promenili vrednost `xIsNext`:
 
 ```js {7,8,9,10,11,13}
 export default function Board() {
@@ -1398,15 +1398,15 @@ export default function Board() {
 }
 ```
 
-Now, as you click on different squares, they will alternate between `X` and `O`, as they should!
+Sada, kada kliknete na različite kvadrate, oni će se naizmenično ispunjavati sa `X` i `O`, kako i treba!
 
-But wait, there's a problem. Try clicking on the same square multiple times:
+Ali čekajte, postoji problem. Pokušajte da kliknete na isti kvadrat više puta:
 
-![O overwriting an X](../images/tutorial/o-replaces-x.gif)
+![O prepisuje X](../images/tutorial/o-replaces-x.gif)
 
-The `X` is overwritten by an `O`! While this would add a very interesting twist to the game, we're going to stick to the original rules for now.
+`X` je prepisan sa `O`! Iako bi ovo moglo dodati veoma zanimljiv preokret igri, za sada ćemo se držati originalnih pravila.
 
-When you mark a square with a `X` or an `O` you aren't first checking to see if the square already has a `X` or `O` value. You can fix this by *returning early*. You'll check to see if the square already has a `X` or an `O`. If the square is already filled, you will `return` in the `handleClick` function early--before it tries to update the board state.
+Kada označite kvadrat sa `X` ili `O`, ne proveravate prvo da li kvadrat već ima vrednost `X` ili `O`. Ovo možete popraviti tako što ćete *ranije izaći* iz funkcije. Proverićete da li kvadrat već ima vrednost `X` ili `O`. Ako je kvadrat već popunjen, u funkciji `handleClick` vratićete se rano pomoću `return`—pre nego što funkcija pokuša da ažurira state table.
 
 ```js {2,3,4}
 function handleClick(i) {
@@ -1418,7 +1418,7 @@ function handleClick(i) {
 }
 ```
 
-Now you can only add `X`'s or `O`'s to empty squares! Here is what your code should look like at this point:
+Sada možete dodavati samo `X` ili `O` na prazne kvadrate! Ovako bi vaš kod trebalo da izgleda u ovom trenutku:
 
 <Sandpack>
 
@@ -1520,9 +1520,9 @@ body {
 
 </Sandpack>
 
-### Declaring a winner {/*declaring-a-winner*/}
+### Proglašavanje pobednika {/*declaring-a-winner*/}
 
-Now that the players can take turns, you'll want to show when the game is won and there are no more turns to make. To do this you'll add a helper function called `calculateWinner` that takes an array of 9 squares, checks for a winner and returns `'X'`, `'O'`, or `null` as appropriate. Don't worry too much about the `calculateWinner` function; it's not specific to React:
+Sada kada igrači mogu naizmenično igrati, želećete da prikažete trenutak kada je igra završena i više nema poteza za igranje. Da biste to uradili, dodaćete pomoćnu funkciju pod nazivom `calculateWinner` koja uzima array od 9 kvadrata, proverava da li postoji pobednik i vraća `'X'`, `'O'` ili `null`, u zavisnosti od rezultata. Ne brinite previše o funkciji `calculateWinner`; ona nije specifična za React:
 
 ```js src/App.js
 export default function Board() {
@@ -1552,11 +1552,11 @@ function calculateWinner(squares) {
 
 <Note>
 
-It does not matter whether you define `calculateWinner` before or after the `Board`. Let's put it at the end so that you don't have to scroll past it every time you edit your components.
+Nije važno da li definišete `calculateWinner` pre ili posle `Board` component-e. Postavićemo je na kraj, kako ne biste morali da listate kod svaki put kada menjate svoje component-e.
 
 </Note>
 
-You will call `calculateWinner(squares)` in the `Board` component's `handleClick` function to check if a player has won. You can perform this check at the same time you check if a user has clicked a square that already has a `X` or and `O`. We'd like to return early in both cases:
+Pozvaćete `calculateWinner(squares)` u funkciji `handleClick` unutar `Board` component-e kako biste proverili da li je neki igrač pobedio. Ovu proveru možete obaviti istovremeno kada proveravate da li je korisnik kliknuo na kvadrat koji već ima `X` ili `O`. Želeli bismo da se u oba slučaja funkcija završi ranije:
 
 ```js {2}
 function handleClick(i) {
@@ -1568,7 +1568,7 @@ function handleClick(i) {
 }
 ```
 
-To let the players know when the game is over, you can display text such as "Winner: X" or "Winner: O". To do that you'll add a `status` section to the `Board` component. The status will display the winner if the game is over and if the game is ongoing you'll display which player's turn is next:
+Da biste obavestili igrače kada je igra završena, možete prikazati tekst poput "Pobednik: X" ili "Pobednik: O". Da biste to postigli, dodaćete sekciju `status` u `Board` komponentu. `Status` će prikazati pobednika ako je igra završena, a ako igra još traje, prikazaće koji igrač je sledeći na potezu:
 
 ```js {3-9,13}
 export default function Board() {
@@ -1576,9 +1576,9 @@ export default function Board() {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = "Winner: " + winner;
+    status = "Pobednik: " + winner;
   } else {
-    status = "Next player: " + (xIsNext ? "X" : "O");
+    status = "Sledeći igrač: " + (xIsNext ? "X" : "O");
   }
 
   return (
@@ -1590,7 +1590,7 @@ export default function Board() {
 }
 ```
 
-Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So *you* are the real winner here. Here is what the code should look like:
+Čestitamo! Sada imate funkcionalnu igru iks-oks. Takođe, upravo ste naučili osnove React-a. Dakle, *vi* ste ovde pravi pobednik. Evo kako vaš kod treba da izgleda:
 
 <Sandpack>
 
@@ -1626,9 +1626,9 @@ export default function Board() {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Pobednik: ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Sledeći igrač: ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -1721,18 +1721,28 @@ body {
 
 </Sandpack>
 
-## Adding time travel {/*adding-time-travel*/}
+## Dodavanje putovanja kroz vreme {/*adding-time-travel*/}
 
-As a final exercise, let's make it possible to "go back in time" to the previous moves in the game.
+Kao završnu vežbu, omogućićemo "vraćanje u prošlost" na prethodne poteze u igri.
 
-### Storing a history of moves {/*storing-a-history-of-moves*/}
+### Čuvanje istorije poteza {/*storing-a-history-of-moves*/}
 
-If you mutated the `squares` array, implementing time travel would be very difficult.
+Ako biste menjali array `squares` direktno, implementacija vremenskog putovanja bi bila veoma teška.
 
-However, you used `slice()` to create a new copy of the `squares` array after every move, and treated it as immutable. This will allow you to store every past version of the `squares` array, and navigate between the turns that have already happened.
+Međutim, koristili ste `slice()` za kreiranje nove kopije array-a `squares` nakon svakog poteza i tretirali ga kao nepromenljiv (immutable). Ovo vam omogućava da sačuvate svaku prethodnu verziju array-a `squares` i da se krećete između poteza koji su se već odigrali.
 
-You'll store the past `squares` arrays in another array called `history`, which you'll store as a new state variable. The `history` array represents all board states, from the first to the last move, and has a shape like this:
+Čuvaćete prošle array-e `squares` u drugom array-u nazvanom `history`, koji ćete čuvati kao novu varijablu state-a. Array `history` predstavlja sve stanje table, od prvog do poslednjeg poteza, i ima strukturu sličnu ovoj:
 
+```javascript
+[
+  // Pre prvog poteza
+  [null, null, null, null, null, null, null, null, null],
+  // Nakon prvog poteza
+  ['X', null, null, null, null, null, null, null, null],
+  // Nakon drugog poteza
+  ['X', null, null, null, 'O', null, null, null, null],
+  // ...
+]
 ```jsx
 [
   // Before first move
@@ -1745,13 +1755,13 @@ You'll store the past `squares` arrays in another array called `history`, which 
 ]
 ```
 
-### Lifting state up, again {/*lifting-state-up-again*/}
+## Podizanje state-a ponovo {/*lifting-state-up-again*/}
 
-You will now write a new top-level component called `Game` to display a list of past moves. That's where you will place the `history` state that contains the entire game history.
+Sada ćete napisati novu component-u na najvišem nivou pod nazivom `Game`, kako biste prikazali listu prošlih poteza. Tu ćete smestiti state `history`, koji sadrži kompletnu istoriju igre.
 
-Placing the `history` state into the `Game` component will let you remove the `squares` state from its child `Board` component. Just like you "lifted state up" from the `Square` component into the `Board` component, you will now lift it up from the `Board` into the top-level `Game` component. This gives the `Game` component full control over the `Board`'s data and lets it instruct the `Board` to render previous turns from the `history`.
+Postavljanjem state-a `history` u component-u `Game`, možete ukloniti state `squares` iz njene child component-e `Board`. Baš kao što ste "podigli state" iz komponente `Square` u komponentu `Board`, sada ćete ga podići iz component-e `Board` u component-u najvišeg nivoa, `Game`. Ovo omogućava component-i `Game` da ima potpunu kontrolu nad podacima component-e `Board` i da joj zadaje uputstva da prikaže prethodne poteze iz `history`.
 
-First, add a `Game` component with `export default`. Have it render the `Board` component and some markup:
+Prvo, dodajte component-u `Game` koristeći `export default`. Neka renderuje component-u `Board` i malo markup-a:
 
 ```js {1,5-16}
 function Board() {
@@ -1772,9 +1782,9 @@ export default function Game() {
 }
 ```
 
-Note that you are removing the `export default` keywords before the `function Board() {` declaration and adding them before the `function Game() {` declaration. This tells your `index.js` file to use the `Game` component as the top-level component instead of your `Board` component. The additional `div`s returned by the `Game` component are making room for the game information you'll add to the board later.
+Napomena: Uklanjate ključne reči `export default` ispred deklaracije `function Board() {` i dodajete ih ispred deklaracije `function Game() {`. Ovo govori vašem fajlu `index.js` da koristi component-u `Game` kao component-u najvišeg nivoa umesto component-e `Board`. Dodatni `div`-ovi koje vraća component-a `Game` prave prostor za informacije o igri koje ćete kasnije dodati na tablu.
 
-Add some state to the `Game` component to track which player is next and the history of moves:
+Dodajte state u component-u `Game` kako biste pratili koji je sledeći igrač na potezu i istoriju poteza:
 
 ```js {2-3}
 export default function Game() {
@@ -1783,9 +1793,9 @@ export default function Game() {
   // ...
 ```
 
-Notice how `[Array(9).fill(null)]` is an array with a single item, which itself is an array of 9 `null`s.
+Primetite kako je `[Array(9).fill(null)]` array sa jednim elementom, koji je sam po sebi array od 9 `null` vrednosti.
 
-To render the squares for the current move, you'll want to read the last squares array from the `history`. You don't need `useState` for this--you already have enough information to calculate it during rendering:
+Da biste prikazali kvadrate za trenutni potez, potrebno je da pročitate poslednji array `squares` iz `history`. Za ovo vam nije potreban `useState` jer već imate dovoljno informacija da ga izračunate tokom renderovanja:
 
 ```js {4}
 export default function Game() {
@@ -1795,7 +1805,7 @@ export default function Game() {
   // ...
 ```
 
-Next, create a `handlePlay` function inside the `Game` component that will be called by the `Board` component to update the game. Pass `xIsNext`, `currentSquares` and `handlePlay` as props to the `Board` component:
+Zatim kreirajte funkciju `handlePlay` unutar component-e `Game`, koju će pozivati component-a `Board` kako bi update-ovala igru. Prosledite `xIsNext`, `currentSquares` i `handlePlay` kao props component-i `Board`:
 
 ```js {6-8,13}
 export default function Game() {
@@ -1816,7 +1826,7 @@ export default function Game() {
 }
 ```
 
-Let's make the `Board` component fully controlled by the props it receives. Change the `Board` component to take three props: `xIsNext`, `squares`, and a new `onPlay` function that `Board` can call with the updated squares array when a player makes a move. Next, remove the first two lines of the `Board` function that call `useState`:
+Hajde da učinimo component-u `Board` potpuno kontrolisanom preko props-a koje prima. Izmenite component-u `Board` tako da prihvata tri props-a: `xIsNext`, `squares` i novu funkciju `onPlay`, koju `Board` može pozvati sa update-ovanim array-om kvadrata kada igrač napravi potez. Zatim uklonite prve dve linije funkcije `Board` koje pozivaju `useState`:
 
 ```js {1}
 function Board({ xIsNext, squares, onPlay }) {
@@ -1827,7 +1837,7 @@ function Board({ xIsNext, squares, onPlay }) {
 }
 ```
 
-Now replace the `setSquares` and `setXIsNext` calls in `handleClick` in the `Board` component with a single call to your new `onPlay` function so the `Game` component can update the `Board` when the user clicks a square:
+Sada zamenite pozive `setSquares` i `setXIsNext` u funkciji `handleClick` unutar component-e `Board` jednim pozivom vaše nove funkcije `onPlay`, kako bi component-a `Game` mogla da update-uje `Board` kada korisnik klikne na kvadrat:
 
 ```js {12}
 function Board({ xIsNext, squares, onPlay }) {
@@ -1847,11 +1857,11 @@ function Board({ xIsNext, squares, onPlay }) {
 }
 ```
 
-The `Board` component is fully controlled by the props passed to it by the `Game` component. You need to implement the `handlePlay` function in the `Game` component to get the game working again.
+Component-a `Board` je potpuno kontrolisana preko props-a koje joj prosleđuje komponenta `Game`. Potrebno je da implementirate funkciju `handlePlay` u component-i `Game` kako bi igra ponovo funkcionisala.
 
-What should `handlePlay` do when called? Remember that Board used to call `setSquares` with an updated array; now it passes the updated `squares` array to `onPlay`.
+Šta bi funkcija `handlePlay` trebalo da uradi kada se pozove? Zapamtite da je `Board` ranije pozivao `setSquares` sa update-ovanim array-om; sada prosleđuje update=ovani array `squares` funkciji `onPlay`.
 
-The `handlePlay` function needs to update `Game`'s state to trigger a re-render, but you don't have a `setSquares` function that you can call any more--you're now using the `history` state variable to store this information. You'll want to update `history` by appending the updated `squares` array as a new history entry. You also want to toggle `xIsNext`, just as Board used to do:
+Funkcija `handlePlay` treba da update-uje state component-e `Game` kako bi pokrenula ponovno renderovanje, ali više nemate funkciju `setSquares` koju biste mogli da pozovete—sada koristite varijablu state-a `history` za čuvanje ovih informacija. Treba da update-ujete `history` tako što ćete dodati update-ovani array `squares` kao novi unos u istoriji. Takođe treba da promenite vrednost `xIsNext`, kao što je `Board` ranije radio:
 
 ```js {4-5}
 export default function Game() {
@@ -1864,11 +1874,11 @@ export default function Game() {
 }
 ```
 
-Here, `[...history, nextSquares]` creates a new array that contains all the items in `history`, followed by `nextSquares`. (You can read the `...history` [*spread syntax*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) as "enumerate all the items in `history`".)
+Ovde, `[...history, nextSquares]` kreira novi array koji sadrži sve stavke iz `history`, praćene nizom `nextSquares`. (Možete čitati `...history` [*spread sintaksu*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) kao „nabroj sve stavke u `history`”.)
 
-For example, if `history` is `[[null,null,null], ["X",null,null]]` and `nextSquares` is `["X",null,"O"]`, then the new `[...history, nextSquares]` array will be `[[null,null,null], ["X",null,null], ["X",null,"O"]]`.
+Na primer, ako je `history` `[[null,null,null], ["X",null,null]]`, a `nextSquares` je `["X",null,"O"]`, novi niz `[...history, nextSquares]` biće `[[null,null,null], ["X",null,null], ["X",null,"O"]]`.
 
-At this point, you've moved the state to live in the `Game` component, and the UI should be fully working, just as it was before the refactor. Here is what the code should look like at this point:
+U ovom trenutku, state je premešten u component-u `Game`, i korisnički interfejs bi trebalo da funkcioniše potpuno isto kao i pre refaktorisanja. Evo kako kod treba da izgleda na ovoj tački:
 
 <Sandpack>
 
@@ -1900,9 +1910,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Pobednik: ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Sledeći igrač: ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
