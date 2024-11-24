@@ -1094,7 +1094,7 @@ function Square({ value, onSquareClick }) {
 }
 ```
 
-Now you'll connect the `onSquareClick` prop to a function in the `Board` component that you'll name `handleClick`. To connect `onSquareClick` to `handleClick` you'll pass a function to the `onSquareClick` prop of the first `Square` component:
+Sada ćete povezati `onSquareClick` prop sa funkcijom u `Board` komponenti koju ćete nazvati `handleClick`. Da biste povezali `onSquareClick` sa `handleClick`, prosledićete funkciju kao vrednost `onSquareClick` prop-u prve `Square` komponente:
 
 ```js {7}
 export default function Board() {
@@ -1109,7 +1109,7 @@ export default function Board() {
 }
 ```
 
-Lastly, you will define the `handleClick` function inside the Board component to update the `squares` array holding your board's state:
+Na kraju, definisaćete funkciju `handleClick` unutar `Board` komponente kako biste update-ovali niz `squares` koji čuva state vaše table:
 
 ```js {4-8}
 export default function Board() {
@@ -1127,17 +1127,17 @@ export default function Board() {
 }
 ```
 
-The `handleClick` function creates a copy of the `squares` array (`nextSquares`) with the JavaScript `slice()` Array method. Then, `handleClick` updates the `nextSquares` array to add `X` to the first (`[0]` index) square.
+Funkcija `handleClick` kreira kopiju niza `squares` (`nextSquares`) korišćenjem JavaScript metode `slice()` za nizove. Zatim, `handleClick` ažurira niz `nextSquares` tako što dodaje `X` na prvi kvadrat (indeks `[0]`).
 
-Calling the `setSquares` function lets React know the state of the component has changed. This will trigger a re-render of the components that use the `squares` state (`Board`) as well as its child components (the `Square` components that make up the board).
+Pozivanjem funkcije `setSquares` obaveštavate React da se state komponente promenio. Ovo će pokrenuti ponovno renderovanje komponenti koje koriste state `squares` (`Board`), kao i njenih child komponenti (`Square` komponente koje čine tablu).
 
 <Note>
 
-JavaScript supports [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) which means an inner function (e.g. `handleClick`) has access to variables and functions defined in an outer function (e.g. `Board`). The `handleClick` function can read the `squares` state and call the `setSquares` method because they are both defined inside of the `Board` function.
+JavaScript podržava [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures), što znači da unutrašnja funkcija (npr. `handleClick`) ima pristup varijablama i funkcijama definisanim u spoljašnjoj funkciji (npr. `Board`). Funkcija `handleClick` može da čita state `squares` i poziva metodu `setSquares` jer su obe definisane unutar funkcije `Board`.
 
 </Note>
 
-Now you can add X's to the board...  but only to the upper left square. Your `handleClick` function is hardcoded to update the index for the upper left square (`0`). Let's update `handleClick` to be able to update any square. Add an argument `i` to the `handleClick` function that takes the index of the square to update:
+Sada možete dodati X-ove na tablu... ali samo u gornji levi kvadrat. Vaša funkcija `handleClick` je trenutno hardkodirana da ažurira indeks gornjeg levog kvadrata (`0`). Hajde da ažuriramo `handleClick` tako da može ažurirati bilo koji kvadrat. Dodajte argument `i` funkciji `handleClick` koji prima indeks kvadrata koji treba ažurirati:
 
 ```js {4,6}
 export default function Board() {
