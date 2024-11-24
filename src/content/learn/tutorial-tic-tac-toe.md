@@ -1876,7 +1876,7 @@ export default function Game() {
 
 Ovde, `[...history, nextSquares]` kreira novi array koji sadrži sve stavke iz `history`, praćene nizom `nextSquares`. (Možete čitati `...history` [*spread sintaksu*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) kao „nabroj sve stavke u `history`”.)
 
-Na primer, ako je `history` `[[null,null,null], ["X",null,null]]`, a `nextSquares` je `["X",null,"O"]`, novi niz `[...history, nextSquares]` biće `[[null,null,null], ["X",null,null], ["X",null,"O"]]`.
+Na primer, ako je `history` `[[null,null,null], ["X",null,null]]`, a `nextSquares` je `["X",null,"O"]`, novi array `[...history, nextSquares]` biće `[[null,null,null], ["X",null,null], ["X",null,"O"]]`.
 
 U ovom trenutku, state je premešten u component-u `Game`, i korisnički interfejs bi trebalo da funkcioniše potpuno isto kao i pre refaktorisanja. Evo kako kod treba da izgleda na ovoj tački:
 
@@ -2027,19 +2027,19 @@ body {
 
 </Sandpack>
 
-### Showing the past moves {/*showing-the-past-moves*/}
+### Prikazivanje prethodnih poteza {/*showing-the-past-moves*/}
 
-Since you are recording the tic-tac-toe game's history, you can now display a list of past moves to the player.
+Pošto beležite istoriju igre iks-oks, sada možete prikazati listu prethodnih poteza igraču.
 
-React elements like `<button>` are regular JavaScript objects; you can pass them around in your application. To render multiple items in React, you can use an array of React elements.
+React elementi poput `<button>` su regularni JavaScript objekti; možete ih prosleđivati kroz svoju aplikaciju. Da biste prikazali više stavki u React-u, možete koristiti array React elemenata.
 
-You already have an array of `history` moves in state, so now you need to transform it to an array of React elements. In JavaScript, to transform one array into another, you can use the [array `map` method:](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+Već imate array `history` poteza u state-u, pa sada treba da ga transformišete u array React elemenata. U JavaScript-u, za transformaciju jednog array-a u drugi, možete koristiti [metodu array `map:`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
 ```jsx
 [1, 2, 3].map((x) => x * 2) // [2, 4, 6]
 ```
 
-You'll use `map` to transform your `history` of moves into React elements representing buttons on the screen, and display a list of buttons to "jump" to past moves. Let's `map` over the `history` in the Game component:
+Koristićete `map` da transformišete svoj `history` poteza u React elemente koji predstavljaju dugmad na ekranu, i prikazati listu dugmadi za „skok” na prethodne poteze. Hajde da primenimo `map` na `history` u component-i Game:
 
 ```js {11-13,15-27,35}
 export default function Game() {
@@ -2059,9 +2059,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Prebacite se na potez #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Prebacite se na početak';
     }
     return (
       <li>
@@ -2083,13 +2083,13 @@ export default function Game() {
 }
 ```
 
-You can see what your code should look like below. Note that you should see an error in the developer tools console that says:
+Možete videti kako vaš kod treba da izgleda ispod. Imajte na umu da biste u konzoli trebalo da vidite grešku koja kaže:
 
 <ConsoleBlock level="warning">
 Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of &#96;Game&#96;.
 </ConsoleBlock>
   
-You'll fix this error in the next section.
+Ovu grešku ćete rešiti u sledećem odeljku.
 
 <Sandpack>
 
@@ -2121,9 +2121,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Pobednik: ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Sledeći igrač: ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -2165,9 +2165,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Prebacite se na potez #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Prebacite se na početak';
     }
     return (
       <li>
@@ -2257,56 +2257,56 @@ body {
 
 </Sandpack>
 
-As you iterate through `history` array inside the function you passed to `map`, the `squares` argument goes through each element of `history`, and the `move` argument goes through each array index: `0`, `1`, `2`, …. (In most cases, you'd need the actual array elements, but to render a list of moves you will only need indexes.)
+Dok iterirate kroz array `history` unutar funkcije koju ste prosledili `map`, argument `squares` prolazi kroz svaki element array-a `history`, a argument `move` prolazi kroz svaki indeks array-a: `0`, `1`, `2`, …. (U većini slučajeva trebaju vam stvarni elementi array-a, ali za prikaz liste poteza biće vam potrebni samo indeksi.)
 
-For each move in the tic-tac-toe game's history, you create a list item `<li>` which contains a button `<button>`. The button has an `onClick` handler which calls a function called `jumpTo` (that you haven't implemented yet).
+Za svaki potez u istoriji igre iks-oks, kreirate stavku liste `<li>` koja sadrži dugme `<button>`. Dugme ima `onClick` handler koji poziva funkciju `jumpTo` (koju još niste implementirali).
 
-For now, you should see a list of the moves that occurred in the game and an error in the developer tools console. Let's discuss what the "key" error means.
+Za sada, trebalo bi da vidite listu poteza koji su se dogodili u igri i grešku u konzoli. Hajde da razgovaramo o značenju greške „key”.
 
-### Picking a key {/*picking-a-key*/}
+### Odabir ključa {/*picking-a-key*/}
 
-When you render a list, React stores some information about each rendered list item. When you update a list, React needs to determine what has changed. You could have added, removed, re-arranged, or updated the list's items.
+Kada renderujete listu, React čuva neke informacije o svakoj renderovanoj stavci liste. Kada update-ujete listu, React treba da odredi šta se promenilo. Mogli ste da dodate, uklonite, preuredite ili update-ujete stavke liste.
 
-Imagine transitioning from
+Zamislite prelazak sa:
 
 ```html
-<li>Alexa: 7 tasks left</li>
-<li>Ben: 5 tasks left</li>
+<li>Alexa: 7 zadataka preostalo</li>
+<li>Ben: 5 zadataka preostalo</li>
 ```
 
 to
 
 ```html
-<li>Ben: 9 tasks left</li>
-<li>Claudia: 8 tasks left</li>
-<li>Alexa: 5 tasks left</li>
+<li>Ben: 9 zadataka preostalo</li>
+<li>Claudia: 8 zadataka preostalo</li>
+<li>Alexa: 5 zadataka preostalo</li>
 ```
 
-In addition to the updated counts, a human reading this would probably say that you swapped Alexa and Ben's ordering and inserted Claudia between Alexa and Ben. However, React is a computer program and does not know what you intended, so you need to specify a *key* property for each list item to differentiate each list item from its siblings. If your data was from a database, Alexa, Ben, and Claudia's database IDs could be used as keys.
+Pored update-ovanih brojeva, osoba koja čita ovo verovatno bi rekla da ste zamenili redosled Alexe i Bena i umetnuli Claudiu između Alexe i Bena. Međutim, React je računarski program i ne zna šta ste želeli da uradite, pa je potrebno da za svaku stavku liste navedete svojstvo *key* kako biste razlikovali svaku stavku od njenih „sestrinskih” stavki. Ako su vaši podaci iz baze podataka, ID-ovi Alexe, Bena i Claudie iz te baze mogli bi da se koriste kao ključevi.
 
 ```js {1}
 <li key={user.id}>
-  {user.name}: {user.taskCount} tasks left
+  {user.name}: {user.taskCount} zadataka preostalo
 </li>
 ```
 
-When a list is re-rendered, React takes each list item's key and searches the previous list's items for a matching key. If the current list has a key that didn't exist before, React creates a component. If the current list is missing a key that existed in the previous list, React destroys the previous component. If two keys match, the corresponding component is moved.
+Kada se lista ponovo renderuje, React uzima ključ svake stavke liste i pretražuje stavke prethodne liste tražeći ključ koji se poklapa. Ako trenutna lista ima ključ koji nije postojao ranije, React kreira component-u. Ako trenutnoj listi nedostaje ključ koji je postojao u prethodnoj listi, React poništava prethodnu component-u. Ako se dva ključa poklapaju, odgovarajuća component-a se premesti.
 
-Keys tell React about the identity of each component, which allows React to maintain state between re-renders. If a component's key changes, the component will be destroyed and re-created with a new state.
+Ključevi govore React-u o identitetu svake component-e, što omogućava React-u da očuva state između ponovnih renderovanja. Ako se ključ component-e promeni, component-a će biti poništena i ponovo kreirana sa novim state-om.
 
-`key` is a special and reserved property in React. When an element is created, React extracts the `key` property and stores the key directly on the returned element. Even though `key` may look like it is passed as props, React automatically uses `key` to decide which components to update. There's no way for a component to ask what `key` its parent specified.
+`key` je specijalan i rezervisan property u React-u. Kada se element kreira, React izvlači property `key` i čuva ga direktno na vraćenom elementu. Iako `key` može izgledati kao da se prosleđuje kao props, React automatski koristi `key` da odluči koje component-e da update-uje. Ne postoji način da component-a pita koji je `key` njen parent odredio.
 
-**It's strongly recommended that you assign proper keys whenever you build dynamic lists.** If you don't have an appropriate key, you may want to consider restructuring your data so that you do.
+**Snažno se preporučuje da dodelite odgovarajuće ključeve svaki put kada pravite dinamičke liste.** Ako nemate odgovarajući ključ, možda bi trebalo da razmislite o restrukturiranju vaših podataka kako biste ga obezbedili.
 
-If no key is specified, React will report an error and use the array index as a key by default. Using the array index as a key is problematic when trying to re-order a list's items or inserting/removing list items. Explicitly passing `key={i}` silences the error but has the same problems as array indices and is not recommended in most cases.
+Ako nije naveden ključ, React će prijaviti grešku i koristiti indeks array-a kao ključ podrazumevano. Korišćenje indeksa array-a kao ključa je problematično kada pokušavate da promenite redosled stavki liste ili da umetnete/uklonite stavke liste. Eksplicitno prosleđivanje `key={i}` utišava grešku, ali ima iste probleme kao i korišćenje indeksa array-a i ne preporučuje se u većini slučajeva.
 
-Keys do not need to be globally unique; they only need to be unique between components and their siblings.
+Ključevi ne moraju biti globalno jedinstveni; moraju biti jedinstveni samo između component-i i njihovih „sestrinskih” component-i.
 
-### Implementing time travel {/*implementing-time-travel*/}
+### Implementacija putovanja kroz vreme {/*implementing-time-travel*/}
 
-In the tic-tac-toe game's history, each past move has a unique ID associated with it: it's the sequential number of the move. Moves will never be re-ordered, deleted, or inserted in the middle, so it's safe to use the move index as a key.
+U istoriji igre iks-oks, svaki prethodni potez ima jedinstveni ID povezan sa njim: to je redni broj poteza. Potezi se nikada neće preuređivati, brisati ili umetati u sredinu, pa je bezbedno koristiti indeks poteza kao ključ.
 
-In the `Game` function, you can add the key as `<li key={move}>`, and if you reload the rendered game, React's "key" error should disappear:
+U funkciji `Game`, možete dodati ključ kao `<li key={move}>`, i ako ponovo učitate renderovanu igru, React-ova greška „key” bi trebalo da nestane:
 
 ```js {4}
 const moves = history.map((squares, move) => {
@@ -2349,9 +2349,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Pobednik: ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Sledeći igrač: ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -2393,9 +2393,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Prebacite se na potez #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Prebacite se na početak';
     }
     return (
       <li key={move}>
@@ -2486,7 +2486,7 @@ body {
 
 </Sandpack>
 
-Before you can implement `jumpTo`, you need the `Game` component to keep track of which step the user is currently viewing. To do this, define a new state variable called `currentMove`, defaulting to `0`:
+Pre nego što implementirate `jumpTo`, potrebno je da component-a `Game` prati koji korak korisnik trenutno gleda. Da biste to uradili, definišite novu state varijablu pod nazivom `currentMove`, sa podrazumevanom vrednošću `0`:
 
 ```js {4}
 export default function Game() {
@@ -2498,7 +2498,7 @@ export default function Game() {
 }
 ```
 
-Next, update the `jumpTo` function inside `Game` to update that `currentMove`. You'll also set `xIsNext` to `true` if the number that you're changing `currentMove` to is even.
+Zatim, update-ujte funkciju `jumpTo` unutar component-e `Game` tako da update-uje `currentMove`. Takođe ćete postaviti `xIsNext` na `true` ako je broj na koji menjate `currentMove` paran.
 
 ```js {4-5}
 export default function Game() {
@@ -2511,10 +2511,10 @@ export default function Game() {
 }
 ```
 
-You will now make two changes to the `Game`'s `handlePlay` function which is called when you click on a square.
+Sada ćete napraviti dve izmene u funkciji `handlePlay` component-e `Game`, koja se poziva kada kliknete na kvadrat.
 
-- If you "go back in time" and then make a new move from that point, you only want to keep the history up to that point. Instead of adding `nextSquares` after all items (`...` spread syntax) in `history`, you'll add it after all items in `history.slice(0, currentMove + 1)` so that you're only keeping that portion of the old history.
-- Each time a move is made, you need to update `currentMove` to point to the latest history entry.
+- Ako se "vratite u prošlost" i napravite novi potez od te tačke, želite da zadržite istoriju samo do te tačke. Umesto da dodate `nextSquares` posle svih stavki (`...` spread sintaksa) u `history`, dodaćete ga posle svih stavki u `history.slice(0, currentMove + 1)` kako biste zadržali samo taj deo stare istorije.
+- Svaki put kada se napravi potez, potrebno je da update-ujete `currentMove` kako bi ukazivao na najnoviji unos u istoriji.
 
 ```js {2-4}
 function handlePlay(nextSquares) {
@@ -2525,7 +2525,7 @@ function handlePlay(nextSquares) {
 }
 ```
 
-Finally, you will modify the `Game` component to render the currently selected move, instead of always rendering the final move:
+Na kraju, izmenićete component-u `Game` tako da renderuje trenutno odabrani potez, umesto da uvek renderuje poslednji potez:
 
 ```js {5}
 export default function Game() {
@@ -2538,7 +2538,7 @@ export default function Game() {
 }
 ```
 
-If you click on any step in the game's history, the tic-tac-toe board should immediately update to show what the board looked like after that step occurred.
+Ako kliknete na bilo koji korak u istoriji igre, tabla za iks-oks bi trebalo odmah da se update-uje i prikaže kako je izgledala nakon tog poteza.
 
 <Sandpack>
 
@@ -2570,9 +2570,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Pobednik: ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Sledeći igrač: ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -2618,9 +2618,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Prebacite se na potez #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Prebacite se na početak';
     }
     return (
       <li key={move}>
@@ -2709,11 +2709,11 @@ body {
 
 </Sandpack>
 
-### Final cleanup {/*final-cleanup*/}
+### Finalno sređivanje {/*final-cleanup*/}
 
-If you look at the code very closely, you may notice that `xIsNext === true` when `currentMove` is even and `xIsNext === false` when `currentMove` is odd. In other words, if you know the value of `currentMove`, then you can always figure out what `xIsNext` should be.
+Ako pažljivo pogledate kod, primetićete da je `xIsNext === true` kada je `currentMove` paran i `xIsNext === false` kada je `currentMove` neparan. Drugim rečima, ako znate vrednost `currentMove`, uvek možete odrediti šta treba da bude `xIsNext`.
 
-There's no reason for you to store both of these in state. In fact, always try to avoid redundant state. Simplifying what you store in state reduces bugs and makes your code easier to understand. Change `Game` so that it doesn't store `xIsNext` as a separate state variable and instead figures it out based on the `currentMove`:
+Nema potrebe da čuvate obe ove vrednosti u state-u. Zapravo, uvek pokušajte da izbegavate redundantni state. Pojednostavljivanje onoga što čuvate u state-u smanjuje broj grešaka i čini vaš kod lakšim za razumevanje. Izmenite komponentu `Game` tako da ne čuva `xIsNext` kao zasebnu state varijablu, već da ga izračunava na osnovu vrednosti `currentMove`:
 
 ```js {4,11,15}
 export default function Game() {
@@ -2735,20 +2735,20 @@ export default function Game() {
 }
 ```
 
-You no longer need the `xIsNext` state declaration or the calls to `setXIsNext`. Now, there's no chance for `xIsNext` to get out of sync with `currentMove`, even if you make a mistake while coding the components.
+Više vam nije potrebna deklaracija state varijable `xIsNext` niti pozivi funkcije `setXIsNext`. Sada ne postoji mogućnost da `xIsNext` bude van sinhronizacije sa `currentMove`, čak i ako napravite grešku dok kodirate komponente.
 
-### Wrapping up {/*wrapping-up*/}
+### Završetak {/*wrapping-up*/}
 
-Congratulations! You've created a tic-tac-toe game that:
+Čestitamo! Napravili ste igru iks-oks koja:
 
-- Lets you play tic-tac-toe,
-- Indicates when a player has won the game,
-- Stores a game's history as a game progresses,
-- Allows players to review a game's history and see previous versions of a game's board.
+- Omogućava igranje iks-oks,
+- Indikuje kada je igrač pobedio u igri,
+- Čuva istoriju igre kako se igra odvija,
+- Omogućava igračima da pregledaju istoriju igre i vide prethodne verzije table.
 
-Nice work! We hope you now feel like you have a decent grasp of how React works.
+Odličan posao! Nadamo se da sada imate solidno razumevanje kako React funkcioniše.
 
-Check out the final result here:
+Pogledajte konačni rezultat ovde:
 
 <Sandpack>
 
@@ -2780,9 +2780,9 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = 'Pobednik: ' + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = 'Sledeći igrač: ' + (xIsNext ? 'X' : 'O');
   }
 
   return (
@@ -2826,9 +2826,9 @@ export default function Game() {
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = 'Prebacite se na potez #' + move;
     } else {
-      description = 'Go to game start';
+      description = 'Prebacite se na početak';
     }
     return (
       <li key={move}>
@@ -2917,12 +2917,12 @@ body {
 
 </Sandpack>
 
-If you have extra time or want to practice your new React skills, here are some ideas for improvements that you could make to the tic-tac-toe game, listed in order of increasing difficulty:
+Ako imate dodatno vreme ili želite da vežbate svoje nove React veštine, evo nekoliko ideja za unapređenja igre iks-oks, poređanih po rastućem nivou težine:
 
-1. For the current move only, show "You are at move #..." instead of a button.
-1. Rewrite `Board` to use two loops to make the squares instead of hardcoding them.
-1. Add a toggle button that lets you sort the moves in either ascending or descending order.
-1. When someone wins, highlight the three squares that caused the win (and when no one wins, display a message about the result being a draw).
-1. Display the location for each move in the format (row, col) in the move history list.
+1. Samo za trenutni potez prikažite poruku "Nalazite se na potezu #..." umesto dugmeta.
+2. Prepišite komponentu `Board` da koristi dve petlje za kreiranje kvadrata umesto da ih hardkodirate.
+3. Dodajte dugme za prebacivanje koje omogućava sortiranje poteza u rastućem ili opadajućem redosledu.
+4. Kada neko pobedi, istaknite tri kvadrata koja su dovela do pobede (a kada niko ne pobedi, prikažite poruku o nerešenom rezultatu).
+5. Prikazujte lokaciju svakog poteza u formatu (red, kolona) na listi istorije poteza.
 
-Throughout this tutorial, you've touched on React concepts including elements, components, props, and state. Now that you've seen how these concepts work when building a game, check out [Thinking in React](/learn/thinking-in-react) to see how the same React concepts work when building an app's UI.
+Kroz ovaj tutorijal ste obradili React koncepte uključujući elemente, komponente, props i state. Sada kada ste videli kako ovi koncepti funkcionišu pri izradi igre, pogledajte [Razmišljanje u React-u](/learn/thinking-in-react) da biste videli kako isti React koncepti funkcionišu pri izradi korisničkog interfejsa aplikacije.
