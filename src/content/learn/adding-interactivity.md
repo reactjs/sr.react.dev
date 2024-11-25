@@ -1,30 +1,30 @@
 ---
-title: Adding Interactivity
+title: Dodavanje interaktivnosti
 ---
 
 <Intro>
 
-Some things on the screen update in response to user input. For example, clicking an image gallery switches the active image. In React, data that changes over time is called *state.* You can add state to any component, and update it as needed. In this chapter, you'll learn how to write components that handle interactions, update their state, and display different output over time.
+Neke stvari na ekranu se update-uju kao odgovor na korisnički unos. Na primer, klik na galeriju slika menja aktivnu sliku. U React-u, podaci koji se menjaju tokom vremena nazivaju se *state.* Možete dodati state bilo kojoj component-i i update-ovati je po potrebi. U ovom poglavlju naučićete kako da pišete component-e koji obrađuju interakcije, update-uju svoj state i prikazuju različite output-e tokom vremena.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to handle user-initiated events](/learn/responding-to-events)
-* [How to make components "remember" information with state](/learn/state-a-components-memory)
-* [How React updates the UI in two phases](/learn/render-and-commit)
-* [Why state doesn't update right after you change it](/learn/state-as-a-snapshot)
-* [How to queue multiple state updates](/learn/queueing-a-series-of-state-updates)
-* [How to update an object in state](/learn/updating-objects-in-state)
-* [How to update an array in state](/learn/updating-arrays-in-state)
+* [Kako da rukujette event-ima koje pokrene korisnik](/learn/responding-to-events)
+* [Kako da učinite da component-e „pamte” informacije koristeći state](/learn/state-a-components-memory)
+* [Kako React update-uje UI u dve faze](/learn/render-and-commit)
+* [Zašto se state ne update-uje odmah nakon promene](/learn/state-as-a-snapshot)
+* [Kako da složite seriju state update-ova](/learn/queueing-a-series-of-state-updates)
+* [Kako da update-ujete objekat u state-u](/learn/updating-objects-in-state)
+* [Kako da update-ujete array u state-u](/learn/updating-arrays-in-state)
 
 </YouWillLearn>
 
-## Responding to events {/*responding-to-events*/}
+## Odgovaranje na event-e {/*responding-to-events*/}
 
-React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to user interactions like clicking, hovering, focusing on form inputs, and so on.
+React vam omogućava da dodate *event handler*-e u vaš JSX. Event handler-i su vaše sopstvene funkcije koje će se pokrenuti kao odgovor na korisničke interakcije, poput klika, prelaženja mišem, fokusiranja na form input-e i tako dalje.
 
-Built-in components like `<button>` only support built-in browser events like `onClick`. However, you can also create your own components, and give their event handler props any application-specific names that you like.
+Ugrađene component-e poput `<button>` podržavaju samo ugrađene browser event-e poput `onClick`. Međutim, možete kreirati i sopstvene component-e i njihovim event handler prop-ovima dati bilo koja aplikacijski specifična imena koja želite.
 
 <Sandpack>
 
@@ -68,15 +68,15 @@ button { margin-right: 10px; }
 
 <LearnMore path="/learn/responding-to-events">
 
-Read **[Responding to Events](/learn/responding-to-events)** to learn how to add event handlers.
+Pročitajte **[Odgovaranje na Event-e](/learn/responding-to-events)** da biste naučili kako da dodate event handler-e.
 
 </LearnMore>
 
-## State: a component's memory {/*state-a-components-memory*/}
+## State: memorija component-e {/*state-a-components-memory*/}
 
-Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" puts a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *state.*
+Component-e često moraju da promene ono što je prikazano na ekranu kao rezultat neke interakcije. Kucanje u formu treba da update-uje polje za unos, klik na "sledeće" u karuselu slika treba da promeni prikazanu sliku, klik na "kupi" stavlja proizvod u korpu. Component-e moraju da "pamte" određene stvari: trenutnu vrednost unosa, trenutnu sliku, korpu za kupovinu. U React-u, ova vrsta memorije specifična za component-e naziva se *state.*
 
-You can add state to a component with a [`useState`](/reference/react/useState) Hook. *Hooks* are special functions that let your components use React features (state is one of those features). The `useState` Hook lets you declare a state variable. It takes the initial state and returns a pair of values: the current state, and a state setter function that lets you update it.
+Možete dodati state component-i pomoću Hook-a [`useState`](/reference/react/useState). *Hook-ovi* su specijalne funkcije koje omogućavaju vašim component-ama da koriste React funkcionalnosti (state je jedna od tih funkcionalnosti). Hook `useState` vam omogućava da deklarišete varijablu state-a. On prima inicijalni state i vraća par vrednosti: trenutni state i funkciju za setovanje state-a koja vam omogućava da ga update-ujete.
 
 ```js
 const [index, setIndex] = useState(0);
@@ -229,35 +229,35 @@ button {
 
 <LearnMore path="/learn/state-a-components-memory">
 
-Read **[State: A Component's Memory](/learn/state-a-components-memory)** to learn how to remember a value and update it on interaction.
+Pročitajte **[State: Memorija component-e](/learn/state-a-components-memory)** kako biste naučili kako da zapamtite vrednost i update-ujete je prilikom interakcije.
 
 </LearnMore>
 
-## Render and commit {/*render-and-commit*/}
+## Render i commit {/*render-and-commit*/}
 
-Before your components are displayed on the screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
+Pre nego što se vaše component-e prikažu na ekranu, React mora da ih render-uje. Razumevanje koraka u ovom procesu pomoći će vam da razmislite o tome kako se vaš kod izvršava i da objasnite njegovo ponašanje.
 
-Imagine that your components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
+Zamislite da su vaše component-e kuvari u kuhinji, koji pripremaju ukusna jela od sastojaka. U ovom scenariju, React je konobar koji prenosi narudžbine od gostiju i donosi im njihova jela. Ovaj proces naručivanja i posluživanja UI-a ima tri koraka:
 
-1. **Triggering** a render (delivering the diner's order to the kitchen)
-2. **Rendering** the component (preparing the order in the kitchen)
-3. **Committing** to the DOM (placing the order on the table)
+1. **Pokretanje** render-a (prenos narudžbine gosta u kuhinju)
+2. **Render-ovanje** component-e (priprema narudžbine u kuhinji)
+3. **Commit-ovanje** u DOM (postavljanje narudžbine na sto)
 
 <IllustrationBlock sequential>
-  <Illustration caption="Trigger" alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen." src="/images/docs/illustrations/i_render-and-commit1.png" />
-  <Illustration caption="Render" alt="The Card Chef gives React a fresh Card component." src="/images/docs/illustrations/i_render-and-commit2.png" />
-  <Illustration caption="Commit" alt="React delivers the Card to the user at their table." src="/images/docs/illustrations/i_render-and-commit3.png" />
+  <Illustration caption="Trigger" alt="React kao konobar u restoranu, prenosi narudžbine od korisnika i dostavlja ih u Component-u Kitchen." src="/images/docs/illustrations/i_render-and-commit1.png" />
+  <Illustration caption="Render" alt="Šef kuhinje za Card daje React-u svežu Card component-u." src="/images/docs/illustrations/i_render-and-commit2.png" />
+  <Illustration caption="Commit" alt="React donosi Card korisniku za njihov sto." src="/images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
 
 <LearnMore path="/learn/render-and-commit">
 
-Read **[Render and Commit](/learn/render-and-commit)** to learn the lifecycle of a UI update.
+Pročitajte **[Render i Commit](/learn/render-and-commit)** kako biste naučili lifecycle jednog UI update-a.
 
 </LearnMore>
 
-## State as a snapshot {/*state-as-a-snapshot*/}
+## State kao snapshot {/*state-as-a-snapshot*/}
 
-Unlike regular JavaScript variables, React state behaves more like a snapshot. Setting it does not change the state variable you already have, but instead triggers a re-render. This can be surprising at first!
+Za razliku od običnih JavaScript varijabli, React state se ponaša više kao snapshot. Njegovo postavljanje ne menja već postojeću state varijablu, već umesto toga pokreće re-render. Ovo može biti iznenađujuće na početku!
 
 ```js
 console.log(count);  // 0
@@ -265,7 +265,7 @@ setCount(count + 1); // Request a re-render with 1
 console.log(count);  // Still 0!
 ```
 
-This behavior helps you avoid subtle bugs. Here is a little chat app. Try to guess what happens if you press "Send" first and *then* change the recipient to Bob. Whose name will appear in the `alert` five seconds later?
+Ovo ponašanje vam pomaže da izbegnete suptilne greške. Evo male aplikacije za ćaskanje. Pokušajte da pogodite šta će se desiti ako prvo pritisnete "Pošalji", a *zatim* promenite primaoca na Bob. Čije ime će se pojaviti u `alert` pet sekundi kasnije?
 
 <Sandpack>
 
@@ -279,7 +279,7 @@ export default function Form() {
   function handleSubmit(e) {
     e.preventDefault();
     setTimeout(() => {
-      alert(`You said ${message} to ${to}`);
+      alert(`Poruka ${message} za ${to}`);
     }, 5000);
   }
 
@@ -311,16 +311,15 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-
 <LearnMore path="/learn/state-as-a-snapshot">
 
-Read **[State as a Snapshot](/learn/state-as-a-snapshot)** to learn why state appears "fixed" and unchanging inside the event handlers.
+Pročitajte **[State kao Snapshot](/learn/state-as-a-snapshot)** da biste saznali zašto state izgleda "fiksno" i nepromenljivo unutar event handler-a.
 
 </LearnMore>
 
-## Queueing a series of state updates {/*queueing-a-series-of-state-updates*/}
+## Redosled serijskih update-ova state-a {/*queueing-a-series-of-state-updates*/}
 
-This component is buggy: clicking "+3" increments the score only once.
+Ova component-a ima grešku: klikom na dugme "+3" rezultat se povećava samo jednom.
 
 <Sandpack>
 
@@ -354,7 +353,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 </Sandpack>
 
-[State as a Snapshot](/learn/state-as-a-snapshot) explains why this is happening. Setting state requests a new re-render, but does not change it in the already running code. So `score` continues to be `0` right after you call `setScore(score + 1)`.
+[State kao Snapshot](/learn/state-as-a-snapshot) objašnjava zašto se ovo dešava. Postavljanje state-a traži novo render-ovanje, ali ne menja njegovu vrednost u kodu koji se već izvršava. Tako `score` nastavlja da ima vrednost `0` odmah nakon što pozovete `setScore(score + 1)`.
 
 ```js
 console.log(score);  // 0
@@ -366,7 +365,7 @@ setScore(score + 1); // setScore(0 + 1);
 console.log(score);  // 0
 ```
 
-You can fix this by passing an *updater function* when setting state. Notice how replacing `setScore(score + 1)` with `setScore(s => s + 1)` fixes the "+3" button. This lets you queue multiple state updates.
+Možete ovo popraviti prosleđivanjem *updater funkcije* kada postavljate state. Obratite pažnju kako zamena `setScore(score + 1)` sa `setScore(s => s + 1)` rešava problem dugmeta "+3". Ovo vam omogućava da redom dodate više update-ova state-a u redosled.
 
 <Sandpack>
 
@@ -402,15 +401,15 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 <LearnMore path="/learn/queueing-a-series-of-state-updates">
 
-Read **[Queueing a Series of State Updates](/learn/queueing-a-series-of-state-updates)** to learn how to queue a sequence of state updates.
+Pročitajte **Redosled serije state update-ova](/learn/queueing-a-series-of-state-updates)** kako biste naučili kako da postavite redosled update-ova state-a.
 
 </LearnMore>
 
-## Updating objects in state {/*updating-objects-in-state*/}
+## Update-ovanje objekata u state-u {/*updating-objects-in-state*/}
 
-State can hold any kind of JavaScript value, including objects. But you shouldn't change objects and arrays that you hold in the React state directly. Instead, when you want to update an object and array, you need to create a new one (or make a copy of an existing one), and then update the state to use that copy.
+State može sadržati bilo koju vrstu JavaScript vrednosti, uključujući objekte. Međutim, ne bi trebalo direktno menjati objekte i array-e koje držite u React state-u. Umesto toga, kada želite da update-ujete objekat ili array, potrebno je da kreirate novi (ili napravite kopiju postojećeg) i zatim update-ujete state kako bi koristio tu kopiju.
 
-Usually, you will use the `...` spread syntax to copy objects and arrays that you want to change. For example, updating a nested object could look like this:
+Obično ćete koristiti `...` spread sintaksu za kopiranje objekata i array-a koje želite da promenite. Na primer, update-ovanje ugnježdenog objekta može izgledati ovako:
 
 <Sandpack>
 
@@ -518,7 +517,7 @@ img { width: 200px; height: 200px; }
 
 </Sandpack>
 
-If copying objects in code gets tedious, you can use a library like [Immer](https://github.com/immerjs/use-immer) to reduce repetitive code:
+Ako kopiranje objekata u kodu postane zamorno, možete koristiti biblioteku poput [Immer](https://github.com/immerjs/use-immer) kako biste smanjili količinu ponavljajućeg koda:
 
 <Sandpack>
 
@@ -633,13 +632,13 @@ img { width: 200px; height: 200px; }
 
 <LearnMore path="/learn/updating-objects-in-state">
 
-Read **[Updating Objects in State](/learn/updating-objects-in-state)** to learn how to update objects correctly.
+Pročitajte **[Update-ovanje objekata u state-u](/learn/updating-objects-in-state)** kako biste naučili kako pravilno update-ovati objekte.
 
 </LearnMore>
 
-## Updating arrays in state {/*updating-arrays-in-state*/}
+## Update-ovanje array-a u state-u {/*updating-arrays-in-state*/}
 
-Arrays are another type of mutable JavaScript objects you can store in state and should treat as read-only. Just like with objects, when you want to update an array stored in state, you need to create a new one (or make a copy of an existing one), and then set state to use the new array:
+Array-i su još jedan tip promenljivih JavaScript objekata koje možete čuvati u state-u i koje treba tretirati kao read-only. Kao i kod objekata, kada želite da update-ujete array koji se nalazi u state-u, potrebno je da kreirate novi (ili napravite kopiju postojećeg), a zatim postavite state da koristi taj novi array:
 
 <Sandpack>
 
@@ -705,7 +704,7 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-If copying arrays in code gets tedious, you can use a library like [Immer](https://github.com/immerjs/use-immer) to reduce repetitive code:
+Ako pravljenje kopija array-a u kodu postane zamorno, možete koristiti biblioteku kao što je [Immer](https://github.com/immerjs/use-immer) da smanjite ponavljanje koda:
 
 <Sandpack>
 
@@ -789,12 +788,12 @@ function ItemList({ artworks, onToggle }) {
 
 <LearnMore path="/learn/updating-arrays-in-state">
 
-Read **[Updating Arrays in State](/learn/updating-arrays-in-state)** to learn how to update arrays correctly.
+Pročitajte **[Update-ovanje array-a u state-u](/learn/updating-arrays-in-state)** da biste naučili kako pravilno da update-ujete array-e.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## Šta je sledeće? {/*whats-next*/}
 
-Head over to [Responding to Events](/learn/responding-to-events) to start reading this chapter page by page!
+Pređite na [Reagovanje na event-e](/learn/responding-to-events) da biste počeli da čitate ovo poglavlje stranicu po stranicu!
 
-Or, if you're already familiar with these topics, why not read about [Managing State](/learn/managing-state)?
+Ili, ako ste već upoznati sa ovim temama, zašto ne biste pročitali o [Upravljanju state-om](/learn/managing-state)?
