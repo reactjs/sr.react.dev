@@ -229,7 +229,7 @@ button {
 
 <LearnMore path="/learn/state-a-components-memory">
 
-Pročitajte **[State: Memorija component-e](/learn/state-a-components-memory)** kako biste naučili kako da zapamtite vrednost i update-ujete je prilikom interakcije.
+Pročitajte **[State: Memorija Component-e](/learn/state-a-components-memory)** kako biste naučili kako da zapamtite vrednost i update-ujete je prilikom interakcije.
 
 </LearnMore>
 
@@ -632,7 +632,7 @@ img { width: 200px; height: 200px; }
 
 <LearnMore path="/learn/updating-objects-in-state">
 
-Pročitajte **[Update-ovanje objekata u state-u](/learn/updating-objects-in-state)** kako biste naučili kako pravilno update-ovati objekte.
+Pročitajte **[Update-ovanje Objekata u State-u](/learn/updating-objects-in-state)** kako biste naučili kako pravilno update-ovati objekte.
 
 </LearnMore>
 
@@ -788,12 +788,12 @@ function ItemList({ artworks, onToggle }) {
 
 <LearnMore path="/learn/updating-arrays-in-state">
 
-Pročitajte **[Update-ovanje array-a u state-u](/learn/updating-arrays-in-state)** da biste naučili kako pravilno da update-ujete array-e.
+Pročitajte **[Update-ovanje Array-a u State-u](/learn/updating-arrays-in-state)** da biste naučili kako pravilno da update-ujete array-e.
 
 </LearnMore>
 
 ## Šta je sledeće? {/*whats-next*/}
 
-Pređite na [Reagovanje na event-e](/learn/responding-to-events) da biste počeli da čitate ovo poglavlje stranicu po stranicu!
+Pređite na [Reagovanje na Event-e](/learn/responding-to-events) da biste počeli da čitate ovo poglavlje stranicu po stranicu!
 
-Ili, ako ste već upoznati sa ovim temama, zašto ne biste pročitali o [Upravljanju state-om](/learn/managing-state)?
+Ili, ako ste već upoznati sa ovim temama, zašto ne biste pročitali [Upravljanje State-om](/learn/managing-state)?
