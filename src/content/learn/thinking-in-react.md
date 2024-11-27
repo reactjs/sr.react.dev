@@ -296,7 +296,7 @@ Zatim, prosledite `filterText` i `inStockOnly` u `ProductTable` i `SearchBar` ka
 </div>
 ```
 
-Gledajte kako će se vaša aplikacija ponašati. Promenite početnu vrednost `filterText`-a sa `useState('')` na `useState('voće')` u sandbox-u ispod. Videćete da su se tekst za pretragu i tabela promenili:
+Gledajte kako će se vaša aplikacija ponašati. Promenite početnu vrednost `filterText`-a sa `useState('')` na `useState('voće')` u sandbox-u ispod. Videćete da su se tekst za pretragu i tabela ažurirali:
 
 <Sandpack>
 
