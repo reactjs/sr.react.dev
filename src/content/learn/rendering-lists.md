@@ -1,74 +1,74 @@
 ---
-title: Rendering Lists
+title: Renderovanje listi
 ---
 
 <Intro>
 
-You will often want to display multiple similar components from a collection of data. You can use the [JavaScript array methods](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array#) to manipulate an array of data. On this page, you'll use [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) and [`map()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/map) with React to filter and transform your array of data into an array of components.
+Često ćete želeti da prikažete više sličnih komponenata iz kolekcije podataka. Možete koristiti [JavaScript metode za nizove](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array#) kako bi manipulisali nizovima podataka. U ovom članku, koristićete [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) i [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) da uz React filtrirate i transformišete vaš niz podataka u niz komponenata.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to render components from an array using JavaScript's `map()`
-* How to render only specific components using JavaScript's `filter()`
-* When and why to use React keys
+* Kako da renderujete komponente na osnovu niza uz pomoć JavaScript-ovog `map()`-a
+* Kako da renderujete samo specifične komponente uz pomoć JavaScript-ovog `filter()`-a
+* Kada i zašto da koristite React ključeve
 
 </YouWillLearn>
 
-## Rendering data from arrays {/*rendering-data-from-arrays*/}
+## Renderovanje podataka iz nizova {/*rendering-data-from-arrays*/}
 
-Say that you have a list of content.
+Recimo da imate sledeću listu.
 
 ```js
 <ul>
-  <li>Creola Katherine Johnson: mathematician</li>
-  <li>Mario José Molina-Pasquel Henríquez: chemist</li>
-  <li>Mohammad Abdus Salam: physicist</li>
-  <li>Percy Lavon Julian: chemist</li>
-  <li>Subrahmanyan Chandrasekhar: astrophysicist</li>
+  <li>Creola Katherine Johnson: matematičar</li>
+  <li>Mario José Molina-Pasquel Henríquez: hemičar</li>
+  <li>Mohammad Abdus Salam: fizičar</li>
+  <li>Percy Lavon Julian: hemičar</li>
+  <li>Subrahmanyan Chandrasekhar: astrofizičar</li>
 </ul>
 ```
 
-The only difference among those list items is their contents, their data. You will often need to show several instances of the same component using different data when building interfaces: from lists of comments to galleries of profile images. In these situations, you can store that data in JavaScript objects and arrays and use methods like [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) and [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) to render lists of components from them.
+Jedina razlika u stavkama liste je njihov sadržaj, njihovi podaci. Često ćete imati potrebu da prikažete nekoliko instanci iste komponente sa drugačijim podacima kada pravite interfejse: od liste komentara do galerije profilnih slika. U takvim situacijama, možete čuvati podatke u JavaScript objektima i nizovima i upotrebiti metode kao što su [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) i [`filter()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) da od njih renderujete listu komponenata.
 
-Here’s a short example of how to generate a list of items from an array:
+Evo kratkog primera kako da generišete listu stavki na osnovu niza:
 
-1. **Move** the data into an array:
+1. **Pomerite** podatke u niz:
 
 ```js
 const people = [
-  'Creola Katherine Johnson: mathematician',
-  'Mario José Molina-Pasquel Henríquez: chemist',
-  'Mohammad Abdus Salam: physicist',
-  'Percy Lavon Julian: chemist',
-  'Subrahmanyan Chandrasekhar: astrophysicist'
+  'Creola Katherine Johnson: matematičar',
+  'Mario José Molina-Pasquel Henríquez: hemičar',
+  'Mohammad Abdus Salam: fizičar',
+  'Percy Lavon Julian: hemičar',
+  'Subrahmanyan Chandrasekhar: astrofizičar'
 ];
 ```
 
-2. **Map** the `people` members into a new array of JSX nodes, `listItems`:
+2. **Mapirajte** `people` članove u novi niz JSX čvorova, `listItems`:
 
 ```js
 const listItems = people.map(person => <li>{person}</li>);
 ```
 
-3. **Return** `listItems` from your component wrapped in a `<ul>`:
+3. **Vratite** `listItems` iz vaše komponente umotano u `<ul>`:
 
 ```js
 return <ul>{listItems}</ul>;
 ```
 
-Here is the result:
+Evo rezultata:
 
 <Sandpack>
 
 ```js
 const people = [
-  'Creola Katherine Johnson: mathematician',
-  'Mario José Molina-Pasquel Henríquez: chemist',
-  'Mohammad Abdus Salam: physicist',
-  'Percy Lavon Julian: chemist',
-  'Subrahmanyan Chandrasekhar: astrophysicist'
+  'Creola Katherine Johnson: matematičar',
+  'Mario José Molina-Pasquel Henríquez: hemičar',
+  'Mohammad Abdus Salam: fizičar',
+  'Percy Lavon Julian: hemičar',
+  'Subrahmanyan Chandrasekhar: astrofizičar'
 ];
 
 export default function List() {
@@ -85,7 +85,7 @@ li { margin-bottom: 10px; }
 
 </Sandpack>
 
-Notice the sandbox above displays a console error:
+Primetite da sandbox iznad prikazuje grešku u konzoli:
 
 <ConsoleBlock level="error">
 
@@ -93,49 +93,55 @@ Warning: Each child in a list should have a unique "key" prop.
 
 </ConsoleBlock>
 
-You'll learn how to fix this error later on this page. Before we get to that, let's add some structure to your data.
+<ConsoleBlock level="error">
 
-## Filtering arrays of items {/*filtering-arrays-of-items*/}
+Upozorenje: Svako dete u listi bi trebalo da ima jedinstven "key" prop.
 
-This data can be structured even more.
+</ConsoleBlock>
+
+Naučićete kako da popravite grešku malo kasnije u ovom članku. Pre toga, hajde da malo strukturiramo podatke.
+
+## Filtriranje niza stavki {/*filtering-arrays-of-items*/}
+
+Ovi podaci mogu dodatno biti strukturirani.
 
 ```js
 const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
+  profession: 'matematičar',
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
+  profession: 'hemičar',
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
+  profession: 'fizičar',
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
-  profession: 'chemist',  
+  profession: 'hemičar',
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
+  profession: 'astrofizičar',
 }];
 ```
 
-Let's say you want a way to only show people whose profession is `'chemist'`. You can use JavaScript's `filter()` method to return just those people. This method takes an array of items, passes them through a “test” (a function that returns `true` or `false`), and returns a new array of only those items that passed the test (returned `true`).
+Recimo da želite pronaći način da prikažete samo ljude čija je profesija `'hemičar'`. Možete koristiti JavaScript-ovu `filter()` metodu da vratite samo te ljude. Ova metoda prima niz stavki, propušta ih kroz “test” (funkcija koja vraća `true` ili `false`), i vraća novi niz samo onih stavki koje su prošle test (vraćeno je `true`).
 
-You only want the items where `profession` is `'chemist'`. The "test" function for this looks like `(person) => person.profession === 'chemist'`. Here's how to put it together:
+Želite samo stavke gde je `profession` jednako `'hemičar'`. Ta "test" funkcija u ovom slučaju izgleda `(person) => person.profession === 'hemičar'`. Evo kako to možete uraditi:
 
-1. **Create** a new array of just “chemist” people, `chemists`, by calling `filter()` on the `people` filtering by `person.profession === 'chemist'`:
+1. **Napravite** novi niz samo “hemičara”, `chemists`, pozivanjem `filter()` nad `people` i filtriranjem `person.profession === 'hemičar'`:
 
 ```js
 const chemists = people.filter(person =>
-  person.profession === 'chemist'
+  person.profession === 'hemičar'
 );
 ```
 
-2. Now **map** over `chemists`:
+2. Sada **mapirajte** kroz `chemists`:
 
 ```js {1,13}
 const listItems = chemists.map(person =>
@@ -147,13 +153,13 @@ const listItems = chemists.map(person =>
      <p>
        <b>{person.name}:</b>
        {' ' + person.profession + ' '}
-       known for {person.accomplishment}
+       poznat je zbog {person.accomplishment}
      </p>
   </li>
 );
 ```
 
-3. Lastly, **return** the `listItems` from your component:
+3. Na kraju, **vratite** `listItems` iz vaše komponente:
 
 ```js
 return <ul>{listItems}</ul>;
@@ -167,7 +173,7 @@ import { getImageUrl } from './utils.js';
 
 export default function List() {
   const chemists = people.filter(person =>
-    person.profession === 'chemist'
+    person.profession === 'hemičar'
   );
   const listItems = chemists.map(person =>
     <li>
@@ -178,7 +184,7 @@ export default function List() {
       <p>
         <b>{person.name}:</b>
         {' ' + person.profession + ' '}
-        known for {person.accomplishment}
+        poznat je zbog {person.accomplishment}
       </p>
     </li>
   );
@@ -190,32 +196,32 @@ export default function List() {
 export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  profession: 'matematičar',
+  accomplishment: 'formula za svemirske letove',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  profession: 'hemičar',
+  accomplishment: 'otkriće Arktičke rupe u ozonu',
   imageId: 'mynHUSa'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  profession: 'fizičar',
+  accomplishment: 'teorija o elektromagnetizmu',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  profession: 'hemičar',
+  accomplishment: 'pionirski kortizon, steroidi i pilule za kontrolu rađanja',
   imageId: 'IOjWm71'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  profession: 'astrofizičar',
+  accomplishment: 'računanje mase belog patuljka',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -246,29 +252,29 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <Pitfall>
 
-Arrow functions implicitly return the expression right after `=>`, so you didn't need a `return` statement:
+Arrow funkcije implicitno vraćaju izraz desno od `=>`, tako da vam ne treba `return` iskaz:
 
 ```js
 const listItems = chemists.map(person =>
-  <li>...</li> // Implicit return!
+  <li>...</li> // Implicitno vraćanje!
 );
 ```
 
-However, **you must write `return` explicitly if your `=>` is followed by a `{` curly brace!**
+Međutim, **morate napisati `return` eksplicitno ako se nakon `=>` nalazi `{` vitičasta zagrada**!
 
 ```js
-const listItems = chemists.map(person => { // Curly brace
+const listItems = chemists.map(person => { // Vitičasta zagrada
   return <li>...</li>;
 });
 ```
 
-Arrow functions containing `=> {` are said to have a ["block body".](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body) They let you write more than a single line of code, but you *have to* write a `return` statement yourself. If you forget it, nothing gets returned!
+Za arrow funkcije koje sadrže `=> {` se kaže da imaju ["blok telo"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body). Omogućavaju vam da napišete više od jedne linije koda, ali *morate da* napišete `return` iskaz samostalno. Ako ga zaboravite, ništa neće biti vraćeno!
 
 </Pitfall>
 
-## Keeping list items in order with `key` {/*keeping-list-items-in-order-with-key*/}
+## Čuvanje redosleda stavki u listi sa `key` {/*keeping-list-items-in-order-with-key*/}
 
-Notice that all the sandboxes above show an error in the console:
+Primetite da svi sandbox-ovi iznad prikazuju grešku u konzoli:
 
 <ConsoleBlock level="error">
 
@@ -276,7 +282,13 @@ Warning: Each child in a list should have a unique "key" prop.
 
 </ConsoleBlock>
 
-You need to give each array item a `key` -- a string or a number that uniquely identifies it among other items in that array:
+<ConsoleBlock level="error">
+
+Upozorenje: Svako dete u listi bi trebalo da ima jedinstven "key" prop.
+
+</ConsoleBlock>
+
+Svakom članu niza morate dodeliti `key` -- string ili broj koji ga jedinstveno identifikuje u tom nizu:
 
 ```js
 <li key={person.id}>...</li>
@@ -284,13 +296,13 @@ You need to give each array item a `key` -- a string or a number that uniquely i
 
 <Note>
 
-JSX elements directly inside a `map()` call always need keys!
+JSX elementima unutar `map()` poziva su uvek potrebni ključevi!
 
 </Note>
 
-Keys tell React which array item each component corresponds to, so that it can match them up later. This becomes important if your array items can move (e.g. due to sorting), get inserted, or get deleted. A well-chosen `key` helps React infer what exactly has happened, and make the correct updates to the DOM tree.
+Ključevi govore React-u koji član niza odgovara kojoj komponenti, kako bi mogao kasnije da ih poveže. Ovo postaje značajno ako članovi niza mogu da se pomeraju (npr. prilikom sortiranja), ubacuju, ili brišu. Dobro odabran `key` pomaže React-u da zaključi šta se zapravo dogodilo, kako bi ispravno mogao da ažurira DOM stablo.
 
-Rather than generating keys on the fly, you should include them in your data:
+Umesto da generišete ključeve u hodu, trebalo bi da ih uključite u vaše podatke:
 
 <Sandpack>
 
@@ -308,7 +320,7 @@ export default function List() {
       <p>
         <b>{person.name}</b>
           {' ' + person.profession + ' '}
-          known for {person.accomplishment}
+          poznat je zbog {person.accomplishment}
       </p>
     </li>
   );
@@ -318,34 +330,34 @@ export default function List() {
 
 ```js src/data.js active
 export const people = [{
-  id: 0, // Used in JSX as a key
+  id: 0, // Koristi se u JSX kao ključ
   name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  profession: 'matematičar',
+  accomplishment: 'formula za svemirske letove',
   imageId: 'MK3eW3A'
 }, {
-  id: 1, // Used in JSX as a key
+  id: 1, // Koristi se u JSX kao ključ
   name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  profession: 'hemičar',
+  accomplishment: 'otkriće Arktičke rupe u ozonu',
   imageId: 'mynHUSa'
 }, {
-  id: 2, // Used in JSX as a key
+  id: 2, // Koristi se u JSX kao ključ
   name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  profession: 'fizičar',
+  accomplishment: 'teorija o elektromagnetizmu',
   imageId: 'bE7W1ji'
 }, {
-  id: 3, // Used in JSX as a key
+  id: 3, // Koristi se u JSX kao ključ
   name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  profession: 'hemičar',
+  accomplishment: 'pionirski kortizon, steroidi i pilule za kontrolu rađanja',
   imageId: 'IOjWm71'
 }, {
-  id: 4, // Used in JSX as a key
+  id: 4, // Koristi se u JSX kao ključ
   name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  profession: 'astrofizičar',
+  accomplishment: 'računanje mase belog patuljka',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -376,11 +388,11 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <DeepDive>
 
-#### Displaying several DOM nodes for each list item {/*displaying-several-dom-nodes-for-each-list-item*/}
+#### Prikazivanje nekoliko DOM čvorova za svaku stavku u listi {/*displaying-several-dom-nodes-for-each-list-item*/}
 
-What do you do when each item needs to render not one, but several DOM nodes?
+Šta raditi kad svaka stavka u listi treba renderovati ne jedan, već nekoliko DOM čvorova?
 
-The short [`<>...</>` Fragment](/reference/react/Fragment) syntax won't let you pass a key, so you need to either group them into a single `<div>`, or use the slightly longer and [more explicit `<Fragment>` syntax:](/reference/react/Fragment#rendering-a-list-of-fragments)
+Kratka [`<>...</>` Fragment](/reference/react/Fragment) sintaksa vam ne dopušta da prosledite ključ, tako da ih morate grupisati u jedan `<div>`, ili prosto upotrebiti malo dužu i [eksplicitniju `<Fragment>` sintaksu](/reference/react/Fragment#rendering-a-list-of-fragments):
 
 ```js
 import { Fragment } from 'react';
@@ -395,46 +407,46 @@ const listItems = people.map(person =>
 );
 ```
 
-Fragments disappear from the DOM, so this will produce a flat list of `<h1>`, `<p>`, `<h1>`, `<p>`, and so on.
+Fragment-i nestaju iz DOM-a, tako da ćete dobiti listu od `<h1>`, `<p>`, `<h1>`, `<p>`, i tako dalje.
 
 </DeepDive>
 
-### Where to get your `key` {/*where-to-get-your-key*/}
+### Gde dobiti `key` {/*where-to-get-your-key*/}
 
-Different sources of data provide different sources of keys:
+Različiti izvori podataka pružaju različite ključeve:
 
-* **Data from a database:** If your data is coming from a database, you can use the database keys/IDs, which are unique by nature.
-* **Locally generated data:** If your data is generated and persisted locally (e.g. notes in a note-taking app), use an incrementing counter, [`crypto.randomUUID()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) or a package like [`uuid`](https://www.npmjs.com/package/uuid) when creating items.
+* **Podaci iz baze podataka:** Ako podaci dolaze iz baze podataka, možete koristiti ključeve ili ID-eve iz baze podataka, koji su po prirodi jedinstveni.
+* **Lokalno generisani podaci:** Ako su vam podaci generisani i čuvani lokalno (npr. beleške u aplikaciji za zabeleške), koristite inkrementalni brojač, [`crypto.randomUUID()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) ili pakete poput [`uuid`](https://www.npmjs.com/package/uuid) kada kreirate stavke.
 
-### Rules of keys {/*rules-of-keys*/}
+### Pravila ključeva {/*rules-of-keys*/}
 
-* **Keys must be unique among siblings.** However, it’s okay to use the same keys for JSX nodes in _different_ arrays.
-* **Keys must not change** or that defeats their purpose! Don't generate them while rendering.
+* **Ključevi moraju biti jedinstveni između „sestrinskih” stavki.** Međutim, u redu je koristiti iste ključeve za JSX čvorove u _različitim_ nizovima.
+* **Ključevi se ne smeju menjati** ili će im se svrha obesmisliti! Nemojte ih generisati tokom renderovanja.
 
-### Why does React need keys? {/*why-does-react-need-keys*/}
+### Zašto su React-u potrebni ključevi? {/*why-does-react-need-keys*/}
 
-Imagine that files on your desktop didn't have names. Instead, you'd refer to them by their order -- the first file, the second file, and so on. You could get used to it, but once you delete a file, it would get confusing. The second file would become the first file, the third file would be the second file, and so on.
+Zamislite da fajlovi na vašem desktop-u nemaju imena. Umesto toga, referencirali bi ih po njihovom redosledu -- prvi fajl, drugi fajl, i tako dalje. Mogli biste se navići, ali jednom kada obrišete fajl, postalo bi zbunjujuće. Drugi fajl bi postao prvi fajl, treći fajl bi postao drugi fajl, i tako dalje.
 
-File names in a folder and JSX keys in an array serve a similar purpose. They let us uniquely identify an item between its siblings. A well-chosen key provides more information than the position within the array. Even if the _position_ changes due to reordering, the `key` lets React identify the item throughout its lifetime.
+Imena fajlova u folderu i JSX ključevi imaju sličnu ulogu. Omogućavaju nam da jedinstveno identifikujemo stavku među „sestrinskim” stavkama. Dobro odabran ključ pruža više informacija od puke pozicije u nizu. Čak iako se _pozicija_ promeni zbog promene redosleda, `key` omogućava React-u da identifikuje stavku tokom njenog životnog veka.
 
 <Pitfall>
 
-You might be tempted to use an item's index in the array as its key. In fact, that's what React will use if you don't specify a `key` at all. But the order in which you render items will change over time if an item is inserted, deleted, or if the array gets reordered. Index as a key often leads to subtle and confusing bugs.
+Možete biti u iskušenju da koristite indeks člana niza kao njegov ključ. U suštini, to je ono što će React koristiti ako ne specificirate `key`. Ali, redosled u kojem renderujete stavke će se menjati tokom vremena ako se neka stavka ubaci, obriše, ili se promeni redosled niza. Indeks kao ključ često dovodi do suptilnih i zbunjujućih bug-ova.
 
-Similarly, do not generate keys on the fly, e.g. with `key={Math.random()}`. This will cause keys to never match up between renders, leading to all your components and DOM being recreated every time. Not only is this slow, but it will also lose any user input inside the list items. Instead, use a stable ID based on the data.
+Slično tome, nemojte generisati ključeve u hodu, npr. pomoću `key={Math.random()}`. Ovo će učiniti da se ključevi ne podudaraju između renderovanja, što znači da će sve vaše komponente, kao i DOM, biti ponovo kreirane svaki put. Ne samo što je sporo, već ćete izgubiti bilo koji korisnički input unutar stavke liste. Umesto toga, koristite stabilan ID baziran na podacima.
 
-Note that your components won't receive `key` as a prop. It's only used as a hint by React itself. If your component needs an ID, you have to pass it as a separate prop: `<Profile key={id} userId={id} />`.
+Obratite pažnju da vaše komponente neće primiti `key` kao prop. Njega sam React koristi kao nagoveštaj. Ako je vašoj komponenti potreban ID, morate ga proslediti kao poseban prop: `<Profile key={id} userId={id} />`.
 
 </Pitfall>
 
 <Recap>
 
-On this page you learned:
+Na ovoj stranici naučili ste:
 
-* How to move data out of components and into data structures like arrays and objects.
-* How to generate sets of similar components with JavaScript's `map()`.
-* How to create arrays of filtered items with JavaScript's `filter()`.
-* Why and how to set `key` on each component in a collection so React can keep track of each of them even if their position or data changes.
+* Kako da premestite podatke iz komponenti u strukture podataka poput nizova i objekata.
+* Kako da generišete setove sličnih komponenata pomoću JavaScript-ovog `map()`-a.
+* Kako da kreirate nizove filtriranih stavki pomoću JavaScript-ovog `filter()`-a.
+* Zašto i kako da postavite `key` za svaku komponentu u kolekciji, kako bi React mogao da prati svaku od njih, čak iako im se pozicija ili podaci promene.
 
 </Recap>
 
@@ -442,11 +454,11 @@ On this page you learned:
 
 <Challenges>
 
-#### Splitting a list in two {/*splitting-a-list-in-two*/}
+#### Podeliti listu na dva dela {/*splitting-a-list-in-two*/}
 
-This example shows a list of all people.
+Ovaj primer prikazuje listu svih ljudi.
 
-Change it to show two separate lists one after another: **Chemists** and **Everyone Else.** Like previously, you can determine whether a person is a chemist by checking if `person.profession === 'chemist'`.
+Promenite ga da prikazuje dve odvojene liste jednu za drugom: **Hemičari** i **Svi ostali**. Kao i ranije, možete odrediti da li je osoba hemičar sledećim uslovom `person.profession === 'hemičar'`.
 
 <Sandpack>
 
@@ -464,13 +476,13 @@ export default function List() {
       <p>
         <b>{person.name}:</b>
         {' ' + person.profession + ' '}
-        known for {person.accomplishment}
+        poznat je zbog {person.accomplishment}
       </p>
     </li>
   );
   return (
     <article>
-      <h1>Scientists</h1>
+      <h1>Naučnici</h1>
       <ul>{listItems}</ul>
     </article>
   );
@@ -481,32 +493,32 @@ export default function List() {
 export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  profession: 'matematičar',
+  accomplishment: 'formula za svemirske letove',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  profession: 'hemičar',
+  accomplishment: 'otkriće Arktičke rupe u ozonu',
   imageId: 'mynHUSa'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  profession: 'fizičar',
+  accomplishment: 'teorija o elektromagnetizmu',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  profession: 'hemičar',
+  accomplishment: 'pionirski kortizon, steroidi i pilule za kontrolu rađanja',
   imageId: 'IOjWm71'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  profession: 'astrofizičar',
+  accomplishment: 'računanje mase belog patuljka',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -537,7 +549,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 <Solution>
 
-You could use `filter()` twice, creating two separate arrays, and then `map` over both of them:
+Možete koristiti `filter()` dvaput, kreirajući dva odvojena niza, a nakon toga pozvati `map` nad oba:
 
 <Sandpack>
 
@@ -547,15 +559,15 @@ import { getImageUrl } from './utils.js';
 
 export default function List() {
   const chemists = people.filter(person =>
-    person.profession === 'chemist'
+    person.profession === 'hemičar'
   );
   const everyoneElse = people.filter(person =>
-    person.profession !== 'chemist'
+    person.profession !== 'hemičar'
   );
   return (
     <article>
-      <h1>Scientists</h1>
-      <h2>Chemists</h2>
+      <h1>Naučnici</h1>
+      <h2>Hemičari</h2>
       <ul>
         {chemists.map(person =>
           <li key={person.id}>
@@ -566,12 +578,12 @@ export default function List() {
             <p>
               <b>{person.name}:</b>
               {' ' + person.profession + ' '}
-              known for {person.accomplishment}
+              poznat je zbog {person.accomplishment}
             </p>
           </li>
         )}
       </ul>
-      <h2>Everyone Else</h2>
+      <h2>Svi ostali</h2>
       <ul>
         {everyoneElse.map(person =>
           <li key={person.id}>
@@ -582,7 +594,7 @@ export default function List() {
             <p>
               <b>{person.name}:</b>
               {' ' + person.profession + ' '}
-              known for {person.accomplishment}
+              poznat je zbog {person.accomplishment}
             </p>
           </li>
         )}
@@ -596,32 +608,32 @@ export default function List() {
 export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  profession: 'matematičar',
+  accomplishment: 'formula za svemirske letove',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  profession: 'hemičar',
+  accomplishment: 'otkriće Arktičke rupe u ozonu',
   imageId: 'mynHUSa'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  profession: 'fizičar',
+  accomplishment: 'teorija o elektromagnetizmu',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  profession: 'hemičar',
+  accomplishment: 'pionirski kortizon, steroidi i pilule za kontrolu rađanja',
   imageId: 'IOjWm71'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  profession: 'astrofizičar',
+  accomplishment: 'računanje mase belog patuljka',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -650,9 +662,9 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Sandpack>
 
-In this solution, the `map` calls are placed directly inline into the parent `<ul>` elements, but you could introduce variables for them if you find that more readable.
+U ovom rešenju, `map` pozivi su smešteni direktno unutar roditeljskih `<ul>` elemenata, ali možete uvesti promenljive za njih ako vam to deluje čitljivije.
 
-There is still a bit duplication between the rendered lists. You can go further and extract the repetitive parts into a `<ListSection>` component:
+I dalje postoji duplirani kod između renderovanih listi. Možete ići dalje i izdvojiti ponavljajuće delove u `<ListSection>` komponentu:
 
 <Sandpack>
 
@@ -674,7 +686,7 @@ function ListSection({ title, people }) {
             <p>
               <b>{person.name}:</b>
               {' ' + person.profession + ' '}
-              known for {person.accomplishment}
+              poznat je zbog {person.accomplishment}
             </p>
           </li>
         )}
@@ -685,20 +697,20 @@ function ListSection({ title, people }) {
 
 export default function List() {
   const chemists = people.filter(person =>
-    person.profession === 'chemist'
+    person.profession === 'hemičar'
   );
   const everyoneElse = people.filter(person =>
-    person.profession !== 'chemist'
+    person.profession !== 'hemičar'
   );
   return (
     <article>
-      <h1>Scientists</h1>
+      <h1>Naučnici</h1>
       <ListSection
-        title="Chemists"
+        title="Hemičari"
         people={chemists}
       />
       <ListSection
-        title="Everyone Else"
+        title="Svi ostali"
         people={everyoneElse}
       />
     </article>
@@ -710,32 +722,32 @@ export default function List() {
 export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  profession: 'matematičar',
+  accomplishment: 'formula za svemirske letove',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  profession: 'hemičar',
+  accomplishment: 'otkriće Arktičke rupe u ozonu',
   imageId: 'mynHUSa'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  profession: 'fizičar',
+  accomplishment: 'teorija o elektromagnetizmu',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  profession: 'hemičar',
+  accomplishment: 'pionirski kortizon, steroidi i pilule za kontrolu rađanja',
   imageId: 'IOjWm71'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  profession: 'astrofizičar',
+  accomplishment: 'računanje mase belog patuljka',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -764,9 +776,9 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Sandpack>
 
-A very attentive reader might notice that with two `filter` calls, we check each person's profession twice. Checking a property is very fast, so in this example it's fine. If your logic was more expensive than that, you could replace the `filter` calls with a loop that manually constructs the arrays and checks each person once.
+Veoma pažljiv čitalac može primetiti da sa dva `filter` poziva proveravamo profesiju svake osobe dvaput. Proveravanje polja je veoma brzo, pa je u ovom primeru u redu. Ako je vaša logika komplikovanija od toga, možete zameniti `filter` pozive sa petljom koja ručno pravi nizove i proverava svaku osobu jednom.
 
-In fact, if `people` never change, you could move this code out of your component. From React's perspective, all that matters is that you give it an array of JSX nodes in the end. It doesn't care how you produce that array:
+U suštini, ako se `people` nikad ne menja, možete pomeriti ovaj kod izvan komponente. Iz perspektive React-a, bitno je samo da mu na kraju date niz JSX čvorova. Njega ne zanima kako vi dobijate taj niz:
 
 <Sandpack>
 
@@ -777,7 +789,7 @@ import { getImageUrl } from './utils.js';
 let chemists = [];
 let everyoneElse = [];
 people.forEach(person => {
-  if (person.profession === 'chemist') {
+  if (person.profession === 'hemičar') {
     chemists.push(person);
   } else {
     everyoneElse.push(person);
@@ -798,7 +810,7 @@ function ListSection({ title, people }) {
             <p>
               <b>{person.name}:</b>
               {' ' + person.profession + ' '}
-              known for {person.accomplishment}
+              poznat je zbog {person.accomplishment}
             </p>
           </li>
         )}
@@ -810,13 +822,13 @@ function ListSection({ title, people }) {
 export default function List() {
   return (
     <article>
-      <h1>Scientists</h1>
+      <h1>Naučnici</h1>
       <ListSection
-        title="Chemists"
+        title="Hemičari"
         people={chemists}
       />
       <ListSection
-        title="Everyone Else"
+        title="Svi ostali"
         people={everyoneElse}
       />
     </article>
@@ -828,32 +840,32 @@ export default function List() {
 export const people = [{
   id: 0,
   name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
+  profession: 'matematičar',
+  accomplishment: 'formula za svemirske letove',
   imageId: 'MK3eW3A'
 }, {
   id: 1,
   name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
+  profession: 'hemičar',
+  accomplishment: 'otkriće Arktičke rupe u ozonu',
   imageId: 'mynHUSa'
 }, {
   id: 2,
   name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
+  profession: 'fizičar',
+  accomplishment: 'teorija o elektromagnetizmu',
   imageId: 'bE7W1ji'
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  profession: 'hemičar',
+  accomplishment: 'pionirski kortizon, steroidi i pilule za kontrolu rađanja',
   imageId: 'IOjWm71'
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
+  profession: 'astrofizičar',
+  accomplishment: 'računanje mase belog patuljka',
   imageId: 'lrWQx8l'
 }];
 ```
@@ -884,13 +896,13 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Solution>
 
-#### Nested lists in one component {/*nested-lists-in-one-component*/}
+#### Ugnježdene liste u jednoj komponenti {/*nested-lists-in-one-component*/}
 
-Make a list of recipes from this array! For each recipe in the array, display its name as an `<h2>` and list its ingredients in a `<ul>`.
+Napravite listu recepata od ovog niza! Za svaki recept u nizu, prikažite mu ime kao `<h2>` i listu sastojaka u `<ul>`-u.
 
 <Hint>
 
-This will require nesting two different `map` calls.
+Ovo će zahtevati da ugnjezdite dva različita `map` poziva.
 
 </Hint>
 
@@ -902,7 +914,7 @@ import { recipes } from './data.js';
 export default function RecipeList() {
   return (
     <div>
-      <h1>Recipes</h1>
+      <h1>Recepti</h1>
     </div>
   );
 }
@@ -911,16 +923,16 @@ export default function RecipeList() {
 ```js src/data.js
 export const recipes = [{
   id: 'greek-salad',
-  name: 'Greek Salad',
-  ingredients: ['tomatoes', 'cucumber', 'onion', 'olives', 'feta']
+  name: 'Grčka salata',
+  ingredients: ['paradajz', 'krastavci', 'crni luk', 'masline', 'feta']
 }, {
   id: 'hawaiian-pizza',
-  name: 'Hawaiian Pizza',
-  ingredients: ['pizza crust', 'pizza sauce', 'mozzarella', 'ham', 'pineapple']
+  name: 'Havajska pica',
+  ingredients: ['kora za picu', 'sos za picu', 'mocarela', 'šunka', 'ananas']
 }, {
   id: 'hummus',
-  name: 'Hummus',
-  ingredients: ['chickpeas', 'olive oil', 'garlic cloves', 'lemon', 'tahini']
+  name: 'Humus',
+  ingredients: ['leblebija', 'maslinovo ulje', 'čen belog luka', 'limun', 'tahini']
 }];
 ```
 
@@ -928,7 +940,7 @@ export const recipes = [{
 
 <Solution>
 
-Here is one way you could go about it:
+Evo jednog načina kako to možete uraditi:
 
 <Sandpack>
 
@@ -938,7 +950,7 @@ import { recipes } from './data.js';
 export default function RecipeList() {
   return (
     <div>
-      <h1>Recipes</h1>
+      <h1>Recepti</h1>
       {recipes.map(recipe =>
         <div key={recipe.id}>
           <h2>{recipe.name}</h2>
@@ -959,28 +971,28 @@ export default function RecipeList() {
 ```js src/data.js
 export const recipes = [{
   id: 'greek-salad',
-  name: 'Greek Salad',
-  ingredients: ['tomatoes', 'cucumber', 'onion', 'olives', 'feta']
+  name: 'Grčka salata',
+  ingredients: ['paradajz', 'krastavci', 'crni luk', 'masline', 'feta']
 }, {
   id: 'hawaiian-pizza',
-  name: 'Hawaiian Pizza',
-  ingredients: ['pizza crust', 'pizza sauce', 'mozzarella', 'ham', 'pineapple']
+  name: 'Havajska pica',
+  ingredients: ['kora za picu', 'sos za picu', 'mocarela', 'šunka', 'ananas']
 }, {
   id: 'hummus',
-  name: 'Hummus',
-  ingredients: ['chickpeas', 'olive oil', 'garlic cloves', 'lemon', 'tahini']
+  name: 'Humus',
+  ingredients: ['leblebija', 'maslinovo ulje', 'čen belog luka', 'limun', 'tahini']
 }];
 ```
 
 </Sandpack>
 
-Each of the `recipes` already includes an `id` field, so that's what the outer loop uses for its `key`. There is no ID you could use to loop over ingredients. However, it's reasonable to assume that the same ingredient won't be listed twice within the same recipe, so its name can serve as a `key`. Alternatively, you could change the data structure to add IDs, or use index as a `key` (with the caveat that you can't safely reorder ingredients).
+Svaka stavka u `recipes` već uključuje `id` polje, tako da se to koristi kao `key` u spoljašnjoj petlji. Ne postoji ID koji možete koristiti da prolazite kroz sastojke. Međutim, razumno je pretpostaviti da isti sastojak neće biti dvaput nabrojan u jednom receptu, tako da njegovo ime može služiti kao `key`. Alternativno, možete promeniti strukturu podataka i dodati ID-eve, ili koristiti indeks kao `key` (uz upozorenje da ne možete sigurno menjati redosled sastojaka).
 
 </Solution>
 
-#### Extracting a list item component {/*extracting-a-list-item-component*/}
+#### Izdvojiti stavku liste u komponentu {/*extracting-a-list-item-component*/}
 
-This `RecipeList` component contains two nested `map` calls. To simplify it, extract a `Recipe` component from it which will accept `id`, `name`, and `ingredients` props. Where do you place the outer `key` and why?
+Ova `RecipeList` komponenta sadrži dva ugnježdena `map` poziva. Da biste je pojednostavili, izdvojite `Recipe` komponentu iz nje koja će primiti `id`, `name` i `ingredients` props-e. Gde ćete smestiti spoljašni `key` i zašto?
 
 <Sandpack>
 
@@ -990,7 +1002,7 @@ import { recipes } from './data.js';
 export default function RecipeList() {
   return (
     <div>
-      <h1>Recipes</h1>
+      <h1>Recepti</h1>
       {recipes.map(recipe =>
         <div key={recipe.id}>
           <h2>{recipe.name}</h2>
@@ -1011,16 +1023,16 @@ export default function RecipeList() {
 ```js src/data.js
 export const recipes = [{
   id: 'greek-salad',
-  name: 'Greek Salad',
-  ingredients: ['tomatoes', 'cucumber', 'onion', 'olives', 'feta']
+  name: 'Grčka salata',
+  ingredients: ['paradajz', 'krastavci', 'crni luk', 'masline', 'feta']
 }, {
   id: 'hawaiian-pizza',
-  name: 'Hawaiian Pizza',
-  ingredients: ['pizza crust', 'pizza sauce', 'mozzarella', 'ham', 'pineapple']
+  name: 'Havajska pica',
+  ingredients: ['kora za picu', 'sos za picu', 'mocarela', 'šunka', 'ananas']
 }, {
   id: 'hummus',
-  name: 'Hummus',
-  ingredients: ['chickpeas', 'olive oil', 'garlic cloves', 'lemon', 'tahini']
+  name: 'Humus',
+  ingredients: ['leblebija', 'maslinovo ulje', 'čen belog luka', 'limun', 'tahini']
 }];
 ```
 
@@ -1028,7 +1040,7 @@ export const recipes = [{
 
 <Solution>
 
-You can copy-paste the JSX from the outer `map` into a new `Recipe` component and return that JSX. Then you can change `recipe.name` to `name`, `recipe.id` to `id`, and so on, and pass them as props to the `Recipe`:
+Možete kopirati i nalepiti JSX iz spoljašnjeg `map`-a u novu `Recipe` komponentu i vratiti taj JSX. Onda, možete promeniti `recipe.name` u `name`, `recipe.id` u `id`, i tako dalje, prosleđujući ih kao props u `Recipe`:
 
 <Sandpack>
 
@@ -1053,7 +1065,7 @@ function Recipe({ id, name, ingredients }) {
 export default function RecipeList() {
   return (
     <div>
-      <h1>Recipes</h1>
+      <h1>Recepti</h1>
       {recipes.map(recipe =>
         <Recipe {...recipe} key={recipe.id} />
       )}
@@ -1065,30 +1077,30 @@ export default function RecipeList() {
 ```js src/data.js
 export const recipes = [{
   id: 'greek-salad',
-  name: 'Greek Salad',
-  ingredients: ['tomatoes', 'cucumber', 'onion', 'olives', 'feta']
+  name: 'Grčka salata',
+  ingredients: ['paradajz', 'krastavci', 'crni luk', 'masline', 'feta']
 }, {
   id: 'hawaiian-pizza',
-  name: 'Hawaiian Pizza',
-  ingredients: ['pizza crust', 'pizza sauce', 'mozzarella', 'ham', 'pineapple']
+  name: 'Havajska pica',
+  ingredients: ['kora za picu', 'sos za picu', 'mocarela', 'šunka', 'ananas']
 }, {
   id: 'hummus',
-  name: 'Hummus',
-  ingredients: ['chickpeas', 'olive oil', 'garlic cloves', 'lemon', 'tahini']
+  name: 'Humus',
+  ingredients: ['leblebija', 'maslinovo ulje', 'čen belog luka', 'limun', 'tahini']
 }];
 ```
 
 </Sandpack>
 
-Here, `<Recipe {...recipe} key={recipe.id} />` is a syntax shortcut saying "pass all properties of the `recipe` object as props to the `Recipe` component". You could also write each prop explicitly: `<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />`.
+Ovde, `<Recipe {...recipe} key={recipe.id} />` je sintaksna skraćenica za "prosleđivanje svih polja `recipe` objekta kao props u `Recipe` komponentu". Možete napisati i svaki prop eksplicitno: `<Recipe id={recipe.id} name={recipe.name} ingredients={recipe.ingredients} key={recipe.id} />`.
 
-**Note that the `key` is specified on the `<Recipe>` itself rather than on the root `<div>` returned from `Recipe`.** This is because this `key` is needed directly within the context of the surrounding array. Previously, you had an array of `<div>`s so each of them needed a `key`, but now you have an array of `<Recipe>`s. In other words, when you extract a component, don't forget to leave the `key` outside the JSX you copy and paste.
+**Primetite da je `key` specificiran na samom `<Recipe>` umesto na root `<div>` elementu vraćenom iz `Recipe`.** Razlog tome je zato što je ovaj `key` direktno potreban u kontekstu okružujućeg niza. Ranije ste imali niz `<div>`-ova pa je svakom od njih bio potreban `key`, ali sada imate niz `<Recipe>`-ova. Drugim rečima, kada izdvajate komponentu, ne zaboravite da `key` ostavite izvan JSX-a koji kopirate i nalepite.
 
 </Solution>
 
-#### List with a separator {/*list-with-a-separator*/}
+#### Lista sa separatorom {/*list-with-a-separator*/}
 
-This example renders a famous haiku by Tachibana Hokushi, with each line wrapped in a `<p>` tag. Your job is to insert an `<hr />` separator between each paragraph. Your resulting structure should look like this:
+Ovaj primer renderuje poznatu haiku koju je napisao Tachibana Hokushi, gde je svaka linija obmotana `<p>` tag-om. Vaš posao je da ubacite `<hr />` separator između paragrafa. Rezultat treba da izgleda ovako:
 
 ```js
 <article>
@@ -1100,7 +1112,7 @@ This example renders a famous haiku by Tachibana Hokushi, with each line wrapped
 </article>
 ```
 
-A haiku only contains three lines, but your solution should work with any number of lines. Note that `<hr />` elements only appear *between* the `<p>` elements, not in the beginning or the end!
+Haiku sadrži samo tri linije, ali vaše rešenje treba raditi za bilo koji broj linija. Zapazite da se `<hr />` elementi pojavljuju samo *između* `<p>` elemenata, ali ne na početku i kraju!
 
 <Sandpack>
 
@@ -1143,17 +1155,17 @@ hr {
 
 </Sandpack>
 
-(This is a rare case where index as a key is acceptable because a poem's lines will never reorder.)
+(Ovo je redak primer gde je indeks kao ključ prihvatljiv, jer se redosled linija u pesmama nikad ne menja.)
 
 <Hint>
 
-You'll either need to convert `map` to a manual loop, or use a Fragment.
+Moraćete ili da pretvorite `map` u petlju, ili da koristite Fragment.
 
 </Hint>
 
 <Solution>
 
-You can write a manual loop, inserting `<hr />` and `<p>...</p>` into the output array as you go:
+Možete ručno napisati petlju ubacivanjem `<hr />` i `<p>...</p>` u izlazni niz:
 
 <Sandpack>
 
@@ -1169,7 +1181,7 @@ const poem = {
 export default function Poem() {
   let output = [];
 
-  // Fill the output array
+  // Popunite izlazni niz
   poem.lines.forEach((line, i) => {
     output.push(
       <hr key={i + '-separator'} />
@@ -1180,7 +1192,7 @@ export default function Poem() {
       </p>
     );
   });
-  // Remove the first <hr />
+  // Obrišite prvi <hr />
   output.shift();
 
   return (
@@ -1208,9 +1220,9 @@ hr {
 
 </Sandpack>
 
-Using the original line index as a `key` doesn't work anymore because each separator and paragraph are now in the same array. However, you can give each of them a distinct key using a suffix, e.g. `key={i + '-text'}`.
+Upotreba indeksa originalne linije za `key` više ne radi jer su i separatori i paragrafi sada u istom nizu. Međutim, svakom od njih možete dati jedinstven ključ upotrebom sufiksa, npr. `key={i + '-text'}`.
 
-Alternatively, you could render a collection of Fragments which contain `<hr />` and `<p>...</p>`. However, the `<>...</>` shorthand syntax doesn't support passing keys, so you'd have to write `<Fragment>` explicitly:
+Alternativno, možete renderovati kolekciju Fragment-a koji sadrže `<hr />` i `<p>...</p>`. Međutim, `<>...</>` sintaksna skraćenica ne podržava prosleđivanje ključeva, pa morate napisati `<Fragment>` eksplicitno:
 
 <Sandpack>
 
@@ -1256,7 +1268,7 @@ hr {
 
 </Sandpack>
 
-Remember, Fragments (often written as `<> </>`) let you group JSX nodes without adding extra `<div>`s!
+Upamtite, Fragment-i (češće napisani kao `<> </>`) vam omogućavaju da grupišete JSX čvorove bez dodavanja `<div>`-ova!
 
 </Solution>
 
