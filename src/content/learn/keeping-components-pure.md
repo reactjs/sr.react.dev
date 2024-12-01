@@ -1,41 +1,41 @@
 ---
-title: Keeping Components Pure
+title: Održavati komponente čistim
 ---
 
 <Intro>
 
-Some JavaScript functions are *pure.* Pure functions only perform a calculation and nothing more. By strictly only writing your components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. To get these benefits, though, there are a few rules you must follow.
+Neke JavaScript funkcije su *čiste*. Čiste funkcije izvršavaju samo proračune i ništa više. Pisanjem komponenata koje su striktno čiste funkcije, moći ćete da izbegnete zbunjujuće bug-ove u vašim klasama, iako se vaš projekat povećava. Da biste dobili te benefite, postoji par pravila koje morate ispoštovati.
 
 </Intro>
 
 <YouWillLearn>
 
-* What purity is and how it helps you avoid bugs
-* How to keep components pure by keeping changes out of the render phase
-* How to use Strict Mode to find mistakes in your components
+* Šta je zapravo čistoća i kako vam pomaže da izbegnete bug-ove
+* Kako održati komponente čistim zadržavanjem promenena van faze renderovanja
+* Kako da koristite Strict Mode da biste pronašli greške u komponentama
 
 </YouWillLearn>
 
-## Purity: Components as formulas {/*purity-components-as-formulas*/}
+## Čistoća: Komponente kao formule {/*purity-components-as-formulas*/}
 
-In computer science (and especially the world of functional programming), [a pure function](https://wikipedia.org/wiki/Pure_function) is a function with the following characteristics:
+U informatici (i pogotovo u svetu funkcionalnog programiranja), [čista funkcija](https://wikipedia.org/wiki/Pure_function) je funkcija koju odlikuju sledeće karakteristike:
 
-* **It minds its own business.** It does not change any objects or variables that existed before it was called.
-* **Same inputs, same output.** Given the same inputs, a pure function should always return the same result.
+* **Gleda samo svoja posla.** Ne menja nikakve objekte ili promenljive koji su postojali pre njenog poziva.
+* **Isti input-i, isti rezultat.** Dobijanjem istih input-a, čista funkcija treba uvek da vrati isti rezultat.
 
-You might already be familiar with one example of pure functions: formulas in math.
+Možda ste već upoznati sa jednim primerom čistih funkcija: formulama u matematici.
 
-Consider this math formula: <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>.
+Pogledajte ovu matematičku formulu: <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>.
 
-If <Math><MathI>x</MathI> = 2</Math> then <Math><MathI>y</MathI> = 4</Math>. Always. 
+Ako je <Math><MathI>x</MathI> = 2</Math> onda je <Math><MathI>y</MathI> = 4</Math>. Uvek.
 
-If <Math><MathI>x</MathI> = 3</Math> then <Math><MathI>y</MathI> = 6</Math>. Always. 
+Ako je <Math><MathI>x</MathI> = 3</Math> onda je <Math><MathI>y</MathI> = 6</Math>. Uvek.
 
-If <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> won't sometimes be <Math>9</Math> or <Math>–1</Math> or <Math>2.5</Math> depending on the time of day or the state of the stock market. 
+Ako je <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> neće ponekad biti <Math>9</Math> ili <Math>–1</Math> ili <Math>2.5</Math> u zavisnosti od trenutnog vremena ili stanja na berzi.
 
-If <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> and <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> will _always_ be <Math>6</Math>. 
+Ako je <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> i <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> će _uvek_ biti <Math>6</Math>. 
 
-If we made this into a JavaScript function, it would look like this:
+Ako prebacimo ovo u JavaScript funkciju, izgledalo bi ovako:
 
 ```js
 function double(number) {
@@ -43,9 +43,9 @@ function double(number) {
 }
 ```
 
-In the above example, `double` is a **pure function.** If you pass it `3`, it will return `6`. Always.
+U primeru iznad, `double` je **čista funkcija**. Ako joj prosledite `3`, vratiće `6`. Uvek.
 
-React is designed around this concept. **React assumes that every component you write is a pure function.** This means that React components you write must always return the same JSX given the same inputs:
+React je dizajniran oko ovog koncepta. **React pretpostavlja da je svaka komponenta koju napišete čista funkcija.** To znači da React komponente koje pišete uvek moraju vratiti isti JSX kada im prosledite iste input-e:
 
 <Sandpack>
 
@@ -53,9 +53,9 @@ React is designed around this concept. **React assumes that every component you 
 function Recipe({ drinkers }) {
   return (
     <ol>    
-      <li>Boil {drinkers} cups of water.</li>
-      <li>Add {drinkers} spoons of tea and {0.5 * drinkers} spoons of spice.</li>
-      <li>Add {0.5 * drinkers} cups of milk to boil and sugar to taste.</li>
+      <li>Skuvati {drinkers} časa sa vodom.</li>
+      <li>Dodati {drinkers} kašika čaja i {0.5 * drinkers} kašika začina.</li>
+      <li>Dodati {0.5 * drinkers} šolja mleka da provri i šećer po ukusu.</li>
     </ol>
   );
 }
@@ -63,10 +63,10 @@ function Recipe({ drinkers }) {
 export default function App() {
   return (
     <section>
-      <h1>Spiced Chai Recipe</h1>
-      <h2>For two</h2>
+      <h1>Recept za začinjeni čaj</h1>
+      <h2>Za dvoje</h2>
       <Recipe drinkers={2} />
-      <h2>For a gathering</h2>
+      <h2>Za okupljanje</h2>
       <Recipe drinkers={4} />
     </section>
   );
@@ -75,21 +75,21 @@ export default function App() {
 
 </Sandpack>
 
-When you pass `drinkers={2}` to `Recipe`, it will return JSX containing `2 cups of water`. Always. 
+Kada prosledite `drinkers={2}` u `Recipe`, on će vratiti JSX koji sadrži `2 časa sa vodom`. Uvek. 
 
-If you pass `drinkers={4}`, it will return JSX containing `4 cups of water`. Always.
+Ako prosledite `drinkers={4}`, on će vratiti JSX koji sadrži `4 časa sa vodom`. Uvek.
 
-Just like a math formula. 
+Baš kao matematička formula. 
 
-You could think of your components as recipes: if you follow them and don't introduce new ingredients during the cooking process, you will get the same dish every time. That "dish" is the JSX that the component serves to React to [render.](/learn/render-and-commit)
+Možete gledati vaše komponente kao recepte: ako ih pratite i ne dodajete nove sastojke tokom kuvanja, svaki put ćete dobiti isto jelo. To "jelo" je JSX koji će komponenta servirati React-u da [renderuje](/learn/render-and-commit).
 
-<Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="A tea recipe for x people: take x cups of water, add x spoons of tea and 0.5x spoons of spices, and 0.5x cups of milk" />
+<Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="Recept za čaj za x ljudi: uzmi x čaša sa vodom, dodaj x kašika čaja i 0.5x kašika začina, i 0.5x šolja mleka" />
 
-## Side Effects: (un)intended consequences {/*side-effects-unintended-consequences*/}
+## Propratni efekti: (ne)namerne posledice {/*side-effects-unintended-consequences*/}
 
-React's rendering process must always be pure. Components should only *return* their JSX, and not *change* any objects or variables that existed before rendering—that would make them impure!
+React-ov proces renderovanja mora uvek biti čist. Komponente bi trebale uvek da *vrate* svoj JSX, i da ne *menjaju* nikakve objekte ili promenljive koji su postojali pre renderovanja—to bi ih učinilo nečistim!
 
-Here is a component that breaks this rule:
+Evo komponente koja krši ovo pravilo:
 
 <Sandpack>
 
@@ -97,9 +97,9 @@ Here is a component that breaks this rule:
 let guest = 0;
 
 function Cup() {
-  // Bad: changing a preexisting variable!
+  // Loše: menjanje već postojeće promenljive!
   guest = guest + 1;
-  return <h2>Tea cup for guest #{guest}</h2>;
+  return <h2>Šolja čaja za gosta #{guest}</h2>;
 }
 
 export default function TeaSet() {
@@ -115,17 +115,17 @@ export default function TeaSet() {
 
 </Sandpack>
 
-This component is reading and writing a `guest` variable declared outside of it. This means that **calling this component multiple times will produce different JSX!** And what's more, if _other_ components read `guest`, they will produce different JSX, too, depending on when they were rendered! That's not predictable.
+Ova komponenta čita i piše `guest` promenljivu definisanu izvan nje. To znači da će **pozivanje ove komponente više puta proizvesti različit JSX**! I dodatno, ako _druge_ komponente čitaju `guest`, i one će proizvesti različit JSX takođe, u zavisnosti od toga kada su renderovane! To nije predvidljivo.
 
-Going back to our formula <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>, now even if <Math><MathI>x</MathI> = 2</Math>, we cannot trust that <Math><MathI>y</MathI> = 4</Math>. Our tests could fail, our users would be baffled, planes would fall out of the sky—you can see how this would lead to confusing bugs!
+Vratimo se našoj formuli <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>. Sad iako je <Math><MathI>x</MathI> = 2</Math>, ne možemo tvrditi da je <Math><MathI>y</MathI> = 4</Math>. Naši testovi će biti neuspešni, korisnici pogubljeni, avioni će padati sa neba—vidite kako ovo može dovesti do zbunjujućih bug-ova!
 
-You can fix this component by [passing `guest` as a prop instead](/learn/passing-props-to-a-component):
+Ovu komponentu možete popraviti [prosleđivanjem `guest`-a kao prop-a](/learn/passing-props-to-a-component):
 
 <Sandpack>
 
 ```js
 function Cup({ guest }) {
-  return <h2>Tea cup for guest #{guest}</h2>;
+  return <h2>Šolja čaja za gosta #{guest}</h2>;
 }
 
 export default function TeaSet() {
@@ -141,37 +141,37 @@ export default function TeaSet() {
 
 </Sandpack>
 
-Now your component is pure, as the JSX it returns only depends on the `guest` prop.
+Sada je vaša komponenta čista jer JSX zavisi samo od `guest` prop-a.
 
-In general, you should not expect your components to be rendered in any particular order. It doesn't matter if you call <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> before or after <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math>: both formulas will resolve independently of each other. In the same way, each component should only "think for itself", and not attempt to coordinate with or depend upon others during rendering. Rendering is like a school exam: each component should calculate JSX on their own!
+Uglavnom, ne trebate očekivati da se vaše komponente renderuju u određenom redosledu. Nije bitno da li <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> pozovete pre ili posle <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math>: obe formule će se rešiti nevezano jedna od druge. Na isti način, svaka komponenta treba jedino da "misli na sebe", a ne da pokušava da se usklađuje ili da zavisi od drugih tokom renderovanja. Renderovanje je nalik na test u školi: svaka komponenta treba da računa JSX samostalno!
 
 <DeepDive>
 
-#### Detecting impure calculations with StrictMode {/*detecting-impure-calculations-with-strict-mode*/}
+#### Detektovanje nečistih proračuna sa StrictMode-om {/*detecting-impure-calculations-with-strict-mode*/}
 
-Although you might not have used them all yet, in React there are three kinds of inputs that you can read while rendering: [props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), and [context.](/learn/passing-data-deeply-with-context) You should always treat these inputs as read-only.
+Iako ih možda niste sve koristili još uvek, u React-u postoje tri vrste input-a koje možete čitati tokom renderovanja: [props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory) i [context](/learn/passing-data-deeply-with-context). Ove input-e uvek trebate tretirati kao da su samo za čitanje.
 
-When you want to *change* something in response to user input, you should [set state](/learn/state-a-components-memory) instead of writing to a variable. You should never change preexisting variables or objects while your component is rendering.
+Kada želite nešto *promeniti* u zavisnosti od korisničkog input-a, trebate [setovati state](/learn/state-a-components-memory) umesto da pišete u promenljivu. Nikada ne bi trebalo menjati već postojeće promenljive ili objekte dok se vaša komponenta renderuje.
 
-React offers a "Strict Mode" in which it calls each component's function twice during development. **By calling the component functions twice, Strict Mode helps find components that break these rules.**
+React nudi "Strict Mode" u kojem se dvaput pozivaju funkcije svake komponente u toku razvoja. **Pozivanjem svake funkcije dvaput, Strict Mode pomaže u pronalasku komponenata koje krše ova pravila.**
 
-Notice how the original example displayed "Guest #2", "Guest #4", and "Guest #6" instead of "Guest #1", "Guest #2", and "Guest #3". The original function was impure, so calling it twice broke it. But the fixed pure version works even if the function is called twice every time. **Pure functions only calculate, so calling them twice won't change anything**--just like calling `double(2)` twice doesn't change what's returned, and solving <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> twice doesn't change what <MathI>y</MathI> is. Same inputs, same outputs. Always.
+Primetite da je originalni primer prikazivao "Gost #2", "Gost #4" i "Gost #6" umesto "Gost #1", "Gost #2" i "Gost #3". Originalna funkcija je bila nečista, pa ju je pozivanje dva puta pokvarilo. Popravljena, čista verzija radi čak iako se funkcija poziva stalno dva puta. **Čiste funkcije samo računaju, pa pozivanje dva puta neće promeniti ništa**--baš kao što pozivanje `double(2)` dva puta ne menja povratnu vrednost, a ni rešavanje <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> dva puta ne menja koliko je <MathI>y</MathI>. Isti input-i, isti rezultati. Uvek.
 
-Strict Mode has no effect in production, so it won't slow down the app for your users. To opt into Strict Mode, you can wrap your root component into `<React.StrictMode>`. Some frameworks do this by default.
+Strict Mode nema efekta u produkciji, tako da neće usporiti vašu aplikaciju za korisnike. Da biste uključili Strict Mode, možete obmotati vašu root komponentu sa `<React.StrictMode>`. Neki framework-ovi ovo rade po default-u.
 
 </DeepDive>
 
-### Local mutation: Your component's little secret {/*local-mutation-your-components-little-secret*/}
+### Lokalna mutacija: Mala tajna vaše komponente {/*local-mutation-your-components-little-secret*/}
 
-In the above example, the problem was that the component changed a *preexisting* variable while rendering. This is often called a **"mutation"** to make it sound a bit scarier. Pure functions don't mutate variables outside of the function's scope or objects that were created before the call—that makes them impure!
+U primeru iznad, problem je bio u tome što je komponenta promenila *već postojeću* promenljivu tokom renderovanja. To se često zove **"mutacija"** kako bi zvučalo malko strašnije. Čista funkcija ne menja promenljive izvan opsega te funkcije niti objekte koji su kreirani pre njenog poziva—to je čini nečistom!
 
-However, **it's completely fine to change variables and objects that you've *just* created while rendering.** In this example, you create an `[]` array, assign it to a `cups` variable, and then `push` a dozen cups into it:
+Međutim, **potpuno je u redu menjati promenljive i objekte koje ste *upravo* kreirali tokom renderovanja**. U ovom primeru, kreirate `[]` niz i dodeljujete ga u `cups` promenljivu, a onda pozovete `push` da dodate nekoliko čaša u taj niz:
 
 <Sandpack>
 
 ```js
 function Cup({ guest }) {
-  return <h2>Tea cup for guest #{guest}</h2>;
+  return <h2>Šolja čaja za gosta #{guest}</h2>;
 }
 
 export default function TeaGathering() {
@@ -185,43 +185,43 @@ export default function TeaGathering() {
 
 </Sandpack>
 
-If the `cups` variable or the `[]` array were created outside the `TeaGathering` function, this would be a huge problem! You would be changing a *preexisting* object by pushing items into that array.
+Da su `cups` promenljiva ili `[]` niz bili kreirani izvan `TeaGathering` funkcije, ovo bi bio ogroman problem! Menjali bisti *već postojeći* objekat dodavanjem stavki u taj niz.
 
-However, it's fine because you've created them *during the same render*, inside `TeaGathering`. No code outside of `TeaGathering` will ever know that this happened. This is called **"local mutation"**—it's like your component's little secret.
+Međutim, u redu je jer ste ih kreirali *u toku renderovanja*, unutar `TeaGathering`. Kod izvan `TeaGathering` nikad neće saznati da se ovo desilo. To se zove **"lokalna mutacija"**—kao mala tajna vaše komponente.
 
-## Where you _can_ cause side effects {/*where-you-_can_-cause-side-effects*/}
+## Gde _možete_ izazvati propratne efekte {/*where-you-_can_-cause-side-effects*/}
 
-While functional programming relies heavily on purity, at some point, somewhere, _something_ has to change. That's kind of the point of programming! These changes—updating the screen, starting an animation, changing the data—are called **side effects.** They're things that happen _"on the side"_, not during rendering.
+Iako se funkcionalno programiranje zasniva na čistoći, u nekom trenutku, negde, _nešto_ se mora promeniti. To je donekle svrha programiranja! Te promene—ažuriranje ekrana, početak animacije, promena podataka—se nazivaju **propratni efekti**. To su stvari koje se dešavaju _"sa strane"_, a ne tokom renderovanja.
 
-In React, **side effects usually belong inside [event handlers.](/learn/responding-to-events)** Event handlers are functions that React runs when you perform some action—for example, when you click a button. Even though event handlers are defined *inside* your component, they don't run *during* rendering! **So event handlers don't need to be pure.**
+U React-u, **propratni efekti često pripadaju [event handler-ima](/learn/responding-to-events)**. Event handler-i su funkcije koje React pokreće kada izvršite neku akciju—na primer, kada kliknete dugme. Iako su event handler-i definisani *unutar* vaše komponente, oni se ne izvršavaju *tokom* renderovanja! **Zbog toga event handler-i ne moraju biti čisti.**
 
-If you've exhausted all other options and can't find the right event handler for your side effect, you can still attach it to your returned JSX with a [`useEffect`](/reference/react/useEffect) call in your component. This tells React to execute it later, after rendering, when side effects are allowed. **However, this approach should be your last resort.**
+Ako ste iscrpeli sve ostale opcije i ne možete naći odgovarajući event handler za vaš propratni efekat, i dalje ga možete zakačiti u povratni JSX sa [`useEffect`](/reference/react/useEffect) pozivom u vašoj komponenti. Ovo govori React-u da izvrši nešto kasnije, nakon renderovanja, kada su propratni efekti dozvoljeni. **Međutim, ovaj pristup bi trebao biti vaše poslednje rešenje.**
 
-When possible, try to express your logic with rendering alone. You'll be surprised how far this can take you!
+Kada je moguće, pokušajte izraziti vašu logiku samo u toku renderovanja. Iznenadićete se koliko vas daleko to može dovesti!
 
 <DeepDive>
 
-#### Why does React care about purity? {/*why-does-react-care-about-purity*/}
+#### Zašto React vodi računa o čistoći? {/*why-does-react-care-about-purity*/}
 
-Writing pure functions takes some habit and discipline. But it also unlocks marvelous opportunities:
+Pisanje čistih funkcija zahteva naviku i disciplinu. Takođe, otključava pregršt mogućnosti:
 
-* Your components could run in a different environment—for example, on the server! Since they return the same result for the same inputs, one component can serve many user requests.
-* You can improve performance by [skipping rendering](/reference/react/memo) components whose inputs have not changed. This is safe because pure functions always return the same results, so they are safe to cache.
-* If some data changes in the middle of rendering a deep component tree, React can restart rendering without wasting time to finish the outdated render. Purity makes it safe to stop calculating at any time.
+* Vaše komponente se mogu izvršavati u različitim sredinama—na primer, na serveru! Pošto vraćaju iste rezultate za iste input-e, jedna komponenta može opslužiti više korisničkih zahteva.
+* Možete poboljšati performanse [preskakanjem renderovanja](/reference/react/memo) komponenata čiji se input-i nisu promenili. Ovo je sigurno pošto čiste funkcije uvek vraćaju iste rezultate, pa je sigurno keširati ih.
+* Ako se neki podatak promeni u toku renderovanja dubokog stabla komponenata, React može ponovo pokrenuti renderovanje bez da troši vreme na završetak zastarelog renderovanja. Čistoća čini bezbednim prekid proračuna u bilo kom trenutku.
 
-Every new React feature we're building takes advantage of purity. From data fetching to animations to performance, keeping components pure unlocks the power of the React paradigm.
+Svaka nova React funkcionalnost koju pravimo koristi prednosti čistoće. Održavanje komponenata čistim otključava moć React paradigme, od fetch-ovanja podataka do animacija i performansi.
 
 </DeepDive>
 
 <Recap>
 
-* A component must be pure, meaning:
-  * **It minds its own business.** It should not change any objects or variables that existed before rendering.
-  * **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. 
-* Rendering can happen at any time, so components should not depend on each others' rendering sequence.
-* You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, ["set" state](/learn/state-a-components-memory) instead of mutating preexisting objects.
-* Strive to express your component's logic in the JSX you return. When you need to "change things", you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
-* Writing pure functions takes a bit of practice, but it unlocks the power of React's paradigm.
+* Komponenta mora biti čista, što znači da:
+  * **Gleda samo svoja posla.** Ne bi trebalo da menja nikakve objekte ili promenljive koji su postojali pre renderovanja.
+  * **Isti input-i, isti rezultat.** Dobijanjem istih input-a, komponenta treba uvek da vrati isti JSX. 
+* Renderovanje se može desiti u bilo kom trenutku, pa komponente ne bi trebale da zavise od drugih.
+* Ne bi trebali da menjate nijedan od input-a koje komponenta koristi za renderovanje. To uključuje props, state i context. Da biste ažurirali prikaz, ["setujte" state](/learn/state-a-components-memory) umesto da menjate već postojeće objekte.
+* Težite da izrazite logiku komponente u JSX-u koji vraćate. Kada trebate "menjati stvari", uglavnom ćete želeti da to uradite u event handler-u. Kao poslednje rešenje, možete koristiti `useEffect`.
+* Pisanje čistih funkcija zahteva malo iskustva, ali otključava moć React paradigme.
 
 </Recap>
 
@@ -229,15 +229,15 @@ Every new React feature we're building takes advantage of purity. From data fetc
   
 <Challenges>
 
-#### Fix a broken clock {/*fix-a-broken-clock*/}
+#### Popraviti pokvaren sat {/*fix-a-broken-clock*/}
 
-This component tries to set the `<h1>`'s CSS class to `"night"` during the time from midnight to six hours in the morning, and `"day"` at all other times. However, it doesn't work. Can you fix this component?
+Ova komponenta pokušava da postavi CSS klasu za `<h1>` na `"night"` između pomoći i šest ujutru, a na `"day"` u svim ostalim slučajevima. Međutim, trenutno ne radi. Možete li popraviti ovu komponentu?
 
-You can verify whether your solution works by temporarily changing the computer's timezone. When the current time is between midnight and six in the morning, the clock should have inverted colors!
+Možete proveriti da li vam rešenje radi privremenom promenom vremenske zone na računaru. Kad je vreme između ponoći i šest ujutru, sat bi trebao da ima obrnute boje!
 
 <Hint>
 
-Rendering is a *calculation*, it shouldn't try to "do" things. Can you express the same idea differently?
+Renderovanje je *proračun*, pa ne bi trebalo da pokuša da "radi" stvari. Možete li izraziti istu ideju drugačije?
 
 </Hint>
 
@@ -301,7 +301,7 @@ body > * {
 
 <Solution>
 
-You can fix this component by calculating the `className` and including it in the render output:
+Možete popraviti komponentu računanjem `className`-a i uvrštavanjem u rezultat renderovanja:
 
 <Sandpack>
 
@@ -362,19 +362,19 @@ body > * {
 
 </Sandpack>
 
-In this example, the side effect (modifying the DOM) was not necessary at all. You only needed to return JSX.
+U ovom primeru, propratni efekat (izmena DOM-a) nije uopšte bio potreban. Trebali ste samo da vratite JSX.
 
 </Solution>
 
-#### Fix a broken profile {/*fix-a-broken-profile*/}
+#### Popraviti pokvaren profil {/*fix-a-broken-profile*/}
 
-Two `Profile` components are rendered side by side with different data. Press "Collapse" on the first profile, and then "Expand" it. You'll notice that both profiles now show the same person. This is a bug.
+Dve `Profile` komponente su renderovane jedna do druge sa različitim podacima. Pritisnite "Skupi" na prvom profilu, a onda pritisnite "Raširi". Primetićete da oba profila sada prikazuju istu osobu. To je bug.
 
-Find the cause of the bug and fix it.
+Pronađite uzrok bug-a i popravite ga.
 
 <Hint>
 
-The buggy code is in `Profile.js`. Make sure you read it all from top to bottom!
+Kod sa bug-om se nalazi u `Profile.js`. Postarajte se da ga pročitate od početka do kraja!
 
 </Hint>
 
@@ -421,7 +421,7 @@ export default function Panel({ children }) {
   return (
     <section className="panel">
       <button onClick={() => setOpen(!open)}>
-        {open ? 'Collapse' : 'Expand'}
+        {open ? 'Skupi' : 'Raširi'}
       </button>
       {open && children}
     </section>
@@ -475,9 +475,9 @@ h1 { margin: 5px; font-size: 18px; }
 
 <Solution>
 
-The problem is that the `Profile` component writes to a preexisting variable called `currentPerson`, and the `Header` and `Avatar` components read from it. This makes *all three of them* impure and difficult to predict.
+Problem je u tome što `Profile` komponenta piše u već postojeću promenljivu pod imenom `currentPerson`, a `Header` i `Avatar` komponente je čitaju. Ovo *sve tri komponente* čini nečistim i teško predvidljivim.
 
-To fix the bug, remove the `currentPerson` variable. Instead, pass all information from `Profile` to `Header` and `Avatar` via props. You'll need to add a `person` prop to both components and pass it all the way down.
+Da biste popravili bug, uklonite `currentPerson` promenljivu. Umesto toga, prosledite sve informacije iz `Profile` u `Header` i `Avatar` pomoću props-a. Trebaćete da dodate `person` prop u obe komponente i prosledite ga svuda.
 
 <Sandpack>
 
@@ -519,7 +519,7 @@ export default function Panel({ children }) {
   return (
     <section className="panel">
       <button onClick={() => setOpen(!open)}>
-        {open ? 'Collapse' : 'Expand'}
+        {open ? 'Skupi' : 'Raširi'}
       </button>
       {open && children}
     </section>
@@ -571,15 +571,15 @@ h1 { margin: 5px; font-size: 18px; }
 
 </Sandpack>
 
-Remember that React does not guarantee that component functions will execute in any particular order, so you can't communicate between them by setting variables. All communication must happen through props.
+Upamtite da React ne garantuje da će se funkcije komponenata izvršavati u određenom redosledu, tako da ne možete uspostaviti komunikaciju između njih putem promenljivih. Sva komunikacija se mora izvršavati putem props-a.
 
 </Solution>
 
-#### Fix a broken story tray {/*fix-a-broken-story-tray*/}
+#### Popraviti pokvarenu traku sa pričama {/*fix-a-broken-story-tray*/}
 
-The CEO of your company is asking you to add "stories" to your online clock app, and you can't say no. You've written a `StoryTray` component that accepts a list of `stories`, followed by a "Create Story" placeholder.
+CEO vaše kompanije traži od vas da dodate "priče" u vašu aplikaciju i ne možete reći ne. Napisali ste `StoryTray` komponentu koja prima listu `stories`, praćenu sa "Napravi priču" placeholder-om.
 
-You implemented the "Create Story" placeholder by pushing one more fake story at the end of the `stories` array that you receive as a prop. But for some reason, "Create Story" appears more than once. Fix the issue.
+Implementirali ste "Napravi priču" placeholder dodavanjem jedne lažne priče na kraj `stories` niza koji primate kao prop. Ali, iz nekog razloga, "Napravi priču" se pojavljuje više od jednom. Popravite problem.
 
 <Sandpack>
 
@@ -587,7 +587,7 @@ You implemented the "Create Story" placeholder by pushing one more fake story at
 export default function StoryTray({ stories }) {
   stories.push({
     id: 'create',
-    label: 'Create Story'
+    label: 'Napravi priču'
   });
 
   return (
@@ -607,8 +607,8 @@ import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
 let initialStories = [
-  {id: 0, label: "Ankit's Story" },
-  {id: 1, label: "Taylor's Story" },
+  {id: 0, label: "Priča od Ankit" },
+  {id: 1, label: "Priča od Taylor" },
 ];
 
 export default function App() {
@@ -629,7 +629,7 @@ export default function App() {
         textAlign: 'center',
       }}
     >
-      <h2>It is {time.toLocaleTimeString()} now.</h2>
+      <h2>Sad je tačno {time.toLocaleTimeString()}.</h2>
       <StoryTray stories={stories} />
     </div>
   );
@@ -675,11 +675,11 @@ li {
 
 <Solution>
 
-Notice how whenever the clock updates, "Create Story" is added *twice*. This serves as a hint that we have a mutation during rendering--Strict Mode calls components twice to make these issues more noticeable.
+Primetite da kad god se sat ažurira, "Napravi priču" se doda *dvaput*. Ovo služi kao nagoveštaj da imamo mutaciju tokom renderovanja--Strict Mode poziva komponente dvaput da bi ovakve probleme učinio uočljivijim.
 
-`StoryTray` function is not pure. By calling `push` on the received `stories` array (a prop!), it is mutating an object that was created *before* `StoryTray` started rendering. This makes it buggy and very difficult to predict.
+`StoryTray` funkcija nije čista. Pozivanjem `push`-a nad primljenim `stories` nizom (prop-om!), menja se objekat koji je kreiran *pre* nego što se `StoryTray` počeo renderovati. To ga čini pogrešnim i veoma teškim za predviđanje.
 
-The simplest fix is to not touch the array at all, and render "Create Story" separately:
+Najlakše rešenje je da se ne dira niz uopšte, već da se "Napravi priču" renderuje odvojeno:
 
 <Sandpack>
 
@@ -692,7 +692,7 @@ export default function StoryTray({ stories }) {
           {story.label}
         </li>
       ))}
-      <li>Create Story</li>
+      <li>Napravi priču</li>
     </ul>
   );
 }
@@ -703,8 +703,8 @@ import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
 let initialStories = [
-  {id: 0, label: "Ankit's Story" },
-  {id: 1, label: "Taylor's Story" },
+  {id: 0, label: "Priča od Ankit" },
+  {id: 1, label: "Priča od Taylor" },
 ];
 
 export default function App() {
@@ -725,7 +725,7 @@ export default function App() {
         textAlign: 'center',
       }}
     >
-      <h2>It is {time.toLocaleTimeString()} now.</h2>
+      <h2>Sad je tačno {time.toLocaleTimeString()}.</h2>
       <StoryTray stories={stories} />
     </div>
   );
@@ -763,19 +763,19 @@ li {
 
 </Sandpack>
 
-Alternatively, you could create a _new_ array (by copying the existing one) before you push an item into it:
+Alternativno, možete napraviti _novi_ niz (kopiranjem postojećeg) pre nego što dodate stavke u njega:
 
 <Sandpack>
 
 ```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
-  // Copy the array!
+  // Kopiranje niza!
   let storiesToDisplay = stories.slice();
 
-  // Does not affect the original array:
+  // Ne utiče na originalni niz:
   storiesToDisplay.push({
     id: 'create',
-    label: 'Create Story'
+    label: 'Napravi priču'
   });
 
   return (
@@ -795,8 +795,8 @@ import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
 let initialStories = [
-  {id: 0, label: "Ankit's Story" },
-  {id: 1, label: "Taylor's Story" },
+  {id: 0, label: "Priča od Ankit" },
+  {id: 1, label: "Priča od Taylor" },
 ];
 
 export default function App() {
@@ -817,7 +817,7 @@ export default function App() {
         textAlign: 'center',
       }}
     >
-      <h2>It is {time.toLocaleTimeString()} now.</h2>
+      <h2>Sad je tačno {time.toLocaleTimeString()}.</h2>
       <StoryTray stories={stories} />
     </div>
   );
@@ -855,9 +855,9 @@ li {
 
 </Sandpack>
 
-This keeps your mutation local and your rendering function pure. However, you still need to be careful: for example, if you tried to change any of the array's existing items, you'd have to clone those items too.
+Ovo čini vašu mutaciju lokalnom, a funkciju čistom. Međutim, i dalje morate biti oprezni: na primer, ako pokušate da menjate bilo koju stavku u postojećem nizu, morate da klonirate i tu stavku takođe.
 
-It is useful to remember which operations on arrays mutate them, and which don't. For example, `push`, `pop`, `reverse`, and `sort` will mutate the original array, but `slice`, `filter`, and `map` will create a new one.
+Korisno je upamtiti koje operacije nad nizovima menjaju niz, a koje ne. Na primer, `push`, `pop`, `reverse` i `sort` će promeniti originalni niz, dok će `slice`, `filter` i `map` kreirati novi niz.
 
 </Solution>
 
