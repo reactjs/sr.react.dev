@@ -1,24 +1,24 @@
 ---
-title: Responding to Events
+title: Odgovaranje na event-e
 ---
 
 <Intro>
 
-React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to interactions like clicking, hovering, focusing form inputs, and so on.
+React vam omogućava da dodate *event handler*-e u vaš JSX. Event handler-i su vaše sopstvene funkcije koje će se pokrenuti kao odgovor na korisničke interakcije poput klika, prelaženja mišem, fokusiranja na input-e forme i tako dalje.
 
 </Intro>
 
 <YouWillLearn>
 
-* Different ways to write an event handler
-* How to pass event handling logic from a parent component
-* How events propagate and how to stop them
+* Različite načine da napišete event handler
+* Kako proslediti logiku za obrađivanje event-ova iz roditeljske komponente
+* Kako se event-i propagiraju i kako ih zaustaviti
 
 </YouWillLearn>
 
-## Adding event handlers {/*adding-event-handlers*/}
+## Dodavanje event handler-a {/*adding-event-handlers*/}
 
-To add an event handler, you will first define a function and then [pass it as a prop](/learn/passing-props-to-a-component) to the appropriate JSX tag. For example, here is a button that doesn't do anything yet:
+Da biste dodali event handler, prvo ćete definisati funkciju, a onda je [proslediti kao prop](/learn/passing-props-to-a-component) u odgovarajući JSX tag. Na primer, ovde je dugme koje još uvek ništa ne radi:
 
 <Sandpack>
 
@@ -26,7 +26,7 @@ To add an event handler, you will first define a function and then [pass it as a
 export default function Button() {
   return (
     <button>
-      I don't do anything
+      Ne radim ništa
     </button>
   );
 }
@@ -34,23 +34,23 @@ export default function Button() {
 
 </Sandpack>
 
-You can make it show a message when a user clicks by following these three steps:
+Možete učiniti da se prikaže poruka kad ga korisnik klikne prateći ova tri koraka:
 
-1. Declare a function called `handleClick` *inside* your `Button` component.
-2. Implement the logic inside that function (use `alert` to show the message).
-3. Add `onClick={handleClick}` to the `<button>` JSX.
+1. Deklarišite funkciju pod imenom `handleClick` *unutar* `Button` komponente.
+2. Implementirajte logiku unutar te funkcije (koristite `alert` da prikažete poruku).
+3. Dodajte `onClick={handleClick}` u `<button>` JSX.
 
 <Sandpack>
 
 ```js
 export default function Button() {
   function handleClick() {
-    alert('You clicked me!');
+    alert('Kliknuli ste me!');
   }
 
   return (
     <button onClick={handleClick}>
-      Click me
+      Klikni me
     </button>
   );
 }
@@ -62,77 +62,77 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-You defined the `handleClick` function and then [passed it as a prop](/learn/passing-props-to-a-component) to `<button>`.  `handleClick` is an **event handler.** Event handler functions:
+Definisali ste `handleClick` funkciju i [prosledili ste je kao prop](/learn/passing-props-to-a-component) u `<button>`. `handleClick` je **event handler**. Event handler funkcije:
 
-* Are usually defined *inside* your components.
-* Have names that start with `handle`, followed by the name of the event.
+* Su uglavnom definisane *unutar* vaših komponenata.
+* Imaju imena koja počinju sa `handle`, nakon čega sledi ime event-a.
 
-By convention, it is common to name event handlers as `handle` followed by the event name. You'll often see `onClick={handleClick}`, `onMouseEnter={handleMouseEnter}`, and so on.
+Po konvenciji, praksa je da imena event handler-a počinju sa `handle`, nakon čega sledi ime event-a. Često ćete videti `onClick={handleClick}`, `onMouseEnter={handleMouseEnter}` i slično.
 
-Alternatively, you can define an event handler inline in the JSX:
+Alternativno, možete definisati event handler inline u JSX-u:
 
 ```jsx
 <button onClick={function handleClick() {
-  alert('You clicked me!');
+  alert('Kliknuli ste me!');
 }}>
 ```
 
-Or, more concisely, using an arrow function:
+Ili konciznije, upotrebom arrow funkcije:
 
 ```jsx
 <button onClick={() => {
-  alert('You clicked me!');
+  alert('Kliknuli ste me!');
 }}>
 ```
 
-All of these styles are equivalent. Inline event handlers are convenient for short functions.
+Svi ovi načini su ekvivalentni. Inline event handler-i su zgodni za kratke funkcije.
 
 <Pitfall>
 
-Functions passed to event handlers must be passed, not called. For example:
+Funkcije prosleđene u event handler-e moraju biti prosleđene, a ne pozvane. Na primer:
 
-| passing a function (correct)     | calling a function (incorrect)     |
-| -------------------------------- | ---------------------------------- |
-| `<button onClick={handleClick}>` | `<button onClick={handleClick()}>` |
+| prosleđivanje funkcije (ispravno) | pozivanje funkcije (neispravno)    |
+| --------------------------------  | ---------------------------------- |
+| `<button onClick={handleClick}>`  | `<button onClick={handleClick()}>` |
 
-The difference is subtle. In the first example, the `handleClick` function is passed as an `onClick` event handler. This tells React to remember it and only call your function when the user clicks the button.
+Razlika je veoma suptilna. U prvom primeru, `handleClick` funkcija je prosleđena kao `onClick` event handler. To govori React-u da je upamti i pozove samo kada korisnik klikne dugme.
 
-In the second example, the `()` at the end of `handleClick()` fires the function *immediately* during [rendering](/learn/render-and-commit), without any clicks. This is because JavaScript inside the [JSX `{` and `}`](/learn/javascript-in-jsx-with-curly-braces) executes right away.
+U drugom primeru, `()` na kraju `handleClick()` poziva funkciju *istog momenta* tokom [renderovanja](/learn/render-and-commit), bez bilo kakvih klikova. Tako je zbog toga što JavaScript sve u [JSX-u unutar `{` i `}`](/learn/javascript-in-jsx-with-curly-braces) izvršava odmah.
 
-When you write code inline, the same pitfall presents itself in a different way:
+Kada napišete kod inline, ista zamka će se prikazati, samo na drugi način:
 
-| passing a function (correct)            | calling a function (incorrect)    |
+| prosleđivanje funkcije (ispravno)       | pozivanje funkcije (neispravno)   |
 | --------------------------------------- | --------------------------------- |
 | `<button onClick={() => alert('...')}>` | `<button onClick={alert('...')}>` |
 
 
-Passing inline code like this won't fire on click—it fires every time the component renders:
+Prosleđivanje inline koda na ovaj način neće okinuti funkciju na klik—okinuće je svaki put kad se komponenta renderuje:
 
 ```jsx
-// This alert fires when the component renders, not when clicked!
-<button onClick={alert('You clicked me!')}>
+// Ovaj alert se okida kad se komponenta renderuje, ne kad se klikne!
+<button onClick={alert('Kliknuli ste me!')}>
 ```
 
-If you want to define your event handler inline, wrap it in an anonymous function like so:
+Ako želite definisati event handler inline, obmotajte ga u anonimnu funkciju poput ove:
 
 ```jsx
-<button onClick={() => alert('You clicked me!')}>
+<button onClick={() => alert('Kliknuli ste me!')}>
 ```
 
-Rather than executing the code inside with every render, this creates a function to be called later.
+Umesto da se kod izvršava na svaki render, ovo kreira funkciju koja će biti pozvana kasnije.
 
-In both cases, what you want to pass is a function:
+U oba slučaja, želećete da prosledite funkciju:
 
-* `<button onClick={handleClick}>` passes the `handleClick` function.
-* `<button onClick={() => alert('...')}>` passes the `() => alert('...')` function.
+* `<button onClick={handleClick}>` prosleđuje `handleClick` funkciju.
+* `<button onClick={() => alert('...')}>` prosleđuje `() => alert('...')` funkciju.
 
-[Read more about arrow functions.](https://javascript.info/arrow-functions-basics)
+[Pročitajte više o arrow funkcijama.](https://javascript.info/arrow-functions-basics)
 
 </Pitfall>
 
-### Reading props in event handlers {/*reading-props-in-event-handlers*/}
+### Čitanje props-a u event handler-ima {/*reading-props-in-event-handlers*/}
 
-Because event handlers are declared inside of a component, they have access to the component's props. Here is a button that, when clicked, shows an alert with its `message` prop:
+Pošto su event handler-i deklarisani unutar komponente, imaju pristup props-ima komponente. Ovde je dugme koje, kad je kliknuto, prikazuje alert sa `message` prop-om:
 
 <Sandpack>
 
@@ -148,11 +148,11 @@ function AlertButton({ message, children }) {
 export default function Toolbar() {
   return (
     <div>
-      <AlertButton message="Playing!">
-        Play Movie
+      <AlertButton message="Puštanje!">
+        Pusti film
       </AlertButton>
-      <AlertButton message="Uploading!">
-        Upload Image
+      <AlertButton message="Upload-ovanje!">
+        Upload-uj sliku
       </AlertButton>
     </div>
   );
@@ -165,13 +165,13 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-This lets these two buttons show different messages. Try changing the messages passed to them.
+Ovo omogućava tim dugmićima da prikažu različite poruke. Probajte da promenite poruke koje su im prosleđene.
 
-### Passing event handlers as props {/*passing-event-handlers-as-props*/}
+### Prosleđivanje event handler-a kao prop-a {/*passing-event-handlers-as-props*/}
 
-Often you'll want the parent component to specify a child's event handler. Consider buttons: depending on where you're using a `Button` component, you might want to execute a different function—perhaps one plays a movie and another uploads an image. 
+Često ćete želeti da roditeljska komponenta specificira dečji event handler. Razmotrite dugmiće: u zavisnosti od toga gde koristite `Button` komponentu, možete poželeti da izvršite različite funkcije—jedna da pušta film, druga da upload-uje sliku. 
 
-To do this, pass a prop the component receives from its parent as the event handler like so:
+Da biste to uradili, prosledite prop koji komponenta primi od roditelja kao event handler:
 
 <Sandpack>
 
@@ -186,20 +186,20 @@ function Button({ onClick, children }) {
 
 function PlayButton({ movieName }) {
   function handlePlayClick() {
-    alert(`Playing ${movieName}!`);
+    alert(`Puštanje ${movieName}!`);
   }
 
   return (
     <Button onClick={handlePlayClick}>
-      Play "{movieName}"
+      Pusti "{movieName}"
     </Button>
   );
 }
 
 function UploadButton() {
   return (
-    <Button onClick={() => alert('Uploading!')}>
-      Upload Image
+    <Button onClick={() => alert('Upload-ovanje!')}>
+      Upload-uj sliku
     </Button>
   );
 }
@@ -207,7 +207,7 @@ function UploadButton() {
 export default function Toolbar() {
   return (
     <div>
-      <PlayButton movieName="Kiki's Delivery Service" />
+      <PlayButton movieName="Kikina služba za dostavu" />
       <UploadButton />
     </div>
   );
@@ -220,22 +220,22 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-Here, the `Toolbar` component renders a `PlayButton` and an `UploadButton`:
+Ovde, `Toolbar` komponenta renderuje `PlayButton` i `UploadButton`:
 
-- `PlayButton` passes `handlePlayClick` as the `onClick` prop to the `Button` inside.
-- `UploadButton` passes `() => alert('Uploading!')` as the `onClick` prop to the `Button` inside.
+- `PlayButton` prosleđuje `handlePlayClick` kao `onClick` prop u `Button` komponentu.
+- `UploadButton` prosleđuje `() => alert('Upload-ovanje!')` kao `onClick` prop u `Button` komponentu.
 
-Finally, your `Button` component accepts a prop called `onClick`. It passes that prop directly to the built-in browser `<button>` with `onClick={onClick}`. This tells React to call the passed function on click.
+Konačno, vaša `Button` komponenta prima prop po imenu `onClick`. Taj prop direktno prosleđuje u ugrađeni `<button>` tag sa `onClick={onClick}`. Ovo govori React-u da pozove prosleđenu funkciju na klik.
 
-If you use a [design system](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969), it's common for components like buttons to contain styling but not specify behavior. Instead, components like `PlayButton` and `UploadButton` will pass event handlers down.
+Ako koristite [sistem dizajna](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969), uobičajeno je da komponente poput dugmića sadrže stajling, ali da ne specificiraju ponašanje. Umesto toga, komponente poput `PlayButton` i `UploadButton` će im proslediti event handler-e.
 
-### Naming event handler props {/*naming-event-handler-props*/}
+### Imenovanje event handler props-a {/*naming-event-handler-props*/}
 
-Built-in components like `<button>` and `<div>` only support [browser event names](/reference/react-dom/components/common#common-props) like `onClick`. However, when you're building your own components, you can name their event handler props any way that you like.
+Ugrađene komponente kao što su `<button>` i `<div>` podržavaju samo [imena event-ova u pretraživaču](/reference/react-dom/components/common#common-props) poput `onClick`. Međutim, kada pravite sopstvene komponente, vaše event handler props-e možete imenovati kako god želite.
 
-By convention, event handler props should start with `on`, followed by a capital letter.
+Po konvenciji, event handler props-i trebaju započeti sa `on`, nakon čega sledi veliko slovo.
 
-For example, the `Button` component's `onClick` prop could have been called `onSmash`:
+Na primer, `onClick` prop u `Button` komponenti može biti nazvan `onSmash`:
 
 <Sandpack>
 
@@ -251,11 +251,11 @@ function Button({ onSmash, children }) {
 export default function App() {
   return (
     <div>
-      <Button onSmash={() => alert('Playing!')}>
-        Play Movie
+      <Button onSmash={() => alert('Puštanje!')}>
+        Pusti film
       </Button>
-      <Button onSmash={() => alert('Uploading!')}>
-        Upload Image
+      <Button onSmash={() => alert('Upload-ovanje!')}>
+        Upload-uj sliku
       </Button>
     </div>
   );
@@ -268,9 +268,9 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-In this example, `<button onClick={onSmash}>` shows that the browser `<button>` (lowercase) still needs a prop called `onClick`, but the prop name received by your custom `Button` component is up to you!
+U ovom primeru, `<button onClick={onSmash}>` prikazuje da ugrađeni `<button>` (malim slovima) i dalje zahteva prop sa imenom `onClick`, ali ime prop-a koji prima vaša custom `Button` komponenta je na vama!
 
-When your component supports multiple interactions, you might name event handler props for app-specific concepts. For example, this `Toolbar` component receives `onPlayMovie` and `onUploadImage` event handlers:
+Kada komponenta podržava više interakcija, možete imenovati event handler props-e na osnovu koncepata specifičnih za aplikaciju. Na primer, ova `Toolbar` komponenta prima `onPlayMovie` i `onUploadImage` event handler-e:
 
 <Sandpack>
 
@@ -278,8 +278,8 @@ When your component supports multiple interactions, you might name event handler
 export default function App() {
   return (
     <Toolbar
-      onPlayMovie={() => alert('Playing!')}
-      onUploadImage={() => alert('Uploading!')}
+      onPlayMovie={() => alert('Puštanje!')}
+      onUploadImage={() => alert('Upload-ovanje!')}
     />
   );
 }
@@ -288,10 +288,10 @@ function Toolbar({ onPlayMovie, onUploadImage }) {
   return (
     <div>
       <Button onClick={onPlayMovie}>
-        Play Movie
+        Pusti film
       </Button>
       <Button onClick={onUploadImage}>
-        Upload Image
+        Upload-uj sliku
       </Button>
     </div>
   );
@@ -312,19 +312,19 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
-Notice how the `App` component does not need to know *what* `Toolbar` will do with `onPlayMovie` or `onUploadImage`. That's an implementation detail of the `Toolbar`. Here, `Toolbar` passes them down as `onClick` handlers to its `Button`s, but it could later also trigger them on a keyboard shortcut. Naming props after app-specific interactions like `onPlayMovie` gives you the flexibility to change how they're used later.
+Primetite da `App` komponenta ne mora da zna *šta* će `Toolbar` uraditi sa `onPlayMovie` i `onUploadImage`. To je implementacijski detalj u `Toolbar`-u. Takođe, `Toolbar` ih prosleđuje kao `onClick` handler-e u svoje `Button`-e, ali ih kasnije može okinuti i za prečicu na tastaturi. Imenovanje event handler props-a na osnovu koncepata specifičnih za aplikaciju poput `onPlayMovie` vam daje fleksibilnost da kasnije menjate kako se koriste.
   
 <Note>
 
-Make sure that you use the appropriate HTML tags for your event handlers. For example, to handle clicks, use [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) instead of `<div onClick={handleClick}>`. Using a real browser `<button>` enables built-in browser behaviors like keyboard navigation. If you don't like the default browser styling of a button and want to make it look more like a link or a different UI element, you can achieve it with CSS. [Learn more about writing accessible markup.](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
+Postarajte se da koristite odgovarajuće HTML tag-ove za event handler-e. Na primer, za klikove, koristite [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) umesto `<div onClick={handleClick}>`. Korišćenjem `<button>`-a u pretraživaču omogućavate ugrađena ponašanja pretraživača poput navigacije pomoću tastature. Ako vam se ne sviđa default stajling dugmeta u pretraživaču i želite da liči na link ili drugi UI element, to možete učititi pomoću CSS-a. [Naučite više o pisanju pristupačnog markup-a](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML).
   
 </Note>
 
-## Event propagation {/*event-propagation*/}
+## Propagacija event-ova {/*event-propagation*/}
 
-Event handlers will also catch events from any children your component might have. We say that an event "bubbles" or "propagates" up the tree: it starts with where the event happened, and then goes up the tree.
+Event handler-i će takođe uhvatiti event-e iz svake dečje komponente. Kažemo da se event "ponaša kao mehurić" ili "propagira" uz stablo: počinje tamo gde se event desio, a onda kreće uz stablo.
 
-This `<div>` contains two buttons. Both the `<div>` *and* each button have their own `onClick` handlers. Which handlers do you think will fire when you click a button?
+Ovaj `<div>` sadrži dva dugmeta. I `<div>`, *ali i* svako dugme, imaju svoj `onClick` handler. Šta mislite koji handler-i će se okinuti kada kliknete na dugme?
 
 <Sandpack>
 
@@ -332,13 +332,13 @@ This `<div>` contains two buttons. Both the `<div>` *and* each button have their
 export default function Toolbar() {
   return (
     <div className="Toolbar" onClick={() => {
-      alert('You clicked on the toolbar!');
+      alert('Kliknuli ste na toolbar!');
     }}>
-      <button onClick={() => alert('Playing!')}>
-        Play Movie
+      <button onClick={() => alert('Puštanje!')}>
+        Pusti film
       </button>
-      <button onClick={() => alert('Uploading!')}>
-        Upload Image
+      <button onClick={() => alert('Upload-ovanje!')}>
+        Upload-uj sliku
       </button>
     </div>
   );
@@ -355,19 +355,19 @@ button { margin: 5px; }
 
 </Sandpack>
 
-If you click on either button, its `onClick` will run first, followed by the parent `<div>`'s `onClick`. So two messages will appear. If you click the toolbar itself, only the parent `<div>`'s `onClick` will run.
+Ako kliknete na neko dugme, prvo će se izvršiti njegov `onClick`, a nakon toga i `onClick` od roditeljskog `<div>`-a. Znači, dve poruke će se prikazati. Ako kliknete samo na toolbar, samo će se izvršiti `onClick` na `<div>`-u.
 
 <Pitfall>
 
-All events propagate in React except `onScroll`, which only works on the JSX tag you attach it to.
+U React-u, svi event-i se propagiraju osim `onScroll`, koji radi samo za JSX tag na kom je definisan.
 
 </Pitfall>
 
-### Stopping propagation {/*stopping-propagation*/}
+### Zaustavljanje propagacije {/*stopping-propagation*/}
 
-Event handlers receive an **event object** as their only argument. By convention, it's usually called `e`, which stands for "event". You can use this object to read information about the event.
+Event handler-i primaju **event objekat** kao jedini argument. Po konvenciji, često se naziva `e`, što označava "event". Možete koristiti ovaj objekat da čitate informacije o event-u.
 
-That event object also lets you stop the propagation. If you want to prevent an event from reaching parent components, you need to call `e.stopPropagation()` like this `Button` component does:
+Ovaj event objekat vam takođe omogućava da zaustavite propagaciju. Ako želite da sprečite event da dospe do roditeljskih komponenata, morate pozvati `e.stopPropagation()` kao što to radi `Button` komponenta:
 
 <Sandpack>
 
@@ -386,13 +386,13 @@ function Button({ onClick, children }) {
 export default function Toolbar() {
   return (
     <div className="Toolbar" onClick={() => {
-      alert('You clicked on the toolbar!');
+      alert('Kliknuli ste na toolbar!');
     }}>
-      <Button onClick={() => alert('Playing!')}>
-        Play Movie
+      <Button onClick={() => alert('Puštanje!')}>
+        Pusti film
       </Button>
-      <Button onClick={() => alert('Uploading!')}>
-        Upload Image
+      <Button onClick={() => alert('Upload-ovanje!')}>
+        Upload-uj sliku
       </Button>
     </div>
   );
@@ -409,43 +409,43 @@ button { margin: 5px; }
 
 </Sandpack>
 
-When you click on a button:
+Kada kliknete na dugme:
 
-1. React calls the `onClick` handler passed to `<button>`. 
-2. That handler, defined in `Button`, does the following:
-   * Calls `e.stopPropagation()`, preventing the event from bubbling further.
-   * Calls the `onClick` function, which is a prop passed from the `Toolbar` component.
-3. That function, defined in the `Toolbar` component, displays the button's own alert.
-4. Since the propagation was stopped, the parent `<div>`'s `onClick` handler does *not* run.
+1. React poziva `onClick` handler prosleđen u `<button>`. 
+2. Taj handler, definisan u `Button`-u, radi sledeće:
+   * Poziva `e.stopPropagation()`, sprečavajući da se event propagira dalje.
+   * Poziva `onClick` funkciju, koja je prop prosleđen iz `Toolbar` komponente.
+3. Ta funkcija, definisana u `Toolbar` komponenti, prikazuje poruku specifičnu za dugme.
+4. Pošto je propagacija zaustavljena, `onClick` handler u roditeljskom `<div>`-u se *ne* pokreće.
 
-As a result of `e.stopPropagation()`, clicking on the buttons now only shows a single alert (from the `<button>`) rather than the two of them (from the `<button>` and the parent toolbar `<div>`). Clicking a button is not the same thing as clicking the surrounding toolbar, so stopping the propagation makes sense for this UI.
+Kao rezultat od `e.stopPropagation()`, klik na dugmiće prikazuje samo jednu poruku (iz `<button>`-a) umesto dve (iz `<button>`-a i iz roditeljskog toolbar `<div>`-a). Kliktanje dugmeta nije isto kao kliktanje okružujućeg toolbar-a, tako da zaustavljanje propagacije ima smisla za ovaj UI.
 
 <DeepDive>
 
-#### Capture phase events {/*capture-phase-events*/}
+#### Hvatanje (capture) phase event-ova {/*capture-phase-events*/}
 
-In rare cases, you might need to catch all events on child elements, *even if they stopped propagation*. For example, maybe you want to log every click to analytics, regardless of the propagation logic. You can do this by adding `Capture` at the end of the event name:
+U retkim slučajevima, možete poželeti da uhvatite sve event-e iz dečjih elemenata, *čak iako su zaustavili propagaciju*. Na primer, želite da logujete svaki klik za analitiku, nevezano sa logikom propagacije. To možete uraditi dodavanjem `Capture` na kraju imena event-a:
 
 ```js
-<div onClickCapture={() => { /* this runs first */ }}>
+<div onClickCapture={() => { /* ovo se izvršava prvo */ }}>
   <button onClick={e => e.stopPropagation()} />
   <button onClick={e => e.stopPropagation()} />
 </div>
 ```
 
-Each event propagates in three phases: 
+Svaki event se propagira u tri faze:
 
-1. It travels down, calling all `onClickCapture` handlers.
-2. It runs the clicked element's `onClick` handler. 
-3. It travels upwards, calling all `onClick` handlers.
+1. Putuje na dole, pozivajući sve `onClickCapture` handler-e.
+2. Pokreće `onClick` handler na kliknutom elementu. 
+3. Putuje na gore, pozivajući sve `onClick` handler-e.
 
-Capture events are useful for code like routers or analytics, but you probably won't use them in app code.
+Capture event-i su korisni za rutere i analitiku, ali ih verovatno nećete koristiti u kodu aplikacije.
 
 </DeepDive>
 
-### Passing handlers as alternative to propagation {/*passing-handlers-as-alternative-to-propagation*/}
+### Prosleđivanje handler-a kao alternative za propagaciju {/*passing-handlers-as-alternative-to-propagation*/}
 
-Notice how this click handler runs a line of code _and then_ calls the `onClick` prop passed by the parent:
+Primetite da ovaj klik handler pokreće liniju koda, _a onda_ poziva `onClick` prop prosleđen iz roditelja:
 
 ```js {4,5}
 function Button({ onClick, children }) {
@@ -460,22 +460,22 @@ function Button({ onClick, children }) {
 }
 ```
 
-You could add more code to this handler before calling the parent `onClick` event handler, too. This pattern provides an *alternative* to propagation. It lets the child component handle the event, while also letting the parent component specify some additional behavior. Unlike propagation, it's not automatic. But the benefit of this pattern is that you can clearly follow the whole chain of code that executes as a result of some event.
+Takođe, možete dodati još koda u ovaj handler pre poziva roditeljskog `onClick` event handler-a. Ovaj šablon pruža *alternativu* propagaciji. Omogućava dečjoj komponenti da obradi event, dopuštajući roditeljskoj komponenti da specificira i neko dodatno ponašanje. Za razliku od propagacije, ovo nije automatsko. Međutim, benefit ovog šablona je da jasno možete ispratiti sav kod koji se izvršava kao rezultat nekog event-a.
 
-If you rely on propagation and it's difficult to trace which handlers execute and why, try this approach instead.
+Ako se oslanjate na propagaciju i teško vam je da ispratite koji handler-i se izvršavaju i zašto, probajte ovaj pristup.
 
-### Preventing default behavior {/*preventing-default-behavior*/}
+### Sprečavanje default ponašanja {/*preventing-default-behavior*/}
 
-Some browser events have default behavior associated with them. For example, a `<form>` submit event, which happens when a button inside of it is clicked, will reload the whole page by default:
+Neki event-i u pretraživačima imaju default ponašanje. Na primer, `<form>` submit event, koji se okida kada se klikne dugme unutar forme, ponovo će učitati celu stranicu po default-u:
 
 <Sandpack>
 
 ```js
 export default function Signup() {
   return (
-    <form onSubmit={() => alert('Submitting!')}>
+    <form onSubmit={() => alert('Submit-ovanje!')}>
       <input />
-      <button>Send</button>
+      <button>Pošalji</button>
     </form>
   );
 }
@@ -487,7 +487,7 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-You can call `e.preventDefault()` on the event object to stop this from happening:
+Možete pozvati `e.preventDefault()` nad event objektom kako biste zaustavili ovo:
 
 <Sandpack>
 
@@ -496,10 +496,10 @@ export default function Signup() {
   return (
     <form onSubmit={e => {
       e.preventDefault();
-      alert('Submitting!');
+      alert('Submit-ovanje!');
     }}>
       <input />
-      <button>Send</button>
+      <button>Pošalji</button>
     </form>
   );
 }
@@ -511,28 +511,28 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-Don't confuse `e.stopPropagation()` and `e.preventDefault()`. They are both useful, but are unrelated:
+Nemojte pomešati `e.stopPropagation()` i `e.preventDefault()`. Korisni su, ali nisu povezani:
 
-* [`e.stopPropagation()`](https://developer.mozilla.org/docs/Web/API/Event/stopPropagation) stops the event handlers attached to the tags above from firing.
-* [`e.preventDefault()` ](https://developer.mozilla.org/docs/Web/API/Event/preventDefault) prevents the default browser behavior for the few events that have it.
+* [`e.stopPropagation()`](https://developer.mozilla.org/docs/Web/API/Event/stopPropagation) zaustavlja okidanje event handler-a povezanih sa tag-ovima iznad u hijerarhiji.
+* [`e.preventDefault()`](https://developer.mozilla.org/docs/Web/API/Event/preventDefault) sprečava default ponašanje pretraživača za par event-ova koji ga imaju.
 
-## Can event handlers have side effects? {/*can-event-handlers-have-side-effects*/}
+## Da li event handler-i smeju imati propratne efekte? {/*can-event-handlers-have-side-effects*/}
 
-Absolutely! Event handlers are the best place for side effects.
+Apsolutno! Event handler-i su najbolje mesto za propratne efekte.
 
-Unlike rendering functions, event handlers don't need to be [pure](/learn/keeping-components-pure), so it's a great place to *change* something—for example, change an input's value in response to typing, or change a list in response to a button press. However, in order to change some information, you first need some way to store it. In React, this is done by using [state, a component's memory.](/learn/state-a-components-memory) You will learn all about it on the next page.
+Za razliku od funkcija za renderovanje, event handler-i ne moraju biti [čisti](/learn/keeping-components-pure), tako da su odlično mesto za *promenu* nečega—na primer, promena input vrednosti kao rezultat kucanja, ili promena liste kao odgovor na klik dugmeta. Međutim, da biste izmenili neku informaciju, prvo vam je potreban način da je čuvate. U React-u, to se dešava kroz [state, memoriju komponente](/learn/state-a-components-memory). Naučićete sve o tome na narednoj stranici.
 
 <Recap>
 
-* You can handle events by passing a function as a prop to an element like `<button>`.
-* Event handlers must be passed, **not called!** `onClick={handleClick}`, not `onClick={handleClick()}`.
-* You can define an event handler function separately or inline.
-* Event handlers are defined inside a component, so they can access props.
-* You can declare an event handler in a parent and pass it as a prop to a child.
-* You can define your own event handler props with application-specific names.
-* Events propagate upwards. Call `e.stopPropagation()` on the first argument to prevent that.
-* Events may have unwanted default browser behavior. Call `e.preventDefault()` to prevent that.
-* Explicitly calling an event handler prop from a child handler is a good alternative to propagation.
+* Možete obrađivati event-e prosleđivanjem funkcije kao prop-a u elemente poput `<button>`-a.
+* Event handler-i se moraju proslediti, **a ne pozvati**! `onClick={handleClick}`, ne `onClick={handleClick()}`.
+* Možete definisati event handler funkciju zasebno ili inline.
+* Event handler-i su definisani unutar komponente kako bi mogli pristupiti props-ima.
+* Možete deklarisati event handler u roditelju i proslediti ga kao prop detetu.
+* Možete definisati sopstvene event handler props-e sa imenima na osnovu koncepata specifičnih za aplikaciju.
+* Event-i se propagiraju nagore. Pozovite `e.stopPropagation()` nad prvim argumentom kako biste to sprečili.
+* Event-i mogu imati neželjeno default ponašanje u pretraživaču. Pozovite `e.preventDefault()` da to sprečite.
+* Eksplicitno pozivanje event handler prop-a iz dečjeg handler-a je dobra alternativa za propagaciju.
 
 </Recap>
 
@@ -540,9 +540,9 @@ Unlike rendering functions, event handlers don't need to be [pure](/learn/keepin
 
 <Challenges>
 
-#### Fix an event handler {/*fix-an-event-handler*/}
+#### Popraviti event handler {/*fix-an-event-handler*/}
 
-Clicking this button is supposed to switch the page background between white and black. However, nothing happens when you click it. Fix the problem. (Don't worry about the logic inside `handleClick`—that part is fine.)
+Klikom na dugme bi se trebala promeniti pozadina stranice između bele i crne. Međutim, kad kliknete ništa se ne dešava. Popravite problem. (Ne brinite za logiku unutar `handleClick`—taj deo je u redu.)
 
 <Sandpack>
 
@@ -559,7 +559,7 @@ export default function LightSwitch() {
 
   return (
     <button onClick={handleClick()}>
-      Toggle the lights
+      Promeni pozadinu
     </button>
   );
 }
@@ -569,7 +569,7 @@ export default function LightSwitch() {
 
 <Solution>
 
-The problem is that `<button onClick={handleClick()}>` _calls_ the `handleClick` function while rendering instead of _passing_ it. Removing the `()` call so that it's `<button onClick={handleClick}>` fixes the issue:
+Problem je u tome što `<button onClick={handleClick()}>` _poziva_ `handleClick` funkciju tokom renderovanja umesto da je _prosleđuje_. Uklanjanje `()` iz poziva `<button onClick={handleClick}>` rešava problem:
 
 <Sandpack>
 
@@ -586,7 +586,7 @@ export default function LightSwitch() {
 
   return (
     <button onClick={handleClick}>
-      Toggle the lights
+      Promeni pozadinu
     </button>
   );
 }
@@ -594,7 +594,7 @@ export default function LightSwitch() {
 
 </Sandpack>
 
-Alternatively, you could wrap the call into another function, like `<button onClick={() => handleClick()}>`:
+Alternativno, možete obmotati poziv u drugu funkciju, na primer `<button onClick={() => handleClick()}>`:
 
 <Sandpack>
 
@@ -611,7 +611,7 @@ export default function LightSwitch() {
 
   return (
     <button onClick={() => handleClick()}>
-      Toggle the lights
+      Promeni pozadinu
     </button>
   );
 }
@@ -621,11 +621,11 @@ export default function LightSwitch() {
 
 </Solution>
 
-#### Wire up the events {/*wire-up-the-events*/}
+#### Povezati event-e {/*wire-up-the-events*/}
 
-This `ColorSwitch` component renders a button. It's supposed to change the page color. Wire it up to the `onChangeColor` event handler prop it receives from the parent so that clicking the button changes the color.
+Ova `ColorSwitch` komponenta renderuje dugme. Trebala bi da promeni boju na stranici. Povežite je sa `onChangeColor` event handler prop-om koji dobija od roditelja, kako biste klikom na dugme menjali boju.
 
-After you do this, notice that clicking the button also increments the page click counter. Your colleague who wrote the parent component insists that `onChangeColor` does not increment any counters. What else might be happening? Fix it so that clicking the button *only* changes the color, and does _not_ increment the counter.
+Nakon što to uradite, primetite da klikom na dugme povećavate i brojač klikova na stranici. Vaš kolega koji je napisao roditeljsku komponentu insistira da `onChangeColor` ne povećava nijedan brojač. Šta se još može dogoditi? Popravite ovo tako da klik na dugme *jedino* menja boju, a _ne_ povećava brojač.
 
 <Sandpack>
 
@@ -635,7 +635,7 @@ export default function ColorSwitch({
 }) {
   return (
     <button>
-      Change color
+      Promeni boju
     </button>
   );
 }
@@ -669,7 +669,7 @@ export default function App() {
       <ColorSwitch onChangeColor={handleChangeColor} />
       <br />
       <br />
-      <h2>Clicks on the page: {clicks}</h2>
+      <h2>Klikova na stranici: {clicks}</h2>
     </div>
   );
 }
@@ -679,9 +679,9 @@ export default function App() {
 
 <Solution>
 
-First, you need to add the event handler, like `<button onClick={onChangeColor}>`.
+Prvo, morate dodati event handler, `<button onClick={onChangeColor}>`.
 
-However, this introduces the problem of the incrementing counter. If `onChangeColor` does not do this, as your colleague insists, then the problem is that this event propagates up, and some handler above does it. To solve this problem, you need to stop the propagation. But don't forget that you should still call `onChangeColor`.
+Međutim, to uvodi problem povećavanja brojača. Ako `onChangeColor` to ne radi, kao što vaš kolega insistira, problem je u tome što se event propagira nagore, a neki handler iznad to radi. Da biste rešili problem morate zaustaviti propagaciju. Ali, ne zaboravite da i dalje trebate pozvati `onChangeColor`.
 
 <Sandpack>
 
@@ -694,7 +694,7 @@ export default function ColorSwitch({
       e.stopPropagation();
       onChangeColor();
     }}>
-      Change color
+      Promeni boju
     </button>
   );
 }
@@ -728,7 +728,7 @@ export default function App() {
       <ColorSwitch onChangeColor={handleChangeColor} />
       <br />
       <br />
-      <h2>Clicks on the page: {clicks}</h2>
+      <h2>Klikova na stranici: {clicks}</h2>
     </div>
   );
 }

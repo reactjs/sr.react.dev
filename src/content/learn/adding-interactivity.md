@@ -10,7 +10,7 @@ Neke stvari na ekranu se update-uju kao odgovor na korisnički unos. Na primer, 
 
 <YouWillLearn isChapter={true}>
 
-* [Kako da rukujette event-ima koje pokrene korisnik](/learn/responding-to-events)
+* [Kako da rukujete event-ima koje pokrene korisnik](/learn/responding-to-events)
 * [Kako da učinite da component-e „pamte” informacije koristeći state](/learn/state-a-components-memory)
 * [Kako React update-uje UI u dve faze](/learn/render-and-commit)
 * [Zašto se state ne update-uje odmah nakon promene](/learn/state-as-a-snapshot)
@@ -22,7 +22,7 @@ Neke stvari na ekranu se update-uju kao odgovor na korisnički unos. Na primer, 
 
 ## Odgovaranje na event-e {/*responding-to-events*/}
 
-React vam omogućava da dodate *event handler*-e u vaš JSX. Event handler-i su vaše sopstvene funkcije koje će se pokrenuti kao odgovor na korisničke interakcije, poput klika, prelaženja mišem, fokusiranja na form input-e i tako dalje.
+React vam omogućava da dodate *event handler*-e u vaš JSX. Event handler-i su vaše sopstvene funkcije koje će se pokrenuti kao odgovor na korisničke interakcije poput klika, prelaženja mišem, fokusiranja na input-e forme i tako dalje.
 
 Ugrađene component-e poput `<button>` podržavaju samo ugrađene browser event-e poput `onClick`. Međutim, možete kreirati i sopstvene component-e i njihovim event handler prop-ovima dati bilo koja aplikacijski specifična imena koja želite.
 
@@ -32,8 +32,8 @@ Ugrađene component-e poput `<button>` podržavaju samo ugrađene browser event-
 export default function App() {
   return (
     <Toolbar
-      onPlayMovie={() => alert('Playing!')}
-      onUploadImage={() => alert('Uploading!')}
+      onPlayMovie={() => alert('Puštanje!')}
+      onUploadImage={() => alert('Upload-ovanje!')}
     />
   );
 }
@@ -42,10 +42,10 @@ function Toolbar({ onPlayMovie, onUploadImage }) {
   return (
     <div>
       <Button onClick={onPlayMovie}>
-        Play Movie
+        Pusti film
       </Button>
       <Button onClick={onUploadImage}>
-        Upload Image
+        Upload-uj sliku
       </Button>
     </div>
   );
