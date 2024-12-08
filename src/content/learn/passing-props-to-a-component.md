@@ -347,7 +347,7 @@ export function getImageUrl(person, size = 's') {
 
 </Sandpack>
 
-Pokušajte da promenite `<Avatar>` unutar `<Card>`-a sa nekim tekstom da biste videli kako `Card` komponenta može da obmota bilo koji ugnježdeni sadržaj. Ona ne mora da "zna" šta će biti renderovano unutar nje. Videćete ovaj fleksibilni obrazac na mnogim mestima.
+Pokušajte da promenite `<Avatar>` unutar `<Card>`-a sa nekim tekstom da biste videli kako `Card` komponenta može da obmota bilo koji ugnježdeni sadržaj. Ona ne mora da "zna" šta će biti renderovano unutar nje. Videćete ovaj fleksibilni šablon na mnogim mestima.
 
 Komponentu sa `children` prop možete zamisliti kao da ima "šupljinu" koja će biti "popunjena" u njenim roditeljskim komponentama sa proizvoljnim JSX-om. Često ćete koristiti `children` prop za vizuelne wrapper-e: panel-e, grid-ove, itd.
 
