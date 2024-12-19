@@ -316,7 +316,7 @@ function MyButton() {
   // ...
 ```
 
-Od `useState` dobićete dve stvari: trenutni state (`count`), i funkciju koja vam omogućava da ga ažurirate  (`setCount`). Možete im dati bilo koja imena, ali je konvencija da pišete `[nešto, setNešto]`.
+Od `useState` dobićete dve stvari: trenutni state (`count`), i funkciju koja vam omogućava da ga ažurirate (`setCount`). Možete im dati bilo koja imena, ali je konvencija da pišete `[something, setSomething]`.
 
 Prvi put kada se dugme prikaže, `count` će biti `0` jer ste `0` prosledili u `useState()`. Kada želite da promenite state, pozovite `setCount()` i prosledite joj novu vrednost. Klikom na ovo dugme inkrementujte brojač:
 
