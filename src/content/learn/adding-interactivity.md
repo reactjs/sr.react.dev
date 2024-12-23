@@ -68,11 +68,11 @@ button { margin-right: 10px; }
 
 <LearnMore path="/learn/responding-to-events">
 
-Pročitajte **[Odgovaranje na Event-e](/learn/responding-to-events)** da biste naučili kako da dodate event handler-e.
+Pročitajte **[Odgovaranje na event-e](/learn/responding-to-events)** da biste naučili kako da dodate event handler-e.
 
 </LearnMore>
 
-## State: memorija component-e {/*state-a-components-memory*/}
+## State: Memorija component-e {/*state-a-components-memory*/}
 
 Component-e često moraju da promene ono što je prikazano na ekranu kao rezultat neke interakcije. Kucanje u formu treba da update-uje polje za unos, klik na "sledeće" u karuselu slika treba da promeni prikazanu sliku, klik na "kupi" stavlja proizvod u korpu. Component-e moraju da "pamte" određene stvari: trenutnu vrednost unosa, trenutnu sliku, korpu za kupovinu. U React-u, ova vrsta memorije specifična za component-e naziva se *state.*
 
