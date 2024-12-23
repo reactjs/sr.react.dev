@@ -58,23 +58,8 @@ Reload-ujte vaš sajt u pretraživaču da bi ga videli u developer tools.
 
 ## Mobilni telefoni (React Native) {/*mobile-react-native*/}
 
-React Developer Tools može se koristiti za inspekciju aplikacija napravljenih sa [React Native](https://reactnative.dev/).
+Da bi pregledali aplikacije napravljene u [React Native](https://reactnative.dev/), možete koristiti [React Native DevTools](https://reactnative.dev/docs/debugging/react-native-devtools), ugrađeni debugger koji se duboko integriše sa React Developer Tools. Sve funkcionalnosti rade identično kao i browser ekstenzija, uključujući isticanje native elemenata i selekciju.
 
-Najlakši način da koristite React Developer Tools je da ga instalirate globalno:
+[Naučite više o debagovanju u React Native.](https://reactnative.dev/docs/debugging)
 
-```bash
-# Yarn
-yarn global add react-devtools
-
-[Learn more about debugging in React Native.](https://reactnative.dev/docs/debugging)
-
-Zatim otvorite Developer Tools iz terminala:
-```bash
-react-devtools
-```
-
-Trebalo bi da se poveže sa bilo kojom lokalnom React Native aplikacijom koja je pokrenuta.
-
-> Pokušajte da reload-ujete aplikaciju ako developer tools ne uspe da se poveže nakon nekoliko sekundi.
-
-[Naučite više o debagovanju React Native.](https://reactnative.dev/docs/debugging)
+> Za React Native verzije pre 0.76, molimo koristite standalone React DevTools prateći uputstvo [Safari i drugi pretraživači](#safari-and-other-browsers) iznad.
