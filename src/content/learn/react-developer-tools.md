@@ -58,11 +58,7 @@ Reload-ujte vaš sajt u pretraživaču da bi ga videli u developer tools.
 
 ## Mobilni telefoni (React Native) {/*mobile-react-native*/}
 
-<<<<<<< HEAD
-Da bi pregledali aplikacije napravljene u [React Native](https://reactnative.dev/), možete koristiti [React Native DevTools](https://reactnative.dev/docs/debugging/react-native-devtools), ugrađeni debugger koji se duboko integriše sa React Developer Tools. Sve funkcionalnosti rade identično kao i browser ekstenzija, uključujući isticanje native elemenata i selekciju.
-=======
-To inspect apps built with [React Native](https://reactnative.dev/), you can use [React Native DevTools](https://reactnative.dev/docs/react-native-devtools), the built-in debugger that deeply integrates React Developer Tools. All features work identically to the browser extension, including native element highlighting and selection.
->>>>>>> b1a249d597016c6584e4c186daa28b180cc9aafc
+Da bi pregledali aplikacije napravljene u [React Native](https://reactnative.dev/), možete koristiti [React Native DevTools](https://reactnative.dev/docs/react-native-devtools), ugrađeni debugger koji se duboko integriše sa React Developer Tools. Sve funkcionalnosti rade identično kao i browser ekstenzija, uključujući isticanje native elemenata i selekciju.
 
 [Naučite više o debagovanju u React Native.](https://reactnative.dev/docs/debugging)
 
