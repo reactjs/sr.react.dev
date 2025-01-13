@@ -20,15 +20,9 @@ Recimo da imate postojeći veb sajt na `example.com` napravljen sa nekom drugom 
 
 Evo kako preporučujemo da to uradite:
 
-<<<<<<< HEAD
 1. **Napravite React deo vaše aplikacije** koristeći jedan od [React-based framework-a](/learn/start-a-new-react-project).
-2. **Specifikujte `/some-app` kao *base path*** u konfiguraciji vašeg framework-a (evo kako: [Next.js](https://nextjs.org/docs/api-reference/next.config.js/basepath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
+2. **Specifikujte `/some-app` kao *base path*** u konfiguraciji vašeg framework-a (evo kako: [Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
 3. **Konfigurišite vaš server ili proxy** tako da sve rute ispod `/some-app/` budu obrađene od strane vaše React aplikacije.
-=======
-1. **Build the React part of your app** using one of the [React-based frameworks](/learn/start-a-new-react-project).
-2. **Specify `/some-app` as the *base path*** in your framework's configuration (here's how: [Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
-3. **Configure your server or a proxy** so that all requests under `/some-app/` are handled by your React app.
->>>>>>> 9000e6e003854846c4ce5027703b5ce6f81aad80
 
 Ovo će omogućiti React delu vaše aplikacije da [koristi najbolje prakse](/learn/start-a-new-react-project#can-i-use-react-without-a-framework) koje su ugrađene u te framework-e.
 
