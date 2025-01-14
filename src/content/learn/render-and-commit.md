@@ -1,44 +1,44 @@
 ---
-title: Render and Commit
+title: Render i Commit
 ---
 
 <Intro>
 
-Before your components are displayed on screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
+Pre nego što se vaše komponente prikažu na ekranu, React mora da ih renderuje. Razumevanje koraka u ovom procesu pomoći će vam da razmislite o tome kako se vaš kod izvršava i da objasnite njegovo ponašanje.
 
 </Intro>
 
 <YouWillLearn>
 
-* What rendering means in React
-* When and why React renders a component
-* The steps involved in displaying a component on screen
-* Why rendering does not always produce a DOM update
+* Šta u React-u znači renderovanje
+* Kada i zašto React renderuje komponentu
+* Korake potrebne za prikaz komponente na ekranu
+* Zašto renderovanje ne ažurira DOM uvek
 
 </YouWillLearn>
 
-Imagine that your components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
+Zamislite da su vaše komponente kuvari u kuhinji, koji pripremaju ukusna jela od sastojaka. U ovom scenariju, React je konobar koji prenosi porudžbine od gostiju i donosi im njihova jela. Ovaj proces poručivanja i posluživanja UI-a ima tri koraka:
 
-1. **Triggering** a render (delivering the guest's order to the kitchen)
-2. **Rendering** the component (preparing the order in the kitchen)
-3. **Committing** to the DOM (placing the order on the table)
+1. **Pokretanje** rendera (prenos porudžbine gosta u kuhinju)
+2. **Renderovanje** komponente (priprema porudžbine u kuhinji)
+3. **Commit-ovanje** u DOM (postavljanje porudžbine na sto)
 
 <IllustrationBlock sequential>
-  <Illustration caption="Trigger" alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen." src="/images/docs/illustrations/i_render-and-commit1.png" />
-  <Illustration caption="Render" alt="The Card Chef gives React a fresh Card component." src="/images/docs/illustrations/i_render-and-commit2.png" />
-  <Illustration caption="Commit" alt="React delivers the Card to the user at their table." src="/images/docs/illustrations/i_render-and-commit3.png" />
+  <Illustration caption="Pokretanje" alt="React kao konobar u restoranu, prenosi porudžbine od korisnika i dostavlja ih u Kitchen komponentu." src="/images/docs/illustrations/i_render-and-commit1.png" />
+  <Illustration caption="Render" alt="Šef kuhinje za Card daje React-u svežu Card komponentu." src="/images/docs/illustrations/i_render-and-commit2.png" />
+  <Illustration caption="Commit" alt="React donosi Card korisniku za njegov sto." src="/images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
 
-## Step 1: Trigger a render {/*step-1-trigger-a-render*/}
+## Korak 1: Pokrenuti render {/*step-1-trigger-a-render*/}
 
-There are two reasons for a component to render:
+Postoje dva razloga da se komponenta renderuje:
 
-1. It's the component's **initial render.**
-2. The component's (or one of its ancestors') **state has been updated.**
+1. **Inicijalni render** komponente.
+2. **State se promenio**, bilo od komponente ili nekog od njenih roditelja.
 
-### Initial render {/*initial-render*/}
+### Inicijalni render {/*initial-render*/}
 
-When your app starts, you need to trigger the initial render. Frameworks and sandboxes sometimes hide this code, but it's done by calling [`createRoot`](/reference/react-dom/client/createRoot) with the target DOM node, and then calling its `render` method with your component:
+Kad se aplikacija pokrene, morate započeti inicijalni render. Framework-ovi i sandbox-ovi često skrivaju ovaj kod, ali se on pokreće pozivanjem [`createRoot`](/reference/react-dom/client/createRoot) nad željenim DOM čvorom, a nakon toga i pozivanjem `render` metode sa vašom komponentom:
 
 <Sandpack>
 
@@ -55,7 +55,7 @@ export default function Image() {
   return (
     <img
       src="https://i.imgur.com/ZF6s192.jpg"
-      alt="'Floralis Genérica' by Eduardo Catalano: a gigantic metallic flower sculpture with reflective petals"
+      alt="'Floralis Genérica' napravio Eduardo Catalano: ogromna metalik skulptura cveta sa reflektujućim laticama"
     />
   );
 }
@@ -63,28 +63,28 @@ export default function Image() {
 
 </Sandpack>
 
-Try commenting out the `root.render()` call and see the component disappear!
+Zakomentarišite `root.render()` poziv i vidite kako će komponenta nestati!
 
-### Re-renders when state updates {/*re-renders-when-state-updates*/}
+### Ponovni renderi kad se state ažurira {/*re-renders-when-state-updates*/}
 
-Once the component has been initially rendered, you can trigger further renders by updating its state with the [`set` function.](/reference/react/useState#setstate) Updating your component's state automatically queues a render. (You can imagine these as a restaurant guest ordering tea, dessert, and all sorts of things after putting in their first order, depending on the state of their thirst or hunger.)
+Kada je komponenta inicijalno renderovana, možete pokrenuti naredne rendere ažuriranjem state-a pomoću [`set` funkcije](/reference/react/useState#setstate). Ažuriranjem state-a vaše komponente automatski stavljate render u red čekanja. (Ovo možete zamisliti kao da gost restorana poručuje čaj, dezert i ostale stvari nakon prve porudžbine, u zavisnosti od state-a žeđi i gladi.)
 
 <IllustrationBlock sequential>
-  <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. They patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
-  <Illustration caption="...triggers..." alt="React returns to the Component Kitchen and tells the Card Chef they need a pink Card." src="/images/docs/illustrations/i_rerender2.png" />
-  <Illustration caption="...render!" alt="The Card Chef gives React the pink Card." src="/images/docs/illustrations/i_rerender3.png" />
+  <Illustration caption="Ažuriranje state-a..." alt="React kao konobar u restoranu, servira Card UI korisniku, koji je predstavljen kao čovek sa kursorom na glavi. Korisnik izražava da želi roze karticu, a ne crnu!" src="/images/docs/illustrations/i_rerender1.png" />
+  <Illustration caption="...pokreće..." alt="React se vraća u Kitchen komponentu i kaže šefu kuhinje za Card da mu treba roze Card." src="/images/docs/illustrations/i_rerender2.png" />
+  <Illustration caption="...render!" alt="Šef kuhinje za Card daje React-u roze Card." src="/images/docs/illustrations/i_rerender3.png" />
 </IllustrationBlock>
 
-## Step 2: React renders your components {/*step-2-react-renders-your-components*/}
+## Korak 2: React renderuje vaše komponente {/*step-2-react-renders-your-components*/}
 
-After you trigger a render, React calls your components to figure out what to display on screen. **"Rendering" is React calling your components.**
+Kada pokrenete render, React poziva vaše komponente da shvati šta da prikaže na ekranu. **"Renderovanje" je zapravo React-ovo pozivanje vaših komponenata.**
 
-* **On initial render,** React will call the root component.
-* **For subsequent renders,** React will call the function component whose state update triggered the render.
+* **Pri inicijalnom renderu**, React će pozvati root komponentu.
+* **Za naredne rendere**, React će pozvati funkciju komponente čije ažuriranje state-a je pokrenulo render.
 
-This process is recursive: if the updated component returns some other component, React will render _that_ component next, and if that component also returns something, it will render _that_ component next, and so on. The process will continue until there are no more nested components and React knows exactly what should be displayed on screen.
+Ovaj proces je rekurzivan: ako ažurirana komponenta vrati drugu komponentu, React će renderovati _tu drugu_ komponentu, a ako ta komponenta takođe nešto vrati, renderovaće _to nešto_ sledeće, i tako dalje. Proces će se nastaviti dok god postoje ugnježdene komponente i React zna tačno šta treba biti prikazano na ekranu.
 
-In the following example, React will call `Gallery()` and  `Image()` several times:
+U narednom primeru, React će pozvati `Gallery()` i `Image()` nekoliko puta:
 
 <Sandpack>
 
@@ -92,7 +92,7 @@ In the following example, React will call `Gallery()` and  `Image()` several tim
 export default function Gallery() {
   return (
     <section>
-      <h1>Inspiring Sculptures</h1>
+      <h1>Inspirativne skulpture</h1>
       <Image />
       <Image />
       <Image />
@@ -104,7 +104,7 @@ function Image() {
   return (
     <img
       src="https://i.imgur.com/ZF6s192.jpg"
-      alt="'Floralis Genérica' by Eduardo Catalano: a gigantic metallic flower sculpture with reflective petals"
+      alt="'Floralis Genérica' napravio Eduardo Catalano: ogromna metalik skulptura cveta sa reflektujućim laticama"
     />
   );
 }
@@ -124,36 +124,36 @@ img { margin: 0 10px 10px 0; }
 
 </Sandpack>
 
-* **During the initial render,** React will [create the DOM nodes](https://developer.mozilla.org/docs/Web/API/Document/createElement) for `<section>`, `<h1>`, and three `<img>` tags. 
-* **During a re-render,** React will calculate which of their properties, if any, have changed since the previous render. It won't do anything with that information until the next step, the commit phase.
+* **Tokom inicijalnog rendera** React će [kreirati DOM čvorove](https://developer.mozilla.org/docs/Web/API/Document/createElement) za `<section>`, `<h1>` i tri `<img>` tag-a. 
+* **Tokom ponovnog rendera** React će izračunati koja od njihovih polja (ili nijedno) su se promenila od prethodnog rendera. Neće uraditi ništa sa tom informacijom do narednog koraka, commit faze.
 
 <Pitfall>
 
-Rendering must always be a [pure calculation](/learn/keeping-components-pure):
+Renderovanje mora uvek biti [čist proračun](/learn/keeping-components-pure):
 
-* **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. (When someone orders a salad with tomatoes, they should not receive a salad with onions!)
-* **It minds its own business.** It should not change any objects or variables that existed before rendering. (One order should not change anyone else's order.)
+* **Isti input-i, isti rezultat.** Dobijanjem istih input-a, komponenta treba uvek da vrati isti JSX. (Kada neko poruči salatu sa paradajzom, ne bi trebao da dobije salatu sa lukom!)
+* **Gleda samo svoja posla.** Ne bi trebalo da menja nikakve objekte ili promenljive koji su postojali pre renderovanja. (Jedna porudžbina ne bi trebala da menja bilo koju drugu porudžbinu.)
 
-Otherwise, you can encounter confusing bugs and unpredictable behavior as your codebase grows in complexity. When developing in "Strict Mode", React calls each component's function twice, which can help surface mistakes caused by impure functions.
+U suprotnom, naići ćete na zbunjujuće bug-ove i nepredvidivo ponašanje dok se kompleksnost na vašem projektu povećava. U toku razvoja sa "Strict Mode", React poziva funkciju svake komponente dvaput, što može pomoći da se uoče greške prouzrokovane nečistim funkcijama.
 
 </Pitfall>
 
 <DeepDive>
 
-#### Optimizing performance {/*optimizing-performance*/}
+#### Optimizacija performansi {/*optimizing-performance*/}
 
-The default behavior of rendering all components nested within the updated component is not optimal for performance if the updated component is very high in the tree. If you run into a performance issue, there are several opt-in ways to solve it described in the [Performance](https://reactjs.org/docs/optimizing-performance.html) section. **Don't optimize prematurely!**
+Default ponašanje renderovanja svih komponenti ugnježdenih u ažuriranu komponentu nije optimalno za performanse ako je ažurirana komponenta dosta visoko u stablu. Ako naiđete na problem sa performansama, postoji nekoliko opcija da to rešite opisanih u sekciji [Performanse](https://reactjs.org/docs/optimizing-performance.html). **Nemojte optimizovati prerano!**
 
 </DeepDive>
 
-## Step 3: React commits changes to the DOM {/*step-3-react-commits-changes-to-the-dom*/}
+## Korak 3: React commit-uje promene na DOM {/*step-3-react-commits-changes-to-the-dom*/}
 
-After rendering (calling) your components, React will modify the DOM. 
+Nakon renderovanja (pozivanja) vaših komponenata, React će izmeniti DOM.
 
-* **For the initial render,** React will use the [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API to put all the DOM nodes it has created on screen. 
-* **For re-renders,** React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
+* **Za inicijalni render**, React će koristiti [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API da postavi sve DOM čvorove koje je kreirao na ekran.
+* **Za ponovne rendere**, React će primeniti minimum neophodnih operacija (izračunatih tokom renderovanja!) da bi učinio da se DOM poklapa sa najnovijim rezultatom renderovanja.
 
-**React only changes the DOM nodes if there's a difference between renders.** For example, here is a component that re-renders with different props passed from its parent every second. Notice how you can add some text into the `<input>`, updating its `value`, but the text doesn't disappear when the component re-renders:
+**React menja DOM čvorove samo ako postoji razlika između rendera.** Na primer, ovde je komponenta koja se ponovo renderuje sa drugačijim props-ima koje dobija od roditelja svake sekunde. Primetite da možete dodati tekst u `<input>`, menjajući `value`, i da taj tekst neće nestati kad se komponenta ponovo renderuje:
 
 <Sandpack>
 
@@ -193,21 +193,21 @@ export default function App() {
 
 </Sandpack>
 
-This works because during this last step, React only updates the content of `<h1>` with the new `time`. It sees that the `<input>` appears in the JSX in the same place as last time, so React doesn't touch the `<input>`—or its `value`!
-## Epilogue: Browser paint {/*epilogue-browser-paint*/}
+Ovo radi jer tokom poslednjeg koraka, React jedino ažurira sadržaj `<h1>` sa novim `time`. On vidi da se `<input>` pojavljuje u JSX-u na istom mestu kao prethodni put, pa React ne dira `<input>`—niti njegov `value`!
+## Epilog: Browser slikarstvo {/*epilogue-browser-paint*/}
 
-After rendering is done and React updated the DOM, the browser will repaint the screen. Although this process is known as "browser rendering", we'll refer to it as "painting" to avoid confusion throughout the docs.
+Nakon što se renderovanje završi i React ažurira DOM, browser će ponovo oslikati ekran. Iako je ovaj proces poznat kao "browser renderovanje", mi ćemo ga osloviti sa "slikarstvo" da bi izbegli zabunu kroz dokumentaciju.
 
-<Illustration alt="A browser painting 'still life with card element'." src="/images/docs/illustrations/i_browser-paint.png" />
+<Illustration alt="Browser slika 'mrtva priroda sa elementom kartice'." src="/images/docs/illustrations/i_browser-paint.png" />
 
 <Recap>
 
-* Any screen update in a React app happens in three steps:
-  1. Trigger
+* Svako ažuriranje ekrana u React aplikaciji se dešava u tri faze:
+  1. Pokretanje
   2. Render
   3. Commit
-* You can use Strict Mode to find mistakes in your components
-* React does not touch the DOM if the rendering result is the same as last time
+* Možete koristiti Strict Mode da pronađete greške u komponentama
+* React ne dira DOM ako je rezultat renderovanja isti kao prethodni put
 
 </Recap>
 

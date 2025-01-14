@@ -235,18 +235,18 @@ Pročitajte **[State: Memorija Component-e](/learn/state-a-components-memory)** 
 
 ## Render i commit {/*render-and-commit*/}
 
-Pre nego što se vaše component-e prikažu na ekranu, React mora da ih render-uje. Razumevanje koraka u ovom procesu pomoći će vam da razmislite o tome kako se vaš kod izvršava i da objasnite njegovo ponašanje.
+Pre nego što se vaše component-e prikažu na ekranu, React mora da ih renderuje. Razumevanje koraka u ovom procesu pomoći će vam da razmislite o tome kako se vaš kod izvršava i da objasnite njegovo ponašanje.
 
-Zamislite da su vaše component-e kuvari u kuhinji, koji pripremaju ukusna jela od sastojaka. U ovom scenariju, React je konobar koji prenosi narudžbine od gostiju i donosi im njihova jela. Ovaj proces naručivanja i posluživanja UI-a ima tri koraka:
+Zamislite da su vaše component-e kuvari u kuhinji, koji pripremaju ukusna jela od sastojaka. U ovom scenariju, React je konobar koji prenosi porudžbine od gostiju i donosi im njihova jela. Ovaj proces poručivanja i posluživanja UI-a ima tri koraka:
 
-1. **Pokretanje** render-a (prenos narudžbine gosta u kuhinju)
-2. **Render-ovanje** component-e (priprema narudžbine u kuhinji)
-3. **Commit-ovanje** u DOM (postavljanje narudžbine na sto)
+1. **Pokretanje** rendera (prenos porudžbine gosta u kuhinju)
+2. **Renderovanje** component-e (priprema porudžbine u kuhinji)
+3. **Commit-ovanje** u DOM (postavljanje porudžbine na sto)
 
 <IllustrationBlock sequential>
-  <Illustration caption="Trigger" alt="React kao konobar u restoranu, prenosi narudžbine od korisnika i dostavlja ih u Component-u Kitchen." src="/images/docs/illustrations/i_render-and-commit1.png" />
+  <Illustration caption="Pokretanje" alt="React kao konobar u restoranu, prenosi porudžbine od korisnika i dostavlja ih u Kitchen Component-u." src="/images/docs/illustrations/i_render-and-commit1.png" />
   <Illustration caption="Render" alt="Šef kuhinje za Card daje React-u svežu Card component-u." src="/images/docs/illustrations/i_render-and-commit2.png" />
-  <Illustration caption="Commit" alt="React donosi Card korisniku za njihov sto." src="/images/docs/illustrations/i_render-and-commit3.png" />
+  <Illustration caption="Commit" alt="React donosi Card korisniku za njegov sto." src="/images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
 
 <LearnMore path="/learn/render-and-commit">
