@@ -57,12 +57,13 @@ Onda dodajte ove linije koda na vrh vašeg glavnog JavaScript fajla (možda se z
 
 <Sandpack>
 
-```html index.html hidden
+```html public/index.html hidden
 <!DOCTYPE html>
 <html>
   <head><title>Moja Aplikacija</title></head>
   <body>
     <!-- Your existing page content (in this example, it gets replaced) -->
+    <div id="root"></div>
   </body>
 </html>
 ```
@@ -121,7 +122,7 @@ Ovo vam omogućava da pronađete taj HTML element sa [`document.getElementById`]
 
 <Sandpack>
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html>
   <head><title>Moja Aplikacija</title></head>
