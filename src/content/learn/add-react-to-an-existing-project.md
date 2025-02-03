@@ -45,7 +45,11 @@ Modularno JavaScript okruženje vam omogućava da pišete vaše React komponente
 
 * **Ako je vaša stranica već podeljena u fajlove koji koriste `import` naredbe,** pokušajte da koristite to podešavanje. Proverite da li pisanje `<div />` u vašem JS kodu izaziva sintaksnu grešku. Ako izaziva sintaksnu grešku, možda ćete morati da [transformišete vaš JS kod sa Babel-om](https://babeljs.io/setup) i omogućite [Babel React preset](https://babeljs.io/docs/babel-preset-react) da biste koristili JSX.
 
+<<<<<<< HEAD
 * **Ako vaša stranica nema postojeće podešavanje za kompajliranje JavaScript modula,** postavite ga sa [Vite-om](https://vitejs.dev/). Vite zajednica održava [mnoge integracije sa backend framework-ovima](<https://github.com/vitejs/awesome-vite#integrations-with-backends>), ukjučujući Rails, Django i Laravel. Ako vaš backend framework nije na listi, [pratite ovaj vodič](https://vitejs.dev/guide/backend-integration.html) da biste ručno integrisali Vite build-ove sa vašim backend-om.
+=======
+* **If your app doesn't have an existing setup for compiling JavaScript modules,** set it up with [Vite](https://vite.dev/). The Vite community maintains [many integrations with backend frameworks](https://github.com/vitejs/awesome-vite#integrations-with-backends), including Rails, Django, and Laravel. If your backend framework is not listed, [follow this guide](https://vite.dev/guide/backend-integration.html) to manually integrate Vite builds with your backend.
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 Da proverite da li vaše podešavanje radi, pokrenite ovu komandu u folderu vašeg projekta:
 
@@ -85,7 +89,11 @@ Ako je celi sadržaj vaše stranice zamenjen sa "Zdravo, svete!", sve je uspelo!
 
 <Note>
 
+<<<<<<< HEAD
 Integracija modularnog JavaScript okruženja u postojeći projekat može da izgleda zastrašujuće, ali vredi! Ako zapnete, probajte naš [community resources](/community) ili [Vite Chat](https://chat.vitejs.dev/).
+=======
+Integrating a modular JavaScript environment into an existing project for the first time can feel intimidating, but it's worth it! If you get stuck, try our [community resources](/community) or the [Vite Chat](https://chat.vite.dev/).
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 </Note>
 

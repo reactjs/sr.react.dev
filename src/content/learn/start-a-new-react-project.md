@@ -27,7 +27,11 @@ Evo i zašto.
 
 **React framework-ovi na ovoj stranici rešavaju probleme kao što su ovi automatski, bez dodatnog posla sa vaše strane.** Oni vam omogućavaju da počnete veoma jednostavno i da onda skalirate vašu aplikaciju sa vašim potrebama. Svaki React framework ima zajednicu, tako da je lakše naći odgovore na pitanja i nadograditi alate. Framework-ovi takođe daju strukturu vašem kodu, pomažući i vama i drugima da zadržite kontekst i veštine između različitih projekata. Nasuprot tome, sa custom setup-om je lakše zaglaviti se na nepodržanim verzijama zavisnosti i na kraju ćete zapravo kreirati vaš sopstveni framework--iako bez zajednice ili putanje za nadogradnju (i ako je išta kao oni koje smo pravili u prošlosti, više haotično dizajnirani).
 
+<<<<<<< HEAD
 Ako vaša aplikacija ima neobične zahteve koji nisu dobro podržani od strane ovih framework-ova ili preferirate da rešavate probleme samostalno, možete da napravite vaš sopstveni custom setup sa React-om. Uzmite `react` i `react-dom` sa npm-a, napravite vaš custom build proces sa bundler-om kao što je [Vite](https://vitejs.dev/) ili [Parcel](https://parceljs.org/), i dodajte druge alate kada vam budu potrebni za rutiranje, statičku generaciju ili server-side rendering, i tako dalje.
+=======
+If your app has unusual constraints not served well by these frameworks, or you prefer to solve these problems yourself, you can roll your own custom setup with React. Grab `react` and `react-dom` from npm, set up your custom build process with a bundler like [Vite](https://vite.dev/) or [Parcel](https://parceljs.org/), and add other tools as you need them for routing, static generation or server-side rendering, and more.
+>>>>>>> 6fc98fffdaad3b84e6093d1eb8def8f2cedeee16
 
 </DeepDive>
 
