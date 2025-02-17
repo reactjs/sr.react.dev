@@ -32,11 +32,11 @@ Većina stranica u React dokumentaciji sadrži sandbox-e kao ovaj. Van React dok
 
 Da isprobate React lokalno na vašem računaru, [preuzmite ovu HTML stranicu](https://gist.githubusercontent.com/gaearon/0275b1e1518599bbeafcde4722e79ed1/raw/db72dcbf3384ee1708c4a07d3be79860db04bff0/example.html). Otvorite je u vašem editoru i u vašem pretraživaču!
 
-## Kreiranje React aplikacije {/*creating-a-react-app*/}
+## Kreirajte React aplikacije {/*creating-a-react-app*/}
 
 Ako želite da napravite novu React aplikaciju, možete [kreirati React aplikaciju](/learn/creating-a-react-app) promoću preporučenog framework-a.
 
-## Napraviti React framework {/*build-a-react-framework*/}
+## Napravite React framework {/*build-a-react-framework*/}
 
 Ako framework nije pogodan za vaš projekat, ili želite da započnete sa pravljenjem sopstvenog framework-a, možete [napraviti sopstveni React framework](/learn/building-a-react-framework).
 
