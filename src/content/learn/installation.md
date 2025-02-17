@@ -34,7 +34,7 @@ Da isprobate React lokalno na vašem računaru, [preuzmite ovu HTML stranicu](ht
 
 ## Kreirajte React aplikacije {/*creating-a-react-app*/}
 
-Ako želite da napravite novu React aplikaciju, možete [kreirati React aplikaciju](/learn/creating-a-react-app) promoću preporučenog framework-a.
+Ako želite da napravite novu React aplikaciju, možete [kreirati React aplikaciju](/learn/creating-a-react-app) pomoću preporučenog framework-a.
 
 ## Napravite React framework {/*build-a-react-framework*/}
 
@@ -48,7 +48,7 @@ Ako žeite da isprobate React na vašem postojećem sajtu ili aplikaciji, možet
 
 ### Create React App (Deprecated) {/*create-react-app-deprecated*/}
 
-Create React App je deprecated alat, koji je ranije bio preporučen za kreiranje novih React aplikacija. Ako želite da napravite novu React aplikaciju, možete [kreirati React aplikaciju](/learn/creating-a-react-app) promoću preporučenog framework-a.
+Create React App je deprecated alat, koji je ranije bio preporučen za kreiranje novih React aplikacija. Ako želite da napravite novu React aplikaciju, možete [kreirati React aplikaciju](/learn/creating-a-react-app) pomoću preporučenog framework-a.
 
 Za više informacija, pogledajte [Gašenje Create React App](/blog/2025/02/14/sunsetting-create-react-app).
 
