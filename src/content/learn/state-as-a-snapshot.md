@@ -1,27 +1,27 @@
 ---
-title: State as a Snapshot
+title: State kao snapshot
 ---
 
 <Intro>
 
-State variables might look like regular JavaScript variables that you can read and write to. However, state behaves more like a snapshot. Setting it does not change the state variable you already have, but instead triggers a re-render.
+State promenljive mogu ličiti na obične JavaScript promenljive koje možete čitati i menjati. Međutim, state se ponaša više kao snapshot. Njegovo postavljanje ne menja već postojeću state promenljivu, već pokreće ponovni render.
 
 </Intro>
 
 <YouWillLearn>
 
-* How setting state triggers re-renders
-* When and how state updates
-* Why state does not update immediately after you set it
-* How event handlers access a "snapshot" of the state
+* Kako postavljanje state-a pokreće ponovne rendere
+* Kada i kako se state ažurira
+* Zašto se state ne ažurira čim ga postavite
+* Kako event handler-i pristupaju "snapshot-u" state-a
 
 </YouWillLearn>
 
-## Setting state triggers renders {/*setting-state-triggers-renders*/}
+## Postavljanje state-a pokreće rendere {/*setting-state-triggers-renders*/}
 
-You might think of your user interface as changing directly in response to the user event like a click. In React, it works a little differently from this mental model. On the previous page, you saw that [setting state requests a re-render](/learn/render-and-commit#step-1-trigger-a-render) from React. This means that for an interface to react to the event, you need to *update the state*.
+Možda biste pomislili da se korisnički interfejs menja odmah nakon korisničkog event-a poput klika. U React-u, stvari funkcionišu malo drugačije od toga. Na prethodnoj stranici videli ste da [postavljanje state-a traži ponovni render](/learn/render-and-commit#step-1-trigger-a-render) od React-a. Ovo znači da trebate *ažurirati state* kako bi interfejs odreagovao na event.
 
-In this example, when you press "send", `setIsSent(true)` tells React to re-render the UI:
+U ovom primeru, kada pritisnete "Pošalji", `setIsSent(true)` kaže React-u da ponovo renderuje UI:
 
 <Sandpack>
 
@@ -30,9 +30,9 @@ import { useState } from 'react';
 
 export default function Form() {
   const [isSent, setIsSent] = useState(false);
-  const [message, setMessage] = useState('Hi!');
+  const [message, setMessage] = useState('Ćao!');
   if (isSent) {
-    return <h1>Your message is on its way!</h1>
+    return <h1>Vaša poruka je na putu!</h1>
   }
   return (
     <form onSubmit={(e) => {
@@ -41,11 +41,11 @@ export default function Form() {
       sendMessage(message);
     }}>
       <textarea
-        placeholder="Message"
+        placeholder="Poruka"
         value={message}
         onChange={e => setMessage(e.target.value)}
       />
-      <button type="submit">Send</button>
+      <button type="submit">Pošalji</button>
     </form>
   );
 }
@@ -61,43 +61,43 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-Here's what happens when you click the button:
+Evo šta se desi kada kliknete na dugme:
 
-1. The `onSubmit` event handler executes.
-2. `setIsSent(true)` sets `isSent` to `true` and queues a new render.
-3. React re-renders the component according to the new `isSent` value.
+1. Izvrši se `onSubmit` event handler.
+2. `setIsSent(true)` postavi `isSent` na `true` i postavi novi render u red čekanja.
+3. React ponovo renderuje komponentu u skladu sa novom vrednošću za `isSent`.
 
-Let's take a closer look at the relationship between state and rendering.
+Hajde da detaljnije pogledamo vezu između state-a i renderovanja.
 
-## Rendering takes a snapshot in time {/*rendering-takes-a-snapshot-in-time*/}
+## Renderovanje uzima snapshot u vremenu {/*rendering-takes-a-snapshot-in-time*/}
 
-["Rendering"](/learn/render-and-commit#step-2-react-renders-your-components) means that React is calling your component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated **using its state at the time of the render.**
+["Renderovanje"](/learn/render-and-commit#step-2-react-renders-your-components) znači da React poziva vašu komponentu, koja je funkcija. JSX koji se vrati iz te funkcije je kao snapshot UI-a u vremenu. Svi props-i, event handler-i i lokalne promenljive su izračunati **na osnosu state-a u trenutku rendera**.
 
-Unlike a photograph or a movie frame, the UI "snapshot" you return is interactive. It includes logic like event handlers that specify what happens in response to inputs. React updates the screen to match this snapshot and connects the event handlers. As a result, pressing a button will trigger the click handler from your JSX.
+Za razliku od fotografije ili filmskog kadra, UI "snapshot" koji vraćate je interaktivan. Uključena je logika poput event handler-a koja specificira šta će se desiti kao rezultat input-a. React ažurira prikaz da odgovara tom snapshot-u i povezuje event handler-e. Kao rezultat, pritiskom na dugme pokrenuće se handler za klik u vašem JSX-u.
 
-When React re-renders a component:
+Kada React ponovo renderuje komponentu:
 
-1. React calls your function again.
-2. Your function returns a new JSX snapshot.
-3. React then updates the screen to match the snapshot your function returned.
-
-<IllustrationBlock sequential>
-    <Illustration caption="React executing the function" src="/images/docs/illustrations/i_render1.png" />
-    <Illustration caption="Calculating the snapshot" src="/images/docs/illustrations/i_render2.png" />
-    <Illustration caption="Updating the DOM tree" src="/images/docs/illustrations/i_render3.png" />
-</IllustrationBlock>
-
-As a component's memory, state is not like a regular variable that disappears after your function returns. State actually "lives" in React itself--as if on a shelf!--outside of your function. When React calls your component, it gives you a snapshot of the state for that particular render. Your component returns a snapshot of the UI with a fresh set of props and event handlers in its JSX, all calculated **using the state values from that render!**
+1. React poziva vašu funkciju ponovo.
+2. Funkcija vraća novi JSX snapshot.
+3. React onda ažurira prikaz ekrana da odgovara snapshot-u koji je funkcija vratila.
 
 <IllustrationBlock sequential>
-  <Illustration caption="You tell React to update the state" src="/images/docs/illustrations/i_state-snapshot1.png" />
-  <Illustration caption="React updates the state value" src="/images/docs/illustrations/i_state-snapshot2.png" />
-  <Illustration caption="React passes a snapshot of the state value into the component" src="/images/docs/illustrations/i_state-snapshot3.png" />
+    <Illustration caption="React izvršava funkciju" src="/images/docs/illustrations/i_render1.png" />
+    <Illustration caption="Računanje snapshot-a" src="/images/docs/illustrations/i_render2.png" />
+    <Illustration caption="Ažuriranje DOM stabla" src="/images/docs/illustrations/i_render3.png" />
 </IllustrationBlock>
 
-Here's a little experiment to show you how this works. In this example, you might expect that clicking the "+3" button would increment the counter three times because it calls `setNumber(number + 1)` three times.
+Kao memorija komponente, state nije kao obična promenljiva koja nestane nakon što se funkcija završi. State zapravo "živi" unutar samog React-a--kao na polici!--izvan vaše funkcije. Kada React poziva vašu komponentu, daje vam snapshot state-a za taj određeni render. Vaša komponenta vrati snapshot UI-a sa novim setom props-a i event handler-a unutar JSX-a, gde su svi izračunati **na osnosu state-a iz tog rendera**!
 
-See what happens when you click the "+3" button:
+<IllustrationBlock sequential>
+  <Illustration caption="Kažete React-u da ažurira state" src="/images/docs/illustrations/i_state-snapshot1.png" />
+  <Illustration caption="React ažurira state vrednost" src="/images/docs/illustrations/i_state-snapshot2.png" />
+  <Illustration caption="React prosleđuje snapshot state-a u komponentu" src="/images/docs/illustrations/i_state-snapshot3.png" />
+</IllustrationBlock>
+
+Evo malog eksperimenta da vam pokažemo kako ovo radi. U ovom primeru, mogli biste očekivati da će klik na "+3" dugme povećati brojač tri puta pošto se `setNumber(number + 1)` poziva tri puta.
+
+Pogledajte šta će se desiti klikom na "+3" dugme:
 
 <Sandpack>
 
@@ -127,9 +127,9 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Notice that `number` only increments once per click!
+Primetite da se `number` povećao jednom po kliku!
 
-**Setting state only changes it for the *next* render.** During the first render, `number` was `0`. This is why, in *that render's* `onClick` handler, the value of `number` is still `0` even after `setNumber(number + 1)` was called:
+**Postavljanje state-a ga menja samo za *naredni* render.** Tokom prvog rendera, `number` je bio `0`. Zato je, u `onClick` handler-u *tog rendera*, vrednost za `number` i dalje `0` nakon što je `setNumber(number + 1)` pozvan:
 
 ```js
 <button onClick={() => {
@@ -139,18 +139,18 @@ Notice that `number` only increments once per click!
 }}>+3</button>
 ```
 
-Here is what this button's click handler tells React to do:
+Evo šta klik handler ovog dugmeta govori React-u da uradi:
 
-1. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
-    - React prepares to change `number` to `1` on the next render.
-2. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
-    - React prepares to change `number` to `1` on the next render.
-3. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
-    - React prepares to change `number` to `1` on the next render.
+1. `setNumber(number + 1)`: `number` je `0` znači `setNumber(0 + 1)`.
+    - React priprema da promeni `number` na `1` u narednom renderu.
+2. `setNumber(number + 1)`: `number` je `0` znači `setNumber(0 + 1)`.
+    - React priprema da promeni `number` na `1` u narednom renderu.
+3. `setNumber(number + 1)`: `number` je `0` znači `setNumber(0 + 1)`.
+    - React priprema da promeni `number` na `1` u narednom renderu.
 
-Even though you called `setNumber(number + 1)` three times, in *this render's* event handler `number` is always `0`, so you set the state to `1` three times. This is why, after your event handler finishes, React re-renders the component with `number` equal to `1` rather than `3`.
+Iako ste pozvali `setNumber(number + 1)` tri puta, u event handler-u *ovog rendera* `number` je uvek `0`, pa ste postavili state na `1` tri puta. Zato, nakon što se event handler završi, React ponovo renderuje komponentu sa vrednošću `1` za `number`, umesto sa vrednošću `3`.
 
-You can also visualize this by mentally substituting state variables with their values in your code. Since the `number` state variable is `0` for *this render*, its event handler looks like this:
+Ovo možete zamisliti i zamenom state promenljivih sa njenim vrednostima. Pošto je `number` state promenljiva jednako `0` za *ovaj render*, njen event handler izgleda ovako:
 
 ```js
 <button onClick={() => {
@@ -160,7 +160,7 @@ You can also visualize this by mentally substituting state variables with their 
 }}>+3</button>
 ```
 
-For the next render, `number` is `1`, so *that render's* click handler looks like this:
+Za naredni render, `number` je `1`, pa klik handler *tog rendera* izgleda ovako:
 
 ```js
 <button onClick={() => {
@@ -170,11 +170,11 @@ For the next render, `number` is `1`, so *that render's* click handler looks lik
 }}>+3</button>
 ```
 
-This is why clicking the button again will set the counter to `2`, then to `3` on the next click, and so on.
+Zbog toga će ponovno kliktanje na dugme postaviti brojač na `2`, pa na `3` i tako dalje.
 
-## State over time {/*state-over-time*/}
+## State tokom vremena {/*state-over-time*/}
 
-Well, that was fun. Try to guess what clicking this button will alert:
+Pa, to je bilo zabavno. Probajte pogoditi šta će prikazati ovaj alert:
 
 <Sandpack>
 
@@ -203,14 +203,14 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-If you use the substitution method from before, you can guess that the alert shows "0":
+Ako iskoristite metod zamene od ranije, možete pogoditi da alert prikazuje "0":
 
 ```js
 setNumber(0 + 5);
 alert(0);
 ```
 
-But what if you put a timer on the alert, so it only fires _after_ the component re-rendered? Would it say "0" or "5"? Have a guess!
+Ali šta ako postavite tajmer za alert koji će se okinuti _nakon_ što se komponenta ponovo renderuje? Da li će biti "0" ili "5"? Pogodite!
 
 <Sandpack>
 
@@ -241,7 +241,7 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Surprised? If you use the substitution method, you can see the "snapshot" of the state passed to the alert.
+Iznenađeni? Ako iskoristite metod zamene, videćete da se "snapshot" state-a prosleđuje u alert.
 
 ```js
 setNumber(0 + 5);
@@ -250,16 +250,16 @@ setTimeout(() => {
 }, 3000);
 ```
 
-The state stored in React may have changed by the time the alert runs, but it was scheduled using a snapshot of the state at the time the user interacted with it!
+State sačuvan u React-u se možda promenio u trenutku izvršavanja alert-a, ali je bio zakazan koristeći snapshot state-a u trenutku kada je korisnik interagovao sa njim!
 
-**A state variable's value never changes within a render,** even if its event handler's code is asynchronous. Inside *that render's* `onClick`, the value of `number` continues to be `0` even after `setNumber(number + 5)` was called. Its value was "fixed" when React "took the snapshot" of the UI by calling your component.
+**Vrednost state promenljive se nikad ne menja unutar rendera**, čak iako je kod u event handler-u asinhron. Unutar `onClick`-a *tog rendera*, vrednost `number` nastavlja da bude `0` i nakon što je `setNumber(number + 5)` pozvano. Ta vrednost je "fiksirana" kada je React "napravio snapshot" UI-a pozivajući vašu komponentu.
 
-Here is an example of how that makes your event handlers less prone to timing mistakes. Below is a form that sends a message with a five-second delay. Imagine this scenario:
+Evo primera kako to smanjuje mogućnost grešaka u tajmingu u event handler-ima. Ispod je forma koja šalje poruku sa pet sekundi zakašnjenja. Zamislite ovaj scenario:
 
-1. You press the "Send" button, sending "Hello" to Alice.
-2. Before the five-second delay ends, you change the value of the "To" field to "Bob".
+1. Pritisnete "Pošalji" i šaljete "Zdravo" osobi Alice.
+2. Pre nego što istekne pet sekundi, promenite vrednost u polju "Za" na "Bob".
 
-What do you expect the `alert` to display? Would it display, "You said Hello to Alice"? Or would it display, "You said Hello to Bob"? Make a guess based on what you know, and then try it:
+Šta očekujete da će `alert` prikazati? Da li će prikazati "Rekli ste Zdravo osobi Alice"? Ili će prikazati "Rekli ste Zdravo osobi Bob"? Pokušajte da pogodite na osnovu onoga što znate, a onda isprobajte:
 
 <Sandpack>
 
@@ -268,19 +268,19 @@ import { useState } from 'react';
 
 export default function Form() {
   const [to, setTo] = useState('Alice');
-  const [message, setMessage] = useState('Hello');
+  const [message, setMessage] = useState('Zdravo');
 
   function handleSubmit(e) {
     e.preventDefault();
     setTimeout(() => {
-      alert(`You said ${message} to ${to}`);
+      alert(`Rekli ste ${message} osobi ${to}`);
     }, 5000);
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        To:{' '}
+        Za:{' '}
         <select
           value={to}
           onChange={e => setTo(e.target.value)}>
@@ -293,7 +293,7 @@ export default function Form() {
         value={message}
         onChange={e => setMessage(e.target.value)}
       />
-      <button type="submit">Send</button>
+      <button type="submit">Pošalji</button>
     </form>
   );
 }
@@ -305,19 +305,19 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-**React keeps the state values "fixed" within one render's event handlers.** You don't need to worry whether the state has changed while the code is running.
+**React zadržava state vrednosti "fiksiranim" unutar event handler-a jednog rendera.** Ne trebate brinuti da li se state promenio tokom izvršavanja koda.
 
-But what if you wanted to read the latest state before a re-render? You'll want to use a [state updater function](/learn/queueing-a-series-of-state-updates), covered on the next page!
+Ali, šta ako želite da pročitate najnoviji state pre ponovnog rendera? Želećete da koristite [funkciju za ažuriranje state-a](/learn/queueing-a-series-of-state-updates) koju smo pokrili na narednoj stranici!
 
 <Recap>
 
-* Setting state requests a new render.
-* React stores state outside of your component, as if on a shelf.
-* When you call `useState`, React gives you a snapshot of the state *for that render*.
-* Variables and event handlers don't "survive" re-renders. Every render has its own event handlers.
-* Every render (and functions inside it) will always "see" the snapshot of the state that React gave to *that* render.
-* You can mentally substitute state in event handlers, similarly to how you think about the rendered JSX.
-* Event handlers created in the past have the state values from the render in which they were created.
+* Postavljanje state-a traži novi render.
+* React čuva state izvan komponente, kao da je na polici.
+* Kada pozovete `useState`, React vam daje snapshot state-a *za taj render*.
+* Promenljive i event handler-i ne "preživljavaju" ponovne rendere. Svaki render ima svoje event handler-e.
+* Svaki render (i funkcije unutar njega) će uvek "videti" snapshot state-a koji je React dao za *taj* render.
+* Možete zamisliti zamenu state-a u event handler-ima slično kao što zamišljate renderovan JSX.
+* Event handler-i kreirani u prošlosti imaju state vrednosti iz rendera u kom su kreirani.
 
 </Recap>
 
@@ -325,9 +325,9 @@ But what if you wanted to read the latest state before a re-render? You'll want 
 
 <Challenges>
 
-#### Implement a traffic light {/*implement-a-traffic-light*/}
+#### Implementirati semafor {/*implement-a-traffic-light*/}
 
-Here is a crosswalk light component that toggles when the button is pressed:
+Ovde je komponenta semafora za pešake koja menja svetlo kada se klikne dugme:
 
 <Sandpack>
 
@@ -344,12 +344,12 @@ export default function TrafficLight() {
   return (
     <>
       <button onClick={handleClick}>
-        Change to {walk ? 'Stop' : 'Walk'}
+        Promeni na {walk ? 'Stani' : 'Hodaj'}
       </button>
       <h1 style={{
         color: walk ? 'darkgreen' : 'darkred'
       }}>
-        {walk ? 'Walk' : 'Stop'}
+        {walk ? 'Hodaj' : 'Stani'}
       </h1>
     </>
   );
@@ -362,13 +362,13 @@ h1 { margin-top: 20px; }
 
 </Sandpack>
 
-Add an `alert` to the click handler. When the light is green and says "Walk", clicking the button should say "Stop is next". When the light is red and says "Stop", clicking the button should say "Walk is next".
+Dodajte `alert` u klik handler. Kada je svetlo zeleno i kaže "Hodaj", klikom na dugme treba se prikazati "Naredno je Stani". Kada je svetlo crveno i kaže "Stani", klikom na dugme treba se prikazati "Naredno je Hodaj".
 
-Does it make a difference whether you put the `alert` before or after the `setWalk` call?
+Ima li razlike ako postavite `alert` pre ili posle `setWalk` poziva?
 
 <Solution>
 
-Your `alert` should look like this:
+Vaš `alert` bi trebao ovako da izgleda:
 
 <Sandpack>
 
@@ -380,18 +380,18 @@ export default function TrafficLight() {
 
   function handleClick() {
     setWalk(!walk);
-    alert(walk ? 'Stop is next' : 'Walk is next');
+    alert(walk ? 'Naredno je Stani' : 'Naredno je Hodaj');
   }
 
   return (
     <>
       <button onClick={handleClick}>
-        Change to {walk ? 'Stop' : 'Walk'}
+        Promeni na {walk ? 'Stani' : 'Hodaj'}
       </button>
       <h1 style={{
         color: walk ? 'darkgreen' : 'darkred'
       }}>
-        {walk ? 'Walk' : 'Stop'}
+        {walk ? 'Hodaj' : 'Stani'}
       </h1>
     </>
   );
@@ -404,31 +404,31 @@ h1 { margin-top: 20px; }
 
 </Sandpack>
 
-Whether you put it before or after the `setWalk` call makes no difference. That render's value of `walk` is fixed. Calling `setWalk` will only change it for the *next* render, but will not affect the event handler from the previous render.
+Nema razlike ako ga postavite pre ili posle `setWalk` poziva. Vrednost `walk`-a u tom renderu je fiksirana. Pozivanje `setWalk` će je promeniti samo za *naredni* render, ali neće uticati na event handler iz prethodnog rendera.
 
-This line might seem counter-intuitive at first:
+Ova linija može delovati kontraintuitivno na prvu loptu:
 
 ```js
-alert(walk ? 'Stop is next' : 'Walk is next');
+alert(walk ? 'Naredno je Stani' : 'Naredno je Hodaj');
 ```
 
-But it makes sense if you read it as: "If the traffic light shows 'Walk now', the message should say 'Stop is next.'" The `walk` variable inside your event handler matches that render's value of `walk` and does not change.
+Ali ima smisla ako je ovako čitate: "Ako semafor pokazuje 'Hodaj', poruka treba biti 'Naredno je Stani'". `walk` promenljiva unutar event handler-a odgovara vrednosti `walk`-a za taj render i ne menja se.
 
-You can verify that this is correct by applying the substitution method. When `walk` is `true`, you get:
+Možete potvrditi da je ovo tačno primenom metode zamene. Kada je `walk` jednako `true`, onda je:
 
 ```js
 <button onClick={() => {
   setWalk(false);
-  alert('Stop is next');
+  alert('Naredno je Stani');
 }}>
-  Change to Stop
+  Promeni na Stani
 </button>
 <h1 style={{color: 'darkgreen'}}>
-  Walk
+  Hodaj
 </h1>
 ```
 
-So clicking "Change to Stop" queues a render with `walk` set to `false`, and alerts "Stop is next".
+Klikom na "Promeni na Stani" stavljate render sa `walk` koji iznosi `false` u red čekanja i prikazujete "Naredno je Stani".
 
 </Solution>
 
