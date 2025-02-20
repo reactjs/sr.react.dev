@@ -257,12 +257,12 @@ Pročitajte **[Render i Commit](/learn/render-and-commit)** kako biste naučili 
 
 ## State kao snapshot {/*state-as-a-snapshot*/}
 
-Za razliku od običnih JavaScript varijabli, React state se ponaša više kao snapshot. Njegovo postavljanje ne menja već postojeću state varijablu, već umesto toga pokreće re-render. Ovo može biti iznenađujuće na početku!
+Za razliku od običnih JavaScript varijabli, React state se ponaša više kao snapshot. Njegovo postavljanje ne menja već postojeću state varijablu, već pokreće ponovni render. Ovo može biti iznenađujuće na početku!
 
 ```js
 console.log(count);  // 0
-setCount(count + 1); // Request a re-render with 1
-console.log(count);  // Still 0!
+setCount(count + 1); // Zatraži ponovni render sa 1
+console.log(count);  // I dalje 0!
 ```
 
 Ovo ponašanje vam pomaže da izbegnete suptilne greške. Evo male aplikacije za ćaskanje. Pokušajte da pogodite šta će se desiti ako prvo pritisnete "Pošalji", a *zatim* promenite primaoca na Bob. Čije ime će se pojaviti u `alert` pet sekundi kasnije?
@@ -313,7 +313,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 <LearnMore path="/learn/state-as-a-snapshot">
 
-Pročitajte **[State kao Snapshot](/learn/state-as-a-snapshot)** da biste saznali zašto state izgleda "fiksno" i nepromenljivo unutar event handler-a.
+Pročitajte **[State kao snapshot](/learn/state-as-a-snapshot)** da biste saznali zašto state izgleda "fiksno" i nepromenljivo unutar event handler-a.
 
 </LearnMore>
 
