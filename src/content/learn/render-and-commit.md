@@ -70,15 +70,9 @@ Zakomentarišite `root.render()` poziv i vidite kako će komponenta nestati!
 Kada je komponenta inicijalno renderovana, možete pokrenuti naredne rendere ažuriranjem state-a pomoću [`set` funkcije](/reference/react/useState#setstate). Ažuriranjem state-a vaše komponente automatski stavljate render u red čekanja. (Ovo možete zamisliti kao da gost restorana poručuje čaj, dezert i ostale stvari nakon prve porudžbine, u zavisnosti od state-a žeđi i gladi.)
 
 <IllustrationBlock sequential>
-<<<<<<< HEAD
   <Illustration caption="Ažuriranje state-a..." alt="React kao konobar u restoranu, servira Card UI korisniku, koji je predstavljen kao čovek sa kursorom na glavi. Korisnik izražava da želi roze karticu, a ne crnu!" src="/images/docs/illustrations/i_rerender1.png" />
   <Illustration caption="...pokreće..." alt="React se vraća u Kitchen komponentu i kaže šefu kuhinje za Card da mu treba roze Card." src="/images/docs/illustrations/i_rerender2.png" />
   <Illustration caption="...render!" alt="Šef kuhinje za Card daje React-u roze Card." src="/images/docs/illustrations/i_rerender3.png" />
-=======
-  <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. The patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
-  <Illustration caption="...triggers..." alt="React returns to the Component Kitchen and tells the Card Chef they need a pink Card." src="/images/docs/illustrations/i_rerender2.png" />
-  <Illustration caption="...render!" alt="The Card Chef gives React the pink Card." src="/images/docs/illustrations/i_rerender3.png" />
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
 </IllustrationBlock>
 
 ## Korak 2: React renderuje vaše komponente {/*step-2-react-renders-your-components*/}
@@ -90,11 +84,7 @@ Kada pokrenete render, React poziva vaše komponente da shvati šta da prikaže 
 
 Ovaj proces je rekurzivan: ako ažurirana komponenta vrati drugu komponentu, React će renderovati _tu drugu_ komponentu, a ako ta komponenta takođe nešto vrati, renderovaće _to nešto_ sledeće, i tako dalje. Proces će se nastaviti dok god postoje ugnježdene komponente i React zna tačno šta treba biti prikazano na ekranu.
 
-<<<<<<< HEAD
 U narednom primeru, React će pozvati `Gallery()` i `Image()` nekoliko puta:
-=======
-In the following example, React will call `Gallery()` and `Image()` several times:
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 <Sandpack>
 
@@ -158,17 +148,10 @@ Default ponašanje renderovanja svih komponenti ugnježdenih u ažuriranu kompon
 
 ## Korak 3: React commit-uje promene na DOM {/*step-3-react-commits-changes-to-the-dom*/}
 
-<<<<<<< HEAD
 Nakon renderovanja (pozivanja) vaših komponenata, React će izmeniti DOM.
 
 * **Za inicijalni render**, React će koristiti [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API da postavi sve DOM čvorove koje je kreirao na ekran.
 * **Za ponovne rendere**, React će primeniti minimum neophodnih operacija (izračunatih tokom renderovanja!) da bi učinio da se DOM poklapa sa najnovijim rezultatom renderovanja.
-=======
-After rendering (calling) your components, React will modify the DOM.
-
-* **For the initial render,** React will use the [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API to put all the DOM nodes it has created on screen.
-* **For re-renders,** React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 **React menja DOM čvorove samo ako postoji razlika između rendera.** Na primer, ovde je komponenta koja se ponovo renderuje sa drugačijim props-ima koje dobija od roditelja svake sekunde. Primetite da možete dodati tekst u `<input>`, menjajući `value`, i da taj tekst neće nestati kad se komponenta ponovo renderuje:
 
