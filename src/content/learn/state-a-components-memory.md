@@ -1452,11 +1452,7 @@ Ako je vaš linter [konfigurisan za React](/learn/editor-setup#linting), trebali
 
 #### Ukloniti nepotreban state {/*remove-unnecessary-state*/}
 
-<<<<<<< HEAD
-Kada se klikne dugme, ovaj primer treba pitati korisnika da unese ime, a onda da prikaže alert koji ga pozdravlja. Pokušali ste da koristite state da čuvate ime, ali iz nekog razloga uvek se prikazuje "Zdravo, !".
-=======
-When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason the first time it shows "Hello, !", and then "Hello, [name]!" with the previous input every time after.
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
+Kada se klikne dugme, ovaj primer treba pitati korisnika da unese ime, a onda da prikaže alert koji ga pozdravlja. Pokušali ste da koristite state da čuvate ime, ali iz nekog razloga prvi put se prikazuje "Zdravo, !", a svaki sledeći put se prikazuje "Zdravo, [ime]!" sa prethodnim input-om.
 
 Da biste popravili kod, uklonite nepotrebnu state promenljivu. (Diskutovaćemo zašto [ovo nije radilo](/learn/state-as-a-snapshot) kasnije.)
 

@@ -36,38 +36,22 @@ Da isprobate React lokalno na vašem računaru, [preuzmite ovu HTML stranicu](ht
 
 Ako želite da napravite novu React aplikaciju, možete [kreirati React aplikaciju](/learn/creating-a-react-app) pomoću preporučenog framework-a.
 
-<<<<<<< HEAD
-## Napravite React framework {/*build-a-react-framework*/}
+## Napravite React aplikaciju od nule {/*build-a-react-app-from-scratch*/}
 
-Ako framework nije pogodan za vaš projekat, ili želite da započnete sa pravljenjem sopstvenog framework-a, možete [napraviti sopstveni React framework](/learn/building-a-react-framework).
-=======
-## Build a React App from Scratch {/*build-a-react-app-from-scratch*/}
-
-If a framework is not a good fit for your project, you prefer to build your own framework, or you just want to learn the basics of a React app you can [build a React app from scratch](/learn/build-a-react-app-from-scratch).
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
+Ako framework nije pogodan za vaš projekat, ako želite da napravite sopstveni framework, ili samo želite naučiti osnove React aplikacija, možete [napraviti React aplikaciju od nule](/learn/build-a-react-app-from-scratch).
 
 ## Dodajte React u postojeći projekat {/*add-react-to-an-existing-project*/}
 
 Ako želite da isprobate React na vašem postojećem sajtu ili aplikaciji, možete [dodati React u postojeći projekat](/learn/add-react-to-an-existing-project).
 
-<<<<<<< HEAD
-## Deprecated opcije {/*deprecated-options*/}
-=======
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 <Note>
 
-<<<<<<< HEAD
-Create React App je deprecated alat, koji je ranije bio preporučen za kreiranje novih React aplikacija. Ako želite da napravite novu React aplikaciju, možete [kreirati React aplikaciju](/learn/creating-a-react-app) pomoću preporučenog framework-a.
+#### Da li trebam koristiti Create React App? {/*should-i-use-create-react-app*/}
 
-Za više informacija, pogledajte [Gašenje Create React App](/blog/2025/02/14/sunsetting-create-react-app).
-=======
-#### Should I use Create React App? {/*should-i-use-create-react-app*/}
-
-No. Create React App has been deprecated. For more information, see [Sunsetting Create React App](/blog/2025/02/14/sunsetting-create-react-app).
+Ne. Create React App je deprecated. Za više informacija, pogledajte [Gašenje Create React App](/blog/2025/02/14/sunsetting-create-react-app).
 
 </Note>
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 ## Sledeći koraci {/*next-steps*/}
 

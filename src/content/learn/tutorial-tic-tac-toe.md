@@ -295,11 +295,7 @@ export default function Square() {
 }
 ```
 
-<<<<<<< HEAD
 Sekcija *browser* bi trebalo da prikazuje kvadrat sa X u njemu ovako:
-=======
-The _browser_ section should be displaying a square with an X in it like this:
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 ![kvadrat sa X](../images/tutorial/x-filled-square.png)
 
@@ -921,7 +917,7 @@ Za rad u lokalnom okruženju, React DevTools je dostupan kao ekstenzija za [Chro
 
 Do ovog trenutka, imate sve osnovne građevinske blokove za vašu iks-oks igru. Da biste je kompletirali, potrebno da naizmenično postavljate "X" i "O" na tablu, i potreban vam je način da odredite pobednika.
 
-### Podizanje state-a  {/*lifting-state-up*/}
+### Podizanje state-a {/*lifting-state-up*/}
 
 Trenutno svaka `Square` component-a čuva deo state-a igre. Da bi se proverilo ko je pobednik u igri iks-oks, `Board` bi morao nekako da zna state svake od 9 `Square` component-i.
 
@@ -1329,11 +1325,7 @@ Sumirajmo šta se dešava kada korisnik klikne na gornji levi kvadrat na vašoj 
 2. Funkcija `handleClick` koristi argument (`0`) da update-uje prvi element array-a `squares` sa `null` na `X`.
 3. State `squares` iz `Board` component-e se update-uje, pa se `Board` i sve njene child component-e ponovo renderuju. Ovo izaziva promenu `value` prop-a component-e `Square` sa indeksom `0` iz `null` u `X`.
 
-<<<<<<< HEAD
 Na kraju, korisnik vidi da se gornji levi kvadrat promenio iz praznog u kvadrat sa `X` nakon što je kliknuo na njega.
-=======
-In the end the user sees that the upper left square has changed from empty to having an `X` after clicking it.
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 <Note>
 
@@ -1414,11 +1406,7 @@ Ali čekajte, postoji problem. Pokušajte da kliknete na isti kvadrat više puta
 
 `X` je prepisan sa `O`! Iako bi ovo moglo dodati veoma zanimljiv preokret igri, za sada ćemo se držati originalnih pravila.
 
-<<<<<<< HEAD
 Kada označite kvadrat sa `X` ili `O`, ne proveravate prvo da li kvadrat već ima vrednost `X` ili `O`. Ovo možete popraviti tako što ćete *ranije izaći* iz funkcije. Proverićete da li kvadrat već ima vrednost `X` ili `O`. Ako je kvadrat već popunjen, u funkciji `handleClick` vratićete se rano pomoću `return`—pre nego što funkcija pokuša da update-uje state table.
-=======
-When you mark a square with an `X` or an `O` you aren't first checking to see if the square already has an `X` or `O` value. You can fix this by *returning early*. You'll check to see if the square already has an `X` or an `O`. If the square is already filled, you will `return` in the `handleClick` function early--before it tries to update the board state.
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 ```js {2,3,4}
 function handleClick(i) {
@@ -1568,11 +1556,7 @@ Nije važno da li definišete `calculateWinner` pre ili posle `Board` component-
 
 </Note>
 
-<<<<<<< HEAD
 Pozvaćete `calculateWinner(squares)` u funkciji `handleClick` unutar `Board` component-e kako biste proverili da li je neki igrač pobedio. Ovu proveru možete obaviti istovremeno kada proveravate da li je korisnik kliknuo na kvadrat koji već ima `X` ili `O`. Želeli bismo da se u oba slučaja funkcija završi ranije:
-=======
-You will call `calculateWinner(squares)` in the `Board` component's `handleClick` function to check if a player has won. You can perform this check at the same time you check if a user has clicked a square that already has an `X` or an `O`. We'd like to return early in both cases:
->>>>>>> fc29603434ec04621139738f4740caed89d659a7
 
 ```js {2}
 function handleClick(i) {
