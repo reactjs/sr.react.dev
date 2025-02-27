@@ -317,7 +317,7 @@ Pročitajte **[State kao snapshot](/learn/state-as-a-snapshot)** da biste saznal
 
 </LearnMore>
 
-## Redosled serijskih update-ova state-a {/*queueing-a-series-of-state-updates*/}
+## Redosled serijskih ažuriranja state-a {/*queueing-a-series-of-state-updates*/}
 
 Ova component-a ima grešku: klikom na dugme "+3" rezultat se povećava samo jednom.
 
@@ -353,7 +353,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 </Sandpack>
 
-[State kao Snapshot](/learn/state-as-a-snapshot) objašnjava zašto se ovo dešava. Postavljanje state-a traži novo render-ovanje, ali ne menja njegovu vrednost u kodu koji se već izvršava. Tako `score` nastavlja da ima vrednost `0` odmah nakon što pozovete `setScore(score + 1)`.
+[State kao snapshot](/learn/state-as-a-snapshot) objašnjava zašto se ovo dešava. Postavljanje state-a traži novo render-ovanje, ali ne menja njegovu vrednost u kodu koji se već izvršava. Tako `score` nastavlja da ima vrednost `0` odmah nakon što pozovete `setScore(score + 1)`.
 
 ```js
 console.log(score);  // 0
@@ -401,7 +401,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 <LearnMore path="/learn/queueing-a-series-of-state-updates">
 
-Pročitajte **Redosled serije state update-ova](/learn/queueing-a-series-of-state-updates)** kako biste naučili kako da postavite redosled update-ova state-a.
+Pročitajte **[Redosled serijskih ažuriranja state-a](/learn/queueing-a-series-of-state-updates)** kako biste naučili kako da postavite redosled update-ova state-a.
 
 </LearnMore>
 

@@ -1,23 +1,23 @@
 ---
-title: Queueing a Series of State Updates
+title: Redosled serijskih ažuriranja state-a
 ---
 
 <Intro>
 
-Setting a state variable will queue another render. But sometimes you might want to perform multiple operations on the value before queueing the next render. To do this, it helps to understand how React batches state updates.
+Postavljanje state promenljive će staviti novi render u red čekanja. Ali, ponekad želite izvršiti više operacija nad promenljivom pre zakazivanja narednog rendera. Da biste to uradili, potrebno je razumeti kako React batch-uje ažuriranja state-a.
 
 </Intro>
 
 <YouWillLearn>
 
-* What "batching" is and how React uses it to process multiple state updates
-* How to apply several updates to the same state variable in a row
+* Šta je "batch-ovanje" i kako ga React koristi da procesira više ažuriranja state-a
+* Kako da primenite više ažuriranja u nizu na jednu promenljivu state-a
 
 </YouWillLearn>
 
-## React batches state updates {/*react-batches-state-updates*/}
+## React batch-uje ažuriranja state-a {/*react-batches-state-updates*/}
 
-You might expect that clicking the "+3" button will increment the counter three times because it calls `setNumber(number + 1)` three times:
+Očekivali biste da klikom na dugme "+3" brojač bude inkrementiran tri puta jer se `setNumber(number + 1)` poziva tri puta:
 
 <Sandpack>
 
@@ -47,7 +47,7 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-However, as you might recall from the previous section, [each render's state values are fixed](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time), so the value of `number` inside the first render's event handler is always `0`, no matter how many times you call `setNumber(1)`:
+Međutim, kao što se verovatno sećate iz prethodne sekcije, [vrednosti state-a su fiksirane za svaki render](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time), pa je vrednost za `number` u event handler-u prvog rendera uvek `0`, nevezano od toga koliko puta pozovete `setNumber(1)`:
 
 ```js
 setNumber(0 + 1);
@@ -55,21 +55,21 @@ setNumber(0 + 1);
 setNumber(0 + 1);
 ```
 
-But there is one other factor at play here. **React waits until *all* code in the event handlers has run before processing your state updates.** This is why the re-render only happens *after* all these `setNumber()` calls.
+Ali, ovde postoji još jedan faktor. **React čeka da se *sav* kod u event handler-ima izvrši pre nego što procesira ažuriranja state-a.** Zato se ponovni render jedino dešava *nakon* svih `setNumber()` poziva.
 
-This might remind you of a waiter taking an order at the restaurant. A waiter doesn't run to the kitchen at the mention of your first dish! Instead, they let you finish your order, let you make changes to it, and even take orders from other people at the table.
+Ovo vas može podsetiti na konobara koji uzima porudžbinu u restoranu. Konobar ne trči u kuhinju nakon što pomenete prvo jelo! Umesto toga, dopušta vam da završite porudžbinu, da je promenite, a čak uzima i porudžbine od drugih ljudi za stolom.
 
-<Illustration src="/images/docs/illustrations/i_react-batching.png"  alt="An elegant cursor at a restaurant places and order multiple times with React, playing the part of the waiter. After she calls setState() multiple times, the waiter writes down the last one she requested as her final order." />
+<Illustration src="/images/docs/illustrations/i_react-batching.png" alt="Elegantni kursor u restoranu poručuje više puta pomoću React-a, koji igra ulogu konobara. Nakon što više puta pozove setState(), konobar upisuje poslednje što je poručeno, kao konačnu porudžbinu." />
 
-This lets you update multiple state variables--even from multiple components--without triggering too many [re-renders.](/learn/render-and-commit#re-renders-when-state-updates) But this also means that the UI won't be updated until _after_ your event handler, and any code in it, completes. This behavior, also known as **batching,** makes your React app run much faster. It also avoids dealing with confusing "half-finished" renders where only some of the variables have been updated.
+Ovo vam omogućava da ažurirate više state promenljivih--čak i iz različitih komponenata--bez okidanja previše [ponovnih rendera](/learn/render-and-commit#re-renders-when-state-updates). Ali, to takođe znači da UI neće biti ažuriran _sve dok_ se event handler i sav kod unutra ne izvrši. Ovo ponašanje, poznatije kao **batch-ovanje**, čini vašu React aplikaciju mnogo bržom. Takođe, izbegava se obrada zbunjujućih "polu-završenih" rendera gde su samo neke promenljive ažurirane.
 
-**React does not batch across *multiple* intentional events like clicks**--each click is handled separately. Rest assured that React only does batching when it's generally safe to do. This ensures that, for example, if the first button click disables a form, the second click would not submit it again.
+**React ne radi batch-ovanje *više* namernih event-ova poput klikova**--svaki klik se obrađuje zasebno. Budite uvereni da React radi batch-ovanje samo kada je to sigurno. Ovo osigurava da se, na primer, ako prvi klik dugmeta onemogućuje formu, spreči da drugi klik uradi submit ponovo.
 
-## Updating the same state multiple times before the next render {/*updating-the-same-state-multiple-times-before-the-next-render*/}
+## Ažuriranje istog state-a više puta pre narednog rendera {/*updating-the-same-state-multiple-times-before-the-next-render*/}
 
-It is an uncommon use case, but if you would like to update the same state variable multiple times before the next render, instead of passing the *next state value* like `setNumber(number + 1)`, you can pass a *function* that calculates the next state based on the previous one in the queue, like `setNumber(n => n + 1)`. It is a way to tell React to "do something with the state value" instead of just replacing it.
+Ovo je neuobičajen slučaj, ali ako biste želeli da ažurirate istu state promenljivu više puta pre narednog rendera, umesto da prosledite *narednu state vrednost* poput `setNumber(number + 1)`, možete proslediti *funkciju* koja računa naredni state na osnovu prethodnog u redu čekanja, poput `setNumber(n => n + 1)`. Ovo je način da kažete React-u da "uradi nešto sa vrednosti state-a" umesto da je samo zameni.
 
-Try incrementing the counter now:
+Probajte sada da inkrementirate brojač:
 
 <Sandpack>
 
@@ -99,10 +99,10 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Here, `n => n + 1` is called an **updater function.** When you pass it to a state setter:
+Ovde, `n => n + 1` se naziva **updater funkcija**. Kada je prosledite u setter za state:
 
-1. React queues this function to be processed after all the other code in the event handler has run.
-2. During the next render, React goes through the queue and gives you the final updated state.
+1. React postavlja ovu funkciju u red čekanja da bi bila procesirana nakon što se sav ostali kod u event handler-u izvrši.
+2. Tokom narednog rendera, React prolazi kroz red čekanja i daje vam konačni ažurirani state.
 
 ```js
 setNumber(n => n + 1);
@@ -110,26 +110,27 @@ setNumber(n => n + 1);
 setNumber(n => n + 1);
 ```
 
-Here's how React works through these lines of code while executing the event handler:
+Evo kako React tumači ove linije koda dok izvršava event handler:
 
-1. `setNumber(n => n + 1)`: `n => n + 1` is a function. React adds it to a queue.
-1. `setNumber(n => n + 1)`: `n => n + 1` is a function. React adds it to a queue.
-1. `setNumber(n => n + 1)`: `n => n + 1` is a function. React adds it to a queue.
+1. `setNumber(n => n + 1)`: `n => n + 1` je funkcija. React je dodaje u red čekanja.
+1. `setNumber(n => n + 1)`: `n => n + 1` je funkcija. React je dodaje u red čekanja.
+1. `setNumber(n => n + 1)`: `n => n + 1` je funkcija. React je dodaje u red čekanja.
 
-When you call `useState` during the next render, React goes through the queue. The previous `number` state was `0`, so that's what React passes to the first updater function as the `n` argument. Then React takes the return value of your previous updater function and passes it to the next updater as `n`, and so on:
+Kada se pozove `useState` tokom narednog rendera, React prolazi kroz red čekanja. Prethodni `number` state je bio `0`, pa je to ono što React prosleđuje u prvu updater funkciju kao argument `n`. Nakon toga, React uzima povratnu vrednost prethodne updater funkcije i prosleđuje je u narednu updater funkciju kao `n`, i tako dalje:
 
-|  queued update | `n` | returns |
-|--------------|---------|-----|
-| `n => n + 1` | `0` | `0 + 1 = 1` |
-| `n => n + 1` | `1` | `1 + 1 = 2` |
-| `n => n + 1` | `2` | `2 + 1 = 3` |
+| ažuriranje u redu čekanja | `n` | povratna vrednost |
+|-----                      |-----|-----              |
+| `n => n + 1`              | `0` | `0 + 1 = 1`       |
+| `n => n + 1`              | `1` | `1 + 1 = 2`       |
+| `n => n + 1`              | `2` | `2 + 1 = 3`       |
 
-React stores `3` as the final result and returns it from `useState`.
+React čuva `3` kao konačan rezultat i vraća ga iz `useState`.
 
-This is why clicking "+3" in the above example correctly increments the value by 3.
-### What happens if you update state after replacing it {/*what-happens-if-you-update-state-after-replacing-it*/}
+Zato se, klikom na "+3" u primeru iznad, vrednost ispravno inkrementira za 3.
 
-What about this event handler? What do you think `number` will be in the next render?
+### Šta se dešava ako ažurirate state nakon što ga zamenite {/*what-happens-if-you-update-state-after-replacing-it*/}
+
+Šta je sa ovim event handler-om? Šta mislite da će `number` biti u narednom renderu?
 
 ```js
 <button onClick={() => {
@@ -152,7 +153,7 @@ export default function Counter() {
       <button onClick={() => {
         setNumber(number + 5);
         setNumber(n => n + 1);
-      }}>Increase the number</button>
+      }}>Povećaj broj</button>
     </>
   )
 }
@@ -165,29 +166,29 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Here's what this event handler tells React to do:
+Evo šta ovaj event handler govori React-u da uradi:
 
-1. `setNumber(number + 5)`: `number` is `0`, so `setNumber(0 + 5)`. React adds *"replace with `5`"* to its queue.
-2. `setNumber(n => n + 1)`: `n => n + 1` is an updater function. React adds *that function* to its queue.
+1. `setNumber(number + 5)`: `number` je `0`, znači `setNumber(0 + 5)`. React dodaje *"zameni sa `5`"* u red čekanja.
+2. `setNumber(n => n + 1)`: `n => n + 1` je updater funkcija. React dodaje *tu funkciju* u red čekanja.
 
-During the next render, React goes through the state queue:
+Tokom narednog rendera React prolazi kroz red čekanja za state:
 
-|   queued update       | `n` | returns |
-|--------------|---------|-----|
-| "replace with `5`" | `0` (unused) | `5` |
-| `n => n + 1` | `5` | `5 + 1 = 6` |
+| ažuriranje u redu čekanja | `n`                  | povratna vrednost |
+|-----                      |-----                 |-----              |
+| "zameni sa `5`"           | `0` (neupotrebljeno) | `5`               |
+| `n => n + 1`              | `5`                  | `5 + 1 = 6`       |
 
-React stores `6` as the final result and returns it from `useState`. 
+React čuva `6` kao konačan rezultat i vraća ga iz `useState`.
 
 <Note>
 
-You may have noticed that `setState(5)` actually works like `setState(n => 5)`, but `n` is unused!
+Možda ste primetili da `setState(5)` zapravo radi kao `setState(n => 5)`, ali `n` nije upotrebljeno!
 
 </Note>
 
-### What happens if you replace state after updating it {/*what-happens-if-you-replace-state-after-updating-it*/}
+### Šta se dešava ako zamenite state nakon što ga ažurirate {/*what-happens-if-you-replace-state-after-updating-it*/}
 
-Let's try one more example. What do you think `number` will be in the next render?
+Hajde da probamo još jedan primer. Šta mislite da će `number` biti u narednom renderu?
 
 ```js
 <button onClick={() => {
@@ -212,7 +213,7 @@ export default function Counter() {
         setNumber(number + 5);
         setNumber(n => n + 1);
         setNumber(42);
-      }}>Increase the number</button>
+      }}>Povećaj broj</button>
     </>
   )
 }
@@ -225,32 +226,32 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Here's how React works through these lines of code while executing this event handler:
+Evo kako React tumači ove linije koda dok izvršava event handler:
 
-1. `setNumber(number + 5)`: `number` is `0`, so `setNumber(0 + 5)`. React adds *"replace with `5`"* to its queue.
-2. `setNumber(n => n + 1)`: `n => n + 1` is an updater function. React adds *that function* to its queue.
-3. `setNumber(42)`: React adds *"replace with `42`"* to its queue.
+1. `setNumber(number + 5)`: `number` je `0`, znači `setNumber(0 + 5)`. React dodaje *"zameni sa `5`"* u red čekanja.
+2. `setNumber(n => n + 1)`: `n => n + 1` je updater funkcija. React dodaje *tu funkciju* u red čekanja.
+3. `setNumber(42)`: React dodaje *"zameni sa `42`"* u red čekanja.
 
-During the next render, React goes through the state queue:
+Tokom narednog rendera React prolazi kroz red čekanja za state:
 
-|   queued update       | `n` | returns |
-|--------------|---------|-----|
-| "replace with `5`" | `0` (unused) | `5` |
-| `n => n + 1` | `5` | `5 + 1 = 6` |
-| "replace with `42`" | `6` (unused) | `42` |
+| ažuriranje u redu čekanja | `n`                  | povratna vrednost |
+|-----                      |-----                 |-----              |
+| "zameni sa `5`"           | `0` (neupotrebljeno) | `5`               |
+| `n => n + 1`              | `5`                  | `5 + 1 = 6`       |
+| "zameni sa  `42`"         | `6` (neupotrebljeno) | `42`              |
 
-Then React stores `42` as the final result and returns it from `useState`.
+React čuva `42` kao konačan rezultat i vraća ga iz `useState`.
 
-To summarize, here's how you can think of what you're passing to the `setNumber` state setter:
+Da sumiramo, evo kako možete razmišljati o onome što prosleđujete u `setNumber` setter za state:
 
-* **An updater function** (e.g. `n => n + 1`) gets added to the queue.
-* **Any other value** (e.g. number `5`) adds "replace with `5`" to the queue, ignoring what's already queued.
+* **Updater funkcija** (npr. `n => n + 1`) se dodaje u red čekanja.
+* **Bilo koja druga vrednost** (npr. broj `5`) dodaje "zameni sa `5`" u red čekanja, ignorišući ono što je već u tom redu.
 
-After the event handler completes, React will trigger a re-render. During the re-render, React will process the queue. Updater functions run during rendering, so **updater functions must be [pure](/learn/keeping-components-pure)** and only *return* the result. Don't try to set state from inside of them or run other side effects. In Strict Mode, React will run each updater function twice (but discard the second result) to help you find mistakes.
+Kada se event handler izvrši, React će pokrenuti ponovni render. Tokom ponovnog rendera, React će obraditi red čekanja. Updater funkcije se izvršavaju tokom renderovanja, što znači da **updater funkcije moraju biti [čiste](/learn/keeping-components-pure)** i da samo *vrate* rezultat. Nemojte pokušavati da postavite state unutar njih ili da izvršite druge propratne efekte. U Strict Mode-u, React će izvršiti svaku updater funkciju dvaput (ali će odbaciti rezultat druge) kako bi vam pomogao da pronađete greške.
 
-### Naming conventions {/*naming-conventions*/}
+### Konvencije imenovanja {/*naming-conventions*/}
 
-It's common to name the updater function argument by the first letters of the corresponding state variable:
+Uobičajeno je nazvati argument updater funkcije po prvim slovima odgovarajuće state promenljive:
 
 ```js
 setEnabled(e => !e);
@@ -258,13 +259,13 @@ setLastName(ln => ln.reverse());
 setFriendCount(fc => fc * 2);
 ```
 
-If you prefer more verbose code, another common convention is to repeat the full state variable name, like `setEnabled(enabled => !enabled)`, or to use a prefix like `setEnabled(prevEnabled => !prevEnabled)`.
+Ako preferirate opširniji kod, druga konvencija je ponavljanje punog imena state promenljive, poput `setEnabled(enabled => !enabled)`, ili da koristite prefiks, npr. `setEnabled(prevEnabled => !prevEnabled)`.
 
 <Recap>
 
-* Setting state does not change the variable in the existing render, but it requests a new render.
-* React processes state updates after event handlers have finished running. This is called batching.
-* To update some state multiple times in one event, you can use `setNumber(n => n + 1)` updater function.
+* Postavljanje state-a ne menja promenljivu u trenutnom renderu, ali zahteva novi render.
+* React procesira ažuriranje state-a nakon što su se event handler-i izvršili. Ovo se naziva batch-ovanje.
+* Da biste ažurirali neki state više puta u jednom event-u, možete koristiti `setNumber(n => n + 1)` updater funkciju.
 
 </Recap>
 
@@ -272,13 +273,13 @@ If you prefer more verbose code, another common convention is to repeat the full
 
 <Challenges>
 
-#### Fix a request counter {/*fix-a-request-counter*/}
+#### Popraviti broj zahteva {/*fix-a-request-counter*/}
 
-You're working on an art marketplace app that lets the user submit multiple orders for an art item at the same time. Each time the user presses the "Buy" button, the "Pending" counter should increase by one. After three seconds, the "Pending" counter should decrease, and the "Completed" counter should increase.
+Radite na aplikaciji za prodaju umetnosti koja omogućava korisniku da zatraži više porudžbina umetničkih predmeta istovremeno. Svaki put kada korisnik pritisne dugme "Kupi", brojač "Na čekanju" treba da se poveća za jedan. Nakon tri sekunde, brojač "Na čekanju" treba da se smanji, a brojač "Završeno" da se uveća.
 
-However, the "Pending" counter does not behave as intended. When you press "Buy", it decreases to `-1` (which should not be possible!). And if you click fast twice, both counters seem to behave unpredictably.
+Međutim, brojač "Na čekanju" se ne ponaša kao što bi trebalo. Nakon što kliknete "Kupi", smanji se na `-1` (što ne bi trebalo da je moguće!). Ako kliknete brzo dvaput, deluje da se oba brojača ponašaju nepredvidivo.
 
-Why does this happen? Fix both counters.
+Zašto se ovo dešava? Popravite oba brojača.
 
 <Sandpack>
 
@@ -299,13 +300,13 @@ export default function RequestTracker() {
   return (
     <>
       <h3>
-        Pending: {pending}
+        Na čekanju: {pending}
       </h3>
       <h3>
-        Completed: {completed}
+        Završeno: {completed}
       </h3>
       <button onClick={handleClick}>
-        Buy     
+        Kupi     
       </button>
     </>
   );
@@ -322,7 +323,7 @@ function delay(ms) {
 
 <Solution>
 
-Inside the `handleClick` event handler, the values of `pending` and `completed` correspond to what they were at the time of the click event. For the first render, `pending` was `0`, so `setPending(pending - 1)` becomes `setPending(-1)`, which is wrong. Since you want to *increment* or *decrement* the counters, rather than set them to a concrete value determined during the click, you can instead pass the updater functions:
+Unutar `handleClick` event handler-a, vrednosti `pending` i `completed` odgovaraju onome što su bili u trenutku klik event-a. Za prvi render, `pending` je bio `0`, pa `setPending(pending - 1)` postaje `setPending(-1)`, što je pogrešno. Pošto želite da *inkrementirate* ili *dekrementirate* brojače, možete proslediti updater funkcije, umesto da ih postavite na konkretnu vrednost određenu tokom klika:
 
 <Sandpack>
 
@@ -343,13 +344,13 @@ export default function RequestTracker() {
   return (
     <>
       <h3>
-        Pending: {pending}
+        Na čekanju: {pending}
       </h3>
       <h3>
-        Completed: {completed}
+        Završeno: {completed}
       </h3>
       <button onClick={handleClick}>
-        Buy     
+        Kupi     
       </button>
     </>
   );
@@ -364,23 +365,23 @@ function delay(ms) {
 
 </Sandpack>
 
-This ensures that when you increment or decrement a counter, you do it in relation to its *latest* state rather than what the state was at the time of the click.
+Ovo osigurava da kada inkrementirate ili dekrementirate brojač, to uradite u odnosu na *poslednji* state, umesto u odnosu na ono što je state bio u trenutku klika.
 
 </Solution>
 
-#### Implement the state queue yourself {/*implement-the-state-queue-yourself*/}
+#### Implementirati red čekanja za state samostalno {/*implement-the-state-queue-yourself*/}
 
-In this challenge, you will reimplement a tiny part of React from scratch! It's not as hard as it sounds.
+U ovom izazovu, ponovo ćete implementirati sitan deo React-a od nule! Nije tako teško kao što zvuči.
 
-Scroll through the sandbox preview. Notice that it shows **four test cases.** They correspond to the examples you've seen earlier on this page. Your task is to implement the `getFinalState` function so that it returns the correct result for each of those cases. If you implement it correctly, all four tests should pass.
+Scroll-ujte kroz sandbox prikaz. Primetite da obuhvata **četiri slučaja**. Oni odgovaraju primerima koje ste videli ranije na ovoj stranici. Vaš zadatak je da implementirate `getFinalState` funkciju tako da vraća ispravan rezultat u svim tim slučajevima. Ako je implementirate ispravno, sva četiri testa će proći.
 
-You will receive two arguments: `baseState` is the initial state (like `0`), and the `queue` is an array which contains a mix of numbers (like `5`) and updater functions (like `n => n + 1`) in the order they were added.
+Primate dva argumenta: `baseState` je inicijalni state (kao `0`), a `queue` je niz koji sadrži mešavinu brojeva (npr. `5`) i updater funkcija (npr. `n => n + 1`) u redosledu u kojem su dodati.
 
-Your task is to return the final state, just like the tables on this page show!
+Vaš zadatak je da vratite konačni state, kao što tabele na ovoj stranici pokazuju!
 
 <Hint>
 
-If you're feeling stuck, start with this code structure:
+Ako ste se zaglavili, počnite sa ovakvom strukturom:
 
 ```js
 export function getFinalState(baseState, queue) {
@@ -388,9 +389,9 @@ export function getFinalState(baseState, queue) {
 
   for (let update of queue) {
     if (typeof update === 'function') {
-      // TODO: apply the updater function
+      // TODO: primeni updater funkciju
     } else {
-      // TODO: replace the state
+      // TODO: zameni state
     }
   }
 
@@ -398,7 +399,7 @@ export function getFinalState(baseState, queue) {
 }
 ```
 
-Fill out the missing lines!
+Popunite nedostajuće linije!
 
 </Hint>
 
@@ -408,7 +409,7 @@ Fill out the missing lines!
 export function getFinalState(baseState, queue) {
   let finalState = baseState;
 
-  // TODO: do something with the queue...
+  // TODO: uradi nešto sa ovim nizom...
 
   return finalState;
 }
@@ -471,19 +472,19 @@ function TestCase({
   const actual = getFinalState(baseState, queue);
   return (
     <>
-      <p>Base state: <b>{baseState}</b></p>
-      <p>Queue: <b>[{queue.join(', ')}]</b></p>
-      <p>Expected result: <b>{expected}</b></p>
+      <p>Inicijalni state: <b>{baseState}</b></p>
+      <p>Niz: <b>[{queue.join(', ')}]</b></p>
+      <p>Očekivani rezultat: <b>{expected}</b></p>
       <p style={{
         color: actual === expected ?
           'green' :
           'red'
       }}>
-        Your result: <b>{actual}</b>
+        Vaš rezultat: <b>{actual}</b>
         {' '}
         ({actual === expected ?
-          'correct' :
-          'wrong'
+          'tačno' :
+          'netačno'
         })
       </p>
     </>
@@ -495,7 +496,7 @@ function TestCase({
 
 <Solution>
 
-This is the exact algorithm described on this page that React uses to calculate the final state:
+Ovo je tačan algoritan opisan na ovoj stranici koji React koristi da izračuna konačni state:
 
 <Sandpack>
 
@@ -505,10 +506,10 @@ export function getFinalState(baseState, queue) {
 
   for (let update of queue) {
     if (typeof update === 'function') {
-      // Apply the updater function.
+      // Primeni updater funkciju.
       finalState = update(finalState);
     } else {
-      // Replace the next state.
+      // Zameni naredni state.
       finalState = update;
     }
   }
@@ -574,19 +575,19 @@ function TestCase({
   const actual = getFinalState(baseState, queue);
   return (
     <>
-      <p>Base state: <b>{baseState}</b></p>
-      <p>Queue: <b>[{queue.join(', ')}]</b></p>
-      <p>Expected result: <b>{expected}</b></p>
+      <p>Inicijalni state: <b>{baseState}</b></p>
+      <p>Niz: <b>[{queue.join(', ')}]</b></p>
+      <p>Očekivani rezultat: <b>{expected}</b></p>
       <p style={{
         color: actual === expected ?
           'green' :
           'red'
       }}>
-        Your result: <b>{actual}</b>
+        Vaš rezultat: <b>{actual}</b>
         {' '}
         ({actual === expected ?
-          'correct' :
-          'wrong'
+          'tačno' :
+          'netačno'
         })
       </p>
     </>
@@ -596,7 +597,7 @@ function TestCase({
 
 </Sandpack>
 
-Now you know how this part of React works!
+Sada znate kako ovaj deo React-a radi!
 
 </Solution>
 
