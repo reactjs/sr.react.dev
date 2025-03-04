@@ -1,5 +1,5 @@
 ---
-title: Postavka Radnog okruženja (Editora)
+title: Postavka Radnog okruženja (Editor-a)
 ---
 
 <Intro>
@@ -17,7 +17,7 @@ Dobro kofigurisan editor može učiniti kod jasnijim za čitanje i bržim za pis
 
 ## Vaš editor {/*your-editor*/}
 
-[VS Code](https://code.visualstudio.com/) je jedan od najpopularnijih editora koji se koriste danas. Ima veliko tržište ekstenzija i dobro se integriše sa popularnim servisima kao što je GitHub. Većina funkcija navedenih ispod mogu se dodati u VS Code kao ekstenzije, što ga čini visoko konfigurabilnim!
+[VS Code](https://code.visualstudio.com/) je jedan od najpopularnijih editor-a koji se koriste danas. Ima veliko tržište ekstenzija i dobro se integriše sa popularnim servisima kao što je GitHub. Većina funkcija navedenih ispod mogu se dodati u VS Code kao ekstenzije, što ga čini visoko konfigurabilnim!
 
 Drugi popularni editori koji se koriste u React zajednici su:
 
@@ -25,7 +25,7 @@ Drugi popularni editori koji se koriste u React zajednici su:
 * [Sublime Text](https://www.sublimetext.com/) ima ugrađenu podršku za JSX i TypeScript, [podršku za sintaksu](https://stackoverflow.com/a/70960574/458193) i automatsko završavanje.
 * [Vim](https://www.vim.org/) je visoko konfigurabilan tekst editor napravljen da pravljenje i menjanje bilo kog tipa teksta bude veoma efikasno. Uključen je kao "vi" sa većinom UNIX sistema i sa Apple OS X.
 
-## Preporučene funkcije editora {/*recommended-editor-features*/}
+## Preporučene funkcije editor-a {/*recommended-editor-features*/}
 
 Neki editori dolaze sa ugrađenim funkcijama, dok drugi zahtevaju dodavanje ekstenzija. Proverite koje funkcije podržava vaš editor koji ste izabrali!
 
