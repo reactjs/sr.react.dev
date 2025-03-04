@@ -1,28 +1,28 @@
 ---
-title: Setup
+title: Postavke
 ---
 <Intro>
 
-React integrates with tools like editors, TypeScript, browser extensions, and compilers. This section will help you get your environment set up.
+React se integriše sa alatima poput radnih okruženja (editor-a), TypeScript-a, ekstenzijama za pretraživače i kompajlerima. Ova sekcija će vam pomoći da postavite vaše okruženje.
 
 </Intro>
 
-## Editor Setup {/*editor-setup*/}
+## Postavka Radnog okruženja (Editor-a) {/*editor-setup*/}
 
-See our [recommended editors](/learn/editor-setup) and learn how to set them up to work with React.
+Pogledajte [preporučene editor-e](/learn/editor-setup) i naučite kako da ih postavite da rade sa React-om.
 
-## Using TypeScript {/*using-typescript*/}
+## Upotreba TypeScript-a {/*using-typescript*/}
 
-TypeScript is a popular way to add type definitions to JavaScript codebases. [Learn how to integrate TypeScript into your React projects](/learn/typescript).
+TypeScript je popularan način za dodavanje definicija tipova u JavaScript kod. [Naučite kako da integrišete TypeScript u vaše React projekte](/learn/typescript).
 
 ## React Developer Tools {/*react-developer-tools*/}
 
-React Developer Tools is a browser extension that can inspect React components, edit props and state, and identify performance problems. Learn how to install it [here](learn/react-developer-tools).
+React Developer Tools je ekstenzija za pretraživač koja može da inspektuje React komponente, menja props-e i state, kao i da identifikuje probleme u performansama. Naučite kako da je instalirate [ovde](learn/react-developer-tools).
 
-## React Compiler {/*react-compiler*/}
+## React kompajler {/*react-compiler*/}
 
-React Compiler is a tool that automatically optimizes your React app. [Learn more](/learn/react-compiler).
+React kompajler je alat koji automatski optimizuje vašu React aplikaciju. [Saznajte više](/learn/react-compiler).
 
-## Next steps {/*next-steps*/}
+## Naredni koraci {/*next-steps*/}
 
-Head to the [Quick Start](/learn) guide for a tour of the most important React concepts you will encounter every day.
+Pogledajte sekciju [Brzi Uvod](/learn) kako biste naučili najbitnije koncepte u React-u koje ćete sretati svaki dan.
