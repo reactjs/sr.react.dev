@@ -1,94 +1,94 @@
 ---
-title: Creating a React App
+title: Kreiranje React aplikacije
 ---
 
 <Intro>
 
-If you want to build a new app or website with React, we recommend starting with a framework.
+Ako želite da napravite novu aplikaciju ili novi sajt koristeći React, preporučujemo da počnete sa framework-om.
 
 </Intro>
 
-If your app has constraints not well-served by existing frameworks, you prefer to build your own framework, or you just want to learn the basics of a React app, you can [build a React app from scratch](/learn/build-a-react-app-from-scratch).
+Ako vaša aplikacija ima ograničenja koja nisu dobro rešena u postojećim framework-ovima, ako želite da napravite sopstveni framework, ili samo želite naučiti osnove React aplikacija, možete [napraviti React aplikaciju od nule](/learn/build-a-react-app-from-scratch).
 
-## Full-stack frameworks {/*full-stack-frameworks*/}
+## Full-stack framework-ovi {/*full-stack-frameworks*/}
 
-These recommended frameworks support all the features you need to deploy and scale your app in production. They have integrated the latest React features and take advantage of React’s architecture.
+Ovi preporučeni framework-ovi podržavaju sve funkcionalnosti koje su vam potrebne za deploy i skaliranje aplikacija u produkciji. Integrisali su najnovije React funkcionalnosti i iskoristili prednosti React-ove arhitekture.
 
 <Note>
 
-#### Full-stack frameworks do not require a server. {/*react-frameworks-do-not-require-a-server*/}
+#### Full-stack framework-ovima nije potreban server. {/*react-frameworks-do-not-require-a-server*/}
 
-All the frameworks on this page support client-side rendering ([CSR](https://developer.mozilla.org/en-US/docs/Glossary/CSR)), single-page apps ([SPA](https://developer.mozilla.org/en-US/docs/Glossary/SPA)), and static-site generation ([SSG](https://developer.mozilla.org/en-US/docs/Glossary/SSG)). These apps can be deployed to a [CDN](https://developer.mozilla.org/en-US/docs/Glossary/CDN) or static hosting service without a server. Additionally, these frameworks allow you to add server-side rendering on a per-route basis, when it makes sense for your use case.
+Svi framework-ovi na ovoj stranici podržavaju renderovanje na klijentskoj strani ([CSR](https://developer.mozilla.org/en-US/docs/Glossary/CSR)), single-page aplikacije ([SPA](https://developer.mozilla.org/en-US/docs/Glossary/SPA)) i generisanje statičkih sajtova ([SSG](https://developer.mozilla.org/en-US/docs/Glossary/SSG)). Ove aplikacije se mogu deploy-ovati na [CDN](https://developer.mozilla.org/en-US/docs/Glossary/CDN) ili na statički hosting servis bez servera. Dodatno, ovi framework-ovi dozvoljavaju dodavanje renderovanja na serverskoj strani na nivou rute, ako vam je to zgodno za vašu aplikaciju.
 
-This allows you to start with a client-only app, and if your needs change later, you can opt-in to using server features on individual routes without rewriting your app. See your framework's documentation for configuring the rendering strategy.
+Ovo vam omogućava da počnete samo sa klijentskom aplikacijom, pa, ako vam kasnije zatreba, možete se odlučiti za upotrebu servera samo na određenim rutama bez ponovnog pisanja aplikacije. Pogledajte dokumentaciju framework-a za konfigurisanje strategije renderovanja.
 
 </Note>
 
 ### Next.js (App Router) {/*nextjs-app-router*/}
 
-**[Next.js's App Router](https://nextjs.org/docs) is a React framework that takes full advantage of React's architecture to enable full-stack React apps.**
+**[Next.js-ov App Router](https://nextjs.org/docs) je React framework koji u potpunosti koristi prednosti React-ove arhitekture kako bi omogućio full-stack React aplikacije.**
 
 <TerminalBlock>
 npx create-next-app@latest
 </TerminalBlock>
 
-Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any Node.js or serverless hosting, or to your own server. Next.js also supports [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) which doesn't require a server. Vercel additionally provides opt-in paid cloud services.
+Next.js je održavan od strane [Vercel-a](https://vercel.com/). Možete [deploy-ovati Next.js aplikaciju](https://nextjs.org/docs/app/building-your-application/deploying) na bilo koji Node.js ili serverless hosting, ili na vaš sopstveni server. Next.js takođe podržava [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) koji ne zahteva server. Vercel dodatno pruža i opcione cloud servise koji se plaćaju.
 
 ### React Router (v7) {/*react-router-v7*/}
 
-**[React Router](https://reactrouter.com/start/framework/installation) is the most popular routing library for React and can be paired with Vite to create a full-stack React framework**. It emphasizes standard Web APIs and has several [ready to deploy templates](https://github.com/remix-run/react-router-templates) for various JavaScript runtimes and platforms.
+**[React Router](https://reactrouter.com/start/framework/installation) je najpopularnija biblioteka za rutiranje u React-u i može se upariti sa Vite-om za pravljenje full-stack React framework-a.** On naglašava standardne Web API-je i ima nekoliko [deploy template-a spremnih za upotrebu](https://github.com/remix-run/react-router-templates) za različite JavaScript runtime-ove i platforme.
 
-To create a new React Router framework project, run:
+Da biste kreirali novi React Router framework projekat, pokrenite:
 
 <TerminalBlock>
 npx create-react-router@latest
 </TerminalBlock>
 
-React Router is maintained by [Shopify](https://www.shopify.com).
+[Shopify](https://www.shopify.com) održava React Router.
 
-### Expo (for native apps) {/*expo*/}
+### Expo (za native aplikacije) {/*expo*/}
 
-**[Expo](https://expo.dev/) is a React framework that lets you create universal Android, iOS, and web apps with truly native UIs.** It provides an SDK for [React Native](https://reactnative.dev/) that makes the native parts easier to use. To create a new Expo project, run:
+**[Expo](https://expo.dev/) je React framework koji vam omogućava da kreirate univerzalne Android, iOS i web aplikacije sa zaista native korisničkim interfejsima.** On pruža SDK za [React Native](https://reactnative.dev/) koji olakšava korišćenje native delova. Da biste kreirali novi Expo projekat, pokrenite:
 
 <TerminalBlock>
 npx create-expo-app@latest
 </TerminalBlock>
 
-If you're new to Expo, check out the [Expo tutorial](https://docs.expo.dev/tutorial/introduction/).
+Ako vam je Expo nepoznat, pogledajte [Expo tutorijal](https://docs.expo.dev/tutorial/introduction/).
 
-Expo is maintained by [Expo (the company)](https://expo.dev/about). Building apps with Expo is free, and you can submit them to the Google and Apple app stores without restrictions. Expo additionally provides opt-in paid cloud services.
+Expo je održavan od strane [Expo (kompanije)](https://expo.dev/about). Kreiranje aplikacija sa Expo-om je besplatno i možete ih submit-ovati na Google i Apple app store bez ograničenja. Expo dodatno pruža i opcione cloud servise koji se plaćaju.
 
 
-## Other frameworks {/*other-frameworks*/}
+## Ostali framework-ovi {/*other-frameworks*/}
 
-There are other up-and-coming frameworks that are working towards our full stack React vision:
+Postoji nekoliko nadolazećih framework-ova koji rade na našoj full stack React viziji:
 
-- [TanStack Start (Beta)](https://tanstack.com/): TanStack Start is a full-stack React framework powered by TanStack Router. It provides a full-document SSR, streaming, server functions, bundling, and more using tools like Nitro and Vite.
-- [RedwoodJS](https://redwoodjs.com/): Redwood is a full stack React framework with lots of pre-installed packages and configuration that makes it easy to build full-stack web applications.
+- [TanStack Start (Beta)](https://tanstack.com/): TanStack Start je full-stack React framework nastao zbog TanStack Router-a. Pruža renderovanje celih dokumenata na serverskoj strani, strimovanje, serverske funkcije, bundle-ovanje i još mnogo toga koristeći alate poput Nitro-a i Vite-a.
+- [RedwoodJS](https://redwoodjs.com/): Redwood je full stack React framework sa mnogo unapred instaliranih paketa i konfiguracija koje olakšavaju pravljenje full-stack web aplikacija.
 
 <DeepDive>
 
-#### Which features make up the React team’s full-stack architecture vision? {/*which-features-make-up-the-react-teams-full-stack-architecture-vision*/}
+#### Koje funkcionalnosti čine viziju full-stack arhitekture React-ovog tima? {/*which-features-make-up-the-react-teams-full-stack-architecture-vision*/}
 
-Next.js's App Router bundler fully implements the official [React Server Components specification](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md). This lets you mix build-time, server-only, and interactive components in a single React tree.
+Next.js-ov App Router bundler potpuno implementira zvaničnu [React Server Components specifikaciju](https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md). Ovo vam omogućava da pomešate komponente koje se izvršavaju tokom vremena izgradnje, komponente koje se izvršavaju samo na serveru i interaktivne komponente u jednom React stablu.
 
-For example, you can write a server-only React component as an `async` function that reads from a database or from a file. Then you can pass data down from it to your interactive components:
+Na primer, možete napisati server-only React komponentu kao `async` funkciju koja čita iz baze podataka ili iz fajla. Zatim, vašim interaktivnim komponentama možete proslediti podatke iz nje:
 
 ```js
-// This component runs *only* on the server (or during the build).
+// Ova komponenta se izvršava *samo* na serveru (ili tokom vremena izgradnje).
 async function Talks({ confId }) {
-  // 1. You're on the server, so you can talk to your data layer. API endpoint not required.
+  // 1. Vi ste na serveru, tako da možete da komunicirate sa vašim podacima. API pristupna tačka nije potrebna.
   const talks = await db.Talks.findAll({ confId });
 
-  // 2. Add any amount of rendering logic. It won't make your JavaScript bundle larger.
+  // 2. Dodajte bilo koju količinu logike renderovanja. To neće učiniti vaš JavaScript bundle većim.
   const videos = talks.map(talk => talk.video);
 
-  // 3. Pass the data down to the components that will run in the browser.
+  // 3. Prosledite podatke komponentama koje će se izvršavati u pretraživaču.
   return <SearchableVideoList videos={videos} />;
 }
 ```
 
-Next.js's App Router also integrates [data fetching with Suspense](/blog/2022/03/29/react-v18#suspense-in-data-frameworks). This lets you specify a loading state (like a skeleton placeholder) for different parts of your user interface directly in your React tree:
+Next.js-ov App Router je takođe integrisan sa [fetch-ovanjem podataka pomoću Suspense-a](/blog/2022/03/29/react-v18#suspense-in-data-frameworks). Ovo vam omogućava da specificirate stanje učitavanja (kao što je skeleton placeholder) za različite delove vašeg korisničkog interfejsa direktno u vašem React stablu:
 
 ```js
 <Suspense fallback={<TalksLoading />}>
@@ -96,18 +96,18 @@ Next.js's App Router also integrates [data fetching with Suspense](/blog/2022/03
 </Suspense>
 ```
 
-Server Components and Suspense are React features rather than Next.js features. However, adopting them at the framework level requires buy-in and non-trivial implementation work. At the moment, the Next.js App Router is the most complete implementation. The React team is working with bundler developers to make these features easier to implement in the next generation of frameworks.
+Server Components i Suspense su funkcionalnosti React-a, a ne Next.js-a. Međutim, njihovo usvajanje na nivou framework-a zahteva podršku i netrivijalan rad na implementaciji. Trenutno, Next.js App Router je najkompletnija implementacija. React tim sarađuje sa developerima bundler-a kako bi ove funkcionalnosti bile lakše za implementaciju u sledećoj generaciji framework-ova.
 
 </DeepDive>
 
-## Start From Scratch {/*start-from-scratch*/}
+## Početak od nule {/*start-from-scratch*/}
 
-If your app has constraints not well-served by existing frameworks, you prefer to build your own framework, or you just want to learn the basics of a React app, there are other options available for starting a React project from scratch.
+Ako vaša aplikacija ima ograničenja koja nisu dobro rešena u postojećim framework-ovima, ako želite da napravite sopstveni framework, ili samo želite naučiti osnove React aplikacija, postoji još opcija za započinjanje React projekta od nule.
 
-Starting from scratch gives you more flexibility, but does require that you make choices on which tools to use for routing, data fetching, and other common usage patterns.  It's a lot like building your own framework, instead of using a framework that already exists. The [frameworks we recommend](#full-stack-frameworks) have built-in solutions for these problems.  
+Početak od nule vam pruža više fleksibilnosti, ali zahteva da napravite odluku koje alate ćete koristiti za rutiranje, fetch-ovanje podataka i ostale često korišćene šablone. To je kao da pravite sopstveni framework, a ne da koristite već postojeći. [Framework-ovi koje preporučujemo](#full-stack-frameworks) imaju ugrađena rešenja za ovakve probleme.
 
-If you want to build your own solutions, see our guide to [build a React app from Scratch](/learn/build-a-react-app-from-scratch) for instructions on how to set up a new React project starting with a built tool like [Vite](https://vite.dev/), [Parcel](https://parceljs.org/), or [RSbuild](https://rsbuild.dev/).
+Ako želite napraviti vaša rešenja, pogledajte uputstvo kako [napraviti React aplikaciju od nule](/learn/build-a-react-app-from-scratch) za instrukcije oko postavki React projekta počevši od postojećih alata kao što su [Vite](https://vite.dev/), [Parcel](https://parceljs.org/) ili [RSbuild](https://rsbuild.dev/).
 
 -----
 
-_If you’re a framework author interested in being included on this page, [please let us know](https://github.com/reactjs/react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+)._
+_Ako ste vi autor framework-a i zainteresovani ste da ga uključimo u ovu stranicu, [molimo vas da nam javite](https://github.com/reactjs/react.dev/issues/new?assignees=&labels=type%3A+framework&projects=&template=3-framework.yml&title=%5BFramework%5D%3A+)._
