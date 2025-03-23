@@ -405,9 +405,9 @@ Pročitajte **[Redosled serijskih ažuriranja state-a](/learn/queueing-a-series-
 
 </LearnMore>
 
-## Update-ovanje objekata u state-u {/*updating-objects-in-state*/}
+## Ažuriranje objekata u state-u {/*updating-objects-in-state*/}
 
-State može sadržati bilo koju vrstu JavaScript vrednosti, uključujući objekte. Međutim, ne bi trebalo direktno menjati objekte i array-e koje držite u React state-u. Umesto toga, kada želite da update-ujete objekat ili array, potrebno je da kreirate novi (ili napravite kopiju postojećeg) i zatim update-ujete state kako bi koristio tu kopiju.
+State može sadržati bilo koju vrstu JavaScript vrednosti, uključujući i objekte. Međutim, ne bi trebalo direktno menjati objekte i array-e koje držite u React state-u. Umesto toga, kada želite da ažurirate objekat ili array, potrebno je da kreirate novi (ili napravite kopiju postojećeg) i zatim ažurirate state kako bi koristio tu kopiju.
 
 Obično ćete koristiti `...` spread sintaksu za kopiranje objekata i array-a koje želite da promenite. Na primer, update-ovanje ugnježdenog objekta može izgledati ovako:
 
@@ -466,28 +466,28 @@ export default function Form() {
   return (
     <>
       <label>
-        Name:
+        Naziv:
         <input
           value={person.name}
           onChange={handleNameChange}
         />
       </label>
       <label>
-        Title:
+        Naslov:
         <input
           value={person.artwork.title}
           onChange={handleTitleChange}
         />
       </label>
       <label>
-        City:
+        Grad:
         <input
           value={person.artwork.city}
           onChange={handleCityChange}
         />
       </label>
       <label>
-        Image:
+        Slika:
         <input
           value={person.artwork.image}
           onChange={handleImageChange}
@@ -495,10 +495,10 @@ export default function Form() {
       </label>
       <p>
         <i>{person.artwork.title}</i>
-        {' by '}
+        {' napravio/la '}
         {person.name}
         <br />
-        (located in {person.artwork.city})
+        (locirano u {person.artwork.city})
       </p>
       <img
         src={person.artwork.image}
@@ -517,7 +517,7 @@ img { width: 200px; height: 200px; }
 
 </Sandpack>
 
-Ako kopiranje objekata u kodu postane zamorno, možete koristiti biblioteku poput [Immer](https://github.com/immerjs/use-immer) kako biste smanjili količinu ponavljajućeg koda:
+Ako kopiranje objekata u kodu postane zamorno, možete koristiti biblioteku poput [Immer-a](https://github.com/immerjs/use-immer) kako biste smanjili količinu ponavljajućeg koda:
 
 <Sandpack>
 
@@ -561,28 +561,28 @@ export default function Form() {
   return (
     <>
       <label>
-        Name:
+        Naziv:
         <input
           value={person.name}
           onChange={handleNameChange}
         />
       </label>
       <label>
-        Title:
+        Naslov:
         <input
           value={person.artwork.title}
           onChange={handleTitleChange}
         />
       </label>
       <label>
-        City:
+        Grad:
         <input
           value={person.artwork.city}
           onChange={handleCityChange}
         />
       </label>
       <label>
-        Image:
+        Slika:
         <input
           value={person.artwork.image}
           onChange={handleImageChange}
@@ -590,10 +590,10 @@ export default function Form() {
       </label>
       <p>
         <i>{person.artwork.title}</i>
-        {' by '}
+        {' napravio/la '}
         {person.name}
         <br />
-        (located in {person.artwork.city})
+        (locirano u {person.artwork.city})
       </p>
       <img
         src={person.artwork.image}
@@ -632,7 +632,7 @@ img { width: 200px; height: 200px; }
 
 <LearnMore path="/learn/updating-objects-in-state">
 
-Pročitajte **[Update-ovanje Objekata u State-u](/learn/updating-objects-in-state)** kako biste naučili kako pravilno update-ovati objekte.
+Pročitajte **[Ažuriranje objekata u state-u](/learn/updating-objects-in-state)** kako biste naučili kako pravilno ažurirati objekte.
 
 </LearnMore>
 

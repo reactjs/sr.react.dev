@@ -1,57 +1,57 @@
 ---
-title: Updating Objects in State
+title: Ažuriranje objekata u state-u
 ---
 
 <Intro>
 
-State can hold any kind of JavaScript value, including objects. But you shouldn't change objects that you hold in the React state directly. Instead, when you want to update an object, you need to create a new one (or make a copy of an existing one), and then set the state to use that copy.
+State može sadržati bilo koju vrstu JavaScript vrednosti, uključujući i objekte. Međutim, ne bi trebalo direktno menjati objekte koje držite u React state-u. Umesto toga, kada želite da ažurirate objekat, potrebno je da kreirate novi (ili napravite kopiju postojećeg) i zatim ažurirate state kako bi koristio tu kopiju.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to correctly update an object in React state
-- How to update a nested object without mutating it
-- What immutability is, and how not to break it
-- How to make object copying less repetitive with Immer
+- Kako korektno ažurirati objekat u React state-u
+- Kako ažurirati ugnježdeni objekat bez mutiranja
+- Šta je immutability i kako da je ne prekršite
+- Kako učiniti da se kopiranje objekta manje ponavlja uz pomoć Immer-a
 
 </YouWillLearn>
 
-## What's a mutation? {/*whats-a-mutation*/}
+## Šta je to mutacija? {/*whats-a-mutation*/}
 
-You can store any kind of JavaScript value in state.
+Bilo koju vrstu JavaScript vrednosti možete držati u state-u.
 
 ```js
 const [x, setX] = useState(0);
 ```
 
-So far you've been working with numbers, strings, and booleans. These kinds of JavaScript values are "immutable", meaning unchangeable or "read-only". You can trigger a re-render to _replace_ a value:
+Do sad ste radili sa brojevima, stringovima i boolean vrednostima. Te vrste JavaScript vrednosti su "immutable", što znači nepromenljivo ili "read-only". Možete pokrenuti ponovni render da _zamenite_ vrednost:
 
 ```js
 setX(5);
 ```
 
-The `x` state changed from `0` to `5`, but the _number `0` itself_ did not change. It's not possible to make any changes to the built-in primitive values like numbers, strings, and booleans in JavaScript.
+State `x` se promenilo sa `0` na `5`, ali _sam broj `0`_ se nije promenio. Nije moguće napraviti bilo kakve promene nad ugrađenim primitivnim vrednostima poput brojeva, stringova ili boolean-a u JavaScript-u.
 
-Now consider an object in state:
+Razmotrite objekat u state-u:
 
 ```js
 const [position, setPosition] = useState({ x: 0, y: 0 });
 ```
 
-Technically, it is possible to change the contents of _the object itself_. **This is called a mutation:**
+Tehnički, moguće je promeniti sadržaj _samog objekta_. **Ovo se naziva mutacija:**
 
 ```js
 position.x = 5;
 ```
 
-However, although objects in React state are technically mutable, you should treat them **as if** they were immutable--like numbers, booleans, and strings. Instead of mutating them, you should always replace them.
+Međutim, iako su objekti u React state-u tehnički mutable (promenljivi), trebalo bi da ih tretirate **kao da** su immutable--poput brojeva, boolean-a i stringova. Umesto da ih mutirate, uvek ih trebate zameniti.
 
-## Treat state as read-only {/*treat-state-as-read-only*/}
+## Tretiranje state-a kao read-only {/*treat-state-as-read-only*/}
 
-In other words, you should **treat any JavaScript object that you put into state as read-only.**
+Drugim rečima, trebate **bilo koji JavaScript objekat koji držite u state-u da tretirate kao da je read-only**.
 
-This example holds an object in state to represent the current pointer position. The red dot is supposed to move when you touch or move the cursor over the preview area. But the dot stays in the initial position:
+Ovaj primer u state-u drži objekat koji predstavlja trenutnu poziciju kursora. Crvena tačka bi trebala da se pomera kada kliknete ili pomerate kursor preko preview oblasti. Ali, tačka ostaje na svojoj inicijalnoj poziciji:
 
 <Sandpack>
 
@@ -95,7 +95,7 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-The problem is with this bit of code.
+Problem je u ovom delu koda.
 
 ```js
 onPointerMove={e => {
@@ -104,9 +104,9 @@ onPointerMove={e => {
 }}
 ```
 
-This code modifies the object assigned to `position` from [the previous render.](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) But without using the state setting function, React has no idea that object has changed. So React does not do anything in response. It's like trying to change the order after you've already eaten the meal. While mutating state can work in some cases, we don't recommend it. You should treat the state value you have access to in a render as read-only.
+Ovaj kod menja objekat dodeljen `position` promenljivoj iz [prethodnog rendera](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time). Ali, bez upotrebe state setter funkcije, React nema predstavu da se objekat promenio. Zato React ne radi ništa. Ovo je kao da pokušate promeniti porudžbinu nakon što završite obrok. Iako mutacija state-a može raditi u nekim slučajevima, ne preporučujemo takav pristup. Trebate tretirati state vrednost koju imate u renderu kao read-only.
 
-To actually [trigger a re-render](/learn/state-as-a-snapshot#setting-state-triggers-renders) in this case, **create a *new* object and pass it to the state setting function:**
+Da biste zapravo [pokrenuli ponovni render](/learn/state-as-a-snapshot#setting-state-triggers-renders) u ovom slučaju, **kreirajte *novi* objekat i prosledite ga u state setter funkciju**:
 
 ```js
 onPointerMove={e => {
@@ -117,12 +117,12 @@ onPointerMove={e => {
 }}
 ```
 
-With `setPosition`, you're telling React:
+Sa `setPosition` React-u govorite sledeće:
 
-* Replace `position` with this new object
-* And render this component again
+* Zameni `position` sa novim objektom
+* I renderuj komponentu ponovo
 
-Notice how the red dot now follows your pointer when you touch or hover over the preview area:
+Primetite da crvena tačka sad prati vaš kursor kada ga pomerate kroz preview oblast:
 
 <Sandpack>
 
@@ -170,16 +170,16 @@ body { margin: 0; padding: 0; height: 250px; }
 
 <DeepDive>
 
-#### Local mutation is fine {/*local-mutation-is-fine*/}
+#### Lokalna mutacija je u redu {/*local-mutation-is-fine*/}
 
-Code like this is a problem because it modifies an *existing* object in state:
+Kod poput ovog je problematičan jer menja *postojeći* objekat u state-u:
 
 ```js
 position.x = e.clientX;
 position.y = e.clientY;
 ```
 
-But code like this is **absolutely fine** because you're mutating a fresh object you have *just created*:
+Ali, ovakav kod je **apsolutno u redu** jer mutirate novi objekat koji ste *upravo kreirali*:
 
 ```js
 const nextPosition = {};
@@ -188,7 +188,7 @@ nextPosition.y = e.clientY;
 setPosition(nextPosition);
 ```
 
-In fact, it is completely equivalent to writing this:
+U suštini, potpuno je jednako ovome:
 
 ```js
 setPosition({
@@ -197,15 +197,15 @@ setPosition({
 });
 ```
 
-Mutation is only a problem when you change *existing* objects that are already in state. Mutating an object you've just created is okay because *no other code references it yet.* Changing it isn't going to accidentally impact something that depends on it. This is called a "local mutation". You can even do local mutation [while rendering.](/learn/keeping-components-pure#local-mutation-your-components-little-secret) Very convenient and completely okay!
+Mutacija je jedino problematična kada menjate *postojeće* objekte koji su već u state-u. Mutiranje objekta koji ste upravo kreirali je u redu zato što *ga ništa ne referencira još uvek*. Njegovom promenom ne možete slučajno uticati na nešto što zavisi od njega. Ovo se naziva "lokalna mutacija". Možete koristiti lokalnu mutaciju i [tokom renderovanja](/learn/keeping-components-pure#local-mutation-your-components-little-secret). Veoma zgodno i potpuno u redu!
 
 </DeepDive>  
 
-## Copying objects with the spread syntax {/*copying-objects-with-the-spread-syntax*/}
+## Kopiranje objekata sa spread sintaksom {/*copying-objects-with-the-spread-syntax*/}
 
-In the previous example, the `position` object is always created fresh from the current cursor position. But often, you will want to include *existing* data as a part of the new object you're creating. For example, you may want to update *only one* field in a form, but keep the previous values for all other fields.
+U prethodnom primeru, `position` objekat se uvek kreirao iznova na osnovu trenutne pozicije kursora. Ali, često ćete želeti da uključite *postojeće* podatke u novi objekat koji kreirate. Na primer, možete želeti da ažurirate *samo jedno* polje u formi, a da ostavite trenutne vrednosti za ostala polja.
 
-These input fields don't work because the `onChange` handlers mutate the state:
+Ova input polja ne rade jer `onChange` handler-i mutiraju state:
 
 <Sandpack>
 
@@ -234,14 +234,14 @@ export default function Form() {
   return (
     <>
       <label>
-        First name:
+        Ime:
         <input
           value={person.firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Last name:
+        Prezime:
         <input
           value={person.lastName}
           onChange={handleLastNameChange}
@@ -271,34 +271,34 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-For example, this line mutates the state from a past render:
+Na primer, ova linija mutira state iz prethodnog rendera:
 
 ```js
 person.firstName = e.target.value;
 ```
 
-The reliable way to get the behavior you're looking for is to create a new object and pass it to `setPerson`. But here, you want to also **copy the existing data into it** because only one of the fields has changed:
+Pouzdan način da dobijete željeno ponašanje je da kreirate novi objekat i prosledite ga u `setPerson`. Ali, ovde želite i da **kopirate postojeće podatke u njega**, jer se samo jedno polje promenilo:
 
 ```js
 setPerson({
-  firstName: e.target.value, // New first name from the input
+  firstName: e.target.value, // Novo ime iz input-a
   lastName: person.lastName,
   email: person.email
 });
 ```
 
-You can use the `...` [object spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals) syntax so that you don't need to copy every property separately.
+Možete koristiti `...` [objektnu spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals) sintaksu kako ne biste morali da kopirate svako polje pojedinačno.
 
 ```js
 setPerson({
-  ...person, // Copy the old fields
-  firstName: e.target.value // But override this one
+  ...person, // Kopiraj stara polja
+  firstName: e.target.value // Override-uj ovo jedno
 });
 ```
 
-Now the form works! 
+Sada forma radi! 
 
-Notice how you didn't declare a separate state variable for each input field. For large forms, keeping all data grouped in an object is very convenient--as long as you update it correctly!
+Primetite da niste deklarisali posebnu state promenljivu za svako input polje. Za velike forme, grupisanje svih podataka u objekat je veoma zgodno--dok god ga ažurirate kako treba!
 
 <Sandpack>
 
@@ -336,14 +336,14 @@ export default function Form() {
   return (
     <>
       <label>
-        First name:
+        Ime:
         <input
           value={person.firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Last name:
+        Prezime:
         <input
           value={person.lastName}
           onChange={handleLastNameChange}
@@ -373,13 +373,13 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-Note that the `...` spread syntax is "shallow"--it only copies things one level deep. This makes it fast, but it also means that if you want to update a nested property, you'll have to use it more than once. 
+Primetite da je `...` spread sintaksa "plitka"--kopira polja samo na prvom nivou dubine. Ovo je čini brzom, ali, takođe znači da ako želite ažurirati ugnježdeno polje, moraćete je koristiti više od jednom.
 
 <DeepDive>
 
-#### Using a single event handler for multiple fields {/*using-a-single-event-handler-for-multiple-fields*/}
+#### Upotreba jednog event handler-a za više polja {/*using-a-single-event-handler-for-multiple-fields*/}
 
-You can also use the `[` and `]` braces inside your object definition to specify a property with a dynamic name. Here is the same example, but with a single event handler instead of three different ones:
+Možete koristiti `[` i `]` zagrade unutar definicije objekta da specificirate polje sa dinamičkim imenom. Ovo je isti primer, ali sa jednim event handler-om umesto tri različita:
 
 <Sandpack>
 
@@ -403,7 +403,7 @@ export default function Form() {
   return (
     <>
       <label>
-        First name:
+        Ime:
         <input
           name="firstName"
           value={person.firstName}
@@ -411,7 +411,7 @@ export default function Form() {
         />
       </label>
       <label>
-        Last name:
+        Prezime:
         <input
           name="lastName"
           value={person.lastName}
@@ -443,13 +443,13 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-Here, `e.target.name` refers to the `name` property given to the `<input>` DOM element.
+Ovde, `e.target.name` predstavlja `name` polje zadato u `<input>` DOM elementu.
 
 </DeepDive>
 
-## Updating a nested object {/*updating-a-nested-object*/}
+## Ažuriranje ugnježdenog objekta {/*updating-a-nested-object*/}
 
-Consider a nested object structure like this:
+Pogledajte ovu strukturu ugnježdenog objekta:
 
 ```js
 const [person, setPerson] = useState({
@@ -462,13 +462,13 @@ const [person, setPerson] = useState({
 });
 ```
 
-If you wanted to update `person.artwork.city`, it's clear how to do it with mutation:
+Ako želite ažurirati `person.artwork.city`, jasno je kako to uraditi kroz mutaciju:
 
 ```js
 person.artwork.city = 'New Delhi';
 ```
 
-But in React, you treat state as immutable! In order to change `city`, you would first need to produce the new `artwork` object (pre-populated with data from the previous one), and then produce the new `person` object which points at the new `artwork`:
+Ali, u React-u, tretirate state kao da je immutable! Da biste promenili `city`, prvo trebate napraviti novi `artwork` objekat (popunjen podacima iz prethodnog), a onda napraviti novi `person` objekat koji pokazuje na novi `artwork`:
 
 ```js
 const nextArtwork = { ...person.artwork, city: 'New Delhi' };
@@ -476,19 +476,19 @@ const nextPerson = { ...person, artwork: nextArtwork };
 setPerson(nextPerson);
 ```
 
-Or, written as a single function call:
+Ili, napisano u jednom pozivu funkcije:
 
 ```js
 setPerson({
-  ...person, // Copy other fields
-  artwork: { // but replace the artwork
-    ...person.artwork, // with the same one
-    city: 'New Delhi' // but in New Delhi!
+  ...person, // Kopiraj ostala polja
+  artwork: { // ali zameni artwork
+    ...person.artwork, // sa svim istim poljima
+    city: 'New Delhi' // ali sa gradom New Delhi!
   }
 });
 ```
 
-This gets a bit wordy, but it works fine for many cases:
+Ovo postaje dugačko, ali radi dobro u mnogim slučajevima:
 
 <Sandpack>
 
@@ -545,28 +545,28 @@ export default function Form() {
   return (
     <>
       <label>
-        Name:
+        Naziv:
         <input
           value={person.name}
           onChange={handleNameChange}
         />
       </label>
       <label>
-        Title:
+        Naslov:
         <input
           value={person.artwork.title}
           onChange={handleTitleChange}
         />
       </label>
       <label>
-        City:
+        Grad:
         <input
           value={person.artwork.city}
           onChange={handleCityChange}
         />
       </label>
       <label>
-        Image:
+        Slika:
         <input
           value={person.artwork.image}
           onChange={handleImageChange}
@@ -574,10 +574,10 @@ export default function Form() {
       </label>
       <p>
         <i>{person.artwork.title}</i>
-        {' by '}
+        {' napravio/la '}
         {person.name}
         <br />
-        (located in {person.artwork.city})
+        (locirano u {person.artwork.city})
       </p>
       <img 
         src={person.artwork.image} 
@@ -598,9 +598,9 @@ img { width: 200px; height: 200px; }
 
 <DeepDive>
 
-#### Objects are not really nested {/*objects-are-not-really-nested*/}
+#### Objekti nisu zapravo ugnježdeni {/*objects-are-not-really-nested*/}
 
-An object like this appears "nested" in code:
+Ovaj objekat u kodu deluje kao "ugnježden":
 
 ```js
 let obj = {
@@ -613,7 +613,7 @@ let obj = {
 };
 ```
 
-However, "nesting" is an inaccurate way to think about how objects behave. When the code executes, there is no such thing as a "nested" object. You are really looking at two different objects:
+Međutim, "ugnježdavanje" je netačan način za razmišljanje o tome kako se objekti ponašaju. Kad se kod izvršava, ne postoji nešto što se naziva "ugnježden" objekat. Zapravo gledate u dva različita objekta:
 
 ```js
 let obj1 = {
@@ -628,7 +628,7 @@ let obj2 = {
 };
 ```
 
-The `obj1` object is not "inside" `obj2`. For example, `obj3` could "point" at `obj1` too:
+Objekat `obj1` nije "unutar" `obj2`. Na primer, `obj3` bi mogao da "pokazuje" na `obj1` takođe:
 
 ```js
 let obj1 = {
@@ -648,13 +648,13 @@ let obj3 = {
 };
 ```
 
-If you were to mutate `obj3.artwork.city`, it would affect both `obj2.artwork.city` and `obj1.city`. This is because `obj3.artwork`, `obj2.artwork`, and `obj1` are the same object. This is difficult to see when you think of objects as "nested". Instead, they are separate objects "pointing" at each other with properties.
+Ako biste mutirali `obj3.artwork.city`, to bi uticalo na `obj2.artwork.city` i `obj1.city` takođe. To se dešava zato što su `obj3.artwork`, `obj2.artwork` i `obj1` isti objekat. Ovo je teško da se primeti kada mislite o objektima kao da su "ugnježdeni". Umesto toga, to su odvojeni objekti koji "pokazuju" jedni na druge preko svojih polja.
 
 </DeepDive>  
 
-### Write concise update logic with Immer {/*write-concise-update-logic-with-immer*/}
+### Pisanje koncizne logike ažuriranja sa Immer-om {/*write-concise-update-logic-with-immer*/}
 
-If your state is deeply nested, you might want to consider [flattening it.](/learn/choosing-the-state-structure#avoid-deeply-nested-state) But, if you don't want to change your state structure, you might prefer a shortcut to nested spreads. [Immer](https://github.com/immerjs/use-immer) is a popular library that lets you write using the convenient but mutating syntax and takes care of producing the copies for you. With Immer, the code you write looks like you are "breaking the rules" and mutating an object:
+Ako je vaš state duboko ugnježden, možete razmisliti da ga [flatten-ujete](/learn/choosing-the-state-structure#avoid-deeply-nested-state). Ali, ako ne želite promeniti strukturu vašeg state-a, možda biste voleli prečicu za ugnježdene spread-ove. [Immer](https://github.com/immerjs/use-immer) je popularna biblioteka koja omogućava pisanje zgodne sintakse za mutiranje i brine o pravljenju kopija za vas. Sa Immer-om, kod koji pišete deluje kao da "krši pravila" i mutira objekat:
 
 ```js
 updatePerson(draft => {
@@ -662,22 +662,22 @@ updatePerson(draft => {
 });
 ```
 
-But unlike a regular mutation, it doesn't overwrite the past state!
+Ali, za razliku od obične mutacije, ne menja prethodni state!
 
 <DeepDive>
 
-#### How does Immer work? {/*how-does-immer-work*/}
+#### Kako Immer radi? {/*how-does-immer-work*/}
 
-The `draft` provided by Immer is a special type of object, called a [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), that "records" what you do with it. This is why you can mutate it freely as much as you like! Under the hood, Immer figures out which parts of the `draft` have been changed, and produces a completely new object that contains your edits.
+`draft`, promenljiva koju Immer uvodi, je poseban objekat koji se naziva [Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy), koji "beleži" šta radite sa njim. To je razlog zašto ga slobodno možete mutirati kako želite! Ispod haube, Immer prepoznaje koji delovi `draft`-a su promenjeni i proizvodi potpuno novi objekat koji sadrži vaše promene.
 
 </DeepDive>
 
-To try Immer:
+Da biste isprobali Immer:
 
-1. Run `npm install use-immer` to add Immer as a dependency
-2. Then replace `import { useState } from 'react'` with `import { useImmer } from 'use-immer'`
+1. Pokrenite `npm install use-immer` da dodate Immer kao zavisnost
+2. Onda, zamenite `import { useState } from 'react'` sa `import { useImmer } from 'use-immer'`
 
-Here is the above example converted to Immer:
+Ovo je primer od gore konvertovan u Immer:
 
 <Sandpack>
 
@@ -721,28 +721,28 @@ export default function Form() {
   return (
     <>
       <label>
-        Name:
+        Naziv:
         <input
           value={person.name}
           onChange={handleNameChange}
         />
       </label>
       <label>
-        Title:
+        Naslov:
         <input
           value={person.artwork.title}
           onChange={handleTitleChange}
         />
       </label>
       <label>
-        City:
+        Grad:
         <input
           value={person.artwork.city}
           onChange={handleCityChange}
         />
       </label>
       <label>
-        Image:
+        Slika:
         <input
           value={person.artwork.image}
           onChange={handleImageChange}
@@ -750,10 +750,10 @@ export default function Form() {
       </label>
       <p>
         <i>{person.artwork.title}</i>
-        {' by '}
+        {' napravio/la '}
         {person.name}
         <br />
-        (located in {person.artwork.city})
+        (locirano u {person.artwork.city})
       </p>
       <img 
         src={person.artwork.image} 
@@ -790,33 +790,33 @@ img { width: 200px; height: 200px; }
 
 </Sandpack>
 
-Notice how much more concise the event handlers have become. You can mix and match `useState` and `useImmer` in a single component as much as you like. Immer is a great way to keep the update handlers concise, especially if there's nesting in your state, and copying objects leads to repetitive code.
+Primetite kako su event handler-i postali dosta koncizniji. Možete mešati `useState` i `useImmer` u jednoj komponenti koliko god želite. Immer je sjajan način za pisanje konciznih handler-a za ažuriranje, posebno ako imate ugnježdeni state, a kopiranje objekata vodi ka dupliranju koda.
 
 <DeepDive>
 
-#### Why is mutating state not recommended in React? {/*why-is-mutating-state-not-recommended-in-react*/}
+#### Zašto mutiranje state-a nije preporučeno u React-u? {/*why-is-mutating-state-not-recommended-in-react*/}
 
-There are a few reasons:
+Postoji par razloga:
 
-* **Debugging:** If you use `console.log` and don't mutate state, your past logs won't get clobbered by the more recent state changes. So you can clearly see how state has changed between renders.
-* **Optimizations:** Common React [optimization strategies](/reference/react/memo) rely on skipping work if previous props or state are the same as the next ones. If you never mutate state, it is very fast to check whether there were any changes. If `prevObj === obj`, you can be sure that nothing could have changed inside of it.
-* **New Features:** The new React features we're building rely on state being [treated like a snapshot.](/learn/state-as-a-snapshot) If you're mutating past versions of state, that may prevent you from using the new features.
-* **Requirement Changes:** Some application features, like implementing Undo/Redo, showing a history of changes, or letting the user reset a form to earlier values, are easier to do when nothing is mutated. This is because you can keep past copies of state in memory, and reuse them when appropriate. If you start with a mutative approach, features like this can be difficult to add later on.
-* **Simpler Implementation:** Because React does not rely on mutation, it does not need to do anything special with your objects. It does not need to hijack their properties, always wrap them into Proxies, or do other work at initialization as many "reactive" solutions do. This is also why React lets you put any object into state--no matter how large--without additional performance or correctness pitfalls.
+* **Debug-ovanje:** Ako koristite `console.log` i ne mutirate state, stari logovi neće biti pretrpani sa novijim izmenama state-a. Tako da možete jasno videti kako se state promenio između rendera.
+* **Optimizacije:** Uobičajene React-ove [strategije optimizacije](/reference/react/memo) se oslanjaju na preskakanje posla ako su prethodni props-i ili state isti kao i novi. Ako nikada ne mutirate state, veoma se brzo proveri da li je bilo promena. Ako je `prevObj === obj`, možete biti sigurni da se ništa unutar njih nije promenilo.
+* **Nove funkcionalnosti:** Nove React funkcionalnosti koje pravimo se zasnivaju na tome da se state [tretira kao snapshot](/learn/state-as-a-snapshot). Ako mutirate prethodne verzije state-a, to vas može sprečiti da koristite nove funkcionalnosti.
+* **Promene zahteva:** Neke funkcionalnosti, poput Undo/Redo, prikaza istorije promena ili dopuštanja korisniku da povrati formu na prethodne vrednosti, su jednostavnije kada ništa nije mutirano. Zato što možete čuvati prethodne kopije state-a u memoriji i koristiti ih kad vam je potrebno. Ako započnete sa pristupom mutacija, biće teže kasnije dodati ovakve funkcionalnosti.
+* **Jednostavnija implementacija:** React ne treba da radi ništa specijalno sa vašim objektima, jer se ne oslanja na mutaciju. Ne treba da otima njihova polja, da ih obmotava u Proxy-je ili da radi druge stvari tokom inicijalizacije kao što to mnoga "reaktivna" rešenja rade. Baš zbog ovoga vam React dopušta da stavite bilo kakav objekat u state--nebitno koliko velik--bez dodatnih problema sa performansama i ispravnošću.
 
-In practice, you can often "get away" with mutating state in React, but we strongly advise you not to do that so that you can use new React features developed with this approach in mind. Future contributors and perhaps even your future self will thank you!
+U praksi, često ćete moći da "se izvučete" sa mutiranjem state-a u React-u, ali vam ozbiljno savetujemo da to ne radite kako biste mogli da koristite nove React funkcionalnosti napravljene sa ovim pristupom na umu. Budući saradnici, a možda i vi u budućnosti, će vam biti zahvalni!
 
 </DeepDive>
 
 <Recap>
 
-* Treat all state in React as immutable.
-* When you store objects in state, mutating them will not trigger renders and will change the state in previous render "snapshots".
-* Instead of mutating an object, create a *new* version of it, and trigger a re-render by setting state to it.
-* You can use the `{...obj, something: 'newValue'}` object spread syntax to create copies of objects.
-* Spread syntax is shallow: it only copies one level deep.
-* To update a nested object, you need to create copies all the way up from the place you're updating.
-* To reduce repetitive copying code, use Immer.
+* Tretirajte svaki state u React-u kao immutable.
+* Kada držite objekte u state-u, njihovim mutiranjem nećete pokrenuti rendere i izmenićete state u "snapshot-ovima" prethodnog rendera.
+* Umesto mutiranja objekta, kreirajte *novu* verziju i pokrenite ponovni render postavljanjem state-a na tu novu verziju.
+* Možete koristiti `{...obj, something: 'newValue'}` objektnu spread sintaksu za kreiranje kopija objekata.
+* Spread sintaksa je plitka: kopira samo jedan nivo u dubinu.
+* Za ažuriranje ugnježdenog objekta morate kreirati kopije sve do mesta koji ažurirate.
+* Za smanjivanje ponavljajućeg koda tokom kopiranja, koristite Immer.
 
 </Recap>
 
@@ -824,11 +824,11 @@ In practice, you can often "get away" with mutating state in React, but we stron
 
 <Challenges>
 
-#### Fix incorrect state updates {/*fix-incorrect-state-updates*/}
+#### Popraviti netačna ažuriranja state-a {/*fix-incorrect-state-updates*/}
 
-This form has a few bugs. Click the button that increases the score a few times. Notice that it does not increase. Then edit the first name, and notice that the score has suddenly "caught up" with your changes. Finally, edit the last name, and notice that the score has disappeared completely.
+Ova forma ima par bug-ova. Kliknite dugme koje povećava rezultat par puta. Primetite da se ne povećava. Onda, promenite ime i primetite da se rezultat "uskladio" sa vašim izmenama. Konačno, promenite prezime i primetite da je rezultat potpuno nestao.
 
-Your task is to fix all of these bugs. As you fix them, explain why each of them happens.
+Vaš zadatak je da popravite ove bug-ove. Kad ih popravite, objasnite zašto se svaki od njih desio.
 
 <Sandpack>
 
@@ -862,21 +862,21 @@ export default function Scoreboard() {
   return (
     <>
       <label>
-        Score: <b>{player.score}</b>
+        Rezultat: <b>{player.score}</b>
         {' '}
         <button onClick={handlePlusClick}>
           +1
         </button>
       </label>
       <label>
-        First name:
+        Ime:
         <input
           value={player.firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Last name:
+        Prezime:
         <input
           value={player.lastName}
           onChange={handleLastNameChange}
@@ -896,7 +896,7 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 <Solution>
 
-Here is a version with both bugs fixed:
+Ovo je verzija gde su oba bug-a popravljena:
 
 <Sandpack>
 
@@ -934,21 +934,21 @@ export default function Scoreboard() {
   return (
     <>
       <label>
-        Score: <b>{player.score}</b>
+        Rezultat: <b>{player.score}</b>
         {' '}
         <button onClick={handlePlusClick}>
           +1
         </button>
       </label>
       <label>
-        First name:
+        Ime:
         <input
           value={player.firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Last name:
+        Prezime:
         <input
           value={player.lastName}
           onChange={handleLastNameChange}
@@ -966,23 +966,23 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-The problem with `handlePlusClick` was that it mutated the `player` object. As a result, React did not know that there's a reason to re-render, and did not update the score on the screen. This is why, when you edited the first name, the state got updated, triggering a re-render which _also_ updated the score on the screen.
+Problem sa `handlePlusClick` je u tome što je menjao `player` objekat. Kao rezultat, React nije znao da postoji razlog za ponovni render, pa nije ažurirao rezultat na ekranu. Zato se, kada ste promenili ime, state ažurirao, pokrenuvši ponovni render koji je _takođe_ ažurirao i rezultat na ekranu.
 
-The problem with `handleLastNameChange` was that it did not copy the existing `...player` fields into the new object. This is why the score got lost after you edited the last name.
+Problem sa `handleLastNameChange` je u tome što nije kopirao postojeća `...player` polja u novi objekat. Zbog toga se rezultat izgubio kada ste promenili prezime.
 
 </Solution>
 
-#### Find and fix the mutation {/*find-and-fix-the-mutation*/}
+#### Pronaći i popraviti mutaciju {/*find-and-fix-the-mutation*/}
 
-There is a draggable box on a static background. You can change the box's color using the select input.
+Ovde je kutija za prevlačenje na statičnoj pozadini. Možete promeniti boju kutije pomoću select input-a.
 
-But there is a bug. If you move the box first, and then change its color, the background (which isn't supposed to move!) will "jump" to the box position. But this should not happen: the `Background`'s `position` prop is set to `initialPosition`, which is `{ x: 0, y: 0 }`. Why is the background moving after the color change?
+Ali, tu je bug. Ako prvo pomerite kutiju, a onda promenite boju, pozadina (koja ne bi trebalo da se pomera!) će "skočiti" na poziciju kutije. Ovo ne bi trebalo da se dešava: `position` prop od `Background`-a je postavljen na `initialPosition`, što je `{ x: 0, y: 0 }`. Zašto se pozadina pomera nakon promene boje?
 
-Find the bug and fix it.
+Pronađite bug i popravite ga.
 
 <Hint>
 
-If something unexpected changes, there is a mutation. Find the mutation in `App.js` and fix it.
+Ako se nešto neočekivano promeni, postoji mutacija. Pronađite mutaciju u `App.js` i popravite je.
 
 </Hint>
 
@@ -1034,7 +1034,7 @@ export default function Canvas() {
         position={shape.position}
         onMove={handleMove}
       >
-        Drag me!
+        Pomeri me!
       </Box>
     </>
   );
@@ -1132,9 +1132,9 @@ select { margin-bottom: 10px; }
 
 <Solution>
 
-The problem was in the mutation inside `handleMove`. It mutated `shape.position`, but that's the same object that `initialPosition` points at. This is why both the shape and the background move. (It's a mutation, so the change doesn't reflect on the screen until an unrelated update--the color change--triggers a re-render.)
+Problem je bila mutacija u `handleMove`. Mutirao se `shape.position`, a to je isti objekat na koji `initialPosition` pokazuje. Zbog ovoga su se i kutija i pozadina pomerili. (To je mutacija, pa se izmena ne prikaže na ekranu pre nepovezanog ažuriranja--izmena boje--pokreće ponovni render.)
 
-The fix is to remove the mutation from `handleMove`, and use the spread syntax to copy the shape. Note that `+=` is a mutation, so you need to rewrite it to use a regular `+` operation.
+Rešenje je uklanjanje mutacije iz `handleMove` i upotreba spread sintakse za pravljenje shape-a. Primetite da je `+=` mutacija, pa morate koristiti običnu `+` operaciju.
 
 <Sandpack>
 
@@ -1189,7 +1189,7 @@ export default function Canvas() {
         position={shape.position}
         onMove={handleMove}
       >
-        Drag me!
+        Pomeri me!
       </Box>
     </>
   );
@@ -1287,9 +1287,9 @@ select { margin-bottom: 10px; }
 
 </Solution>
 
-#### Update an object with Immer {/*update-an-object-with-immer*/}
+#### Ažurirati objekat sa Immer-om {/*update-an-object-with-immer*/}
 
-This is the same buggy example as in the previous challenge. This time, fix the mutation by using Immer. For your convenience, `useImmer` is already imported, so you need to change the `shape` state variable to use it.
+Ovo je isti bug-oviti primer iz prethodnog izazova. Ovog puta, popravite mutaciju pomoću Immer-a. Za vašu ugodnost, `useImmer` je već import-ovan, a vi trebate promeniti `shape` state promenljivu da ga koristi.
 
 <Sandpack>
 
@@ -1340,7 +1340,7 @@ export default function Canvas() {
         position={shape.position}
         onMove={handleMove}
       >
-        Drag me!
+        Pomeri me!
       </Box>
     </>
   );
@@ -1456,7 +1456,7 @@ select { margin-bottom: 10px; }
 
 <Solution>
 
-This is the solution rewritten with Immer. Notice how the event handlers are written in a mutating fashion, but the bug does not occur. This is because under the hood, Immer never mutates the existing objects.
+Ovo je rešenje napisano pomoću Immer-a. Primetite da su event handler-i napisani u stilu mutacije, ali se bug ne dešava. Zato što, ispod haube, Immer nikada ne mutira već postojeće objekte.
 
 <Sandpack>
 
@@ -1507,7 +1507,7 @@ export default function Canvas() {
         position={shape.position}
         onMove={handleMove}
       >
-        Drag me!
+        Pomeri me!
       </Box>
     </>
   );
