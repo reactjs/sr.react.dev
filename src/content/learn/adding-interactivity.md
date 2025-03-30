@@ -4,7 +4,7 @@ title: Dodavanje interaktivnosti
 
 <Intro>
 
-Neke stvari na ekranu se update-uju kao odgovor na korisnički unos. Na primer, klik na galeriju slika menja aktivnu sliku. U React-u, podaci koji se menjaju tokom vremena nazivaju se *state.* Možete dodati state bilo kojoj component-i i update-ovati je po potrebi. U ovom poglavlju naučićete kako da pišete component-e koji obrađuju interakcije, update-uju svoj state i prikazuju različite output-e tokom vremena.
+Neke stvari na ekranu se update-uju kao odgovor na korisnički input. Na primer, klik na galeriju slika menja aktivnu sliku. U React-u, podaci koji se menjaju tokom vremena nazivaju se *state.* Možete dodati state bilo kojoj component-i i update-ovati je po potrebi. U ovom poglavlju naučićete kako da pišete component-e koji obrađuju interakcije, update-uju svoj state i prikazuju različite output-e tokom vremena.
 
 </Intro>
 
@@ -636,9 +636,9 @@ Pročitajte **[Ažuriranje objekata u state-u](/learn/updating-objects-in-state)
 
 </LearnMore>
 
-## Update-ovanje array-a u state-u {/*updating-arrays-in-state*/}
+## Ažuriranje nizova u state-u {/*updating-arrays-in-state*/}
 
-Array-i su još jedan tip promenljivih JavaScript objekata koje možete čuvati u state-u i koje treba tretirati kao read-only. Kao i kod objekata, kada želite da update-ujete array koji se nalazi u state-u, potrebno je da kreirate novi (ili napravite kopiju postojećeg), a zatim postavite state da koristi taj novi array:
+Nizovi su još jedan tip promenljivih JavaScript objekata koje možete čuvati u state-u i koje treba tretirati kao read-only. Kao i kod objekata, kada želite da ažurirate niz koji se nalazi u state-u, potrebno je da kreirate novi (ili napravite kopiju postojećeg), a zatim postavite state da koristi taj novi niz:
 
 <Sandpack>
 
@@ -704,7 +704,7 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-Ako pravljenje kopija array-a u kodu postane zamorno, možete koristiti biblioteku kao što je [Immer](https://github.com/immerjs/use-immer) da smanjite ponavljanje koda:
+Ako pravljenje kopija nizova u kodu postane zamorno, možete koristiti biblioteku kao što je [Immer](https://github.com/immerjs/use-immer) da smanjite ponavljanje koda:
 
 <Sandpack>
 
@@ -732,8 +732,8 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Art Bucket List</h1>
-      <h2>My list of art to see:</h2>
+      <h1>Lista željenih umetnosti</h1>
+      <h2>Moja lista:</h2>
       <ItemList
         artworks={list}
         onToggle={handleToggle} />
@@ -788,7 +788,7 @@ function ItemList({ artworks, onToggle }) {
 
 <LearnMore path="/learn/updating-arrays-in-state">
 
-Pročitajte **[Update-ovanje Array-a u State-u](/learn/updating-arrays-in-state)** da biste naučili kako pravilno da update-ujete array-e.
+Pročitajte **[Ažuriranje nizova u state-u](/learn/updating-arrays-in-state)** da biste naučili kako pravilno da ažurirate nizove.
 
 </LearnMore>
 
