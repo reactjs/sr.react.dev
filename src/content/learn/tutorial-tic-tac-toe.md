@@ -2257,11 +2257,7 @@ body {
 
 </Sandpack>
 
-<<<<<<< HEAD
 Dok iterirate kroz array `history` unutar funkcije koju ste prosledili `map`, argument `squares` prolazi kroz svaki element array-a `history`, a argument `move` prolazi kroz svaki indeks array-a: `0`, `1`, `2`, …. (U većini slučajeva trebaju vam stvarni elementi array-a, ali za prikaz liste poteza biće vam potrebni samo indeksi.)
-=======
-As you iterate through the `history` array inside the function you passed to `map`, the `squares` argument goes through each element of `history`, and the `move` argument goes through each array index: `0`, `1`, `2`, …. (In most cases, you'd need the actual array elements, but to render a list of moves you will only need indexes.)
->>>>>>> 5138e605225b24d25701a1a1f68daa90499122a4
 
 Za svaki potez u istoriji igre iks-oks, kreirate stavku liste `<li>` koja sadrži dugme `<button>`. Dugme ima `onClick` handler koji poziva funkciju `jumpTo` (koju još niste implementirali).
 
