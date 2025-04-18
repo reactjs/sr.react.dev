@@ -796,4 +796,4 @@ Pročitajte **[Update-ovanje Array-a u State-u](/learn/updating-arrays-in-state)
 
 Pređite na [Reagovanje na Event-e](/learn/responding-to-events) da biste počeli da čitate ovo poglavlje stranicu po stranicu!
 
-Ili, ako ste već upoznati sa ovim temama, zašto ne biste pročitali [Upravljanje State-om](/learn/managing-state)?
+Ili, ako ste već upoznati sa ovim temama, zašto ne biste pročitali [Upravljanje state-om](/learn/managing-state)?
