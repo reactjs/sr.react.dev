@@ -1,30 +1,30 @@
 ---
-title: Managing State
+title: Upravljanje state-om
 ---
 
 <Intro>
 
-As your application grows, it helps to be more intentional about how your state is organized and how the data flows between your components. Redundant or duplicate state is a common source of bugs. In this chapter, you'll learn how to structure your state well, how to keep your state update logic maintainable, and how to share state between distant components.
+Povećavanjem aplikacije, važno je da budete svesni kako vam je state organizovan i kako podaci teku kroz komponente. Suvišan ili dupliran state je čest uzrok bug-ova. U ovom poglavlju, naučićete kako da pravilno strukturirate state, kako da logika ažuriranja state-a bude održiva i kako da delite state između udaljenih komponenata.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to think about UI changes as state changes](/learn/reacting-to-input-with-state)
-* [How to structure state well](/learn/choosing-the-state-structure)
-* [How to "lift state up" to share it between components](/learn/sharing-state-between-components)
-* [How to control whether the state gets preserved or reset](/learn/preserving-and-resetting-state)
-* [How to consolidate complex state logic in a function](/learn/extracting-state-logic-into-a-reducer)
-* [How to pass information without "prop drilling"](/learn/passing-data-deeply-with-context)
-* [How to scale state management as your app grows](/learn/scaling-up-with-reducer-and-context)
+* [Kako da razmišljate o UI promenama kao promenama stanja](/learn/reacting-to-input-with-state)
+* [Kako da pravilno strukturirate state](/learn/choosing-the-state-structure)
+* [Kako da "podignete state" da bi ga delili između komponenata](/learn/sharing-state-between-components)
+* [Kako da kontrolišete da li se state čuva ili resetuje](/learn/preserving-and-resetting-state)
+* [Kako da grupišete kompleksnu state logiku u funkciju](/learn/extracting-state-logic-into-a-reducer)
+* [Kako da prosledite informaciju bez "prop drilling-a"](/learn/passing-data-deeply-with-context)
+* [Kako da skalirate upravljanje state-a dok aplikacija raste](/learn/scaling-up-with-reducer-and-context)
 
 </YouWillLearn>
 
-## Reacting to input with state {/*reacting-to-input-with-state*/}
+## Reagovanje na input pomoću stanja {/*reacting-to-input-with-state*/}
 
-With React, you won't modify the UI from code directly. For example, you won't write commands like "disable the button", "enable the button", "show the success message", etc. Instead, you will describe the UI you want to see for the different visual states of your component ("initial state", "typing state", "success state"), and then trigger the state changes in response to user input. This is similar to how designers think about UI.
+Sa React-om, nećete direktno u kodu menjati UI. Na primer, nećete pisati komande poput "onemogući dugme", "omogući dugme", "prikaži uspešnu poruku", itd. Umesto toga, opisaćete kakav UI želite da vidite za različita vizuelna stanja vaše komponente ("inicijalno stanje", "stanje pisanja", "uspešno stanje"), a onda ćete pokrenuti promene state-a kao odgovor na korisnički input. Ovo je slično onome kako dizajneri razmišljaju o UI-u.
 
-Here is a quiz form built using React. Note how it uses the `status` state variable to determine whether to enable or disable the submit button, and whether to show the success message instead.
+Ovde je forma za kviz napravljena pomoću React-a. Primetite kako koristi `status` state promenljivu da odluči da li da omogući submit dugme i da li da prikaže uspešnu poruku.
 
 <Sandpack>
 
@@ -37,7 +37,7 @@ export default function Form() {
   const [status, setStatus] = useState('typing');
 
   if (status === 'success') {
-    return <h1>That's right!</h1>
+    return <h1>To je tačno!</h1>
   }
 
   async function handleSubmit(e) {
@@ -58,9 +58,9 @@ export default function Form() {
 
   return (
     <>
-      <h2>City quiz</h2>
+      <h2>Kviz gradova</h2>
       <p>
-        In which city is there a billboard that turns air into drinkable water?
+        U kom gradu je bilbord koji pretvara vazduh u pijaću vodu?
       </p>
       <form onSubmit={handleSubmit}>
         <textarea
@@ -86,12 +86,12 @@ export default function Form() {
 }
 
 function submitForm(answer) {
-  // Pretend it's hitting the network.
+  // Pretvaraj se da koristiš mrežni poziv.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       let shouldError = answer.toLowerCase() !== 'lima'
       if (shouldError) {
-        reject(new Error('Good guess but a wrong answer. Try again!'));
+        reject(new Error('Dobar pokušaj, ali pogrešan odgovor. Probaj ponovo!'));
       } else {
         resolve();
       }
@@ -108,15 +108,15 @@ function submitForm(answer) {
 
 <LearnMore path="/learn/reacting-to-input-with-state">
 
-Read **[Reacting to Input with State](/learn/reacting-to-input-with-state)** to learn how to approach interactions with a state-driven mindset.
+Pročitajte **[Reagovanje na input pomoću stanja](/learn/reacting-to-input-with-state)** da naučite kako da pristupite interakcijama iz perspektive stanja.
 
 </LearnMore>
 
-## Choosing the state structure {/*choosing-the-state-structure*/}
+## Odabir strukture state-a {/*choosing-the-state-structure*/}
 
-Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. The most important principle is that state shouldn't contain redundant or duplicated information. If there's unnecessary state, it's easy to forget to update it, and introduce bugs!
+Pravilno strukturiranje state-a može napraviti razliku između komponente koju je lako menjati i debug-ovati, i one koja je stalan izvor bug-ova. Najbitniji princip je da state ne bi trebao da sadrži suvišne i duplirane informacije. Ako postoji nepotreban state, lako je zaboraviti ažurirati ga i time uvesti bug-ove!
 
-For example, this form has a **redundant** `fullName` state variable:
+Na primer, ova forma ima **suvišnu** `fullName` state promenljivu:
 
 <Sandpack>
 
@@ -140,23 +140,23 @@ export default function Form() {
 
   return (
     <>
-      <h2>Let’s check you in</h2>
+      <h2>Prijavite se</h2>
       <label>
-        First name:{' '}
+        Ime:{' '}
         <input
           value={firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Last name:{' '}
+        Prezime:{' '}
         <input
           value={lastName}
           onChange={handleLastNameChange}
         />
       </label>
       <p>
-        Your ticket will be issued to: <b>{fullName}</b>
+        Vaša karta će biti izdata na ime: <b>{fullName}</b>
       </p>
     </>
   );
@@ -169,7 +169,7 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-You can remove it and simplify the code by calculating `fullName` while the component is rendering:
+Možete je ukloniti i pojednostaviti kod računanjem `fullName`-a tokom renderovanja komponente:
 
 <Sandpack>
 
@@ -192,23 +192,23 @@ export default function Form() {
 
   return (
     <>
-      <h2>Let’s check you in</h2>
+      <h2>Prijavite se</h2>
       <label>
-        First name:{' '}
+        Ime:{' '}
         <input
           value={firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Last name:{' '}
+        Prezime:{' '}
         <input
           value={lastName}
           onChange={handleLastNameChange}
         />
       </label>
       <p>
-        Your ticket will be issued to: <b>{fullName}</b>
+        Vaša karta će biti izdata na ime: <b>{fullName}</b>
       </p>
     </>
   );
@@ -221,19 +221,19 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-This might seem like a small change, but many bugs in React apps are fixed this way.
+Ovo možda deluje kao mala izmena, ali dosta bug-ova u React aplikacijama se popravljaju na ovaj način.
 
 <LearnMore path="/learn/choosing-the-state-structure">
 
-Read **[Choosing the State Structure](/learn/choosing-the-state-structure)** to learn how to design the state shape to avoid bugs.
+Pročitajte **[Odabir strukture state-a](/learn/choosing-the-state-structure)** da naučite kako dizajnirati state da izbegnete bug-ove.
 
 </LearnMore>
 
-## Sharing state between components {/*sharing-state-between-components*/}
+## Deljenje state-a između komponenata {/*sharing-state-between-components*/}
 
-Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as "lifting state up", and it's one of the most common things you will do writing React code.
+Ponekad želite da se state-ovi dve komponente menjaju zajedno. Da biste to uradili, uklonite state iz obe komponente, pomerite ga u najbližeg zajedničkog roditelja i prosledite ga nazad kroz props. Ovo je poznato kao "podizanje state-a" i jedna je od najčešćih stvari koje ćete pisati u React kodu.
 
-In this example, only one panel should be active at a time. To achieve this, instead of keeping the active state inside each individual panel, the parent component holds the state and specifies the props for its children.
+U ovom primeru, samo jedan panel treba biti aktivan. Da biste to postigli, umesto čuvanja state-a u svakom pojedinačnom panel-u, roditeljska komponenta drži state i specificira props svoje dece.
 
 <Sandpack>
 
@@ -244,20 +244,20 @@ export default function Accordion() {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
     <>
-      <h2>Almaty, Kazakhstan</h2>
+      <h2>Almati, Kazahstan</h2>
       <Panel
-        title="About"
+        title="O gradu"
         isActive={activeIndex === 0}
         onShow={() => setActiveIndex(0)}
       >
-        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
+        Sa populacijom od oko 2 miliona, Almati je najveći grad u Kazahstanu. Bio je glavni grad od 1929. do. 1997. godine.
       </Panel>
       <Panel
-        title="Etymology"
+        title="Etimologija"
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
       >
-        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
+        Ime potiče od reči <span lang="kk-KZ">алма</span>, što na kazaškom jeziku znači "jabuka", i često se prevodi kao "pun jabuka". U suštini, region koji okružuje Almati se smatra pradomovinom jabuka, a divlja <i lang="la">Malus sieversii</i> se smatra mogućim pretkom moderne domaće jabuke.
       </Panel>
     </>
   );
@@ -276,7 +276,7 @@ function Panel({
         <p>{children}</p>
       ) : (
         <button onClick={onShow}>
-          Show
+          Prikaži
         </button>
       )}
     </section>
@@ -296,15 +296,15 @@ h3, p { margin: 5px 0px; }
 
 <LearnMore path="/learn/sharing-state-between-components">
 
-Read **[Sharing State Between Components](/learn/sharing-state-between-components)** to learn how to lift state up and keep components in sync.
+Pročitajte **[Deljenje state-a između komponenata](/learn/sharing-state-between-components)** da naučite kako da podignete state i sinhronizujete komponente.
 
 </LearnMore>
 
-## Preserving and resetting state {/*preserving-and-resetting-state*/}
+## Čuvanje i resetovanje state-a {/*preserving-and-resetting-state*/}
 
-When you re-render a component, React needs to decide which parts of the tree to keep (and update), and which parts to discard or re-create from scratch. In most cases, React's automatic behavior works well enough. By default, React preserves the parts of the tree that "match up" with the previously rendered component tree.
+Kada ponovo renderujete komponentu, React mora da odluči koje delove stabla da zadrži (i ažurira), a koje da odbaci ili ponovo kreira od nule. U većini slučajeva, React-ovo automatsko ponašanje radi dovoljno dobro. Po default-u, React čuva delove stabla koji se "podudaraju" sa prethodno renderovanim stablom komponente.
 
-However, sometimes this is not what you want. In this chat app, typing a message and then switching the recipient does not reset the input. This can make the user accidentally send a message to the wrong person:
+Međutim, ponekad ovo nije ono što želite. U ovoj aplikaciji za poruke, pisanje poruke i naknadna promena primaoca ne resetuju input. Ovo može navesti korisnika da greškom pošalje poruku pogrešnoj osobi:
 
 <Sandpack>
 
@@ -367,11 +367,11 @@ export default function Chat({ contact }) {
     <section className="chat">
       <textarea
         value={text}
-        placeholder={'Chat to ' + contact.name}
+        placeholder={'Piši korisniku ' + contact.name}
         onChange={e => setText(e.target.value)}
       />
       <br />
-      <button>Send to {contact.email}</button>
+      <button>Pošalji na {contact.email}</button>
     </section>
   );
 }
@@ -399,7 +399,7 @@ textarea {
 
 </Sandpack>
 
-React lets you override the default behavior, and *force* a component to reset its state by passing it a different `key`, like `<Chat key={email} />`. This tells React that if the recipient is different, it should be considered a *different* `Chat` component that needs to be re-created from scratch with the new data (and UI like inputs). Now switching between the recipients resets the input field--even though you render the same component.
+React vam omogućava da override-ujete default ponašanje i *forsirate* komponentu da resetuje svoje stanje prosleđivanjem različitog `key`-a, na primer `<Chat key={email} />`. Ovo govori React-u da ako je primalac drugačiji, treba da smatra da se *drugačija* `Chat` komponenta treba ponovo kreirati od nule sa novim podacima (i UI-jem poput input-a). Sada, promena primaoca resetuje polje za input--iako renderujete istu komponentu.
 
 <Sandpack>
 
@@ -462,11 +462,11 @@ export default function Chat({ contact }) {
     <section className="chat">
       <textarea
         value={text}
-        placeholder={'Chat to ' + contact.name}
+        placeholder={'Piši korisniku ' + contact.name}
         onChange={e => setText(e.target.value)}
       />
       <br />
-      <button>Send to {contact.email}</button>
+      <button>Pošalji na {contact.email}</button>
     </section>
   );
 }
@@ -496,13 +496,13 @@ textarea {
 
 <LearnMore path="/learn/preserving-and-resetting-state">
 
-Read **[Preserving and Resetting State](/learn/preserving-and-resetting-state)** to learn the lifetime of state and how to control it.
+Pročitajte **[Čuvanje i resetovanje state-a](/learn/preserving-and-resetting-state)** da naučite više o životnom veku state-a i kako da ga kontrolišete.
 
 </LearnMore>
 
-## Extracting state logic into a reducer {/*extracting-state-logic-into-a-reducer*/}
+## Izdvajanje state logike u reducer {/*extracting-state-logic-into-a-reducer*/}
 
-Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called "reducer". Your event handlers become concise because they only specify the user "actions". At the bottom of the file, the reducer function specifies how the state should update in response to each action!
+Komponente sa mnogo ažuriranja state-a koji se prostiru kroz mnogo event handler-a mogu postati preobimne. U tim slučajevima, možete grupisati svu logiku ažuriranja state-a izvan komponente u jednu funkciju koja se naziva "reducer". Vaši event handler-i postaju koncizni jer samo specificiraju korisničke "akcije". Na dnu fajla, reducer funkcija specificira kako bi state trebao da se ažurira kao reakcija na svaku akciju!
 
 <Sandpack>
 
@@ -541,7 +541,7 @@ export default function TaskApp() {
 
   return (
     <>
-      <h1>Prague itinerary</h1>
+      <h1>Plan puta u Pragu</h1>
       <AddTask
         onAddTask={handleAddTask}
       />
@@ -576,16 +576,16 @@ function tasksReducer(tasks, action) {
       return tasks.filter(t => t.id !== action.id);
     }
     default: {
-      throw Error('Unknown action: ' + action.type);
+      throw Error('Nepoznata akcija: ' + action.type);
     }
   }
 }
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Visit Kafka Museum', done: true },
-  { id: 1, text: 'Watch a puppet show', done: false },
-  { id: 2, text: 'Lennon Wall pic', done: false }
+  { id: 0, text: 'Poseti Kafkin muzej', done: true },
+  { id: 1, text: 'Gledaj lutkarsku predstavu', done: false },
+  { id: 2, text: 'Slikaj Lenonov zid', done: false }
 ];
 ```
 
@@ -597,14 +597,14 @@ export default function AddTask({ onAddTask }) {
   return (
     <>
       <input
-        placeholder="Add task"
+        placeholder="Dodaj zadatak"
         value={text}
         onChange={e => setText(e.target.value)}
       />
       <button onClick={() => {
         setText('');
         onAddTask(text);
-      }}>Add</button>
+      }}>Dodaj</button>
     </>
   )
 }
@@ -648,7 +648,7 @@ function Task({ task, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Sačuvaj
         </button>
       </>
     );
@@ -657,7 +657,7 @@ function Task({ task, onChange, onDelete }) {
       <>
         {task.text}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Izmeni
         </button>
       </>
     );
@@ -676,7 +676,7 @@ function Task({ task, onChange, onDelete }) {
       />
       {taskContent}
       <button onClick={() => onDelete(task.id)}>
-        Delete
+        Obriši
       </button>
     </label>
   );
@@ -693,15 +693,15 @@ ul, li { margin: 0; padding: 0; }
 
 <LearnMore path="/learn/extracting-state-logic-into-a-reducer">
 
-Read **[Extracting State Logic into a Reducer](/learn/extracting-state-logic-into-a-reducer)** to learn how to consolidate logic in the reducer function.
+Pročitajte **[Izdvajanje state logike u reducer](/learn/extracting-state-logic-into-a-reducer)** da naučite kako grupisati logiku u reducer funkciju.
 
 </LearnMore>
 
-## Passing data deeply with context {/*passing-data-deeply-with-context*/}
+## Prosleđivanje podataka duboko uz context {/*passing-data-deeply-with-context*/}
 
-Usually, you will pass information from a parent component to a child component via props. But passing props can become inconvenient if you need to pass some prop through many components, or if many components need the same information. Context lets the parent component make some information available to any component in the tree below it—no matter how deep it is—without passing it explicitly through props.
+Često ćete proslediti informaciju od roditeljske ka dečjoj komponenti kroz props. Ali, prosleđivanje props-a može postati nepogodno ako trebate proslediti neki prop kroz mnogo komponenata ili ako mnogo komponenata treba imati istu informaciju. Context omogućava roditeljskoj komponenti da neku informaciju učini dostupnom svakoj komponenti u stablu ispod nje—bez obzira koliko duboko—bez eksplicitnog prosleđivanja props-a.
 
-Here, the `Heading` component determines its heading level by "asking" the closest `Section` for its level. Each `Section` tracks its own level by asking the parent `Section` and adding one to it. Every `Section` provides information to all components below it without passing props--it does that through context.
+Ovde, `Heading` komponenta određuje nivo naslova "pitajući" najbliži `Section` za svoj nivo. Svaki `Section` prati svoj nivo pitajući roditeljski `Section` i dodajući jedan na to. Svaki `Section` pruža informaciju svim komponentama ispod bez prosleđivanja props-a--to radi kroz context.
 
 <Sandpack>
 
@@ -757,7 +757,7 @@ export default function Heading({ children }) {
   const level = useContext(LevelContext);
   switch (level) {
     case 0:
-      throw Error('Heading must be inside a Section!');
+      throw Error('Heading mora biti unutar Section-a!');
     case 1:
       return <h1>{children}</h1>;
     case 2:
@@ -771,7 +771,7 @@ export default function Heading({ children }) {
     case 6:
       return <h6>{children}</h6>;
     default:
-      throw Error('Unknown level: ' + level);
+      throw Error('Nepoznat nivo: ' + level);
   }
 }
 ```
@@ -795,15 +795,15 @@ export const LevelContext = createContext(0);
 
 <LearnMore path="/learn/passing-data-deeply-with-context">
 
-Read **[Passing Data Deeply with Context](/learn/passing-data-deeply-with-context)** to learn about using context as an alternative to passing props.
+Pročitajte **[Prosleđivanje podataka duboko uz context](/learn/passing-data-deeply-with-context)** da naučite da koristite context kao alternativu prosleđivanju props-a.
 
 </LearnMore>
 
-## Scaling up with reducer and context {/*scaling-up-with-reducer-and-context*/}
+## Skaliranje sa reducer-om i context-om {/*scaling-up-with-reducer-and-context*/}
 
-Reducers let you consolidate a component’s state update logic. Context lets you pass information deep down to other components. You can combine reducers and context together to manage state of a complex screen.
+Reducer-i omogućavaju grupisanje logike za ažuriranje state-a u komponenti. Context vam omogućava da prosledite informaciju duboko drugim komponentama. Možete kombinovati reducer-e i context da upravljate složenim state-om.
 
-With this approach, a parent component with complex state manages it with a reducer. Other components anywhere deep in the tree can read its state via context. They can also dispatch actions to update that state.
+Sa ovim pristupom, roditeljska komponenta upravlja kompleksnim state-om pomoću reducer-a. Druge komponente negde duboko u stablu mogu čitati njen state preko context-a. One takođe mogu otpremiti akcije koje ažuriraju taj state.
 
 <Sandpack>
 
@@ -815,7 +815,7 @@ import { TasksProvider } from './TasksContext.js';
 export default function TaskApp() {
   return (
     <TasksProvider>
-      <h1>Day off in Kyoto</h1>
+      <h1>Slobodan dan u Kjotu</h1>
       <AddTask />
       <TaskList />
     </TasksProvider>
@@ -876,15 +876,15 @@ function tasksReducer(tasks, action) {
       return tasks.filter(t => t.id !== action.id);
     }
     default: {
-      throw Error('Unknown action: ' + action.type);
+      throw Error('Nepoznata akcija: ' + action.type);
     }
   }
 }
 
 const initialTasks = [
   { id: 0, text: 'Philosopher’s Path', done: true },
-  { id: 1, text: 'Visit the temple', done: false },
-  { id: 2, text: 'Drink matcha', done: false }
+  { id: 1, text: 'Poseti hram', done: false },
+  { id: 2, text: 'Popij mača čaj', done: false }
 ];
 ```
 
@@ -898,7 +898,7 @@ export default function AddTask({ onAddTask }) {
   return (
     <>
       <input
-        placeholder="Add task"
+        placeholder="Dodaj zadatak"
         value={text}
         onChange={e => setText(e.target.value)}
       />
@@ -909,7 +909,7 @@ export default function AddTask({ onAddTask }) {
           id: nextId++,
           text: text,
         });
-      }}>Add</button>
+      }}>Dodaj</button>
     </>
   );
 }
@@ -953,7 +953,7 @@ function Task({ task }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Sačuvaj
         </button>
       </>
     );
@@ -962,7 +962,7 @@ function Task({ task }) {
       <>
         {task.text}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Izmeni
         </button>
       </>
     );
@@ -989,7 +989,7 @@ function Task({ task }) {
           id: task.id
         });
       }}>
-        Delete
+        Obriši
       </button>
     </label>
   );
@@ -1006,12 +1006,12 @@ ul, li { margin: 0; padding: 0; }
 
 <LearnMore path="/learn/scaling-up-with-reducer-and-context">
 
-Read **[Scaling Up with Reducer and Context](/learn/scaling-up-with-reducer-and-context)** to learn how state management scales in a growing app.
+Pročitajte **[Skaliranje sa reducer-om i context-om](/learn/scaling-up-with-reducer-and-context)** da naučite kako se upravljanje state-om povećava u rastućoj aplikaciji.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## Šta je sledeće? {/*whats-next*/}
 
-Head over to [Reacting to Input with State](/learn/reacting-to-input-with-state) to start reading this chapter page by page!
+Pređite na [Reagovanje na input pomoću stanja](/learn/reacting-to-input-with-state) da biste počeli da čitate ovo poglavlje stranicu po stranicu!
 
-Or, if you're already familiar with these topics, why not read about [Escape Hatches](/learn/escape-hatches)?
+Ili, ako ste već upoznati sa ovim temama, zašto ne biste pročitali poglavlje [Evakuacioni izlazi](/learn/escape-hatches)?
