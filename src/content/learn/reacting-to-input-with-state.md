@@ -1,37 +1,37 @@
 ---
-title: Reacting to Input with State
+title: Reagovanje na input pomoću stanja
 ---
 
 <Intro>
 
-React provides a declarative way to manipulate the UI. Instead of manipulating individual pieces of the UI directly, you describe the different states that your component can be in, and switch between them in response to the user input. This is similar to how designers think about the UI.
+React pruža deklarativan način za manipulisanje UI-jem. Umesto da direktno manipulišete pojedinačnim delovima UI-a, vi opisujete različita stanja u kojima komponenta može biti i menjate ih kao odgovor na korisnički input. Ovo je slično onome kako dizajneri razmišljaju o UI-u.
 
 </Intro>
 
 <YouWillLearn>
 
-* How declarative UI programming differs from imperative UI programming
-* How to enumerate the different visual states your component can be in
-* How to trigger the changes between the different visual states from code
+* Kako se deklarativno UI programiranje razlikuje od imperativnog UI programiranja
+* Kako da nabrojite različita vizuelna stanja u kojima vaša komponenta može biti
+* Kako da pokrenete promene između različitih vizuelnih stanja iz koda
 
 </YouWillLearn>
 
-## How declarative UI compares to imperative {/*how-declarative-ui-compares-to-imperative*/}
+## Kakav je deklarativan UI u poređenju sa imperativnim {/*how-declarative-ui-compares-to-imperative*/}
 
-When you design UI interactions, you probably think about how the UI *changes* in response to user actions. Consider a form that lets the user submit an answer:
+Kada dizajnirate UI interakcije, verovatno razmišljate kako se UI *menja* kao odgovor na korisničke akcije. Razmotrite formu koja korisniku omogućava da submit-uje odgovor:
 
-* When you type something into the form, the "Submit" button **becomes enabled.**
-* When you press "Submit", both the form and the button **become disabled,** and a spinner **appears.**
-* If the network request succeeds, the form **gets hidden,** and the "Thank you" message **appears.**
-* If the network request fails, an error message **appears,** and the form **becomes enabled** again.
+* Kad pišete nešto u formu, "Submit" dugme **postaje omogućeno**.
+* Kada pritisnete "Submit", i forma i dugme **postaju onemogućeni**, a **pojavljuje se** spinner.
+* Ako mrežni zahtev uspe, forma **postaje skrivena**, a poruka "Hvala vam" **se pojavljuje**.
+* Ako mrežni zahtev ne uspe, **pojavljuje se** poruka o grešci, a forma ponovo **postaje omogućena**.
 
-In **imperative programming,** the above corresponds directly to how you implement interaction. You have to write the exact instructions to manipulate the UI depending on what just happened. Here's another way to think about this: imagine riding next to someone in a car and telling them turn by turn where to go.
+U **imperativnom programiranju** gore navedeno direktno odgovara načinu na koji implementirate interakciju. Morate napisati tačne instrukcije za manipulaciju UI-jem na osnovu onoga što se desilo. Evo drugog načina da razmišljate o tome: zamislite da se vozite pored nekoga u autu i govorite mu svaki put gde da skrene.
 
-<Illustration src="/images/docs/illustrations/i_imperative-ui-programming.png"  alt="In a car driven by an anxious-looking person representing JavaScript, a passenger orders the driver to execute a sequence of complicated turn by turn navigations." />
+<Illustration src="/images/docs/illustrations/i_imperative-ui-programming.png"  alt="U autu koji vozi osoba uznemirenog izgleda koja predstavlja JavaScript, putnik naređuje vozaču da izvrši niz komplikovanih skretanja." />
 
-They don't know where you want to go, they just follow your commands. (And if you get the directions wrong, you end up in the wrong place!) It's called *imperative* because you have to "command" each element, from the spinner to the button, telling the computer *how* to update the UI.
+Ne zna gde želite da idete, već samo prati vaše komande. (I, ako vi promašite smer, završićete na pogrešnom mestu!) Naziva se *imperativno* jer morate da "komandujete" svaki element, od spinner-a do dugmeta, govoreći računaru *kako* da ažurira UI.
 
-In this example of imperative UI programming, the form is built *without* React. It only uses the browser [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model):
+U ovom primeru imperativnog UI programiranja, forma je napravljena *bez* React-a. Koristi jedino [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) od pretraživača:
 
 <Sandpack>
 
@@ -81,13 +81,13 @@ function disable(el) {
 }
 
 function submitForm(answer) {
-  // Pretend it's hitting the network.
+  // Pretvaraj se da koristiš mrežni poziv.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (answer.toLowerCase() === 'istanbul') {
         resolve();
       } else {
-        reject(new Error('Good guess but a wrong answer. Try again!'));
+        reject(new Error('Dobar pokušaj, ali pogrešan odgovor. Probaj ponovo!'));
       }
     }, 1500);
   });
@@ -111,17 +111,17 @@ textarea.oninput = handleTextareaChange;
 
 ```html public/index.html
 <form id="form">
-  <h2>City quiz</h2>
+  <h2>Kviz gradova</h2>
   <p>
-    What city is located on two continents?
+    Koji grad se nalazi na dva kontinenta?
   </p>
   <textarea id="textarea"></textarea>
   <br />
   <button id="button" disabled>Submit</button>
-  <p id="loading" style="display: none">Loading...</p>
+  <p id="loading" style="display: none">Učitavanje...</p>
   <p id="error" style="display: none; color: red;"></p>
 </form>
-<h1 id="success" style="display: none">That's right!</h1>
+<h1 id="success" style="display: none">To je tačno!</h1>
 
 <style>
 * { box-sizing: border-box; }
@@ -131,37 +131,37 @@ body { font-family: sans-serif; margin: 20px; padding: 0; }
 
 </Sandpack>
 
-Manipulating the UI imperatively works well enough for isolated examples, but it gets exponentially more difficult to manage in more complex systems. Imagine updating a page full of different forms like this one. Adding a new UI element or a new interaction would require carefully checking all existing code to make sure you haven't introduced a bug (for example, forgetting to show or hide something).
+Manipulisanje UI-jem imperativno radi dovoljno dobro za izolovane slučajeve, ali upravljanje postaje eksponencijalno teže za kompleksnije sisteme. Zamislite da ažurirate stranicu punu formi poput ove. Dodavanje novog UI elementa ili nove interakcije bi zahtevalo pažljivu proveru svog postojećeg koda kako bi bili sigurni da niste napravili bug (na primer, zaboravljanje da se nešto prikaže ili sakrije).
 
-React was built to solve this problem.
+React je napravljen da reši ovaj problem.
 
-In React, you don't directly manipulate the UI--meaning you don't enable, disable, show, or hide components directly. Instead, you **declare what you want to show,** and React figures out how to update the UI. Think of getting into a taxi and telling the driver where you want to go instead of telling them exactly where to turn. It's the driver's job to get you there, and they might even know some shortcuts you haven't considered!
+U React-u, ne manipulišete UI-jem direktno--što znači da ne omogućavate, onemogućavate, prikazujete niti skrivate komponente direktno. Umesto toga, vi **deklarišete šta želite prikazati**, a React shvata kako da ažurira UI. Zamislite da uđete u taksi i kažete vozaču gde želite ići umesto da mu govorite gde tačno da skreće. Posao taksiste je da vas odvede tamo, jer možda zna za prečice o kojima niste razmišljali!
 
-<Illustration src="/images/docs/illustrations/i_declarative-ui-programming.png" alt="In a car driven by React, a passenger asks to be taken to a specific place on the map. React figures out how to do that." />
+<Illustration src="/images/docs/illustrations/i_declarative-ui-programming.png" alt="U autu koji vozi React, putnik traži da bude odvezen na specifično mesto na mapi. React shvata kako da to uradi." />
 
-## Thinking about UI declaratively {/*thinking-about-ui-declaratively*/}
+## Razmišljanje o UI-u deklarativno {/*thinking-about-ui-declaratively*/}
 
-You've seen how to implement a form imperatively above. To better understand how to think in React, you'll walk through reimplementing this UI in React below:
+Videli ste kako implementirati formu imperativno. Da biste bolje razumeli kako da razmišljate u React-u, ispod ćete ponovo implementirati ovaj UI u React-u:
 
-1. **Identify** your component's different visual states
-2. **Determine** what triggers those state changes
-3. **Represent** the state in memory using `useState`
-4. **Remove** any non-essential state variables
-5. **Connect** the event handlers to set the state
+1. **Identifikovati** različita vizuelna stanja vaše komponente
+2. **Odrediti** šta pokreće promene tih stanja
+3. **Predstaviti** stanje u memoriji koristeći `useState`
+4. **Ukloniti** sve neobavezne state promenljive
+5. **Povezati** event handler-e za postavljanje state-a
 
-### Step 1: Identify your component's different visual states {/*step-1-identify-your-components-different-visual-states*/}
+### Korak 1: Identifikovati različita vizuelna stanja vaše komponente {/*step-1-identify-your-components-different-visual-states*/}
 
-In computer science, you may hear about a ["state machine"](https://en.wikipedia.org/wiki/Finite-state_machine) being in one of several “states”. If you work with a designer, you may have seen mockups for different "visual states". React stands at the intersection of design and computer science, so both of these ideas are sources of inspiration.
+U informatici, možda ste čuli da ["konačan automat"](https://sr.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BD%D0%B0%D1%87%D0%B0%D0%BD_%D0%B0%D1%83%D1%82%D0%BE%D0%BC%D0%B0%D1%82) može biti u jednom od nekoliko “stanja”. Ako radite sa dizajnerom, možda ste videli mockup-e za različita "vizuelna stanja". React se nalazi na preseku dizajna i informatike, tako da su obe ideje izvor inspiracije.
 
-First, you need to visualize all the different "states" of the UI the user might see:
+Prvo, morate vizualizovati sva različita "stanja" koje korisnik može videti na UI-u:
 
-* **Empty**: Form has a disabled "Submit" button.
-* **Typing**: Form has an enabled "Submit" button.
-* **Submitting**: Form is completely disabled. Spinner is shown.
-* **Success**: "Thank you" message is shown instead of a form.
-* **Error**: Same as Typing state, but with an extra error message.
+* **Prazno**: Forma ima onemogućeno "Submit" dugme.
+* **Pisanje**: Forma ima omogućeno "Submit" dugme.
+* **Submit-ovanje**: Forma je potpuno onemogućena. Prikazan je spinner.
+* **Uspešno**: Poruka "Hvala vam" je prikazana umesto forme.
+* **Greška**: Kao i stanje "Pisanje", ali sa dodatnom porukom o grešci.
 
-Just like a designer, you'll want to "mock up" or create "mocks" for the different states before you add logic. For example, here is a mock for just the visual part of the form. This mock is controlled by a prop called `status` with a default value of `'empty'`:
+Baš kao i dizajner, želećete da "mock-ujete" ili pravite "mock-ove" za različita vizuelna stanja pre nego što dodate logiku. Na primer, ovde je mock samo za vizuelni deo forme. Ovaj mock se kontroliše pomoću prop-a pod imenom `status` čija default vrednost je `'empty'`:
 
 <Sandpack>
 
@@ -170,13 +170,13 @@ export default function Form({
   status = 'empty'
 }) {
   if (status === 'success') {
-    return <h1>That's right!</h1>
+    return <h1>To je tačno!</h1>
   }
   return (
     <>
-      <h2>City quiz</h2>
+      <h2>Kviz gradova</h2>
       <p>
-        In which city is there a billboard that turns air into drinkable water?
+        U kom gradu je bilbord koji pretvara vazduh u pijaću vodu?
       </p>
       <form>
         <textarea />
@@ -192,23 +192,23 @@ export default function Form({
 
 </Sandpack>
 
-You could call that prop anything you like, the naming is not important. Try editing `status = 'empty'` to `status = 'success'` to see the success message appear. Mocking lets you quickly iterate on the UI before you wire up any logic. Here is a more fleshed out prototype of the same component, still "controlled" by the `status` prop:
+Možete nazvati taj prop kako god želite, imenovanje nije bitno. Probajte da promenite sa `status = 'empty'` na `status = 'success'` da biste videli uspešnu poruku. Mock-ovanje vam omogućava da brzo iterirate kroz UI pre nego što dodate bilo kakvu logiku. Ovde je detaljniji primer iste komponente, i dalje "kontrolisan" preko `status` prop-a:
 
 <Sandpack>
 
 ```js
 export default function Form({
-  // Try 'submitting', 'error', 'success':
+  // Probajte 'submitting', 'error', 'success':
   status = 'empty'
 }) {
   if (status === 'success') {
-    return <h1>That's right!</h1>
+    return <h1>To je tačno!</h1>
   }
   return (
     <>
-      <h2>City quiz</h2>
+      <h2>Kviz gradova</h2>
       <p>
-        In which city is there a billboard that turns air into drinkable water?
+        U kom gradu je bilbord koji pretvara vazduh u pijaću vodu?
       </p>
       <form>
         <textarea disabled={
@@ -223,7 +223,7 @@ export default function Form({
         </button>
         {status === 'error' &&
           <p className="Error">
-            Good guess but a wrong answer. Try again!
+            Dobar pokušaj, ali pogrešan odgovor. Probaj ponovo!
           </p>
         }
       </form>
@@ -240,9 +240,9 @@ export default function Form({
 
 <DeepDive>
 
-#### Displaying many visual states at once {/*displaying-many-visual-states-at-once*/}
+#### Prikazivanje više vizuelnih stanja istovremeno {/*displaying-many-visual-states-at-once*/}
 
-If a component has a lot of visual states, it can be convenient to show them all on one page:
+Ako komponenta ima mnogo vizuelnih stanja, može biti zgodno prikazati ih sve na jednoj stranici:
 
 <Sandpack>
 
@@ -262,7 +262,7 @@ export default function App() {
     <>
       {statuses.map(status => (
         <section key={status}>
-          <h4>Form ({status}):</h4>
+          <h4>Forma ({status}):</h4>
           <Form status={status} />
         </section>
       ))}
@@ -274,7 +274,7 @@ export default function App() {
 ```js src/Form.js
 export default function Form({ status }) {
   if (status === 'success') {
-    return <h1>That's right!</h1>
+    return <h1>To je tačno!</h1>
   }
   return (
     <form>
@@ -290,7 +290,7 @@ export default function Form({ status }) {
       </button>
       {status === 'error' &&
         <p className="Error">
-          Good guess but a wrong answer. Try again!
+          Dobar pokušaj, ali pogrešan odgovor. Probaj ponovo!
         </p>
       }
     </form>
@@ -307,61 +307,61 @@ body { margin: 0; }
 
 </Sandpack>
 
-Pages like this are often called "living styleguides" or "storybooks".
+Stranice poput ovih se često nazivaju "living styleguides" ili "storybooks".
 
 </DeepDive>
 
-### Step 2: Determine what triggers those state changes {/*step-2-determine-what-triggers-those-state-changes*/}
+### Korak 2: Odrediti šta pokreće promene tih stanja {/*step-2-determine-what-triggers-those-state-changes*/}
 
-You can trigger state updates in response to two kinds of inputs:
+Možete pokrenuti ažuriranje stanja kao odgovor na dve vrste input-a:
 
-* **Human inputs,** like clicking a button, typing in a field, navigating a link.
-* **Computer inputs,** like a network response arriving, a timeout completing, an image loading.
+* **Ljudski input-i** poput kliktanja dugmeta, pisanja u tekstualno polje, navigiranja na link.
+* **Računarski input-i** poput dobijanja mrežnog odgovora, završavanja timeout-a, učitavanja slike.
 
 <IllustrationBlock>
-  <Illustration caption="Human inputs" alt="A finger." src="/images/docs/illustrations/i_inputs1.png" />
-  <Illustration caption="Computer inputs" alt="Ones and zeroes." src="/images/docs/illustrations/i_inputs2.png" />
+  <Illustration caption="Ljudski input-i" alt="Prst." src="/images/docs/illustrations/i_inputs1.png" />
+  <Illustration caption="Računarski input-i" alt="Jedinice i nule." src="/images/docs/illustrations/i_inputs2.png" />
 </IllustrationBlock>
 
-In both cases, **you must set [state variables](/learn/state-a-components-memory#anatomy-of-usestate) to update the UI.** For the form you're developing, you will need to change state in response to a few different inputs:
+U oba slučaja, **morate postaviti [state promenljive](/learn/state-a-components-memory#anatomy-of-usestate) da biste ažurirali UI**. Za formu koju razvijate, trebaćete da promenite stanje kao odgovor na više različitih input-a:
 
-* **Changing the text input** (human) should switch it from the *Empty* state to the *Typing* state or back, depending on whether the text box is empty or not.
-* **Clicking the Submit button** (human) should switch it to the *Submitting* state.
-* **Successful network response** (computer) should switch it to the *Success* state.
-* **Failed network response** (computer) should switch it to the *Error* state with the matching error message.
+* **Promena tekstualnog input-a** (ljudski) treba da menja stanje *Prazno* u stanje *Pisanje* i obrnuto, u zavisnosti od toga da li je tekstualno polje prazno ili ne.
+* **Klik na Submit dugme** (ljudski) treba da promeni stanje u *Submit-ovanje*.
+* **Uspešan mrežni odgovor** (računarski) treba da promeni stanje u *Uspešno*.
+* **Neuspešan mrežni odgovor** (računarski) treba da promeni stanje u *Greška* sa odgovarajućom porukom o grešci.
 
 <Note>
 
-Notice that human inputs often require [event handlers](/learn/responding-to-events)!
+Primetite da ljudski input-i često zahtevaju [event handler-e](/learn/responding-to-events)!
 
 </Note>
 
-To help visualize this flow, try drawing each state on paper as a labeled circle, and each change between two states as an arrow. You can sketch out many flows this way and sort out bugs long before implementation.
+Da biste lakše vizualizovali ovaj tok, probajte da svako stanje crtate kao označeni krug, a svaku promenu stanja kao strelicu. Na ovaj način možete skicirati mnoge tokove stanja i odvojiti bug-ove mnogo pre implementacije.
 
 <DiagramGroup>
 
-<Diagram name="responding_to_input_flow" height={350} width={688} alt="Flow chart moving left to right with 5 nodes. The first node labeled 'empty' has one edge labeled 'start typing' connected to a node labeled 'typing'. That node has one edge labeled 'press submit' connected to a node labeled 'submitting', which has two edges. The left edge is labeled 'network error' connecting to a node labeled 'error'. The right edge is labeled 'network success' connecting to a node labeled 'success'.">
+<Diagram name="responding_to_input_flow" height={350} width={688} alt="Dijagram toka od leva ka desno sa 5 čvorova. Prvi čvor, označen sa 'empty', ima jedan prelaz, označen sa 'start typing', koji se povezuje sa čvorom označenim sa 'typing'. Taj čvor ima jedan prelaz, označen kao 'press submit', koji se povezuje sa čvorom koji je označen kao 'submitting', koji ima dva prelaza. Levi prelaz, označen sa 'network error', povezuje se sa čvorom označenim sa 'error'. Desni prelaz, označen sa 'network success', povezuje se sa čvorom označenim sa 'success'.">
 
-Form states
+Stanja forme
 
 </Diagram>
 
 </DiagramGroup>
 
-### Step 3: Represent the state in memory with `useState` {/*step-3-represent-the-state-in-memory-with-usestate*/}
+### Korak 3: Predstaviti stanje u memoriji koristeći `useState` {/*step-3-represent-the-state-in-memory-with-usestate*/}
 
-Next you'll need to represent the visual states of your component in memory with [`useState`.](/reference/react/useState) Simplicity is key: each piece of state is a "moving piece", and **you want as few "moving pieces" as possible.** More complexity leads to more bugs!
+Sada je potrebno da predstavite vizuelna stanja u memoriji koristeći [`useState`](/reference/react/useState). Ključ je jednostavnost: svaki deo state-a je "pokretni deo", a **želite što manje potrebnih "pokretnih delova"**. Veća kompleksnost uvodi više bug-ova!
 
-Start with the state that *absolutely must* be there. For example, you'll need to store the `answer` for the input, and the `error` (if it exists) to store the last error:
+Počnite sa state-om koji *apsolutno mora* biti tu. Na primer, moraćete da čuvate `answer` za input kao i `error` (ako postoji) da čuvate poslednju grešku:
 
 ```js
 const [answer, setAnswer] = useState('');
 const [error, setError] = useState(null);
 ```
 
-Then, you'll need a state variable representing which one of the visual states that you want to display. There's usually more than a single way to represent that in memory, so you'll need to experiment with it.
+Onda, biće vam potrebna state promenljiva da predstavite koje vizuelno stanje želite da prikažete. Obično postoji više od jednog načina da to predstavite u memoriji, tako da morate eksperimentisati.
 
-If you struggle to think of the best way immediately, start by adding enough state that you're *definitely* sure that all the possible visual states are covered:
+Ako se mučite da odmah smislite najbolji način, počnite sa dodavanjem onoliko state-ova da *definitivno* osigurate da su sva vizuelna stanja pokrivena:
 
 ```js
 const [isEmpty, setIsEmpty] = useState(true);
@@ -371,39 +371,39 @@ const [isSuccess, setIsSuccess] = useState(false);
 const [isError, setIsError] = useState(false);
 ```
 
-Your first idea likely won't be the best, but that's ok--refactoring state is a part of the process!
+Vaša prva ideja vrlo verovatno neće biti najbolja, ali to je u redu--refaktorisanje state-a je deo procesa!
 
-### Step 4: Remove any non-essential state variables {/*step-4-remove-any-non-essential-state-variables*/}
+### Korak 4: Ukloniti sve neobavezne state promenljive {/*step-4-remove-any-non-essential-state-variables*/}
 
-You want to avoid duplication in the state content so you're only tracking what is essential. Spending a little time on refactoring your state structure will make your components easier to understand, reduce duplication, and avoid unintended meanings. Your goal is to **prevent the cases where the state in memory doesn't represent any valid UI that you'd want a user to see.** (For example, you never want to show an error message and disable the input at the same time, or the user won't be able to correct the error!)
+Želite da izbegnete dupliranje unutar state-a tako da pratite samo ono što je obavezno. Ako potrošite malo vremena na refaktorisanje strukture vašeg state-a učinićete vaše komponente lakšim za razumevanje, smanjićete dupliranje i izbeći nenamerna značenja. Vaš cilj je da **sprečite slučaj u kojem state u memoriji ne predstavlja nijedan validan UI koji želite da korisnik vidi**. (Na primer, ne želite da prikažete poruku o grešci i onemogućite input istovremeno, pošto korisnik neće moći da ispravi grešku!)
 
-Here are some questions you can ask about your state variables:
+Evo nekih pitanja koja možete postaviti za svoje state promenljive:
 
-* **Does this state cause a paradox?** For example, `isTyping` and `isSubmitting` can't both be `true`. A paradox usually means that the state is not constrained enough. There are four possible combinations of two booleans, but only three correspond to valid states. To remove the "impossible" state, you can combine these into a `status` that must be one of three values: `'typing'`, `'submitting'`, or `'success'`.
-* **Is the same information available in another state variable already?** Another paradox: `isEmpty` and `isTyping` can't be `true` at the same time. By making them separate state variables, you risk them going out of sync and causing bugs. Fortunately, you can remove `isEmpty` and instead check `answer.length === 0`.
-* **Can you get the same information from the inverse of another state variable?** `isError` is not needed because you can check `error !== null` instead.
+* **Da li ovaj state stvara paradoks?** Na primer, `isTyping` i `isSubmitting` ne mogu zajedno biti `true`. Paradoks uglavnom znači da state nije dovoljno ograničen. Postoje četiri moguće kombinacije dve boolean vrednosti, ali samo tri odgovaraju validnim stanjima. Da biste uklonili "nemoguće" stanje, možete ih ukombinovati u `status` koji mora imati jednu od tri vrednosti: `'typing'`, `'submitting'` ili `'success'`.
+* **Da li je ista informacija već dostupna u drugoj state promenljivoj?** Još jedan paradoks: `isEmpty` i `isTyping` ne mogu biti `true` istovremeno. Ako ih napravite kao odvojene state promenljive rizikujete da ne budu sinhronizovane i pravite bug-ove. Srećom, možete ukloniti `isEmpty` i umesto toga proveriti `answer.length === 0`.
+* **Da li istu informaciju možete dobiti inverzijom druge state promenljive?** `isError` nije potreban jer možete proveriti `error !== null`.
 
-After this clean-up, you're left with 3 (down from 7!) *essential* state variables:
+Nakon ovog čišćenja, ostajete sa 3 (od 7!) *obaveznih* state promenljivih:
 
 ```js
 const [answer, setAnswer] = useState('');
 const [error, setError] = useState(null);
-const [status, setStatus] = useState('typing'); // 'typing', 'submitting', or 'success'
+const [status, setStatus] = useState('typing'); // 'typing', 'submitting' ili 'success'
 ```
 
-You know they are essential, because you can't remove any of them without breaking the functionality.
+Znate da su obavezne, jer nijednu ne možete ukloniti a da ne skršite funkcionalnost.
 
 <DeepDive>
 
-#### Eliminating “impossible” states with a reducer {/*eliminating-impossible-states-with-a-reducer*/}
+#### Eliminisanje “nemogućih” stanja sa reducer-om {/*eliminating-impossible-states-with-a-reducer*/}
 
-These three variables are a good enough representation of this form's state. However, there are still some intermediate states that don't fully make sense. For example, a non-null `error` doesn't make sense when `status` is `'success'`. To model the state more precisely, you can [extract it into a reducer.](/learn/extracting-state-logic-into-a-reducer) Reducers let you unify multiple state variables into a single object and consolidate all the related logic!
+Ove tri promenljive su dovoljno dobre da predstavljaju stanje naše forme. Međutim, i dalje postoje neka posredna stanja koji nemaju skroz smisla. Na primer, `error` koji nije null nema smisla dok je `status` jednak `'success'`. Da biste modelovali state preciznije, možete [ga izdvojiti u reducer](/learn/extracting-state-logic-into-a-reducer). Reducer-i vam omogućavaju da objedinite state promenljive u jedan objekat i grupišete svu povezanu logiku!
 
 </DeepDive>
 
-### Step 5: Connect the event handlers to set state {/*step-5-connect-the-event-handlers-to-set-state*/}
+### Korak 5: Povezati event handler-e za postavljanje state-a {/*step-5-connect-the-event-handlers-to-set-state*/}
 
-Lastly, create event handlers that update the state. Below is the final form, with all event handlers wired up:
+Na kraju, kreirajte event handler-e koji ažuriraju state. Ispod je finalna forma sa svim povezanim event handler-ima:
 
 <Sandpack>
 
@@ -416,7 +416,7 @@ export default function Form() {
   const [status, setStatus] = useState('typing');
 
   if (status === 'success') {
-    return <h1>That's right!</h1>
+    return <h1>To je tačno!</h1>
   }
 
   async function handleSubmit(e) {
@@ -437,9 +437,9 @@ export default function Form() {
 
   return (
     <>
-      <h2>City quiz</h2>
+      <h2>Kviz gradova</h2>
       <p>
-        In which city is there a billboard that turns air into drinkable water?
+        U kom gradu je bilbord koji pretvara vazduh u pijaću vodu?
       </p>
       <form onSubmit={handleSubmit}>
         <textarea
@@ -465,12 +465,12 @@ export default function Form() {
 }
 
 function submitForm(answer) {
-  // Pretend it's hitting the network.
+  // Pretvaraj se da koristiš mrežni poziv.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       let shouldError = answer.toLowerCase() !== 'lima'
       if (shouldError) {
-        reject(new Error('Good guess but a wrong answer. Try again!'));
+        reject(new Error('Dobar pokušaj, ali pogrešan odgovor. Probaj ponovo!'));
       } else {
         resolve();
       }
@@ -485,17 +485,17 @@ function submitForm(answer) {
 
 </Sandpack>
 
-Although this code is longer than the original imperative example, it is much less fragile. Expressing all interactions as state changes lets you later introduce new visual states without breaking existing ones. It also lets you change what should be displayed in each state without changing the logic of the interaction itself.
+Iako je ovaj kod duži od originalnog imperativnog primera, manje je krt. Izražavanje svih interakcija kao promena stanja vam omogućava da kasnije uvedete nova vizuelna stanja bez da pokvarite postojeća. Takođe vam omogućava da promenite šta je prikazano u svakom stanju bez promene logike u samoj interakciji.
 
 <Recap>
 
-* Declarative programming means describing the UI for each visual state rather than micromanaging the UI (imperative).
-* When developing a component:
-  1. Identify all its visual states.
-  2. Determine the human and computer triggers for state changes.
-  3. Model the state with `useState`.
-  4. Remove non-essential state to avoid bugs and paradoxes.
-  5. Connect the event handlers to set state.
+* Deklarativno programiranje označava opisivanje UI-a za svako vizuelno stanje, a ne mikromenadžment nad UI-jem (imperativno).
+* Kada razvijate komponentu:
+  1. Identifikujte sva njena vizuelna stanja.
+  2. Odredite ljudske i računarske pokretače promena stanja.
+  3. Modelujte stanje sa `useState`.
+  4. Uklonite neobavezne state-ove da izbegnete bug-ove i paradokse.
+  5. Povežite event handler-e da postavite state.
 
 </Recap>
 
@@ -503,11 +503,11 @@ Although this code is longer than the original imperative example, it is much le
 
 <Challenges>
 
-#### Add and remove a CSS class {/*add-and-remove-a-css-class*/}
+#### Dodati i ukloniti CSS klasu {/*add-and-remove-a-css-class*/}
 
-Make it so that clicking on the picture *removes* the `background--active` CSS class from the outer `<div>`, but *adds* the `picture--active` class to the `<img>`. Clicking the background again should restore the original CSS classes.
+Napravite da klik na sliku *uklanja* `background--active` CSS klasu iz spoljašnjeg `<div>`-a, ali *dodaje* `picture--active` klasu u `<img>`. Klik na pozadinu bi trebao da povrati originalne CSS klase.
 
-Visually, you should expect that clicking on the picture removes the purple background and highlights the picture border. Clicking outside the picture highlights the background, but removes the picture border highlight.
+Vizuelno, trebate očekivati da klik na sliku uklanja ljubičastu pozadinu i ističe ivicu slike. Klik van slike ističe pozadinu, ali uklanja istaknutu ivicu slike.
 
 <Sandpack>
 
@@ -517,7 +517,7 @@ export default function Picture() {
     <div className="background background--active">
       <img
         className="picture"
-        alt="Rainbow houses in Kampung Pelangi, Indonesia"
+        alt="Dugine kuće u Kampung Pelangi, Indonezija"
         src="https://i.imgur.com/5qwVYb1.jpeg"
       />
     </div>
@@ -557,14 +557,14 @@ body { margin: 0; padding: 0; height: 250px; }
 
 <Solution>
 
-This component has two visual states: when the image is active, and when the image is inactive:
+Ova komponenta ima dva vizuelna stanja: kad je slika aktivna i kad slika nije aktivna:
 
-* When the image is active, the CSS classes are `background` and `picture picture--active`.
-* When the image is inactive, the CSS classes are `background background--active` and `picture`.
+* Kad je slika aktivna, CSS klase su `background` i `picture picture--active`.
+* Kad slika nije aktivna, CSS klase su `background background--active` i `picture`.
 
-A single boolean state variable is enough to remember whether the image is active. The original task was to remove or add CSS classes. However, in React you need to *describe* what you want to see rather than *manipulate* the UI elements. So you need to calculate both CSS classes based on the current state. You also need to [stop the propagation](/learn/responding-to-events#stopping-propagation) so that clicking the image doesn't register as a click on the background.
+Jedna boolean state promenljiva je dovoljna da upamti da li je slika aktivna. Originalni zadatak je bio da uklonite ili dodate CSS klase. Međutim, u React-u je potrebno da *opišete* šta želite videti, pre nego da *manipulišete* UI elementima. Znači da morate izračunati obe CSS klase na osnovu trenutnog state-a. Takođe trebate da [zaustavite propagaciju](/learn/responding-to-events#stopping-propagation) kako klik na sliku ne bi bio registrovan kao klik na pozadinu.
 
-Verify that this version works by clicking the image and then outside of it:
+Potvrdite da ova verzija radi klikom na sliku, a onda klikom izvan nje:
 
 <Sandpack>
 
@@ -593,7 +593,7 @@ export default function Picture() {
           setIsActive(true);
         }}
         className={pictureClassName}
-        alt="Rainbow houses in Kampung Pelangi, Indonesia"
+        alt="Dugine kuće u Kampung Pelangi, Indonezija"
         src="https://i.imgur.com/5qwVYb1.jpeg"
       />
     </div>
@@ -631,7 +631,7 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Alternatively, you could return two separate chunks of JSX:
+Alternativno, možete vratiti dva različita JSX-a:
 
 <Sandpack>
 
@@ -648,7 +648,7 @@ export default function Picture() {
       >
         <img
           className="picture picture--active"
-          alt="Rainbow houses in Kampung Pelangi, Indonesia"
+          alt="Dugine kuće u Kampung Pelangi, Indonezija"
           src="https://i.imgur.com/5qwVYb1.jpeg"
           onClick={e => e.stopPropagation()}
         />
@@ -659,7 +659,7 @@ export default function Picture() {
     <div className="background background--active">
       <img
         className="picture"
-        alt="Rainbow houses in Kampung Pelangi, Indonesia"
+        alt="Dugine kuće u Kampung Pelangi, Indonezija"
         src="https://i.imgur.com/5qwVYb1.jpeg"
         onClick={() => setIsActive(true)}
       />
@@ -698,27 +698,27 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Keep in mind that if two different JSX chunks describe the same tree, their nesting (first `<div>` → first `<img>`) has to line up. Otherwise, toggling `isActive` would recreate the whole tree below and [reset its state.](/learn/preserving-and-resetting-state) This is why, if a similar JSX tree gets returned in both cases, it is better to write them as a single piece of JSX.
+Imajte na umu da ako imate dva različita JSX-a koja opisuju isto stablo, njihova ugnježdenost (prvi `<div>` → prvi `<img>`) mora da se podudara. U suprotnom, promena `isActive` bi iznova kreirala celo stablo ispod i [resetovala njegov state](/learn/preserving-and-resetting-state). Zbog toga, ako se slično JSX stablo vraća u oba slučaja, bolje je da ih napišete u jednom JSX-u.
 
 </Solution>
 
-#### Profile editor {/*profile-editor*/}
+#### Urediti profil {/*profile-editor*/}
 
-Here is a small form implemented with plain JavaScript and DOM. Play with it to understand its behavior:
+Ovde je mala forma implementirana samo sa JavaScript-om i DOM-om. Igrajte se sa njom da biste razumeli ponašanje:
 
 <Sandpack>
 
 ```js src/index.js active
 function handleFormSubmit(e) {
   e.preventDefault();
-  if (editButton.textContent === 'Edit Profile') {
-    editButton.textContent = 'Save Profile';
+  if (editButton.textContent === 'Izmeni profil') {
+    editButton.textContent = 'Sačuvaj profil';
     hide(firstNameText);
     hide(lastNameText);
     show(firstNameInput);
     show(lastNameInput);
   } else {
-    editButton.textContent = 'Edit Profile';
+    editButton.textContent = 'Izmeni profil';
     hide(firstNameInput);
     hide(lastNameInput);
     show(firstNameText);
@@ -729,7 +729,7 @@ function handleFormSubmit(e) {
 function handleFirstNameChange() {
   firstNameText.textContent = firstNameInput.value;
   helloText.textContent = (
-    'Hello ' +
+    'Zdravo ' +
     firstNameInput.value + ' ' +
     lastNameInput.value + '!'
   );
@@ -738,7 +738,7 @@ function handleFirstNameChange() {
 function handleLastNameChange() {
   lastNameText.textContent = lastNameInput.value;
   helloText.textContent = (
-    'Hello ' +
+    'Zdravo ' +
     firstNameInput.value + ' ' +
     lastNameInput.value + '!'
   );
@@ -773,7 +773,7 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name:
+    Ime:
     <b id="firstNameText">Jane</b>
     <input
       id="firstNameInput"
@@ -781,15 +781,15 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <label>
-    Last name:
+    Prezime:
     <b id="lastNameText">Jacobs</b>
     <input
       id="lastNameInput"
       value="Jacobs"
       style="display: none">
   </label>
-  <button type="submit" id="editButton">Edit Profile</button>
-  <p><i id="helloText">Hello, Jane Jacobs!</i></p>
+  <button type="submit" id="editButton">Izmeni profil</button>
+  <p><i id="helloText">Zdravo, Jane Jacobs!</i></p>
 </form>
 
 <style>
@@ -801,11 +801,11 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-This form switches between two modes: in the editing mode, you see the inputs, and in the viewing mode, you only see the result. The button label changes between "Edit" and "Save" depending on the mode you're in. When you change the inputs, the welcome message at the bottom updates in real time.
+Ova forma menja dva moda: u modu izmene vidite input-e, a u modu gledanja vidite samo rezultat. Labela dugmeta se menja iz "Izmeni" u "Sačuvaj" u zavisnosti od toga u kom ste modu. Dok menjate input-e, poruka na dnu se ažurira u realnom vremenu.
 
-Your task is to reimplement it in React in the sandbox below. For your convenience, the markup was already converted to JSX, but you'll need to make it show and hide the inputs like the original does.
+Vaš zadatak je da ovo implementirate iznova u React-u u sandbox-u ispod. Za vašu ugodnost, markup je već prebačen u JSX, ali vi trebate napraviti da prikazuje i skriva input-e kao i originalno rešenje.
 
-Make sure that it updates the text at the bottom, too!
+Postarajte se i da ažurira tekst na dnu!
 
 <Sandpack>
 
@@ -814,19 +814,19 @@ export default function EditProfile() {
   return (
     <form>
       <label>
-        First name:{' '}
+        Ime:{' '}
         <b>Jane</b>
         <input />
       </label>
       <label>
-        Last name:{' '}
+        Prezime:{' '}
         <b>Jacobs</b>
         <input />
       </label>
       <button type="submit">
-        Edit Profile
+        Izmeni profil
       </button>
-      <p><i>Hello, Jane Jacobs!</i></p>
+      <p><i>Zdravo, Jane Jacobs!</i></p>
     </form>
   );
 }
@@ -840,9 +840,9 @@ label { display: block; margin-bottom: 20px; }
 
 <Solution>
 
-You will need two state variables to hold the input values: `firstName` and `lastName`. You're also going to need an `isEditing` state variable that holds whether to display the inputs or not. You should _not_ need a `fullName` variable because the full name can always be calculated from the `firstName` and the `lastName`.
+Trebaće vam dve state promenljive da čuvaju input vrednosti: `firstName` i `lastName`. Takođe, trebaće vam i `isEditing` state promenljiva koja određuje da li se prikazuju input-i ili ne. _Neće_ vam trebati `fullName` promenljiva jer se celo ime uvek može izračunati na osnovu `firstName` i `lastName`.
 
-Finally, you should use [conditional rendering](/learn/conditional-rendering) to show or hide the inputs depending on `isEditing`.
+Konačno, trebate koristiti [uslovno renderovanje](/learn/conditional-rendering) da prikažete ili sakrijete input-e na osnovu vrednosti koju ima `isEditing`.
 
 <Sandpack>
 
@@ -860,7 +860,7 @@ export default function EditProfile() {
       setIsEditing(!isEditing);
     }}>
       <label>
-        First name:{' '}
+        Ime:{' '}
         {isEditing ? (
           <input
             value={firstName}
@@ -873,7 +873,7 @@ export default function EditProfile() {
         )}
       </label>
       <label>
-        Last name:{' '}
+        Prezime:{' '}
         {isEditing ? (
           <input
             value={lastName}
@@ -886,9 +886,9 @@ export default function EditProfile() {
         )}
       </label>
       <button type="submit">
-        {isEditing ? 'Save' : 'Edit'} Profile
+        {isEditing ? 'Sačuvaj' : 'Izmeni'} profil
       </button>
-      <p><i>Hello, {firstName} {lastName}!</i></p>
+      <p><i>Zdravo, {firstName} {lastName}!</i></p>
     </form>
   );
 }
@@ -900,27 +900,27 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-Compare this solution to the original imperative code. How are they different?
+Uporedite ovo rešenje sa originalnim imperativnim kodom. Kako se razlikuju?
 
 </Solution>
 
-#### Refactor the imperative solution without React {/*refactor-the-imperative-solution-without-react*/}
+#### Refaktorisati imperativno rešenje bez React-a {/*refactor-the-imperative-solution-without-react*/}
 
-Here is the original sandbox from the previous challenge, written imperatively without React:
+Ovde je originalni sandbox iz prethodnog izazova, napisan imperativno bez React-a:
 
 <Sandpack>
 
 ```js src/index.js active
 function handleFormSubmit(e) {
   e.preventDefault();
-  if (editButton.textContent === 'Edit Profile') {
-    editButton.textContent = 'Save Profile';
+  if (editButton.textContent === 'Izmeni profil') {
+    editButton.textContent = 'Sačuvaj profil';
     hide(firstNameText);
     hide(lastNameText);
     show(firstNameInput);
     show(lastNameInput);
   } else {
-    editButton.textContent = 'Edit Profile';
+    editButton.textContent = 'Izmeni profil';
     hide(firstNameInput);
     hide(lastNameInput);
     show(firstNameText);
@@ -931,7 +931,7 @@ function handleFormSubmit(e) {
 function handleFirstNameChange() {
   firstNameText.textContent = firstNameInput.value;
   helloText.textContent = (
-    'Hello ' +
+    'Zdravo ' +
     firstNameInput.value + ' ' +
     lastNameInput.value + '!'
   );
@@ -940,7 +940,7 @@ function handleFirstNameChange() {
 function handleLastNameChange() {
   lastNameText.textContent = lastNameInput.value;
   helloText.textContent = (
-    'Hello ' +
+    'Zdravo ' +
     firstNameInput.value + ' ' +
     lastNameInput.value + '!'
   );
@@ -975,7 +975,7 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name:
+    Ime:
     <b id="firstNameText">Jane</b>
     <input
       id="firstNameInput"
@@ -983,15 +983,15 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <label>
-    Last name:
+    Prezime:
     <b id="lastNameText">Jacobs</b>
     <input
       id="lastNameInput"
       value="Jacobs"
       style="display: none">
   </label>
-  <button type="submit" id="editButton">Edit Profile</button>
-  <p><i id="helloText">Hello, Jane Jacobs!</i></p>
+  <button type="submit" id="editButton">Izmeni profil</button>
+  <p><i id="helloText">Zdravo, Jane Jacobs!</i></p>
 </form>
 
 <style>
@@ -1003,9 +1003,9 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-Imagine React didn't exist. Can you refactor this code in a way that makes the logic less fragile and more similar to the React version? What would it look like if the state was explicit, like in React?
+Zamislite da React nije postojao. Možete li refaktorisati ovaj kod na način da logika bude manje krta i sličnija React verziji? Kako bi to izgledalo da je state eksplicitan, kao u React-u?
 
-If you're struggling to think where to start, the stub below already has most of the structure in place. If you start here, fill in the missing logic in the `updateDOM` function. (Refer to the original code where needed.)
+Ako se mučite da razmislite odakle početi, stub ispod već ima postavljenu većinu strukture. Ako počinjete odavde, popunite logiku koja nedostaje u `updateDOM` funkciji. (Pogledajte originalni kod ako vam je potrebno.)
 
 <Sandpack>
 
@@ -1044,13 +1044,13 @@ function setIsEditing(value) {
 
 function updateDOM() {
   if (isEditing) {
-    editButton.textContent = 'Save Profile';
-    // TODO: show inputs, hide content
+    editButton.textContent = 'Sačuvaj profil';
+    // TODO: prikaži input-e, sakrij sadržaj
   } else {
-    editButton.textContent = 'Edit Profile';
-    // TODO: hide inputs, show content
+    editButton.textContent = 'Izmeni profil';
+    // TODO: sakrij input-e, prikaži sadržaj
   }
-  // TODO: update text labels
+  // TODO: ažuriraj labele
 }
 
 function hide(el) {
@@ -1082,7 +1082,7 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name:
+    Ime:
     <b id="firstNameText">Jane</b>
     <input
       id="firstNameInput"
@@ -1090,15 +1090,15 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <label>
-    Last name:
+    Prezime:
     <b id="lastNameText">Jacobs</b>
     <input
       id="lastNameInput"
       value="Jacobs"
       style="display: none">
   </label>
-  <button type="submit" id="editButton">Edit Profile</button>
-  <p><i id="helloText">Hello, Jane Jacobs!</i></p>
+  <button type="submit" id="editButton">Izmeni profil</button>
+  <p><i id="helloText">Zdravo, Jane Jacobs!</i></p>
 </form>
 
 <style>
@@ -1112,7 +1112,7 @@ label { display: block; margin-bottom: 20px; }
 
 <Solution>
 
-The missing logic included toggling the display of inputs and content, and updating the labels:
+Nedostajuća logika uključuje prikazivanje i skrivanje input-a i sadržaja, kao i ažuriranje labela:
 
 <Sandpack>
 
@@ -1151,13 +1151,13 @@ function setIsEditing(value) {
 
 function updateDOM() {
   if (isEditing) {
-    editButton.textContent = 'Save Profile';
+    editButton.textContent = 'Sačuvaj profil';
     hide(firstNameText);
     hide(lastNameText);
     show(firstNameInput);
     show(lastNameInput);
   } else {
-    editButton.textContent = 'Edit Profile';
+    editButton.textContent = 'Izmeni profil';
     hide(firstNameInput);
     hide(lastNameInput);
     show(firstNameText);
@@ -1166,7 +1166,7 @@ function updateDOM() {
   firstNameText.textContent = firstName;
   lastNameText.textContent = lastName;
   helloText.textContent = (
-    'Hello ' +
+    'Zdravo ' +
     firstName + ' ' +
     lastName + '!'
   );
@@ -1201,7 +1201,7 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name:
+    Ime:
     <b id="firstNameText">Jane</b>
     <input
       id="firstNameInput"
@@ -1209,15 +1209,15 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <label>
-    Last name:
+    Prezime:
     <b id="lastNameText">Jacobs</b>
     <input
       id="lastNameInput"
       value="Jacobs"
       style="display: none">
   </label>
-  <button type="submit" id="editButton">Edit Profile</button>
-  <p><i id="helloText">Hello, Jane Jacobs!</i></p>
+  <button type="submit" id="editButton">Izmeni profil</button>
+  <p><i id="helloText">Zdravo, Jane Jacobs!</i></p>
 </form>
 
 <style>
@@ -1229,7 +1229,7 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-The `updateDOM` function you wrote shows what React does under the hood when you set the state. (However, React also avoids touching the DOM for properties that have not changed since the last time they were set.)
+`updateDOM` funkcija koju ste napisali prikazuje šta React radi ispod haube kada postavite state. (Doduše, React takođe izbegava da dira DOM za stvari koje se nisu promenile od poslednjeg puta kad su bile postavljene.)
 
 </Solution>
 
