@@ -22,7 +22,7 @@ Povećavanjem aplikacije, važno je da budete svesni kako vam je state organizov
 
 ## Reagovanje na input pomoću stanja {/*reacting-to-input-with-state*/}
 
-Sa React-om, nećete direktno u kodu menjati UI. Na primer, nećete pisati komande poput "onemogući dugme", "omogući dugme", "prikaži uspešnu poruku", itd. Umesto toga, opisaćete kakav UI želite da vidite za različita vizuelna stanja vaše komponente ("inicijalno stanje", "stanje pisanja", "uspešno stanje"), a onda ćete pokrenuti promene state-a kao odgovor na korisnički input. Ovo je slično onome kako dizajneri razmišljaju o UI-u.
+Sa React-om, nećete direktno u kodu menjati UI. Na primer, nećete pisati komande poput "onemogući dugme", "omogući dugme", "prikaži uspešnu poruku", itd. Umesto toga, opisaćete kakav UI želite da vidite za različita vizuelna stanja vaše komponente ("inicijalno stanje", "stanje pisanja", "uspešno stanje"), a onda ćete pokrenuti promene stanja kao odgovor na korisnički input. Ovo je slično onome kako dizajneri razmišljaju o UI-u.
 
 Ovde je forma za kviz napravljena pomoću React-a. Primetite kako koristi `status` state promenljivu da odluči da li da omogući submit dugme i da li da prikaže uspešnu poruku.
 
