@@ -1,53 +1,53 @@
 ---
-title: Choosing the State Structure
+title: Odabir strukture state-a
 ---
 
 <Intro>
 
-Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. Here are some tips you should consider when structuring state.
+Pravilno strukturiranje state-a može napraviti razliku između komponente koju je lako menjati i debug-ovati, i one koja je stalan izvor bug-ova. Ovde se nalazi par saveta koje trebate razmotriti kada strukturirate state.
 
 </Intro>
 
 <YouWillLearn>
 
-* When to use a single vs multiple state variables
-* What to avoid when organizing state
-* How to fix common issues with the state structure
+* Kada da koristite jednu ili više state promenljivih
+* Šta izbegavati prilikom organizacije state-a
+* Kako popraviti česte probleme sa strukturom state-a
 
 </YouWillLearn>
 
-## Principles for structuring state {/*principles-for-structuring-state*/}
+## Principi za strukturiranje state-a {/*principles-for-structuring-state*/}
 
-When you write a component that holds some state, you'll have to make choices about how many state variables to use and what the shape of their data should be. While it's possible to write correct programs even with a suboptimal state structure, there are a few principles that can guide you to make better choices:
+Kada pišete komponentu koja sadrži neki state, moraćete da odlučite koliko state promenljivih da koristite i kakav oblik podataka u njima vam je potreban. Iako je moguće da napišete pravilan program sa neoptimizovanom strukturom state-a, postoji par principa koji vas mogu uputiti da donesete bolje odluke:
 
-1. **Group related state.** If you always update two or more state variables at the same time, consider merging them into a single state variable.
-2. **Avoid contradictions in state.** When the state is structured in a way that several pieces of state may contradict and "disagree" with each other, you leave room for mistakes. Try to avoid this.
-3. **Avoid redundant state.** If you can calculate some information from the component's props or its existing state variables during rendering, you should not put that information into that component's state.
-4. **Avoid duplication in state.** When the same data is duplicated between multiple state variables, or within nested objects, it is difficult to keep them in sync. Reduce duplication when you can.
-5. **Avoid deeply nested state.** Deeply hierarchical state is not very convenient to update. When possible, prefer to structure state in a flat way.
+1. **Grupisati povezane state-ove.** Ako uvek istovremeno ažurirate dve ili više state promenljivih, pokušajte da ih spojite u jednu state promenljivu.
+2. **Izbegavati kontradikcije u state-u.** Kada je state strukturiran tako da više delova state-a budu kontradiktorni i "neodgovarajući" jedni drugima, ostavljate prostora za greške. Pokušajte ovo da izbegnete.
+3. **Izbegavati suvišan state.** Ako, tokom renderovanja, neku informaciju možete izračunati na osnovu props-a komponente ili već postojeće state promenljive, ne biste trebali da stavite tu informaciju u state komponente.
+4. **Izbegavati dupliranje u state-u.** Kada su isti podaci duplirani u više state promenljivih, ili unutar ugnježdenih objekata, teško je sinhronizovati ih. Smanjite dupliranje kada to možete.
+5. **Izbegavati duboko ugnježedeni state.** Hijerarhijski dubok state nije zgodan za ažuriranje. Kada je moguće, preferirajte da strukturirate state da bude flat.
 
-The goal behind these principles is to *make state easy to update without introducing mistakes*. Removing redundant and duplicate data from state helps ensure that all its pieces stay in sync. This is similar to how a database engineer might want to ["normalize" the database structure](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) to reduce the chance of bugs. To paraphrase Albert Einstein, **"Make your state as simple as it can be--but no simpler."**
+Cilj iza ovih principa je da *napravite da se state lako ažurira bez uvođenja grešaka*. Uklanjanje suvišnih i dupliranih podataka iz state-a pomaže da svi njegovi delovi ostanu sinhronizovani. Ovo je slično onome kako inženjeri baza podataka žele da ["normalizuju" strukturu baze podataka](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) i smanje šanse za bug-ove. Da parafraziramo Alberta Ajnštajna, **"Napravite vaš state što jednostavnijim--ali ne jednostavnijim od toga."**
 
-Now let's see how these principles apply in action.
+Hajde da vidimo primenu ovih principa na delu.
 
-## Group related state {/*group-related-state*/}
+## Grupisati povezane state-ove {/*group-related-state*/}
 
-You might sometimes be unsure between using a single or multiple state variables.
+Ponekad se možete dvoumiti između upotrebe jedne ili više state promenljivih.
 
-Should you do this?
+Da li koristiti ovo?
 
 ```js
 const [x, setX] = useState(0);
 const [y, setY] = useState(0);
 ```
 
-Or this?
+Ili ovo?
 
 ```js
 const [position, setPosition] = useState({ x: 0, y: 0 });
 ```
 
-Technically, you can use either of these approaches. But **if some two state variables always change together, it might be a good idea to unify them into a single state variable.** Then you won't forget to always keep them in sync, like in this example where moving the cursor updates both coordinates of the red dot:
+Tehnički, možete koristiti oba pristupa. Ali, **ako se dve state promenljive uvek menjaju zajedno, može biti dobra ideja da ih grupišete u jednu state promenljivu**. Tako nećete zaboravati da ih držite sinhronizovane, kao u ovom primeru gde pomeranje kursora ažurira obe koordinate crvene tačke:
 
 <Sandpack>
 
@@ -93,17 +93,17 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Another case where you'll group data into an object or an array is when you don't know how many pieces of state you'll need. For example, it's helpful when you have a form where the user can add custom fields.
+Drugi slučaj gde možete grupisati podatke u objekat ili niz je kada ne znate koliko state-ova vam treba. Na primer, korisno je kada imate formu gde korisnik može uneti polja po sopstvenoj želji.
 
 <Pitfall>
 
-If your state variable is an object, remember that [you can't update only one field in it](/learn/updating-objects-in-state) without explicitly copying the other fields. For example, you can't do `setPosition({ x: 100 })` in the above example because it would not have the `y` property at all! Instead, if you wanted to set `x` alone, you would either do `setPosition({ ...position, x: 100 })`, or split them into two state variables and do `setX(100)`.
+Ako vam je state promenljiva objekat, zapamtite da [ne možete ažurirati samo jedno polje u njemu](/learn/updating-objects-in-state) bez eksplicitnog kopiranja ostalih polja. Na primer, ne možete napisati `setPosition({ x: 100 })` u primeru iznad jer nemate `y` polje uopšte! Umesto toga, ako želite da postavite samo `x`, napisaćete `setPosition({ ...position, x: 100 })`, ili ćete ih podeliti u dve state promenljive i napisati `setX(100)`.
 
 </Pitfall>
 
-## Avoid contradictions in state {/*avoid-contradictions-in-state*/}
+## Izbegavati kontradikcije u state-u {/*avoid-contradictions-in-state*/}
 
-Here is a hotel feedback form with `isSending` and `isSent` state variables:
+Ovde je feedback forma za hotel sa `isSending` i `isSent` state promenljivama:
 
 <Sandpack>
 
@@ -124,12 +124,12 @@ export default function FeedbackForm() {
   }
 
   if (isSent) {
-    return <h1>Thanks for feedback!</h1>
+    return <h1>Hvala za feedback!</h1>
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>How was your stay at The Prancing Pony?</p>
+      <p>Kako vam je bilo u The Prancing Pony hotelu?</p>
       <textarea
         disabled={isSending}
         value={text}
@@ -140,14 +140,14 @@ export default function FeedbackForm() {
         disabled={isSending}
         type="submit"
       >
-        Send
+        Pošalji
       </button>
-      {isSending && <p>Sending...</p>}
+      {isSending && <p>Slanje...</p>}
     </form>
   );
 }
 
-// Pretend to send a message.
+// Pretvaraj se da šalješ poruku.
 function sendMessage(text) {
   return new Promise(resolve => {
     setTimeout(resolve, 2000);
@@ -157,9 +157,9 @@ function sendMessage(text) {
 
 </Sandpack>
 
-While this code works, it leaves the door open for "impossible" states. For example, if you forget to call `setIsSent` and `setIsSending` together, you may end up in a situation where both `isSending` and `isSent` are `true` at the same time. The more complex your component is, the harder it is to understand what happened.
+Iako ovaj kod radi, ostavlja prostor za "nemoguća" stanja. Na primer, ako zaboravite da pozovete `setIsSent` i `setIsSending` zajedno, možete završiti u situaciji gde su i `isSending` i `isSent` postavljeni na `true` istovremeno. Što je vaša komponenta kompleksnija, teže je razumeti šta se desilo.
 
-**Since `isSending` and `isSent` should never be `true` at the same time, it is better to replace them with one `status` state variable that may take one of *three* valid states:** `'typing'` (initial), `'sending'`, and `'sent'`:
+**Pošto `isSending` i `isSent` nikad ne bi trebali da budu `true` istovremeno, bolje je zameniti ih sa jednom `status` state promenljivom koja može imati jedno od *tri* validna stanja:** `'typing'` (inicijalno), `'sending'` i `'sent'`:
 
 <Sandpack>
 
@@ -181,12 +181,12 @@ export default function FeedbackForm() {
   const isSent = status === 'sent';
 
   if (isSent) {
-    return <h1>Thanks for feedback!</h1>
+    return <h1>Hvala za feedback!</h1>
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <p>How was your stay at The Prancing Pony?</p>
+      <p>Kako vam je bilo u The Prancing Pony hotelu?</p>
       <textarea
         disabled={isSending}
         value={text}
@@ -197,14 +197,14 @@ export default function FeedbackForm() {
         disabled={isSending}
         type="submit"
       >
-        Send
+        Pošalji
       </button>
-      {isSending && <p>Sending...</p>}
+      {isSending && <p>Slanje...</p>}
     </form>
   );
 }
 
-// Pretend to send a message.
+// Pretvaraj se da šalješ poruku.
 function sendMessage(text) {
   return new Promise(resolve => {
     setTimeout(resolve, 2000);
@@ -214,20 +214,20 @@ function sendMessage(text) {
 
 </Sandpack>
 
-You can still declare some constants for readability:
+Možete deklarisati konstante da poboljšate čitljivost:
 
 ```js
 const isSending = status === 'sending';
 const isSent = status === 'sent';
 ```
 
-But they're not state variables, so you don't need to worry about them getting out of sync with each other.
+Ali, one nisu state promenljive, pa ne morate brinuti o tome da li će biti sinhronizovane.
 
-## Avoid redundant state {/*avoid-redundant-state*/}
+## Izbegavati suvišan state {/*avoid-redundant-state*/}
 
-If you can calculate some information from the component's props or its existing state variables during rendering, you **should not** put that information into that component's state.
+Ako, tokom renderovanja, neku informaciju možete izračunati na osnovu props-a komponente ili već postojeće state promenljive, **ne biste** trebali da stavite tu informaciju u state komponente.
 
-For example, take this form. It works, but can you find any redundant state in it?
+Na primer, pogledajte ovu formu. Radi, ali, da li možete pronaći neki suvišan state u njoj?
 
 <Sandpack>
 
@@ -251,23 +251,23 @@ export default function Form() {
 
   return (
     <>
-      <h2>Let’s check you in</h2>
+      <h2>Prijavite se</h2>
       <label>
-        First name:{' '}
+        Ime:{' '}
         <input
           value={firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Last name:{' '}
+        Prezime:{' '}
         <input
           value={lastName}
           onChange={handleLastNameChange}
         />
       </label>
       <p>
-        Your ticket will be issued to: <b>{fullName}</b>
+        Vaša karta će biti izdata na ime: <b>{fullName}</b>
       </p>
     </>
   );
@@ -280,9 +280,9 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-This form has three state variables: `firstName`, `lastName`, and `fullName`. However, `fullName` is redundant. **You can always calculate `fullName` from `firstName` and `lastName` during render, so remove it from state.**
+Ova forma ima tri state promenljive: `firstName`, `lastName` i `fullName`. Međutim, `fullName` je suvišno. **Uvek možete izračunati `fullName` pomoću `firstName` i `lastName` tokom rendera, pa je uklonite iz state-a.**
 
-This is how you can do it:
+Evo kako to da uradite:
 
 <Sandpack>
 
@@ -305,23 +305,23 @@ export default function Form() {
 
   return (
     <>
-      <h2>Let’s check you in</h2>
+      <h2>Prijavite se</h2>
       <label>
-        First name:{' '}
+        Ime:{' '}
         <input
           value={firstName}
           onChange={handleFirstNameChange}
         />
       </label>
       <label>
-        Last name:{' '}
+        Prezime:{' '}
         <input
           value={lastName}
           onChange={handleLastNameChange}
         />
       </label>
       <p>
-        Your ticket will be issued to: <b>{fullName}</b>
+        Vaša karta će biti izdata na ime: <b>{fullName}</b>
       </p>
     </>
   );
@@ -334,50 +334,50 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Here, `fullName` is *not* a state variable. Instead, it's calculated during render:
+Ovde, `fullName` *nije* state promenljiva. Umesto toga, računa se tokom rendera:
 
 ```js
 const fullName = firstName + ' ' + lastName;
 ```
 
-As a result, the change handlers don't need to do anything special to update it. When you call `setFirstName` or `setLastName`, you trigger a re-render, and then the next `fullName` will be calculated from the fresh data.
+Kao rezultat, handler-i za promenu ne moraju ništa posebno da rade da bi je ažurirali. Kada pozovete `setFirstName` ili `setLastName`, pokrećete ponovni render, a onda će naredni `fullName` biti izračunat na osnovu najnovijih podataka.
 
 <DeepDive>
 
-#### Don't mirror props in state {/*don-t-mirror-props-in-state*/}
+#### Ne preslikavajte props-e u state {/*don-t-mirror-props-in-state*/}
 
-A common example of redundant state is code like this:
+Uobičajen primer suvišnog state-a je ovakav kod:
 
 ```js
 function Message({ messageColor }) {
   const [color, setColor] = useState(messageColor);
 ```
 
-Here, a `color` state variable is initialized to the `messageColor` prop. The problem is that **if the parent component passes a different value of `messageColor` later (for example, `'red'` instead of `'blue'`), the `color` *state variable* would not be updated!** The state is only initialized during the first render.
+Ovde, `color` state promenljiva je inicijalizovana na `messageColor` prop. Problem je u tome što **ako roditeljska komponenta prosledi drugu vrednost za `messageColor` kasnije (na primer, `'red'` umesto `'blue'`), `color` *state promenljiva* neće biti ažurirana**! State je inicijalizovan samo tokom prvog rendera.
 
-This is why "mirroring" some prop in a state variable can lead to confusion. Instead, use the `messageColor` prop directly in your code. If you want to give it a shorter name, use a constant:
+Zato "preslikavanje" nekog prop-a u state promenljivu može dovesti do zabune. Umesto toga, koristite `messageColor` prop direktno u kodu. Ako želite da mu date kraće ime, koristite konstantu:
 
 ```js
 function Message({ messageColor }) {
   const color = messageColor;
 ```
 
-This way it won't get out of sync with the prop passed from the parent component.
+Na ovaj način neće ostati nesinhronzovan sa prop-om prosleđenim iz roditeljske komponente.
 
-"Mirroring" props into state only makes sense when you *want* to ignore all updates for a specific prop. By convention, start the prop name with `initial` or `default` to clarify that its new values are ignored:
+"Preslikavanje" props-a u state ima smisla jedino ako *želite* da ignorišete sve promene tog prop-a. Po konvenciji, nazovite prop tako da počinje sa `initial` ili `default` da ukažete na to da će nove vrednosti biti ignorisane:
 
 ```js
 function Message({ initialColor }) {
-  // The `color` state variable holds the *first* value of `initialColor`.
-  // Further changes to the `initialColor` prop are ignored.
+  // `color` state promenljiva drži *prvu* vrednost `initialColor`-a.
+  // Naredne promene `initialColor` prop-a su ignorisane.
   const [color, setColor] = useState(initialColor);
 ```
 
 </DeepDive>
 
-## Avoid duplication in state {/*avoid-duplication-in-state*/}
+## Izbegavati dupliranje u state-u {/*avoid-duplication-in-state*/}
 
-This menu list component lets you choose a single travel snack out of several:
+Ova komponenta vam omogućava da odaberete jednu grickalicu za put od nekoliko ponuđenih:
 
 <Sandpack>
 
@@ -385,9 +385,9 @@ This menu list component lets you choose a single travel snack out of several:
 import { useState } from 'react';
 
 const initialItems = [
-  { title: 'pretzels', id: 0 },
-  { title: 'crispy seaweed', id: 1 },
-  { title: 'granola bar', id: 2 },
+  { title: 'perece', id: 0 },
+  { title: 'hrskave morske alge', id: 1 },
+  { title: 'musli pločica', id: 2 },
 ];
 
 export default function Menu() {
@@ -398,7 +398,7 @@ export default function Menu() {
 
   return (
     <>
-      <h2>What's your travel snack?</h2>
+      <h2>Koja je vaša grickalica za put?</h2>
       <ul>
         {items.map(item => (
           <li key={item.id}>
@@ -406,11 +406,11 @@ export default function Menu() {
             {' '}
             <button onClick={() => {
               setSelectedItem(item);
-            }}>Choose</button>
+            }}>Izaberi</button>
           </li>
         ))}
       </ul>
-      <p>You picked {selectedItem.title}.</p>
+      <p>Izabrali ste {selectedItem.title}.</p>
     </>
   );
 }
@@ -422,9 +422,9 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-Currently, it stores the selected item as an object in the `selectedItem` state variable. However, this is not great: **the contents of the `selectedItem` is the same object as one of the items inside the `items` list.** This means that the information about the item itself is duplicated in two places.
+Trenutno se čuva izabrana stavka kao objekat u `selectedItem` state promenljivoj. Međutim, ovo nije dobro: **sadržaj `selectedItem`-a je isti objekat koji se nalazi unutar stavke u `items` listi**. Ovo znači da je informacija o stavki duplirana na dva mesta.
 
-Why is this a problem? Let's make each item editable:
+Zašto je ovo problem? Hajde da dodamo izmenu stavki:
 
 <Sandpack>
 
@@ -432,9 +432,9 @@ Why is this a problem? Let's make each item editable:
 import { useState } from 'react';
 
 const initialItems = [
-  { title: 'pretzels', id: 0 },
-  { title: 'crispy seaweed', id: 1 },
-  { title: 'granola bar', id: 2 },
+  { title: 'perece', id: 0 },
+  { title: 'hrskave morske alge', id: 1 },
+  { title: 'musli pločica', id: 2 },
 ];
 
 export default function Menu() {
@@ -458,7 +458,7 @@ export default function Menu() {
 
   return (
     <>
-      <h2>What's your travel snack?</h2> 
+      <h2>Koja je vaša grickalica za put?</h2> 
       <ul>
         {items.map((item, index) => (
           <li key={item.id}>
@@ -471,11 +471,11 @@ export default function Menu() {
             {' '}
             <button onClick={() => {
               setSelectedItem(item);
-            }}>Choose</button>
+            }}>Izaberi</button>
           </li>
         ))}
       </ul>
-      <p>You picked {selectedItem.title}.</p>
+      <p>Izabrali ste {selectedItem.title}.</p>
     </>
   );
 }
@@ -487,9 +487,9 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-Notice how if you first click "Choose" on an item and *then* edit it, **the input updates but the label at the bottom does not reflect the edits.** This is because you have duplicated state, and you forgot to update `selectedItem`.
+Primetite da ako prvo kliknete "Izaberi", a *onda* izmenite stavku, **input se ažurira, ali labela na dnu ne prikazuje unete promene**. To je zato što imate dupliran state, a zaboravili ste da ažurirate `selectedItem`.
 
-Although you could update `selectedItem` too, an easier fix is to remove duplication. In this example, instead of a `selectedItem` object (which creates a duplication with objects inside `items`), you hold the `selectedId` in state, and *then* get the `selectedItem` by searching the `items` array for an item with that ID:
+Iako možete ažurirati i `selectedItem` takođe, lakše je ukloniti dupliranje. U ovom primeru, umesto `selectedItem` objekta (koji kreira dupliranje sa objektima unutar `items` liste), vi čuvate `selectedId` u state-u, a *onda* `selectedItem` dobijate pretraživanjem `items`-a preko tog ID-a:
 
 <Sandpack>
 
@@ -497,9 +497,9 @@ Although you could update `selectedItem` too, an easier fix is to remove duplica
 import { useState } from 'react';
 
 const initialItems = [
-  { title: 'pretzels', id: 0 },
-  { title: 'crispy seaweed', id: 1 },
-  { title: 'granola bar', id: 2 },
+  { title: 'perece', id: 0 },
+  { title: 'hrskave morske alge', id: 1 },
+  { title: 'musli pločica', id: 2 },
 ];
 
 export default function Menu() {
@@ -525,7 +525,7 @@ export default function Menu() {
 
   return (
     <>
-      <h2>What's your travel snack?</h2>
+      <h2>Koja je vaša grickalica za put?</h2>
       <ul>
         {items.map((item, index) => (
           <li key={item.id}>
@@ -538,11 +538,11 @@ export default function Menu() {
             {' '}
             <button onClick={() => {
               setSelectedId(item.id);
-            }}>Choose</button>
+            }}>Izaberi</button>
           </li>
         ))}
       </ul>
-      <p>You picked {selectedItem.title}.</p>
+      <p>Izabrali ste {selectedItem.title}.</p>
     </>
   );
 }
@@ -554,23 +554,23 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-The state used to be duplicated like this:
+State koji je dupliran izgleda ovako:
 
-* `items = [{ id: 0, title: 'pretzels'}, ...]`
-* `selectedItem = {id: 0, title: 'pretzels'}`
+* `items = [{ id: 0, title: 'perece'}, ...]`
+* `selectedItem = {id: 0, title: 'perece'}`
 
-But after the change it's like this:
+Ali, nakon promene, sada izgleda ovako:
 
-* `items = [{ id: 0, title: 'pretzels'}, ...]`
+* `items = [{ id: 0, title: 'perece'}, ...]`
 * `selectedId = 0`
 
-The duplication is gone, and you only keep the essential state!
+Dupliranja nema, a ostaje samo obavezan state!
 
-Now if you edit the *selected* item, the message below will update immediately. This is because `setItems` triggers a re-render, and `items.find(...)` would find the item with the updated title. You didn't need to hold *the selected item* in state, because only the *selected ID* is essential. The rest could be calculated during render.
+Sada, ako izmenite *izabranu* stavku, poruka ispod će se odmah ažurirati. To se dešava jer `setItems` pokreće ponovni render, a `items.find(...)` će pronaći stavku sa ažuriranim nazivom. Nije vam potrebno da čuvate *izabranu stavku* u state-u, zato što je jedino *izabrani ID* obavezan. Ostatak može biti izračunat tokom rendera.
 
-## Avoid deeply nested state {/*avoid-deeply-nested-state*/}
+## Izbegavati duboko ugnježedeni state {/*avoid-deeply-nested-state*/}
 
-Imagine a travel plan consisting of planets, continents, and countries. You might be tempted to structure its state using nested objects and arrays, like in this example:
+Zamislite plan putovanja koji sadrži planete, kontinente i države. Možete biti u iskušenju da strukturirate state upotrebom ugnježdenih objekata i nizova, kao u ovom primeru:
 
 <Sandpack>
 
@@ -599,7 +599,7 @@ export default function TravelPlan() {
   const planets = plan.childPlaces;
   return (
     <>
-      <h2>Places to visit</h2>
+      <h2>Mesta za posetu</h2>
       <ol>
         {planets.map(place => (
           <PlaceTree key={place.id} place={place} />
@@ -616,42 +616,42 @@ export const initialTravelPlan = {
   title: '(Root)',
   childPlaces: [{
     id: 1,
-    title: 'Earth',
+    title: 'Zemlja',
     childPlaces: [{
       id: 2,
-      title: 'Africa',
+      title: 'Afrika',
       childPlaces: [{
         id: 3,
-        title: 'Botswana',
+        title: 'Bocvana',
         childPlaces: []
       }, {
         id: 4,
-        title: 'Egypt',
+        title: 'Egipat',
         childPlaces: []
       }, {
         id: 5,
-        title: 'Kenya',
+        title: 'Kenija',
         childPlaces: []
       }, {
         id: 6,
-        title: 'Madagascar',
+        title: 'Madagaskar',
         childPlaces: []
       }, {
         id: 7,
-        title: 'Morocco',
+        title: 'Maroko',
         childPlaces: []
       }, {
         id: 8,
-        title: 'Nigeria',
+        title: 'Nigerija',
         childPlaces: []
       }, {
         id: 9,
-        title: 'South Africa',
+        title: 'Južna Afrika',
         childPlaces: []
       }]
     }, {
       id: 10,
-      title: 'Americas',
+      title: 'Amerika',
       childPlaces: [{
         id: 11,
         title: 'Argentina',
@@ -666,71 +666,71 @@ export const initialTravelPlan = {
         childPlaces: []
       }, {
         id: 14,
-        title: 'Canada',
+        title: 'Kanada',
         childPlaces: []
       }, {
         id: 15,
-        title: 'Jamaica',
+        title: 'Jamajka',
         childPlaces: []
       }, {
         id: 16,
-        title: 'Mexico',
+        title: 'Meksiko',
         childPlaces: []
       }, {
         id: 17,
-        title: 'Trinidad and Tobago',
+        title: 'Trinidad i Tobago',
         childPlaces: []
       }, {
         id: 18,
-        title: 'Venezuela',
+        title: 'Venecuela',
         childPlaces: []
       }]
     }, {
       id: 19,
-      title: 'Asia',
+      title: 'Azija',
       childPlaces: [{
         id: 20,
-        title: 'China',
+        title: 'Kina',
         childPlaces: []
       }, {
         id: 21,
-        title: 'India',
+        title: 'Indija',
         childPlaces: []
       }, {
         id: 22,
-        title: 'Singapore',
+        title: 'Singapur',
         childPlaces: []
       }, {
         id: 23,
-        title: 'South Korea',
+        title: 'Južna Koreja',
         childPlaces: []
       }, {
         id: 24,
-        title: 'Thailand',
+        title: 'Tajland',
         childPlaces: []
       }, {
         id: 25,
-        title: 'Vietnam',
+        title: 'Vijetnam',
         childPlaces: []
       }]
     }, {
       id: 26,
-      title: 'Europe',
+      title: 'Evropa',
       childPlaces: [{
         id: 27,
-        title: 'Croatia',
+        title: 'Hrvatska',
         childPlaces: [],
       }, {
         id: 28,
-        title: 'France',
+        title: 'Francuska',
         childPlaces: [],
       }, {
         id: 29,
-        title: 'Germany',
+        title: 'Nemačka',
         childPlaces: [],
       }, {
         id: 30,
-        title: 'Italy',
+        title: 'Italija',
         childPlaces: [],
       }, {
         id: 31,
@@ -738,39 +738,39 @@ export const initialTravelPlan = {
         childPlaces: [],
       }, {
         id: 32,
-        title: 'Spain',
+        title: 'Španija',
         childPlaces: [],
       }, {
         id: 33,
-        title: 'Turkey',
+        title: 'Turska',
         childPlaces: [],
       }]
     }, {
       id: 34,
-      title: 'Oceania',
+      title: 'Okeanija',
       childPlaces: [{
         id: 35,
-        title: 'Australia',
+        title: 'Australija',
         childPlaces: [],
       }, {
         id: 36,
-        title: 'Bora Bora (French Polynesia)',
+        title: 'Bora Bora (Francuska Polinezija)',
         childPlaces: [],
       }, {
         id: 37,
-        title: 'Easter Island (Chile)',
+        title: 'Uskršnje ostrvo (Čile)',
         childPlaces: [],
       }, {
         id: 38,
-        title: 'Fiji',
+        title: 'Fidži',
         childPlaces: [],
       }, {
         id: 39,
-        title: 'Hawaii (the USA)',
+        title: 'Havaji (SAD)',
         childPlaces: [],
       }, {
         id: 40,
-        title: 'New Zealand',
+        title: 'Novi Zeland',
         childPlaces: [],
       }, {
         id: 41,
@@ -780,18 +780,18 @@ export const initialTravelPlan = {
     }]
   }, {
     id: 42,
-    title: 'Moon',
+    title: 'Mesec',
     childPlaces: [{
       id: 43,
-      title: 'Rheita',
+      title: 'Rheita krater',
       childPlaces: []
     }, {
       id: 44,
-      title: 'Piccolomini',
+      title: 'Piccolomini krater',
       childPlaces: []
     }, {
       id: 45,
-      title: 'Tycho',
+      title: 'Tihov krater',
       childPlaces: []
     }]
   }, {
@@ -812,11 +812,11 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-Now let's say you want to add a button to delete a place you've already visited. How would you go about it? [Updating nested state](/learn/updating-objects-in-state#updating-a-nested-object) involves making copies of objects all the way up from the part that changed. Deleting a deeply nested place would involve copying its entire parent place chain. Such code can be very verbose.
+Recimo da želite dodati dugme za brisanje mesta koje ste već posetili. Kako biste to uradili? [Ažuriranje ugnježdenog state-a](/learn/updating-objects-in-state#updating-a-nested-object) podrazumeva pravljenje kopija svih objekata od mesta koje se promenilo na gore. Brisanje duboko ugnježdenog mesta bi zahtevalo kopiranje celokupnog lanca roditeljskih objekata. Takav kod može biti veoma opširan.
 
-**If the state is too nested to update easily, consider making it "flat".** Here is one way you can restructure this data. Instead of a tree-like structure where each `place` has an array of *its child places*, you can have each place hold an array of *its child place IDs*. Then store a mapping from each place ID to the corresponding place.
+**Ako je state previše ugnježden da bi se lako ažurirao, razmotrite da ga napravite da bude "flat".** Ovde je jedan način da restrukturirate ove podatke. Umesto strukture nalik na stablo gde svaki `place` ima niz *dečjih mesta*, možete napraviti da svako mesto čuva niz *ID-eva dečjih mesta*. Onda napravite mapiranje od ID-a mesta do odgovarajućeg mesta.
 
-This data restructuring might remind you of seeing a database table:
+Ovo restrukturiranje podataka vas može podsetiti na tabelu u bazi podataka:
 
 <Sandpack>
 
@@ -851,7 +851,7 @@ export default function TravelPlan() {
   const planetIds = root.childIds;
   return (
     <>
-      <h2>Places to visit</h2>
+      <h2>Mesta za posetu</h2>
       <ol>
         {planetIds.map(id => (
           <PlaceTree
@@ -875,52 +875,52 @@ export const initialTravelPlan = {
   },
   1: {
     id: 1,
-    title: 'Earth',
+    title: 'Zemlja',
     childIds: [2, 10, 19, 26, 34]
   },
   2: {
     id: 2,
-    title: 'Africa',
+    title: 'Afrika',
     childIds: [3, 4, 5, 6 , 7, 8, 9]
   }, 
   3: {
     id: 3,
-    title: 'Botswana',
+    title: 'Bocvana',
     childIds: []
   },
   4: {
     id: 4,
-    title: 'Egypt',
+    title: 'Egipat',
     childIds: []
   },
   5: {
     id: 5,
-    title: 'Kenya',
+    title: 'Kenija',
     childIds: []
   },
   6: {
     id: 6,
-    title: 'Madagascar',
+    title: 'Madagaskar',
     childIds: []
   }, 
   7: {
     id: 7,
-    title: 'Morocco',
+    title: 'Maroko',
     childIds: []
   },
   8: {
     id: 8,
-    title: 'Nigeria',
+    title: 'Nigerija',
     childIds: []
   },
   9: {
     id: 9,
-    title: 'South Africa',
+    title: 'Južna Afrika',
     childIds: []
   },
   10: {
     id: 10,
-    title: 'Americas',
+    title: 'Amerika',
     childIds: [11, 12, 13, 14, 15, 16, 17, 18],   
   },
   11: {
@@ -940,87 +940,87 @@ export const initialTravelPlan = {
   }, 
   14: {
     id: 14,
-    title: 'Canada',
+    title: 'Kanada',
     childIds: []
   },
   15: {
     id: 15,
-    title: 'Jamaica',
+    title: 'Jamajka',
     childIds: []
   },
   16: {
     id: 16,
-    title: 'Mexico',
+    title: 'Meksiko',
     childIds: []
   },
   17: {
     id: 17,
-    title: 'Trinidad and Tobago',
+    title: 'Trinidad i Tobago',
     childIds: []
   },
   18: {
     id: 18,
-    title: 'Venezuela',
+    title: 'Venecuela',
     childIds: []
   },
   19: {
     id: 19,
-    title: 'Asia',
+    title: 'Azija',
     childIds: [20, 21, 22, 23, 24, 25],   
   },
   20: {
     id: 20,
-    title: 'China',
+    title: 'Kina',
     childIds: []
   },
   21: {
     id: 21,
-    title: 'India',
+    title: 'Indija',
     childIds: []
   },
   22: {
     id: 22,
-    title: 'Singapore',
+    title: 'Singapur',
     childIds: []
   },
   23: {
     id: 23,
-    title: 'South Korea',
+    title: 'Južna Koreja',
     childIds: []
   },
   24: {
     id: 24,
-    title: 'Thailand',
+    title: 'Tajland',
     childIds: []
   },
   25: {
     id: 25,
-    title: 'Vietnam',
+    title: 'Vijetnam',
     childIds: []
   },
   26: {
     id: 26,
-    title: 'Europe',
+    title: 'Evropa',
     childIds: [27, 28, 29, 30, 31, 32, 33],   
   },
   27: {
     id: 27,
-    title: 'Croatia',
+    title: 'Hrvatska',
     childIds: []
   },
   28: {
     id: 28,
-    title: 'France',
+    title: 'Francuska',
     childIds: []
   },
   29: {
     id: 29,
-    title: 'Germany',
+    title: 'Nemačka',
     childIds: []
   },
   30: {
     id: 30,
-    title: 'Italy',
+    title: 'Italija',
     childIds: []
   },
   31: {
@@ -1030,47 +1030,47 @@ export const initialTravelPlan = {
   },
   32: {
     id: 32,
-    title: 'Spain',
+    title: 'Španija',
     childIds: []
   },
   33: {
     id: 33,
-    title: 'Turkey',
+    title: 'Turska',
     childIds: []
   },
   34: {
     id: 34,
-    title: 'Oceania',
+    title: 'Okeanija',
     childIds: [35, 36, 37, 38, 39, 40, 41],   
   },
   35: {
     id: 35,
-    title: 'Australia',
+    title: 'Australija',
     childIds: []
   },
   36: {
     id: 36,
-    title: 'Bora Bora (French Polynesia)',
+    title: 'Bora Bora (Francuska Polinezija)',
     childIds: []
   },
   37: {
     id: 37,
-    title: 'Easter Island (Chile)',
+    title: 'Uskršnje ostrvo (Čile)',
     childIds: []
   },
   38: {
     id: 38,
-    title: 'Fiji',
+    title: 'Fidži',
     childIds: []
   },
   39: {
     id: 40,
-    title: 'Hawaii (the USA)',
+    title: 'Havaji (SAD)',
     childIds: []
   },
   40: {
     id: 40,
-    title: 'New Zealand',
+    title: 'Novi Zeland',
     childIds: []
   },
   41: {
@@ -1080,22 +1080,22 @@ export const initialTravelPlan = {
   },
   42: {
     id: 42,
-    title: 'Moon',
+    title: 'Mesec',
     childIds: [43, 44, 45]
   },
   43: {
     id: 43,
-    title: 'Rheita',
+    title: 'Rheita krater',
     childIds: []
   },
   44: {
     id: 44,
-    title: 'Piccolomini',
+    title: 'Piccolomini krater',
     childIds: []
   },
   45: {
     id: 45,
-    title: 'Tycho',
+    title: 'Tihov krater',
     childIds: []
   },
   46: {
@@ -1118,14 +1118,14 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-**Now that the state is "flat" (also known as "normalized"), updating nested items becomes easier.**
+**Sada, kada je state "flat" (poznato i pod nazivom "normalizovano"), ažuriranje ugnježdenih stavki postaje lakše.**
 
-In order to remove a place now, you only need to update two levels of state:
+Da biste uklonili mesto, potrebno je ažurirati dva nivoa state-a:
 
-- The updated version of its *parent* place should exclude the removed ID from its `childIds` array.
-- The updated version of the root "table" object should include the updated version of the parent place.
+- Ažurirana verzija njegovog *roditeljskog* mesta treba da isključi uklonjeni ID iz `childIds` niza.
+- Ažurirana verzija root "tabela" objekta treba da uključi ažuriranu verziju roditeljskog mesta.
 
-Here is an example of how you could go about it:
+Ovde je primer kako to možete uraditi:
 
 <Sandpack>
 
@@ -1138,17 +1138,17 @@ export default function TravelPlan() {
 
   function handleComplete(parentId, childId) {
     const parent = plan[parentId];
-    // Create a new version of the parent place
-    // that doesn't include this child ID.
+    // Kreiraj novu verziju roditeljskog mesta
+    // koji ne sadrži ovaj ID deteta.
     const nextParent = {
       ...parent,
       childIds: parent.childIds
         .filter(id => id !== childId)
     };
-    // Update the root state object...
+    // Ažuriraj root state objekat...
     setPlan({
       ...plan,
-      // ...so that it has the updated parent.
+      // ...tako da ima ažuriranog roditelja.
       [parentId]: nextParent
     });
   }
@@ -1157,7 +1157,7 @@ export default function TravelPlan() {
   const planetIds = root.childIds;
   return (
     <>
-      <h2>Places to visit</h2>
+      <h2>Mesta za posetu</h2>
       <ol>
         {planetIds.map(id => (
           <PlaceTree
@@ -1182,7 +1182,7 @@ function PlaceTree({ id, parentId, placesById, onComplete }) {
       <button onClick={() => {
         onComplete(parentId, id);
       }}>
-        Complete
+        Kompetiraj
       </button>
       {childIds.length > 0 &&
         <ol>
@@ -1211,52 +1211,52 @@ export const initialTravelPlan = {
   },
   1: {
     id: 1,
-    title: 'Earth',
+    title: 'Zemlja',
     childIds: [2, 10, 19, 26, 34]
   },
   2: {
     id: 2,
-    title: 'Africa',
+    title: 'Afrika',
     childIds: [3, 4, 5, 6 , 7, 8, 9]
   }, 
   3: {
     id: 3,
-    title: 'Botswana',
+    title: 'Bocvana',
     childIds: []
   },
   4: {
     id: 4,
-    title: 'Egypt',
+    title: 'Egipat',
     childIds: []
   },
   5: {
     id: 5,
-    title: 'Kenya',
+    title: 'Kenija',
     childIds: []
   },
   6: {
     id: 6,
-    title: 'Madagascar',
+    title: 'Madagaskar',
     childIds: []
   }, 
   7: {
     id: 7,
-    title: 'Morocco',
+    title: 'Maroko',
     childIds: []
   },
   8: {
     id: 8,
-    title: 'Nigeria',
+    title: 'Nigerija',
     childIds: []
   },
   9: {
     id: 9,
-    title: 'South Africa',
+    title: 'Južna Afrika',
     childIds: []
   },
   10: {
     id: 10,
-    title: 'Americas',
+    title: 'Amerika',
     childIds: [11, 12, 13, 14, 15, 16, 17, 18],   
   },
   11: {
@@ -1276,87 +1276,87 @@ export const initialTravelPlan = {
   }, 
   14: {
     id: 14,
-    title: 'Canada',
+    title: 'Kanada',
     childIds: []
   },
   15: {
     id: 15,
-    title: 'Jamaica',
+    title: 'Jamajka',
     childIds: []
   },
   16: {
     id: 16,
-    title: 'Mexico',
+    title: 'Meksiko',
     childIds: []
   },
   17: {
     id: 17,
-    title: 'Trinidad and Tobago',
+    title: 'Trinidad i Tobago',
     childIds: []
   },
   18: {
     id: 18,
-    title: 'Venezuela',
+    title: 'Venecuela',
     childIds: []
   },
   19: {
     id: 19,
-    title: 'Asia',
+    title: 'Azija',
     childIds: [20, 21, 22, 23, 24, 25],   
   },
   20: {
     id: 20,
-    title: 'China',
+    title: 'Kina',
     childIds: []
   },
   21: {
     id: 21,
-    title: 'India',
+    title: 'Indija',
     childIds: []
   },
   22: {
     id: 22,
-    title: 'Singapore',
+    title: 'Singapur',
     childIds: []
   },
   23: {
     id: 23,
-    title: 'South Korea',
+    title: 'Južna Koreja',
     childIds: []
   },
   24: {
     id: 24,
-    title: 'Thailand',
+    title: 'Tajland',
     childIds: []
   },
   25: {
     id: 25,
-    title: 'Vietnam',
+    title: 'Vijetnam',
     childIds: []
   },
   26: {
     id: 26,
-    title: 'Europe',
+    title: 'Evropa',
     childIds: [27, 28, 29, 30, 31, 32, 33],   
   },
   27: {
     id: 27,
-    title: 'Croatia',
+    title: 'Hrvatska',
     childIds: []
   },
   28: {
     id: 28,
-    title: 'France',
+    title: 'Francuska',
     childIds: []
   },
   29: {
     id: 29,
-    title: 'Germany',
+    title: 'Nemačka',
     childIds: []
   },
   30: {
     id: 30,
-    title: 'Italy',
+    title: 'Italija',
     childIds: []
   },
   31: {
@@ -1366,47 +1366,47 @@ export const initialTravelPlan = {
   },
   32: {
     id: 32,
-    title: 'Spain',
+    title: 'Španija',
     childIds: []
   },
   33: {
     id: 33,
-    title: 'Turkey',
+    title: 'Turska',
     childIds: []
   },
   34: {
     id: 34,
-    title: 'Oceania',
+    title: 'Okeanija',
     childIds: [35, 36, 37, 38, 39, 40, 41],   
   },
   35: {
     id: 35,
-    title: 'Australia',
+    title: 'Australija',
     childIds: []
   },
   36: {
     id: 36,
-    title: 'Bora Bora (French Polynesia)',
+    title: 'Bora Bora (Francuska Polinezija)',
     childIds: []
   },
   37: {
     id: 37,
-    title: 'Easter Island (Chile)',
+    title: 'Uskršnje ostrvo (Čile)',
     childIds: []
   },
   38: {
     id: 38,
-    title: 'Fiji',
+    title: 'Fidži',
     childIds: []
   },
   39: {
     id: 39,
-    title: 'Hawaii (the USA)',
+    title: 'Havaji (SAD)',
     childIds: []
   },
   40: {
     id: 40,
-    title: 'New Zealand',
+    title: 'Novi Zeland',
     childIds: []
   },
   41: {
@@ -1416,22 +1416,22 @@ export const initialTravelPlan = {
   },
   42: {
     id: 42,
-    title: 'Moon',
+    title: 'Mesec',
     childIds: [43, 44, 45]
   },
   43: {
     id: 43,
-    title: 'Rheita',
+    title: 'Rheita krater',
     childIds: []
   },
   44: {
     id: 44,
-    title: 'Piccolomini',
+    title: 'Piccolomini krater',
     childIds: []
   },
   45: {
     id: 45,
-    title: 'Tycho',
+    title: 'Tihov krater',
     childIds: []
   },
   46: {
@@ -1458,13 +1458,13 @@ button { margin: 10px; }
 
 </Sandpack>
 
-You can nest state as much as you like, but making it "flat" can solve numerous problems. It makes state easier to update, and it helps ensure you don't have duplication in different parts of a nested object.
+Možete ugnjezditi state koliko god želite, ali pravljenje "flat" state-a može rešiti dosta problema. Čini da ažuriranje state-a bude lakše, a takođe i osigurava da nemate dupliranje u različitim delovima ugnježdenog objekta.
 
 <DeepDive>
 
-#### Improving memory usage {/*improving-memory-usage*/}
+#### Poboljšanje upotrebe memorije {/*improving-memory-usage*/}
 
-Ideally, you would also remove the deleted items (and their children!) from the "table" object to improve memory usage. This version does that. It also [uses Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) to make the update logic more concise.
+Idealno, takođe bi uklanjali obrisane stavke (i njihovu decu!) iz "tabela" objekta da biste poboljšali upotrebu memorije. Ova verzija to radi. Takođe [koristi Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) kako bi učinila logiku ažuriranja konciznijom.
 
 <Sandpack>
 
@@ -1477,12 +1477,12 @@ export default function TravelPlan() {
 
   function handleComplete(parentId, childId) {
     updatePlan(draft => {
-      // Remove from the parent place's child IDs.
+      // Ukloni iz ID-eva roditeljskog mesta.
       const parent = draft[parentId];
       parent.childIds = parent.childIds
         .filter(id => id !== childId);
 
-      // Forget this place and all its subtree.
+      // Zaboravi ovo mesto i sva njegova podstabla.
       deleteAllChildren(childId);
       function deleteAllChildren(id) {
         const place = draft[id];
@@ -1496,7 +1496,7 @@ export default function TravelPlan() {
   const planetIds = root.childIds;
   return (
     <>
-      <h2>Places to visit</h2>
+      <h2>Mesta za posetu</h2>
       <ol>
         {planetIds.map(id => (
           <PlaceTree
@@ -1521,7 +1521,7 @@ function PlaceTree({ id, parentId, placesById, onComplete }) {
       <button onClick={() => {
         onComplete(parentId, id);
       }}>
-        Complete
+        Kompetiraj
       </button>
       {childIds.length > 0 &&
         <ol>
@@ -1550,52 +1550,52 @@ export const initialTravelPlan = {
   },
   1: {
     id: 1,
-    title: 'Earth',
+    title: 'Zemlja',
     childIds: [2, 10, 19, 26, 34]
   },
   2: {
     id: 2,
-    title: 'Africa',
+    title: 'Afrika',
     childIds: [3, 4, 5, 6 , 7, 8, 9]
   }, 
   3: {
     id: 3,
-    title: 'Botswana',
+    title: 'Bocvana',
     childIds: []
   },
   4: {
     id: 4,
-    title: 'Egypt',
+    title: 'Egipat',
     childIds: []
   },
   5: {
     id: 5,
-    title: 'Kenya',
+    title: 'Kenija',
     childIds: []
   },
   6: {
     id: 6,
-    title: 'Madagascar',
+    title: 'Madagaskar',
     childIds: []
   }, 
   7: {
     id: 7,
-    title: 'Morocco',
+    title: 'Maroko',
     childIds: []
   },
   8: {
     id: 8,
-    title: 'Nigeria',
+    title: 'Nigerija',
     childIds: []
   },
   9: {
     id: 9,
-    title: 'South Africa',
+    title: 'Južna Afrika',
     childIds: []
   },
   10: {
     id: 10,
-    title: 'Americas',
+    title: 'Amerika',
     childIds: [11, 12, 13, 14, 15, 16, 17, 18],   
   },
   11: {
@@ -1615,87 +1615,87 @@ export const initialTravelPlan = {
   }, 
   14: {
     id: 14,
-    title: 'Canada',
+    title: 'Kanada',
     childIds: []
   },
   15: {
     id: 15,
-    title: 'Jamaica',
+    title: 'Jamajka',
     childIds: []
   },
   16: {
     id: 16,
-    title: 'Mexico',
+    title: 'Meksiko',
     childIds: []
   },
   17: {
     id: 17,
-    title: 'Trinidad and Tobago',
+    title: 'Trinidad i Tobago',
     childIds: []
   },
   18: {
     id: 18,
-    title: 'Venezuela',
+    title: 'Venecuela',
     childIds: []
   },
   19: {
     id: 19,
-    title: 'Asia',
+    title: 'Azija',
     childIds: [20, 21, 22, 23, 24, 25,],   
   },
   20: {
     id: 20,
-    title: 'China',
+    title: 'Kina',
     childIds: []
   },
   21: {
     id: 21,
-    title: 'India',
+    title: 'Indija',
     childIds: []
   },
   22: {
     id: 22,
-    title: 'Singapore',
+    title: 'Singapur',
     childIds: []
   },
   23: {
     id: 23,
-    title: 'South Korea',
+    title: 'Južna Koreja',
     childIds: []
   },
   24: {
     id: 24,
-    title: 'Thailand',
+    title: 'Tajland',
     childIds: []
   },
   25: {
     id: 25,
-    title: 'Vietnam',
+    title: 'Vijetnam',
     childIds: []
   },
   26: {
     id: 26,
-    title: 'Europe',
+    title: 'Evropa',
     childIds: [27, 28, 29, 30, 31, 32, 33],   
   },
   27: {
     id: 27,
-    title: 'Croatia',
+    title: 'Hrvatska',
     childIds: []
   },
   28: {
     id: 28,
-    title: 'France',
+    title: 'Francuska',
     childIds: []
   },
   29: {
     id: 29,
-    title: 'Germany',
+    title: 'Nemačka',
     childIds: []
   },
   30: {
     id: 30,
-    title: 'Italy',
+    title: 'Italija',
     childIds: []
   },
   31: {
@@ -1705,47 +1705,47 @@ export const initialTravelPlan = {
   },
   32: {
     id: 32,
-    title: 'Spain',
+    title: 'Španija',
     childIds: []
   },
   33: {
     id: 33,
-    title: 'Turkey',
+    title: 'Turska',
     childIds: []
   },
   34: {
     id: 34,
-    title: 'Oceania',
+    title: 'Okeanija',
     childIds: [35, 36, 37, 38, 39, 40,, 41],   
   },
   35: {
     id: 35,
-    title: 'Australia',
+    title: 'Australija',
     childIds: []
   },
   36: {
     id: 36,
-    title: 'Bora Bora (French Polynesia)',
+    title: 'Bora Bora (Francuska Polinezija)',
     childIds: []
   },
   37: {
     id: 37,
-    title: 'Easter Island (Chile)',
+    title: 'Uskršnje ostrvo (Čile)',
     childIds: []
   },
   38: {
     id: 38,
-    title: 'Fiji',
+    title: 'Fidži',
     childIds: []
   },
   39: {
     id: 39,
-    title: 'Hawaii (the USA)',
+    title: 'Havaji (SAD)',
     childIds: []
   },
   40: {
     id: 40,
-    title: 'New Zealand',
+    title: 'Novi Zeland',
     childIds: []
   },
   41: {
@@ -1755,22 +1755,22 @@ export const initialTravelPlan = {
   },
   42: {
     id: 42,
-    title: 'Moon',
+    title: 'Mesec',
     childIds: [43, 44, 45]
   },
   43: {
     id: 43,
-    title: 'Rheita',
+    title: 'Rheita krater',
     childIds: []
   },
   44: {
     id: 44,
-    title: 'Piccolomini',
+    title: 'Piccolomini krater',
     childIds: []
   },
   45: {
     id: 45,
-    title: 'Tycho',
+    title: 'Tihov krater',
     childIds: []
   },
   46: {
@@ -1817,25 +1817,25 @@ button { margin: 10px; }
 
 </DeepDive>
 
-Sometimes, you can also reduce state nesting by moving some of the nested state into the child components. This works well for ephemeral UI state that doesn't need to be stored, like whether an item is hovered.
+Ponekad, možete smanjiti ugnježdenost state-a pomeranjem nekih ugnježdenih objekata u dečje komponente. Ovo radi dobro za kratkotrajne UI state-ove koji ne moraju biti čuvani, kao što je podatak da li se prelazi mišem iznad neke stavke.
 
 <Recap>
 
-* If two state variables always update together, consider merging them into one. 
-* Choose your state variables carefully to avoid creating "impossible" states.
-* Structure your state in a way that reduces the chances that you'll make a mistake updating it.
-* Avoid redundant and duplicate state so that you don't need to keep it in sync.
-* Don't put props *into* state unless you specifically want to prevent updates.
-* For UI patterns like selection, keep ID or index in state instead of the object itself.
-* If updating deeply nested state is complicated, try flattening it.
+* Ako se dve state promenljive uvek istovremeno ažuriraju, pokušajte da ih spojite u jednu.
+* Pažljivo birajte state promenljive da biste izbegli kreiranje "nemogućih" stanja.
+* Strukturirajte state na način koji smanjuje šanse za pravljenje grešaka prilikom ažuriranja.
+* Izbegavajte suvišan i dupliran state kako ne biste morali da ih sinhronizujete.
+* Ne stavljajte props *unutar* state-a osim ako specifično želite da sprečite ažuriranja.
+* Za UI šablone poput odabira, u state-u čuvajte ID ili indeks umesto celog objekta.
+* Ako je ažuriranje duboko ugnježdenog state-a komplikovano, probajte da ga flatten-ujete.
 
 </Recap>
 
 <Challenges>
 
-#### Fix a component that's not updating {/*fix-a-component-thats-not-updating*/}
+#### Popraviti komponentu koja se ne ažurira {/*fix-a-component-thats-not-updating*/}
 
-This `Clock` component receives two props: `color` and `time`. When you select a different color in the select box, the `Clock` component receives a different `color` prop from its parent component. However, for some reason, the displayed color doesn't update. Why? Fix the problem.
+Ova `Clock` komponenta prima dva props-a: `color` i `time`. Kada izaberete drugu boju iz dropdown-a, `Clock` komponenta primi drugačiji `color` prop iz svoje roditeljske komponente. Međutim, iz nekog razloga, prikazana boja se ne ažurira. Zašto? Popravite problem.
 
 <Sandpack>
 
@@ -1873,7 +1873,7 @@ export default function App() {
   return (
     <div>
       <p>
-        Pick a color:{' '}
+        Izaberi boju:{' '}
         <select value={color} onChange={e => setColor(e.target.value)}>
           <option value="lightcoral">lightcoral</option>
           <option value="midnightblue">midnightblue</option>
@@ -1890,7 +1890,7 @@ export default function App() {
 
 <Solution>
 
-The issue is that this component has `color` state initialized with the initial value of the `color` prop. But when the `color` prop changes, this does not affect the state variable! So they get out of sync. To fix this issue, remove the state variable altogether, and use the `color` prop directly.
+Problem je u tome što ova komponenta ima `color` state inicijalizovan sa inicijalnom vrednošću `color` prop-a. Ali, kada se `color` prop promeni, to ne utiče na state promenljivu! Tako da one postaju nesinhronzovane. Da biste popravili problem, potpuno uklonite state promenljivu i koristite `color` prop direktno.
 
 <Sandpack>
 
@@ -1927,7 +1927,7 @@ export default function App() {
   return (
     <div>
       <p>
-        Pick a color:{' '}
+        Izaberi boju:{' '}
         <select value={color} onChange={e => setColor(e.target.value)}>
           <option value="lightcoral">lightcoral</option>
           <option value="midnightblue">midnightblue</option>
@@ -1942,7 +1942,7 @@ export default function App() {
 
 </Sandpack>
 
-Or, using the destructuring syntax:
+Ili, upotrebom sintakse dekonstruisanja:
 
 <Sandpack>
 
@@ -1979,7 +1979,7 @@ export default function App() {
   return (
     <div>
       <p>
-        Pick a color:{' '}
+        Izaberi boju:{' '}
         <select value={color} onChange={e => setColor(e.target.value)}>
           <option value="lightcoral">lightcoral</option>
           <option value="midnightblue">midnightblue</option>
@@ -1996,13 +1996,13 @@ export default function App() {
 
 </Solution>
 
-#### Fix a broken packing list {/*fix-a-broken-packing-list*/}
+#### Popraviti listu za pakovanje {/*fix-a-broken-packing-list*/}
 
-This packing list has a footer that shows how many items are packed, and how many items there are overall. It seems to work at first, but it is buggy. For example, if you mark an item as packed and then delete it, the counter will not be updated correctly. Fix the counter so that it's always correct.
+Ova lista za pakovanje ima footer koji prikazuje koliko stavki je spakovano i koliko ukupno stavki postoji. Na prvu deluje da radi, ali je bug-ovita. Na primer, ako odaberete stavku kao spakovanu, a onda je obrišete, brojač neće biti ažuriran korektno. Popravite brojač tako da je uvek tačan.
 
 <Hint>
 
-Is any state in this example redundant?
+Da li je neki state u ovom primeru suvišan?
 
 </Hint>
 
@@ -2015,9 +2015,9 @@ import PackingList from './PackingList.js';
 
 let nextId = 3;
 const initialItems = [
-  { id: 0, title: 'Warm socks', packed: true },
-  { id: 1, title: 'Travel journal', packed: false },
-  { id: 2, title: 'Watercolors', packed: false },
+  { id: 0, title: 'Tople čarape', packed: true },
+  { id: 1, title: 'Dnevnik putovanja', packed: false },
+  { id: 2, title: 'Vodene bojice', packed: false },
 ];
 
 export default function TravelPlan() {
@@ -2070,7 +2070,7 @@ export default function TravelPlan() {
         onDeleteItem={handleDeleteItem}
       />
       <hr />
-      <b>{packed} out of {total} packed!</b>
+      <b>Spakovano {packed} od {total}!</b>
     </>
   );
 }
@@ -2084,14 +2084,14 @@ export default function AddItem({ onAddItem }) {
   return (
     <>
       <input
-        placeholder="Add item"
+        placeholder="Dodaj stavku"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddItem(title);
-      }}>Add</button>
+      }}>Dodaj</button>
     </>
   )
 }
@@ -2124,7 +2124,7 @@ export default function PackingList({
             {item.title}
           </label>
           <button onClick={() => onDeleteItem(item.id)}>
-            Delete
+            Obriši
           </button>
         </li>
       ))}
@@ -2143,7 +2143,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-Although you could carefully change each event handler to update the `total` and `packed` counters correctly, the root problem is that these state variables exist at all. They are redundant because you can always calculate the number of items (packed or total) from the `items` array itself. Remove the redundant state to fix the bug:
+Iako možete pažljivo da promenite svaki event handler da pravilno ažurira `total` i `packed` brojače, izvorni problem je to što te state promenljive uopšte postoje. One su suvišne jer uvek možete izračunati broj stavki (spakovanih i ukupnih) na osnovu `items` niza. Uklonite suvišan state da popravite bug:
 
 <Sandpack>
 
@@ -2154,9 +2154,9 @@ import PackingList from './PackingList.js';
 
 let nextId = 3;
 const initialItems = [
-  { id: 0, title: 'Warm socks', packed: true },
-  { id: 1, title: 'Travel journal', packed: false },
-  { id: 2, title: 'Watercolors', packed: false },
+  { id: 0, title: 'Tople čarape', packed: true },
+  { id: 1, title: 'Dnevnik putovanja', packed: false },
+  { id: 2, title: 'Vodene bojice', packed: false },
 ];
 
 export default function TravelPlan() {
@@ -2205,7 +2205,7 @@ export default function TravelPlan() {
         onDeleteItem={handleDeleteItem}
       />
       <hr />
-      <b>{packed} out of {total} packed!</b>
+      <b>Spakovano {packed} od {total}!</b>
     </>
   );
 }
@@ -2219,14 +2219,14 @@ export default function AddItem({ onAddItem }) {
   return (
     <>
       <input
-        placeholder="Add item"
+        placeholder="Dodaj stavku"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddItem(title);
-      }}>Add</button>
+      }}>Dodaj</button>
     </>
   )
 }
@@ -2259,7 +2259,7 @@ export default function PackingList({
             {item.title}
           </label>
           <button onClick={() => onDeleteItem(item.id)}>
-            Delete
+            Obriši
           </button>
         </li>
       ))}
@@ -2276,15 +2276,15 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-Notice how the event handlers are only concerned with calling `setItems` after this change. The item counts are now calculated during the next render from `items`, so they are always up-to-date.
+Primetite kako event handler-i brinu jedino o pozivanju `setItems` nakon ove promene. Brojači stavki se sada računaju tokom narednog rendera na osnovu `items`-a, tako da su uvek tačni.
 
 </Solution>
 
-#### Fix the disappearing selection {/*fix-the-disappearing-selection*/}
+#### Popraviti nestajući odabir {/*fix-the-disappearing-selection*/}
 
-There is a list of `letters` in state. When you hover or focus a particular letter, it gets highlighted. The currently highlighted letter is stored in the `highlightedLetter` state variable. You can "star" and "unstar" individual letters, which updates the `letters` array in state.
+Ovde je lista `letters` u state-u. Kada pismo dobije fokus, ili pređete mišem preko njega, postaje istaknuto. Trenutno istaknuto pismo se čuva u `highlightedLetter` state promenljivoj. Možete da "lajkujete" ili "uklonite lajk" za svako pismo, što ažurira `letters` niz u state-u.
 
-This code works, but there is a minor UI glitch. When you press "Star" or "Unstar", the highlighting disappears for a moment. However, it reappears as soon as you move your pointer or switch to another letter with keyboard. Why is this happening? Fix it so that the highlighting doesn't disappear after the button click.
+Ovaj kod radi, ali postoji mali UI glitch. Kada kliknete "Lajkuj" ili "Ukloni lajk", isticanje nestane za trenutak. Međutim, ponovo se pojavi čim pomerite miša ili odaberete drugo pismo pomoću tastature. Zašto se ovo dešava? Popravite ovo tako da isticanje ne nestaje nakon klika na dugme.
 
 <Sandpack>
 
@@ -2357,7 +2357,7 @@ export default function Letter({
       <button onClick={() => {
         onToggleStar(letter);
       }}>
-        {letter.isStarred ? 'Unstar' : 'Star'}
+        {letter.isStarred ? 'Ukloni lajk' : 'Lajkuj'}
       </button>
       {letter.subject}
     </li>
@@ -2368,15 +2368,15 @@ export default function Letter({
 ```js src/data.js
 export const initialLetters = [{
   id: 0,
-  subject: 'Ready for adventure?',
+  subject: 'Spremni za avanturu?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Time to check in!',
+  subject: 'Vreme za prijavu!',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Festival Begins in Just SEVEN Days!',
+  subject: 'Festival počinje za samo SEDAM dana!',
   isStarred: false,
 }];
 ```
@@ -2391,9 +2391,9 @@ li { border-radius: 5px; }
 
 <Solution>
 
-The problem is that you're holding the letter object in `highlightedLetter`. But you're also holding the same information in the `letters` array. So your state has duplication! When you update the `letters` array after the button click, you create a new letter object which is different from `highlightedLetter`. This is why `highlightedLetter === letter` check becomes `false`, and the highlight disappears. It reappears the next time you call `setHighlightedLetter` when the pointer moves.
+Problem je u tome što čuvate objekat pisma u `highlightedLetter`. Ali, takođe, čuvate istu informaciju u `letters` nizu. Tako da vaš state ima dupliranje! Kada ažurirate `letters` niz nakon klika na dugme, pravite novi objekat pisma koji se razlikuje od `highlightedLetter`. Zbog toga `highlightedLetter === letter` provera postaje `false`, a isticanje nestaje. Ponovo se pojavljuje naredni put kada pozovete `setHighlightedLetter` nakon što pomerite miša.
 
-To fix the issue, remove the duplication from state. Instead of storing *the letter itself* in two places, store the `highlightedId` instead. Then you can check `isHighlighted` for each letter with `letter.id === highlightedId`, which will work even if the `letter` object has changed since the last render.
+Da biste popravili problem, uklonite dupliranje iz state-a. Umesto da čuvate *samo pismo* na dva mesta, čuvajte umesto toga `highlightedId`. Onda možete proveriti `isHighlighted` za svako pismo pomoću `letter.id === highlightedId`, što će raditi čak iako se `letter` objekat promeni nakon poslednjeg rendera.
 
 <Sandpack>
 
@@ -2466,7 +2466,7 @@ export default function Letter({
       <button onClick={() => {
         onToggleStar(letter.id);
       }}>
-        {letter.isStarred ? 'Unstar' : 'Star'}
+        {letter.isStarred ? 'Ukloni lajk' : 'Lajkuj'}
       </button>
       {letter.subject}
     </li>
@@ -2477,15 +2477,15 @@ export default function Letter({
 ```js src/data.js
 export const initialLetters = [{
   id: 0,
-  subject: 'Ready for adventure?',
+  subject: 'Spremni za avanturu?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Time to check in!',
+  subject: 'Vreme za prijavu!',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Festival Begins in Just SEVEN Days!',
+  subject: 'Festival počinje za samo SEDAM dana!',
   isStarred: false,
 }];
 ```
@@ -2500,15 +2500,15 @@ li { border-radius: 5px; }
 
 </Solution>
 
-#### Implement multiple selection {/*implement-multiple-selection*/}
+#### Implementirati višestruki izbor {/*implement-multiple-selection*/}
 
-In this example, each `Letter` has an `isSelected` prop and an `onToggle` handler that marks it as selected. This works, but the state is stored as a `selectedId` (either `null` or an ID), so only one letter can get selected at any given time.
+U ovom primeru, svaki `Letter` ima `isSelected` prop i `onToggle` handler koji označava da li je izabrano ili ne. Ovo radi, ali state se čuva kao `selectedId` (ili `null` ili ID), što znači da samo jedno pismo može biti izabrano.
 
-Change the state structure to support multiple selection. (How would you structure it? Think about this before writing the code.) Each checkbox should become independent from the others. Clicking a selected letter should uncheck it. Finally, the footer should show the correct number of the selected items.
+Promenite strukturu state-a da podržava višestruki izbor. (Kako to strukturirati? Razmislite o ovome pre pisanja koda.) Svaki checkbox bi trebao da bude nezavistan od ostalih. Klik na izabrano pismo bi trebao da poništi odabir. Konačno, footer treba prikazivati tačan broj izabranih stavki.
 
 <Hint>
 
-Instead of a single selected ID, you might want to hold an array or a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) of selected IDs in state.
+Umesto jednog izabranog ID-a, poželećete da čuvate niz ili [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) izabranih ID-eva u state-u.
 
 </Hint>
 
@@ -2522,11 +2522,11 @@ import Letter from './Letter.js';
 export default function MailClient() {
   const [selectedId, setSelectedId] = useState(null);
 
-  // TODO: allow multiple selection
+  // TODO: dozvoli višestruki izbor
   const selectedCount = 1;
 
   function handleToggle(toggledId) {
-    // TODO: allow multiple selection
+    // TODO: dozvoli višestruki izbor
     setSelectedId(toggledId);
   }
 
@@ -2539,7 +2539,7 @@ export default function MailClient() {
             key={letter.id}
             letter={letter}
             isSelected={
-              // TODO: allow multiple selection
+              // TODO: dozvoli višestruki izbor
               letter.id === selectedId
             }
             onToggle={handleToggle}
@@ -2548,7 +2548,7 @@ export default function MailClient() {
         <hr />
         <p>
           <b>
-            You selected {selectedCount} letters
+            Izabrali ste {selectedCount} pisama
           </b>
         </p>
       </ul>
@@ -2585,15 +2585,15 @@ export default function Letter({
 ```js src/data.js
 export const letters = [{
   id: 0,
-  subject: 'Ready for adventure?',
+  subject: 'Spremni za avanturu?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Time to check in!',
+  subject: 'Vreme za prijavu!',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Festival Begins in Just SEVEN Days!',
+  subject: 'Festival počinje za samo SEDAM dana!',
   isStarred: false,
 }];
 ```
@@ -2609,7 +2609,7 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 <Solution>
 
-Instead of a single `selectedId`, keep a `selectedIds` *array* in state. For example, if you select the first and the last letter, it would contain `[0, 2]`. When nothing is selected, it would be an empty `[]` array:
+Umesto jednog `selectedId`, čuvajte `selectedIds` *niz* u state-u. Na primer, ako izaberete prvo i poslednje pismo, niz će sadržati `[0, 2]`. Kada ništa nije izabrano, to će biti prazan `[]` niz:
 
 <Sandpack>
 
@@ -2624,14 +2624,14 @@ export default function MailClient() {
   const selectedCount = selectedIds.length;
 
   function handleToggle(toggledId) {
-    // Was it previously selected?
+    // Da li je trenutno izabrano?
     if (selectedIds.includes(toggledId)) {
-      // Then remove this ID from the array.
+      // Onda ukloni ovaj ID iz niza.
       setSelectedIds(selectedIds.filter(id =>
         id !== toggledId
       ));
     } else {
-      // Otherwise, add this ID to the array.
+      // U suprotnom, dodaj ovaj ID u niz.
       setSelectedIds([
         ...selectedIds,
         toggledId
@@ -2656,7 +2656,7 @@ export default function MailClient() {
         <hr />
         <p>
           <b>
-            You selected {selectedCount} letters
+            Izabrali ste {selectedCount} pisama
           </b>
         </p>
       </ul>
@@ -2693,15 +2693,15 @@ export default function Letter({
 ```js src/data.js
 export const letters = [{
   id: 0,
-  subject: 'Ready for adventure?',
+  subject: 'Spremni za avanturu?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Time to check in!',
+  subject: 'Vreme za prijavu!',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Festival Begins in Just SEVEN Days!',
+  subject: 'Festival počinje za samo SEDAM dana!',
   isStarred: false,
 }];
 ```
@@ -2715,9 +2715,9 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 </Sandpack>
 
-One minor downside of using an array is that for each item, you're calling `selectedIds.includes(letter.id)` to check whether it's selected. If the array is very large, this can become a performance problem because array search with [`includes()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) takes linear time, and you're doing this search for each individual item.
+Jedna sitna mana upotrebe nizova je da za svaku stavku pozivate `selectedIds.includes(letter.id)` da biste proverili da li je izabrana. Ako je niz veoma velik, ovo može izazvati problem sa performansama, jer pretraga nizova sa [`includes()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) traje linearno, a vi radite pretragu za svaku pojedinačnu stavku.
 
-To fix this, you can hold a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) in state instead, which provides a fast [`has()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has) operation:
+Da ovo popravite, možete, umesto toga, čuvati [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) u state-u, koji pruža brzu [`has()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has) operaciju:
 
 <Sandpack>
 
@@ -2734,7 +2734,7 @@ export default function MailClient() {
   const selectedCount = selectedIds.size;
 
   function handleToggle(toggledId) {
-    // Create a copy (to avoid mutation).
+    // Napravi kopiju (da izbegneš mutaciju).
     const nextIds = new Set(selectedIds);
     if (nextIds.has(toggledId)) {
       nextIds.delete(toggledId);
@@ -2761,7 +2761,7 @@ export default function MailClient() {
         <hr />
         <p>
           <b>
-            You selected {selectedCount} letters
+            Izabrali ste {selectedCount} pisama
           </b>
         </p>
       </ul>
@@ -2798,15 +2798,15 @@ export default function Letter({
 ```js src/data.js
 export const letters = [{
   id: 0,
-  subject: 'Ready for adventure?',
+  subject: 'Spremni za avanturu?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Time to check in!',
+  subject: 'Vreme za prijavu!',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Festival Begins in Just SEVEN Days!',
+  subject: 'Festival počinje za samo SEDAM dana!',
   isStarred: false,
 }];
 ```
@@ -2820,9 +2820,9 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 </Sandpack>
 
-Now each item does a `selectedIds.has(letter.id)` check, which is very fast.
+Sada svaka stavka koristi `selectedIds.has(letter.id)` proveru koja je veoma brza.
 
-Keep in mind that you [should not mutate objects in state](/learn/updating-objects-in-state), and that includes Sets, too. This is why the `handleToggle` function creates a *copy* of the Set first, and then updates that copy.
+Imajte na umu da [ne biste trebali da mutirate objekte u state-u](/learn/updating-objects-in-state), a da to, takođe, uključuje i Set-ove. Zbog ovoga `handleToggle` funkcija prvo pravi *kopiju* Set-a, a tek onda ažurira tu kopiju.
 
 </Solution>
 
