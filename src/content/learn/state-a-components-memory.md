@@ -520,7 +520,7 @@ button {
 
 </Sandpack>
 
-Dobra je ideja imati više state promenljivih ako im state-ovi nisu povezani, kao `index` i `showMore` u ovom primeru. Ali, ako primetite da često menjate dve state promenljive zajedno, može biti lakše da ih grupišete u jednu. Na primer, ako imate formu sa mnogo polja, zgodnije je imati jednu state promenljivu koja drži ceo objekat, umesto jedne state promenljive po polju. Pročitajte [Odabir state strukture](/learn/choosing-the-state-structure) za više detalja.
+Dobra je ideja imati više state promenljivih ako im state-ovi nisu povezani, kao `index` i `showMore` u ovom primeru. Ali, ako primetite da često menjate dve state promenljive zajedno, može biti lakše da ih grupišete u jednu. Na primer, ako imate formu sa mnogo polja, zgodnije je imati jednu state promenljivu koja drži ceo objekat, umesto jedne state promenljive po polju. Pročitajte [Odabir strukture state-a](/learn/choosing-the-state-structure) za više detalja.
 
 <DeepDive>
 

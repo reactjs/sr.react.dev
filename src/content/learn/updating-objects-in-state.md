@@ -815,7 +815,7 @@ U praksi, često ćete moći da "se izvučete" sa mutiranjem state-a u React-u, 
 * Umesto mutiranja objekta, kreirajte *novu* verziju i pokrenite ponovni render postavljanjem state-a na tu novu verziju.
 * Možete koristiti `{...obj, something: 'newValue'}` objektnu spread sintaksu za kreiranje kopija objekata.
 * Spread sintaksa je plitka: kopira samo jedan nivo u dubinu.
-* Za ažuriranje ugnježdenog objekta morate kreirati kopije sve do mesta koji ažurirate.
+* Za ažuriranje ugnježdenog objekta morate kreirati kopije sve do mesta koje ažurirate.
 * Za smanjivanje ponavljajućeg koda tokom kopiranja, koristite Immer.
 
 </Recap>
