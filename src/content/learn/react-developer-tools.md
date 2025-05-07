@@ -4,7 +4,7 @@ title: React Developer Tools
 
 <Intro>
 
-Koristite React Developer Tools da inspekcijom React [komponenti](/learn/your-first-component), izmenite [props](/learn/passing-props-to-a-component) i [state](/learn/state-a-components-memory) i identifikujete probleme sa performansama.
+Koristite React Developer Tools da inspektujete React [komponente](/learn/your-first-component), izmenite [props-e](/learn/passing-props-to-a-component) i [state](/learn/state-a-components-memory) i identifikujete probleme sa performansama.
 
 </Intro>
 
