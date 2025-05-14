@@ -60,6 +60,6 @@ Reload-ujte vaš sajt u pretraživaču da bi ga videli u developer tools.
 
 Da bi pregledali aplikacije napravljene u [React Native](https://reactnative.dev/), možete koristiti [React Native DevTools](https://reactnative.dev/docs/react-native-devtools), ugrađeni debugger koji se duboko integriše sa React Developer Tools. Sve funkcionalnosti rade identično kao i browser ekstenzija, uključujući isticanje native elemenata i selekciju.
 
-[Naučite više o debagovanju u React Native.](https://reactnative.dev/docs/debugging)
+[Naučite više o debug-ovanju u React Native.](https://reactnative.dev/docs/debugging)
 
 > Za React Native verzije pre 0.76, molimo koristite standalone React DevTools prateći uputstvo [Safari i drugi pretraživači](#safari-and-other-browsers) iznad.

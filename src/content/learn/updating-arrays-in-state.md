@@ -1,52 +1,52 @@
 ---
-title: Updating Arrays in State
+title: Ažuriranje nizova u state-u
 ---
 
 <Intro>
 
-Arrays are mutable in JavaScript, but you should treat them as immutable when you store them in state. Just like with objects, when you want to update an array stored in state, you need to create a new one (or make a copy of an existing one), and then set state to use the new array.
+Nizovi su promenljivi u JavaScript-u, ali biste trebali da ih tretirate kao immutable kada ih čuvate u state-u. Kao i kod objekata, kada želite da ažurirate niz koji se nalazi u state-u, potrebno je da kreirate novi (ili napravite kopiju postojećeg), a zatim postavite state da koristi taj novi niz.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to add, remove, or change items in an array in React state
-- How to update an object inside of an array
-- How to make array copying less repetitive with Immer
+- Kako da dodajete, uklanjate ili menjate članove niza u React state-u
+- Kako da ažurirate objekat unutar niza
+- Kako učiniti da se kopiranje nizova manje ponavlja uz pomoć Immer-a
 
 </YouWillLearn>
 
-## Updating arrays without mutation {/*updating-arrays-without-mutation*/}
+## Ažuriranje nizova bez mutacije {/*updating-arrays-without-mutation*/}
 
-In JavaScript, arrays are just another kind of object. [Like with objects](/learn/updating-objects-in-state), **you should treat arrays in React state as read-only.** This means that you shouldn't reassign items inside an array like `arr[0] = 'bird'`, and you also shouldn't use methods that mutate the array, such as `push()` and `pop()`.
+U JavaScript-u, nizovi su samo još jedna vrsta objekata. [Kao i sa objektima](/learn/updating-objects-in-state), **trebali biste tretirati nizove u React state-u kao read-only**. To znači da ne trebate dodeljivati vrednost članovima niza poput `arr[0] = 'bird'`, a takođe ne biste trebali da koristite metode koje mutiraju niz, kao što su `push()` i `pop()`.
 
-Instead, every time you want to update an array, you'll want to pass a *new* array to your state setting function. To do that, you can create a new array from the original array in your state by calling its non-mutating methods like `filter()` and `map()`. Then you can set your state to the resulting new array.
+Umesto toga, svaki put kada želite ažurirati niz, želećete da prosledite *novi* niz u vašu state setter funkciju. Da biste to uradili, možete kreirati novi niz na osnovu originalnog niza u state-u pozivanjem metoda koje ne vrše mutaciju poput `filter()` i `map()`. Onda možete postaviti state na novi rezultujući niz.
 
-Here is a reference table of common array operations. When dealing with arrays inside React state, you will need to avoid the methods in the left column, and instead prefer the methods in the right column:
+Ovde je referentna tabela uobičajenih operacija nad nizovima. Kada koristite nizove unutar React state-a, trebate izbegavati metode u levoj koloni i, umesto toga, koristiti metode iz desne kolone:
 
-|           | avoid (mutates the array)           | prefer (returns a new array)                                        |
-| --------- | ----------------------------------- | ------------------------------------------------------------------- |
-| adding    | `push`, `unshift`                   | `concat`, `[...arr]` spread syntax ([example](#adding-to-an-array)) |
-| removing  | `pop`, `shift`, `splice`            | `filter`, `slice` ([example](#removing-from-an-array))              |
-| replacing | `splice`, `arr[i] = ...` assignment | `map` ([example](#replacing-items-in-an-array))                     |
-| sorting   | `reverse`, `sort`                   | copy the array first ([example](#making-other-changes-to-an-array)) |
+|            | izbegavati (mutira niz)         | koristiti (vraća novi niz)                                           |
+| ---------- | ----------                      | ----------                                                           |
+| dodavanje  | `push`, `unshift`               | `concat`, `[...arr]` spread sintaksa ([primer](#adding-to-an-array)) |
+| uklanjanje | `pop`, `shift`, `splice`        | `filter`, `slice` ([primer](#removing-from-an-array))                |
+| zamena     | `splice`, `arr[i] = ...` dodela | `map` ([primer](#replacing-items-in-an-array))                       |
+| sortiranje | `reverse`, `sort`               | prvo kopirati niz ([primer](#making-other-changes-to-an-array))      |
 
-Alternatively, you can [use Immer](#write-concise-update-logic-with-immer) which lets you use methods from both columns.
+Alternativno, možete [koristiti Immer](#write-concise-update-logic-with-immer) koji vam dopušta da koristite metode iz obe kolone.
 
 <Pitfall>
 
-Unfortunately, [`slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) and [`splice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) are named similarly but are very different:
+Nažalost, [`slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) i [`splice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) se zovu slično, ali su veoma drugačiji:
 
-* `slice` lets you copy an array or a part of it.
-* `splice` **mutates** the array (to insert or delete items).
+* `slice` kopira niz ili deo niza.
+* `splice` **mutira** niz (za ubacivanje ili uklanjanje članova).
 
-In React, you will be using `slice` (no `p`!) a lot more often because you don't want to mutate objects or arrays in state. [Updating Objects](/learn/updating-objects-in-state) explains what mutation is and why it's not recommended for state.
+U React-u, koristićete `slice` (ne `p`!) mnogo češće zato što ne želite da mutirate objekte i nizove u state-u. [Ažuriranje objekata](/learn/updating-objects-in-state) objašnjava šta je to mutacija i zašto nije preporučena za state.
 
 </Pitfall>
 
-### Adding to an array {/*adding-to-an-array*/}
+### Dodavanje u niz {/*adding-to-an-array*/}
 
-`push()` will mutate an array, which you don't want:
+`push()` ce mutirati niz, a to ne želite:
 
 <Sandpack>
 
@@ -61,7 +61,7 @@ export default function List() {
 
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>Inspirativni skulptori:</h1>
       <input
         value={name}
         onChange={e => setName(e.target.value)}
@@ -71,7 +71,7 @@ export default function List() {
           id: nextId++,
           name: name,
         });
-      }}>Add</button>
+      }}>Dodaj</button>
       <ul>
         {artists.map(artist => (
           <li key={artist.id}>{artist.name}</li>
@@ -88,18 +88,18 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-Instead, create a *new* array which contains the existing items *and* a new item at the end. There are multiple ways to do this, but the easiest one is to use the `...` [array spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals) syntax:
+Umesto toga, napravite *novi* niz koji sadrži sve postojeće članove, *ali i* novi član na kraju. Postoji više načina da to uradite, ali najlakši je upotrebom `...` [spread sintakse](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals) za nizove:
 
 ```js
-setArtists( // Replace the state
-  [ // with a new array
-    ...artists, // that contains all the old items
-    { id: nextId++, name: name } // and one new item at the end
+setArtists( // Zameni state
+  [ // sa novim nizom
+    ...artists, // koji sadrži sve stare članove
+    { id: nextId++, name: name } // kao i novi član na kraju
   ]
 );
 ```
 
-Now it works correctly:
+Sada radi kako treba:
 
 <Sandpack>
 
@@ -114,7 +114,7 @@ export default function List() {
 
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>Inspirativni skulptori:</h1>
       <input
         value={name}
         onChange={e => setName(e.target.value)}
@@ -124,7 +124,7 @@ export default function List() {
           ...artists,
           { id: nextId++, name: name }
         ]);
-      }}>Add</button>
+      }}>Dodaj</button>
       <ul>
         {artists.map(artist => (
           <li key={artist.id}>{artist.name}</li>
@@ -141,20 +141,20 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-The array spread syntax also lets you prepend an item by placing it *before* the original `...artists`:
+Spread sintaksa za nizove omogućava i dodavanje članova *pre* originalnih `...artists`:
 
 ```js
 setArtists([
   { id: nextId++, name: name },
-  ...artists // Put old items at the end
+  ...artists // Stavi stare članove na kraj
 ]);
 ```
 
-In this way, spread can do the job of both `push()` by adding to the end of an array and `unshift()` by adding to the beginning of an array. Try it in the sandbox above!
+Na ovaj način, spread može obavljati oba posla: `push()` - dodavanje na kraj niza i `unshift()` - dodavanje na početak niza. Probajte u sandbox-u iznad!
 
-### Removing from an array {/*removing-from-an-array*/}
+### Uklanjanje iz niza {/*removing-from-an-array*/}
 
-The easiest way to remove an item from an array is to *filter it out*. In other words, you will produce a new array that will not contain that item. To do this, use the `filter` method, for example:
+Najlakši način za uklanjanje člana iz niza je da ga *isfiltrirate*. Drugim rečima, napravićete novi niz koji ne sadrži taj član. Da biste to uradili, koristite `filter` metodu, na primer:
 
 <Sandpack>
 
@@ -174,7 +174,7 @@ export default function List() {
 
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>Inspirativni skulptori:</h1>
       <ul>
         {artists.map(artist => (
           <li key={artist.id}>
@@ -186,7 +186,7 @@ export default function List() {
                 )
               );
             }}>
-              Delete
+              Ukloni
             </button>
           </li>
         ))}
@@ -198,7 +198,7 @@ export default function List() {
 
 </Sandpack>
 
-Click the "Delete" button a few times, and look at its click handler.
+Kliknite dugme "Ukloni" par puta i pogledajte njegov klik handler.
 
 ```js
 setArtists(
@@ -206,13 +206,13 @@ setArtists(
 );
 ```
 
-Here, `artists.filter(a => a.id !== artist.id)` means "create an array that consists of those `artists` whose IDs are different from `artist.id`". In other words, each artist's "Delete" button will filter _that_ artist out of the array, and then request a re-render with the resulting array. Note that `filter` does not modify the original array.
+Ovde, `artists.filter(a => a.id !== artist.id)` znači "napravi niz koji sadrži sve `artists` čiji ID je različit od `artist.id`". Drugim rečima, "Ukloni" dugme kod svakog umetnika će isfiltrirati _tog_ umetnika van niza, a onda zatražiti ponovni render sa rezultujućim nizom. Primetite da `filter` ne menja originalni niz.
 
-### Transforming an array {/*transforming-an-array*/}
+### Transformisanje niza {/*transforming-an-array*/}
 
-If you want to change some or all items of the array, you can use `map()` to create a **new** array. The function you will pass to `map` can decide what to do with each item, based on its data or its index (or both).
+Ako želite da promenite neki ili sve članove niza, možete koristiti `map()` da kreirate **novi** niz. Funkcija koju prosledite u `map` može odlučiti šta uraditi za svaki član, na osnovu njegovih podataka ili indeksa (ili oba).
 
-In this example, an array holds coordinates of two circles and a square. When you press the button, it moves only the circles down by 50 pixels. It does this by producing a new array of data using `map()`:
+U ovom primeru, niz sadrži koordinate dva kruga i jednog kvadrata. Kada pritisnete dugme, samo će se krugovi pomeriti na dole za 50 piksela. To se radi pravljenjem novog niza upotrebom `map()` metode:
 
 <Sandpack>
 
@@ -233,24 +233,24 @@ export default function ShapeEditor() {
   function handleClick() {
     const nextShapes = shapes.map(shape => {
       if (shape.type === 'square') {
-        // No change
+        // Nema promene
         return shape;
       } else {
-        // Return a new circle 50px below
+        // Vrati novi krug 50px ispod
         return {
           ...shape,
           y: shape.y + 50,
         };
       }
     });
-    // Re-render with the new array
+    // Ponovni render sa novim nizom
     setShapes(nextShapes);
   }
 
   return (
     <>
       <button onClick={handleClick}>
-        Move circles down!
+        Pomeri krugove dole!
       </button>
       {shapes.map(shape => (
         <div
@@ -278,11 +278,11 @@ body { height: 300px; }
 
 </Sandpack>
 
-### Replacing items in an array {/*replacing-items-in-an-array*/}
+### Zamena članova niza {/*replacing-items-in-an-array*/}
 
-It is particularly common to want to replace one or more items in an array. Assignments like `arr[0] = 'bird'` are mutating the original array, so instead you'll want to use `map` for this as well.
+Dosta je uobičajeno da želite zameniti jedan ili više članova niza. Dodele poput `arr[0] = 'bird'` mutiraju originalni niz, tako da ćete umesto toga želeti i ovde da koristite `map`.
 
-To replace an item, create a new array with `map`. Inside your `map` call, you will receive the item index as the second argument. Use it to decide whether to return the original item (the first argument) or something else:
+Da biste zamenili član, napravite novi niz sa `map`. Unutar `map` poziva, dobićete indeks člana kao drugi argument. Iskoristite ga da odlučite da li da vratite originalni član (prvi argument) ili nešto drugo:
 
 <Sandpack>
 
@@ -301,10 +301,10 @@ export default function CounterList() {
   function handleIncrementClick(index) {
     const nextCounters = counters.map((c, i) => {
       if (i === index) {
-        // Increment the clicked counter
+        // Inkrementiraj kliknuti brojač
         return c + 1;
       } else {
-        // The rest haven't changed
+        // Ostatak se ne menja
         return c;
       }
     });
@@ -332,11 +332,11 @@ button { margin: 5px; }
 
 </Sandpack>
 
-### Inserting into an array {/*inserting-into-an-array*/}
+### Ubacivanje u niz {/*inserting-into-an-array*/}
 
-Sometimes, you may want to insert an item at a particular position that's neither at the beginning nor at the end. To do this, you can use the `...` array spread syntax together with the `slice()` method. The `slice()` method lets you cut a "slice" of the array. To insert an item, you will create an array that spreads the slice _before_ the insertion point, then the new item, and then the rest of the original array.
+Ponekad ćete želeti da ubacite član u niz na određenu poziciju koja nije ni početak ni kraj. Da biste to uradili, možete koristiti `...` spread sintaksu za nizove zajedno sa `slice()` metodom. `slice()` metoda vam omogućava da uzmete "parče" niza. Da biste ubacili član, kreiraćete niz koji sadrži parče _pre_ mesta ubacivanja, novi član i ostatak originalnog niza.
 
-In this example, the Insert button always inserts at the index `1`:
+U ovom primeru, dugme "Ubaci" uvek ubacuje na indeks `1`:
 
 <Sandpack>
 
@@ -357,13 +357,13 @@ export default function List() {
   );
 
   function handleClick() {
-    const insertAt = 1; // Could be any index
+    const insertAt = 1; // Može biti bilo koji indeks
     const nextArtists = [
-      // Items before the insertion point:
+      // Članovi pre mesta ubacivanja:
       ...artists.slice(0, insertAt),
       // New item:
       { id: nextId++, name: name },
-      // Items after the insertion point:
+      // Članovi nakon mesta ubacivanja:
       ...artists.slice(insertAt)
     ];
     setArtists(nextArtists);
@@ -372,13 +372,13 @@ export default function List() {
 
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>Inspirativni skulptori:</h1>
       <input
         value={name}
         onChange={e => setName(e.target.value)}
       />
       <button onClick={handleClick}>
-        Insert
+        Ubaci
       </button>
       <ul>
         {artists.map(artist => (
@@ -396,13 +396,13 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-### Making other changes to an array {/*making-other-changes-to-an-array*/}
+### Pravljenje ostalih izmena nad nizom {/*making-other-changes-to-an-array*/}
 
-There are some things you can't do with the spread syntax and non-mutating methods like `map()` and `filter()` alone. For example, you may want to reverse or sort an array. The JavaScript `reverse()` and `sort()` methods are mutating the original array, so you can't use them directly.
+Postoje stvari koje ne možete uraditi samo sa spread sintaksom i metodama koje ne vrše mutacije poput `map()` i `filter()`. Na primer, možete želeti da obrnete ili sortirate niz. JavaScript `reverse()` i `sort()` metode mutiraju originalni niz, pa ih ne možete koristiti direktno.
 
-**However, you can copy the array first, and then make changes to it.**
+**Međutim, možete prvo kopirati niz, pa onda praviti promene nad njim.**
 
-For example:
+Na primer:
 
 <Sandpack>
 
@@ -427,7 +427,7 @@ export default function List() {
   return (
     <>
       <button onClick={handleClick}>
-        Reverse
+        Obrni
       </button>
       <ul>
         {list.map(artwork => (
@@ -441,25 +441,25 @@ export default function List() {
 
 </Sandpack>
 
-Here, you use the `[...list]` spread syntax to create a copy of the original array first. Now that you have a copy, you can use mutating methods like `nextList.reverse()` or `nextList.sort()`, or even assign individual items with `nextList[0] = "something"`.
+Ovde prvo koristite `[...list]` spread sintaksu da napravite kopiju originalnog niza. Sad kad imate kopiju, možete koristiti metode koje mutiraju kao što su `nextList.reverse()` ili `nextList.sort()`, a možete i vršiti dodelu određenim članovima sa `nextList[0] = "something"`.
 
-However, **even if you copy an array, you can't mutate existing items _inside_ of it directly.** This is because copying is shallow--the new array will contain the same items as the original one. So if you modify an object inside the copied array, you are mutating the existing state. For example, code like this is a problem.
+Međutim, **čak i ako kopirate niz, ne možete mutirati postojeće članove _unutar_ njega direktno**. Ovo je zbog toga što je kopija plitka--novi niz će sadržati iste članove kao i originalni. Ako izmenite objekat unutar kopiranog niza, vi mutirate postojeći state. Na primer, kod poput ovog je problematičan.
 
 ```js
 const nextList = [...list];
-nextList[0].seen = true; // Problem: mutates list[0]
+nextList[0].seen = true; // Problem: mutira list[0]
 setList(nextList);
 ```
 
-Although `nextList` and `list` are two different arrays, **`nextList[0]` and `list[0]` point to the same object.** So by changing `nextList[0].seen`, you are also changing `list[0].seen`. This is a state mutation, which you should avoid! You can solve this issue in a similar way to [updating nested JavaScript objects](/learn/updating-objects-in-state#updating-a-nested-object)--by copying individual items you want to change instead of mutating them. Here's how.
+Iako su `nextList` i `list` dva različita niza, **`nextList[0]` i `list[0]` pokazuju na isti objekat**. To znači da promenom `nextList[0].seen`, takođe menjate i `list[0].seen`. Ovo je mutacija state-a, što trebate izbegavati! Ovaj problem možete rešiti na sličan način kao i [ažuriranje ugnježdenih JavaScript objekata](/learn/updating-objects-in-state#updating-a-nested-object)--umesto mutacije, možete kopirati pojedinačne članove koje želite da promenite. Evo i kako.
 
-## Updating objects inside arrays {/*updating-objects-inside-arrays*/}
+## Ažuriranje objekata unutar nizova {/*updating-objects-inside-arrays*/}
 
-Objects are not _really_ located "inside" arrays. They might appear to be "inside" in code, but each object in an array is a separate value, to which the array "points". This is why you need to be careful when changing nested fields like `list[0]`. Another person's artwork list may point to the same element of the array!
+Objekti se ne nalaze _zapravo_ "unutar" nizova. U kodu može delovati kao da su "unutar", ali svaki objekat u nizu je posebna vrednost na koju niz "pokazuje". Zbog toga trebate biti oprezni kad menjate ugnježdena polja poput `list[0]`. Lista umetničkih dela druge osobe može pokazivati na isti element niza!
 
-**When updating nested state, you need to create copies from the point where you want to update, and all the way up to the top level.** Let's see how this works.
+**Kada ažurirate ugnježdeni state, trebate kreirati kopije od mesta gde želite ažurirati, pa nagore sve do najvišeg nivoa.** Hajde da vidimo kako to funkcioniše.
 
-In this example, two separate artwork lists have the same initial state. They are supposed to be isolated, but because of a mutation, their state is accidentally shared, and checking a box in one list affects the other list:
+U ovom primeru, dve različite liste umetničkih dela imaju isti inicijalni state. Trebalo bi da su izolovane, ali, zbog mutacije, slučajno dele state, pa štikliranje u jednoj listi utiče i na drugu:
 
 <Sandpack>
 
@@ -499,12 +499,12 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Art Bucket List</h1>
-      <h2>My list of art to see:</h2>
+      <h1>Lista željenih umetnosti</h1>
+      <h2>Moja lista:</h2>
       <ItemList
         artworks={myList}
         onToggle={handleToggleMyList} />
-      <h2>Your list of art to see:</h2>
+      <h2>Tvoja lista:</h2>
       <ItemList
         artworks={yourList}
         onToggle={handleToggleYourList} />
@@ -539,34 +539,34 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-The problem is in code like this:
+Problem je u ovom kodu:
 
 ```js
 const myNextList = [...myList];
 const artwork = myNextList.find(a => a.id === artworkId);
-artwork.seen = nextSeen; // Problem: mutates an existing item
+artwork.seen = nextSeen; // Problem: mutira postojeći član
 setMyList(myNextList);
 ```
 
-Although the `myNextList` array itself is new, the *items themselves* are the same as in the original `myList` array. So changing `artwork.seen` changes the *original* artwork item. That artwork item is also in `yourList`, which causes the bug. Bugs like this can be difficult to think about, but thankfully they disappear if you avoid mutating state.
+Iako je sam `myNextList` niz novi, *članovi u njemu* su isti kao u originalnom `myList` nizu. Promenom `artwork.seen` menjate *originalno* umetničko delo. To umetničko delo je i u `yourList`, što prouzrokuje bug. Može biti teško razmišljati o ovakvim bug-ovima, ali, srećom, oni nestaju ako izbegavate mutiranje state-a.
 
-**You can use `map` to substitute an old item with its updated version without mutation.**
+**Možete koristiti `map` da zamenite stari član sa njegovom ažuriranom verzijom bez mutacije.**
 
 ```js
 setMyList(myList.map(artwork => {
   if (artwork.id === artworkId) {
-    // Create a *new* object with changes
+    // Napravi *novi* objekat sa promenama
     return { ...artwork, seen: nextSeen };
   } else {
-    // No changes
+    // Nema promena
     return artwork;
   }
 }));
 ```
 
-Here, `...` is the object spread syntax used to [create a copy of an object.](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)
+Ovde, `...` je objektna spread sintaksa kojom se [kreira kopija objekta](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax).
 
-With this approach, none of the existing state items are being mutated, and the bug is fixed:
+Ovim pristupom se ne mutira nijedan član postojećeg state-a i popravlja se bug:
 
 <Sandpack>
 
@@ -589,10 +589,10 @@ export default function BucketList() {
   function handleToggleMyList(artworkId, nextSeen) {
     setMyList(myList.map(artwork => {
       if (artwork.id === artworkId) {
-        // Create a *new* object with changes
+        // Napravi *novi* objekat sa promenama
         return { ...artwork, seen: nextSeen };
       } else {
-        // No changes
+        // Nema promena
         return artwork;
       }
     }));
@@ -601,10 +601,10 @@ export default function BucketList() {
   function handleToggleYourList(artworkId, nextSeen) {
     setYourList(yourList.map(artwork => {
       if (artwork.id === artworkId) {
-        // Create a *new* object with changes
+        // Napravi *novi* objekat sa promenama
         return { ...artwork, seen: nextSeen };
       } else {
-        // No changes
+        // Nema promena
         return artwork;
       }
     }));
@@ -612,12 +612,12 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Art Bucket List</h1>
-      <h2>My list of art to see:</h2>
+      <h1>Lista željenih umetnosti</h1>
+      <h2>Moja lista:</h2>
       <ItemList
         artworks={myList}
         onToggle={handleToggleMyList} />
-      <h2>Your list of art to see:</h2>
+      <h2>Tvoja lista:</h2>
       <ItemList
         artworks={yourList}
         onToggle={handleToggleYourList} />
@@ -652,16 +652,16 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-In general, **you should only mutate objects that you have just created.** If you were inserting a *new* artwork, you could mutate it, but if you're dealing with something that's already in state, you need to make a copy.
+Uglavnom, **trebali biste mutirati samo objekte koje ste upravo kreirali**. Ako ubacujete *novo* umetničko delo, možete ga mutirati, ali ako menjate nešto što je već u state-u, trebate napraviti kopiju.
 
-### Write concise update logic with Immer {/*write-concise-update-logic-with-immer*/}
+### Pisanje koncizne logike ažuriranja sa Immer-om {/*write-concise-update-logic-with-immer*/}
 
-Updating nested arrays without mutation can get a little bit repetitive. [Just as with objects](/learn/updating-objects-in-state#write-concise-update-logic-with-immer):
+Ažuriranje ugnježdenih nizova bez mutacije može postati ponovljivo. [Baš kao i sa objektima](/learn/updating-objects-in-state#write-concise-update-logic-with-immer):
 
-- Generally, you shouldn't need to update state more than a couple of levels deep. If your state objects are very deep, you might want to [restructure them differently](/learn/choosing-the-state-structure#avoid-deeply-nested-state) so that they are flat.
-- If you don't want to change your state structure, you might prefer to use [Immer](https://github.com/immerjs/use-immer), which lets you write using the convenient but mutating syntax and takes care of producing the copies for you.
+- Generalno, ne biste trebali da ažurirate state za više od par nivoa dubine. Ako su vaši state objekti dosta hijerarhijski duboki, možete probati da ih [drugačije strukturirate](/learn/choosing-the-state-structure#avoid-deeply-nested-state) kako bi bili flat.
+- Ako ne želite promeniti strukturu vašeg state-a, možda biste voleli da koristite [Immer](https://github.com/immerjs/use-immer) koji omogućava pisanje zgodne sintakse za mutiranje i brine o pravljenju kopija za vas.
 
-Here is the Art Bucket List example rewritten with Immer:
+Ovde je primer Liste željenih umetnosti napisan pomoću Immer-a:
 
 <Sandpack>
 
@@ -704,12 +704,12 @@ export default function BucketList() {
 
   return (
     <>
-      <h1>Art Bucket List</h1>
-      <h2>My list of art to see:</h2>
+      <h1>Lista željenih umetnosti</h1>
+      <h2>Moja lista:</h2>
       <ItemList
         artworks={myList}
         onToggle={handleToggleMyList} />
-      <h2>Your list of art to see:</h2>
+      <h2>Tvoja lista:</h2>
       <ItemList
         artworks={yourList}
         onToggle={handleToggleYourList} />
@@ -762,7 +762,7 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-Note how with Immer, **mutation like `artwork.seen = nextSeen` is now okay:**
+Primetite kako je sa Immer-om, **mutacija poput `artwork.seen = nextSeen` sada u redu**:
 
 ```js
 updateMyTodos(draft => {
@@ -771,17 +771,17 @@ updateMyTodos(draft => {
 });
 ```
 
-This is because you're not mutating the _original_ state, but you're mutating a special `draft` object provided by Immer. Similarly, you can apply mutating methods like `push()` and `pop()` to the content of the `draft`.
+To se dešava zato što ne mutirate _originalni_ state, već poseban `draft` objekat koji Immer pruža. Slično tome, možete upotrebiti mutirajuće metode poput `push()` i `pop()` nad `draft` objektom.
 
-Behind the scenes, Immer always constructs the next state from scratch according to the changes that you've done to the `draft`. This keeps your event handlers very concise without ever mutating state.
+Iza kulisa, Immer uvek konstruiše novi state od nule na osnovu promena koje ste izvršili nad `draft`-om. Ovo vaše event handler-e čini konciznijim bez mutiranja state-a.
 
 <Recap>
 
-- You can put arrays into state, but you can't change them.
-- Instead of mutating an array, create a *new* version of it, and update the state to it.
-- You can use the `[...arr, newItem]` array spread syntax to create arrays with new items.
-- You can use `filter()` and `map()` to create new arrays with filtered or transformed items.
-- You can use Immer to keep your code concise.
+- Možete držati nizove u state-u, ali ih ne smete menjati.
+- Umesto da mutirate niz, napravite *novu* verziju niza i ažurirajte state da je koristi.
+- Možete koristiti `[...arr, newItem]` spread sintaksu za nizove da napravite nizove sa novim članovima.
+- Možete koristiti `filter()` i `map()` za kreiranje novih nizova sa filtriranim i transformisanim članovima.
+- Možete koristiti Immer da vam kod bude koncizniji.
 
 </Recap>
 
@@ -789,9 +789,9 @@ Behind the scenes, Immer always constructs the next state from scratch according
 
 <Challenges>
 
-#### Update an item in the shopping cart {/*update-an-item-in-the-shopping-cart*/}
+#### Ažurirati proizvod u korpi za kupovinu {/*update-an-item-in-the-shopping-cart*/}
 
-Fill in the `handleIncreaseClick` logic so that pressing "+" increases the corresponding number:
+Popunite `handleIncreaseClick` metodu tako da pritiskanje "+" dugmeta inkrementira odgovarajući broj:
 
 <Sandpack>
 
@@ -804,11 +804,11 @@ const initialProducts = [{
   count: 1,
 }, {
   id: 1,
-  name: 'Cheese',
+  name: 'Sir',
   count: 5,
 }, {
   id: 2,
-  name: 'Spaghetti',
+  name: 'Špagete',
   count: 2,
 }];
 
@@ -849,7 +849,7 @@ button { margin: 5px; }
 
 <Solution>
 
-You can use the `map` function to create a new array, and then use the `...` object spread syntax to create a copy of the changed object for the new array:
+Možete koristiti `map` funkciju da napravite novi niz, a onda `...` objektnu spread sintaksu da kreirate kopiju promenjenog objekta u novom nizu:
 
 <Sandpack>
 
@@ -862,11 +862,11 @@ const initialProducts = [{
   count: 1,
 }, {
   id: 1,
-  name: 'Cheese',
+  name: 'Sir',
   count: 5,
 }, {
   id: 2,
-  name: 'Spaghetti',
+  name: 'Špagete',
   count: 2,
 }];
 
@@ -916,9 +916,9 @@ button { margin: 5px; }
 
 </Solution>
 
-#### Remove an item from the shopping cart {/*remove-an-item-from-the-shopping-cart*/}
+#### Ukloniti proizvod iz korpe za kupovinu {/*remove-an-item-from-the-shopping-cart*/}
 
-This shopping cart has a working "+" button, but the "–" button doesn't do anything. You need to add an event handler to it so that pressing it decreases the `count` of the corresponding product. If you press "–" when the count is 1, the product should automatically get removed from the cart. Make sure it never shows 0.
+Ova korpa ima "+" dugme koje radi, ali "–" dugme ne radi ništa. Trebate dodati event handler za njega tako da pritiskom smanjite `count` odgovarajućeg proizvoda. Ako pritisnete "–" kad je brojač 1, proizvod bi automatski trebao biti uklonjen iz korpe. Osigurajte da se nikad ne prikazuje 0.
 
 <Sandpack>
 
@@ -931,11 +931,11 @@ const initialProducts = [{
   count: 1,
 }, {
   id: 1,
-  name: 'Cheese',
+  name: 'Sir',
   count: 5,
 }, {
   id: 2,
-  name: 'Spaghetti',
+  name: 'Špagete',
   count: 2,
 }];
 
@@ -988,7 +988,7 @@ button { margin: 5px; }
 
 <Solution>
 
-You can first use `map` to produce a new array, and then `filter` to remove products with a `count` set to `0`:
+Možete prvo koristiti `map` za pravljenje novog niza, a onda `filter` da uklonite proizvode kojima je `count` jednak `0`:
 
 <Sandpack>
 
@@ -1001,11 +1001,11 @@ const initialProducts = [{
   count: 1,
 }, {
   id: 1,
-  name: 'Cheese',
+  name: 'Sir',
   count: 5,
 }, {
   id: 2,
-  name: 'Spaghetti',
+  name: 'Špagete',
   count: 2,
 }];
 
@@ -1077,9 +1077,9 @@ button { margin: 5px; }
 
 </Solution>
 
-#### Fix the mutations using non-mutative methods {/*fix-the-mutations-using-non-mutative-methods*/}
+#### Popraviti mutacije upotrebom metoda koje ne vrše mutacije {/*fix-the-mutations-using-non-mutative-methods*/}
 
-In this example, all of the event handlers in `App.js` use mutation. As a result, editing and deleting todos doesn't work. Rewrite `handleAddTodo`, `handleChangeTodo`, and `handleDeleteTodo` to use the non-mutative methods:
+U ovom primeru, svi event handler-i u `App.js` koriste mutaciju. Kao rezultat, izmena i brisanje todo-ova ne radi. Napišite `handleAddTodo`, `handleChangeTodo` i `handleDeleteTodo` iznova tako da koriste metode koje ne vrše mutacije:
 
 <Sandpack>
 
@@ -1090,9 +1090,9 @@ import TaskList from './TaskList.js';
 
 let nextId = 3;
 const initialTodos = [
-  { id: 0, title: 'Buy milk', done: true },
-  { id: 1, title: 'Eat tacos', done: false },
-  { id: 2, title: 'Brew tea', done: false },
+  { id: 0, title: 'Kupi mleko', done: true },
+  { id: 1, title: 'Pojedi tako', done: false },
+  { id: 2, title: 'Skuvaj čaj', done: false },
 ];
 
 export default function TaskApp() {
@@ -1146,14 +1146,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Dodaj todo"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Dodaj</button>
     </>
   )
 }
@@ -1197,7 +1197,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Sačuvaj
         </button>
       </>
     );
@@ -1206,7 +1206,7 @@ function Task({ todo, onChange, onDelete }) {
       <>
         {todo.title}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Izmeni
         </button>
       </>
     );
@@ -1225,7 +1225,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Obriši
       </button>
     </label>
   );
@@ -1242,7 +1242,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-In `handleAddTodo`, you can use the array spread syntax. In `handleChangeTodo`, you can create a new array with `map`. In `handleDeleteTodo`, you can create a new array with `filter`. Now the list works correctly:
+U `handleAddTodo`, možete koristiti spread sintaksu za nizove. U `handleChangeTodo`, možete kreirati novi niz sa `map`. U `handleDeleteTodo`, možete kreirati novi niz sa `filter`. Sada lista radi kako treba:
 
 <Sandpack>
 
@@ -1253,9 +1253,9 @@ import TaskList from './TaskList.js';
 
 let nextId = 3;
 const initialTodos = [
-  { id: 0, title: 'Buy milk', done: true },
-  { id: 1, title: 'Eat tacos', done: false },
-  { id: 2, title: 'Brew tea', done: false },
+  { id: 0, title: 'Kupi mleko', done: true },
+  { id: 1, title: 'Pojedi tako', done: false },
+  { id: 2, title: 'Skuvaj čaj', done: false },
 ];
 
 export default function TaskApp() {
@@ -1313,14 +1313,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Dodaj todo"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Dodaj</button>
     </>
   )
 }
@@ -1364,7 +1364,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Sačuvaj
         </button>
       </>
     );
@@ -1373,7 +1373,7 @@ function Task({ todo, onChange, onDelete }) {
       <>
         {todo.title}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Izmeni
         </button>
       </>
     );
@@ -1392,7 +1392,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Obriši
       </button>
     </label>
   );
@@ -1410,9 +1410,9 @@ ul, li { margin: 0; padding: 0; }
 </Solution>
 
 
-#### Fix the mutations using Immer {/*fix-the-mutations-using-immer*/}
+#### Popraviti mutacije koristeći Immer {/*fix-the-mutations-using-immer*/}
 
-This is the same example as in the previous challenge. This time, fix the mutations by using Immer. For your convenience, `useImmer` is already imported, so you need to change the `todos` state variable to use it.
+Ovo je isti primer kao u prethodnom izazovu. Ovog puta, popravite mutacije upotrebom Immer-a. Za vašu ugodnost, `useImmer` je već import-ovan, a vi trebate promeniti `todos` state promenljivu da ga koristi.
 
 <Sandpack>
 
@@ -1424,9 +1424,9 @@ import TaskList from './TaskList.js';
 
 let nextId = 3;
 const initialTodos = [
-  { id: 0, title: 'Buy milk', done: true },
-  { id: 1, title: 'Eat tacos', done: false },
-  { id: 2, title: 'Brew tea', done: false },
+  { id: 0, title: 'Kupi mleko', done: true },
+  { id: 1, title: 'Pojedi tako', done: false },
+  { id: 2, title: 'Skuvaj čaj', done: false },
 ];
 
 export default function TaskApp() {
@@ -1480,14 +1480,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Dodaj todo"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Dodaj</button>
     </>
   )
 }
@@ -1531,7 +1531,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Sačuvaj
         </button>
       </>
     );
@@ -1540,7 +1540,7 @@ function Task({ todo, onChange, onDelete }) {
       <>
         {todo.title}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Izmeni
         </button>
       </>
     );
@@ -1559,7 +1559,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Obriši
       </button>
     </label>
   );
@@ -1594,7 +1594,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-With Immer, you can write code in the mutative fashion, as long as you're only mutating parts of the `draft` that Immer gives you. Here, all mutations are performed on the `draft` so the code works:
+Sa Immer-om, možete pisati kod u stilu mutacije, dok god mutirate jedino delove `draft`-a koji vam pruža Immer. Ovde, sve mutacije su izvršene nad `draft` objektom pa kod radi:
 
 <Sandpack>
 
@@ -1606,9 +1606,9 @@ import TaskList from './TaskList.js';
 
 let nextId = 3;
 const initialTodos = [
-  { id: 0, title: 'Buy milk', done: true },
-  { id: 1, title: 'Eat tacos', done: false },
-  { id: 2, title: 'Brew tea', done: false },
+  { id: 0, title: 'Kupi mleko', done: true },
+  { id: 1, title: 'Pojedi tako', done: false },
+  { id: 2, title: 'Skuvaj čaj', done: false },
 ];
 
 export default function TaskApp() {
@@ -1668,14 +1668,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Dodaj todo"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Dodaj</button>
     </>
   )
 }
@@ -1719,7 +1719,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Sačuvaj
         </button>
       </>
     );
@@ -1728,7 +1728,7 @@ function Task({ todo, onChange, onDelete }) {
       <>
         {todo.title}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Izmeni
         </button>
       </>
     );
@@ -1747,7 +1747,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Obriši
       </button>
     </label>
   );
@@ -1780,9 +1780,9 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-You can also mix and match the mutative and non-mutative approaches with Immer.
+Takođe, možete mešati pristupe sa i bez mutacija pomoću Immer-a.
 
-For example, in this version `handleAddTodo` is implemented by mutating the Immer `draft`, while `handleChangeTodo` and `handleDeleteTodo` use the non-mutative `map` and `filter` methods:
+Na primer, u ovoj verziji `handleAddTodo` je implementiran mutirajući Immer-ov `draft`, dok `handleChangeTodo` i `handleDeleteTodo` koriste `map` i `filter` metode koje ne vrše mutacije:
 
 <Sandpack>
 
@@ -1794,9 +1794,9 @@ import TaskList from './TaskList.js';
 
 let nextId = 3;
 const initialTodos = [
-  { id: 0, title: 'Buy milk', done: true },
-  { id: 1, title: 'Eat tacos', done: false },
-  { id: 2, title: 'Brew tea', done: false },
+  { id: 0, title: 'Kupi mleko', done: true },
+  { id: 1, title: 'Pojedi tako', done: false },
+  { id: 2, title: 'Skuvaj čaj', done: false },
 ];
 
 export default function TaskApp() {
@@ -1853,14 +1853,14 @@ export default function AddTodo({ onAddTodo }) {
   return (
     <>
       <input
-        placeholder="Add todo"
+        placeholder="Dodaj todo"
         value={title}
         onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
         setTitle('');
         onAddTodo(title);
-      }}>Add</button>
+      }}>Dodaj</button>
     </>
   )
 }
@@ -1904,7 +1904,7 @@ function Task({ todo, onChange, onDelete }) {
             });
           }} />
         <button onClick={() => setIsEditing(false)}>
-          Save
+          Sačuvaj
         </button>
       </>
     );
@@ -1913,7 +1913,7 @@ function Task({ todo, onChange, onDelete }) {
       <>
         {todo.title}
         <button onClick={() => setIsEditing(true)}>
-          Edit
+          Izmeni
         </button>
       </>
     );
@@ -1932,7 +1932,7 @@ function Task({ todo, onChange, onDelete }) {
       />
       {todoContent}
       <button onClick={() => onDelete(todo.id)}>
-        Delete
+        Obriši
       </button>
     </label>
   );
@@ -1965,7 +1965,7 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-With Immer, you can pick the style that feels the most natural for each separate case.
+Sa Immer-om, možete koristiti stil koji vam se čini najprirodnije u određenoj situaciji.
 
 </Solution>
 
