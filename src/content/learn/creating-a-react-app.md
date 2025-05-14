@@ -32,11 +32,7 @@ Ovo vam omogućava da počnete samo sa klijentskom aplikacijom, pa, ako vam kasn
 npx create-next-app@latest
 </TerminalBlock>
 
-<<<<<<< HEAD
-Next.js je održavan od strane [Vercel-a](https://vercel.com/). Možete [deploy-ovati Next.js aplikaciju](https://nextjs.org/docs/app/building-your-application/deploying) na bilo koji Node.js ili serverless hosting, ili na vaš sopstveni server. Next.js takođe podržava [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) koji ne zahteva server. Vercel dodatno pruža i opcione cloud servise koji se plaćaju.
-=======
-Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any hosting provider that supports Node.js or Docker containers, or to your own server. Next.js also supports [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) which doesn't require a server.
->>>>>>> a3e9466dfeea700696211533a3570bc48d7bc3d3
+Next.js je održavan od strane [Vercel-a](https://vercel.com/). Možete [deploy-ovati Next.js aplikaciju](https://nextjs.org/docs/app/building-your-application/deploying) na bilo koji hosting provider koji podržava Node.js ili Docker kontejnere, ili na vaš sopstveni server. Next.js takođe podržava [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) koji ne zahteva server.
 
 ### React Router (v7) {/*react-router-v7*/}
 
