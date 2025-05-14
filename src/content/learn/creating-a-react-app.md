@@ -32,7 +32,11 @@ Ovo vam omogućava da počnete samo sa klijentskom aplikacijom, pa, ako vam kasn
 npx create-next-app@latest
 </TerminalBlock>
 
+<<<<<<< HEAD
 Next.js je održavan od strane [Vercel-a](https://vercel.com/). Možete [deploy-ovati Next.js aplikaciju](https://nextjs.org/docs/app/building-your-application/deploying) na bilo koji Node.js ili serverless hosting, ili na vaš sopstveni server. Next.js takođe podržava [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) koji ne zahteva server. Vercel dodatno pruža i opcione cloud servise koji se plaćaju.
+=======
+Next.js is maintained by [Vercel](https://vercel.com/). You can [deploy a Next.js app](https://nextjs.org/docs/app/building-your-application/deploying) to any hosting provider that supports Node.js or Docker containers, or to your own server. Next.js also supports [static export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports) which doesn't require a server.
+>>>>>>> a3e9466dfeea700696211533a3570bc48d7bc3d3
 
 ### React Router (v7) {/*react-router-v7*/}
 
@@ -106,7 +110,11 @@ Ako vaša aplikacija ima ograničenja koja nisu dobro rešena u postojećim fram
 
 Početak od nule vam pruža više fleksibilnosti, ali zahteva da napravite odluku koje alate ćete koristiti za rutiranje, fetch-ovanje podataka i ostale često korišćene šablone. To je kao da pravite sopstveni framework, a ne da koristite već postojeći. [Framework-ovi koje preporučujemo](#full-stack-frameworks) imaju ugrađena rešenja za ovakve probleme.
 
+<<<<<<< HEAD
 Ako želite napraviti vaša rešenja, pogledajte uputstvo kako [napraviti React aplikaciju od nule](/learn/build-a-react-app-from-scratch) za instrukcije oko postavki React projekta počevši od postojećih alata kao što su [Vite](https://vite.dev/), [Parcel](https://parceljs.org/) ili [RSbuild](https://rsbuild.dev/).
+=======
+If you want to build your own solutions, see our guide to [build a React app from Scratch](/learn/build-a-react-app-from-scratch) for instructions on how to set up a new React project starting with a build tool like [Vite](https://vite.dev/), [Parcel](https://parceljs.org/), or [RSbuild](https://rsbuild.dev/).
+>>>>>>> a3e9466dfeea700696211533a3570bc48d7bc3d3
 
 -----
 
