@@ -106,11 +106,7 @@ Ako vaša aplikacija ima ograničenja koja nisu dobro rešena u postojećim fram
 
 Početak od nule vam pruža više fleksibilnosti, ali zahteva da napravite odluku koje alate ćete koristiti za rutiranje, fetch-ovanje podataka i ostale često korišćene šablone. To je kao da pravite sopstveni framework, a ne da koristite već postojeći. [Framework-ovi koje preporučujemo](#full-stack-frameworks) imaju ugrađena rešenja za ovakve probleme.
 
-<<<<<<< HEAD
-Ako želite napraviti vaša rešenja, pogledajte uputstvo kako [napraviti React aplikaciju od nule](/learn/build-a-react-app-from-scratch) za instrukcije oko postavki React projekta počevši od postojećih alata kao što su [Vite](https://vite.dev/), [Parcel](https://parceljs.org/) ili [RSbuild](https://rsbuild.dev/).
-=======
-If you want to build your own solutions, see our guide to [build a React app from Scratch](/learn/build-a-react-app-from-scratch) for instructions on how to set up a new React project starting with a build tool like [Vite](https://vite.dev/), [Parcel](https://parceljs.org/), or [RSbuild](https://rsbuild.dev/).
->>>>>>> a3e9466dfeea700696211533a3570bc48d7bc3d3
+Ako želite napraviti vaša rešenja, pogledajte uputstvo kako [napraviti React aplikaciju od nule](/learn/build-a-react-app-from-scratch) za instrukcije oko postavki React projekta počevši od postojećih build alata kao što su [Vite](https://vite.dev/), [Parcel](https://parceljs.org/) ili [RSbuild](https://rsbuild.dev/).
 
 -----
 
