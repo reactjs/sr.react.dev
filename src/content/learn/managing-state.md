@@ -399,7 +399,7 @@ textarea {
 
 </Sandpack>
 
-React vam omogućava da override-ujete default ponašanje i *forsirate* komponentu da resetuje svoje stanje prosleđivanjem različitog `key`-a, na primer `<Chat key={email} />`. Ovo govori React-u da ako je primalac drugačiji, treba da smatra da se *drugačija* `Chat` komponenta treba ponovo kreirati od nule sa novim podacima (i UI-jem poput input-a). Sada, promena primaoca resetuje polje za input--iako renderujete istu komponentu.
+React vam omogućava da override-ujete default ponašanje i *forsirate* komponentu da resetuje svoj state prosleđivanjem različitog `key`-a, na primer `<Chat key={email} />`. Ovo govori React-u da ako je primalac drugačiji, treba da smatra da se *drugačija* `Chat` komponenta treba ponovo kreirati od nule sa novim podacima (i UI-jem poput input-a). Sada, promena primaoca resetuje polje za input--iako renderujete istu komponentu.
 
 <Sandpack>
 
