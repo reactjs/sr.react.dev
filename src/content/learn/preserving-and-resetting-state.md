@@ -1,28 +1,28 @@
 ---
-title: Preserving and Resetting State
+title: Čuvanje i resetovanje state-a
 ---
 
 <Intro>
 
-State is isolated between components. React keeps track of which state belongs to which component based on their place in the UI tree. You can control when to preserve state and when to reset it between re-renders.
+State je izolovan između komponenata. React prati koji state pripada kojoj komponenti na osnovu njenog mesta u UI stablu. Možete kontrolisati kada čuvati state, a kada ga resetovati između ponovnih rendera.
 
 </Intro>
 
 <YouWillLearn>
 
-* When React chooses to preserve or reset the state
-* How to force React to reset component's state
-* How keys and types affect whether the state is preserved
+* Kada React bira da li da čuva ili resetuje state
+* Kako naterati React da resetuje state komponente
+* Kako ključevi i tipovi utiču na to da li je state sačuvan
 
 </YouWillLearn>
 
-## State is tied to a position in the render tree {/*state-is-tied-to-a-position-in-the-tree*/}
+## State je povezan sa pozicijom u stablu renderovanja {/*state-is-tied-to-a-position-in-the-tree*/}
 
-React builds [render trees](learn/understanding-your-ui-as-a-tree#the-render-tree) for the component structure in your UI.
+React pravi [stabla renderovanja](learn/understanding-your-ui-as-a-tree#the-render-tree) za strukturu komponenti na vašem UI-u.
 
-When you give a component state, you might think the state "lives" inside the component. But the state is actually held inside React. React associates each piece of state it's holding with the correct component by where that component sits in the render tree.
+Kada komponenti date state, možete pomisliti da state "živi" unutar komponente. Ali, state se zapravo čuva unutar React-a. React povezuje svaki deo state-a sa tačnom komponentom na osnovu mesta na kom se ta komponenta nalazi u stablu renderovanja.
 
-Here, there is only one `<Counter />` JSX tag, but it's rendered at two different positions:
+Ovde postoji samo jedan `<Counter />` JSX tag, ali je renderovan na dve različite pozicije:
 
 <Sandpack>
 
@@ -56,7 +56,7 @@ function Counter() {
     >
       <h1>{score}</h1>
       <button onClick={() => setScore(score + 1)}>
-        Add one
+        Dodaj jedan
       </button>
     </div>
   );
@@ -86,23 +86,23 @@ label {
 
 </Sandpack>
 
-Here's how these look as a tree:    
+Evo kako to izgleda u obliku stabla:
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_tree" height={248} width={395} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. Each of the children are labeled 'Counter' and both contain a state bubble labeled 'count' with value 0.">
+<Diagram name="preserving_state_tree" height={248} width={395} alt="Dijagram stabla React komponenata. Korenski čvor nazvan 'div' ima dva deteta. Svako dete se naziva 'Counter' i sadrži state balon sa nazivom 'count' i vrednošću 0.">
 
-React tree
+React stablo
 
 </Diagram>
 
 </DiagramGroup>
 
-**These are two separate counters because each is rendered at its own position in the tree.** You don't usually have to think about these positions to use React, but it can be useful to understand how it works.
+**Ovo su dva odvojena brojača jer je svaki renderovan na svojoj poziciji u stablu.** Obično ne morate razmišljati o ovim pozicijama da biste koristili React, ali može biti korisno da razumete kako to funkcioniše.
 
-In React, each component on the screen has fully isolated state. For example, if you render two `Counter` components side by side, each of them will get its own, independent, `score` and `hover` states.
+U React-u, svaka komponenta na ekranu ima potpuno izolovan state. Na primer, ako renderujete dve `Counter` komponente jednu pored druge, svaka će imati svoje nezavisne `score` i `hover` state-ove.
 
-Try clicking both counters and notice they don't affect each other:
+Probajte da kliknete oba brojača i primetite da ne utiču jedan na drugog:
 
 <Sandpack>
 
@@ -135,7 +135,7 @@ function Counter() {
     >
       <h1>{score}</h1>
       <button onClick={() => setScore(score + 1)}>
-        Add one
+        Dodaj jedan
       </button>
     </div>
   );
@@ -160,21 +160,21 @@ function Counter() {
 
 </Sandpack>
 
-As you can see, when one counter is updated, only the state for that component is updated:
+Kao što možete videti, kada je jedan brojač ažuriran, jedino se state za tu komponentu ažurira:
 
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_increment" height={248} width={441} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is labeled 'Counter' and contains a state bubble labeled 'count' with value 1. The state bubble of the right child is highlighted in yellow to indicate its value has updated.">
+<Diagram name="preserving_state_increment" height={248} width={441} alt="Dijagram stabla React komponenata. Korenski čvor nazvan 'div' ima dva deteta. Levo dete se naziva 'Counter' i sadrži state balon sa nazivom 'count' i vrednošću 0. Desno dete se naziva 'Counter' i sadrži state balon sa nazivom 'count' i vrednošću 1. State balon desnog deteta je istaknut žutom bojom da bi se naznačilo da mu je vrednost ažurirana.">
 
-Updating state
+Ažuriranje state-a
 
 </Diagram>
 
 </DiagramGroup>
 
 
-React will keep the state around for as long as you render the same component at the same position in the tree. To see this, increment both counters, then remove the second component by unchecking "Render the second counter" checkbox, and then add it back by ticking it again:
+React će držati state dok god istu komponentu renderujete na istoj poziciji u stablu. Da biste ovo primetili, inkrementirajte oba brojača, uklonite drugu komponentu tako što ćete odštiklirati checkbox "Renderuj drugi brojač", a onda je štikliranjem dodajte ponovo:
 
 <Sandpack>
 
@@ -195,7 +195,7 @@ export default function App() {
             setShowB(e.target.checked)
           }}
         />
-        Render the second counter
+        Renderuj drugi brojač
       </label>
     </div>
   );
@@ -218,7 +218,7 @@ function Counter() {
     >
       <h1>{score}</h1>
       <button onClick={() => setScore(score + 1)}>
-        Add one
+        Dodaj jedan
       </button>
     </div>
   );
@@ -248,35 +248,35 @@ label {
 
 </Sandpack>
 
-Notice how the moment you stop rendering the second counter, its state disappears completely. That's because when React removes a component, it destroys its state.
+Primetite da u trenutku kada prestanete da renderujete drugi brojač, njegov state potpuno nestaje. To je zato što kad React ukloni komponentu, uklanja i njen state.
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_remove_component" height={253} width={422} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is missing, and in its place is a yellow 'poof' image, highlighting the component being deleted from the tree.">
+<Diagram name="preserving_state_remove_component" height={253} width={422} alt="Dijagram stabla React komponenata. Korenski čvor nazvan 'div' ima dva deteta. Levo dete se naziva 'Counter' i sadrži state balon sa nazivom 'count' i vrednošcu 0. Desno dete nedostaje i na njegovom mestu je žuta 'poof' slika, ističući da se komponenta briše iz stabla.">
 
-Deleting a component
+Brisanje komponente
 
 </Diagram>
 
 </DiagramGroup>
 
-When you tick "Render the second counter", a second `Counter` and its state are initialized from scratch (`score = 0`) and added to the DOM.
+Kada štiklirate "Renderuj drugi brojač", drugi `Counter` i njegov state se inicijalizuju od nule (`score = 0`) i dodaju u DOM.
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_add_component" height={258} width={500} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. The left child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The entire right child node is highlighted in yellow, indicating that it was just added to the tree.">
+<Diagram name="preserving_state_add_component" height={258} width={500} alt="Dijagram stabla React komponenata. Korenski čvor nazvan 'div' ima dva deteta. Levo dete se naziva 'Counter' i sadrži state balon sa nazivom 'count' i vrednošcu 0. Desno dete se naziva 'Counter' i sadrži state balon sa nazivom 'count' i vrednošcu 0. Celokupan čvor desnog deteta je istaknut žutom bojom, označavajući da je upravo dodat u stablo.">
 
-Adding a component
+Dodavanje komponente
 
 </Diagram>
 
 </DiagramGroup>
 
-**React preserves a component's state for as long as it's being rendered at its position in the UI tree.** If it gets removed, or a different component gets rendered at the same position, React discards its state.
+**React čuva state komponente dok god se renderuje na svojoj poziciji u UI stablu.** Ako se ukloni, ili se druga komponenta renderuje na istoj poziciji, React odbacuje njen state.
 
-## Same component at the same position preserves state {/*same-component-at-the-same-position-preserves-state*/}
+## Ista komponenta na istoj poziciji čuva state {/*same-component-at-the-same-position-preserves-state*/}
 
-In this example, there are two different `<Counter />` tags:
+U ovom primeru postoje dva različita `<Counter />` tag-a:
 
 <Sandpack>
 
@@ -300,7 +300,7 @@ export default function App() {
             setIsFancy(e.target.checked)
           }}
         />
-        Use fancy styling
+        Koristi fensi stajling
       </label>
     </div>
   );
@@ -326,7 +326,7 @@ function Counter({ isFancy }) {
     >
       <h1>{score}</h1>
       <button onClick={() => setScore(score + 1)}>
-        Add one
+        Dodaj jedan
       </button>
     </div>
   );
@@ -361,24 +361,24 @@ label {
 
 </Sandpack>
 
-When you tick or clear the checkbox, the counter state does not get reset. Whether `isFancy` is `true` or `false`, you always have a `<Counter />` as the first child of the `div` returned from the root `App` component:
+Kada promenite checkbox, counter state ne bude resetovan. Nezavisno od toga da li je `isFancy` jednak `true` ili `false`, uvek ćete imati `<Counter />` kao prvo dete `div`-a koje je vraćeno iz korenske `App` komponente:
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_same_component" height={461} width={600} alt="Diagram with two sections separated by an arrow transitioning between them. Each section contains a layout of components with a parent labeled 'App' containing a state bubble labeled isFancy. This component has one child labeled 'div', which leads to a prop bubble containing isFancy (highlighted in purple) passed down to the only child. The last child is labeled 'Counter' and contains a state bubble with label 'count' and value 3 in both diagrams. In the left section of the diagram, nothing is highlighted and the isFancy parent state value is false. In the right section of the diagram, the isFancy parent state value has changed to true and it is highlighted in yellow, and so is the props bubble below, which has also changed its isFancy value to true.">
+<Diagram name="preserving_state_same_component" height={461} width={600} alt="Dijagram sa dva dela razdvojena strelicom koja prelazi od jednog ka drugom. Svaki deo sadrži raspored komponenata sa roditeljem pod imenom 'App' koji sadrži state balon nazvan isFancy. Ova komponenta ima jedno dete nazvano 'div' koje vodi do prop balona koji sadrži isFancy (istaknuto ljubičastom bojom) i prosleđuje se jedinom detetu. Poslednje dete pod imenom 'Counter' sadrži state balon sa nazivom 'count' i vrednošcu 3 u oba dijagrama. U levom delu dijagrama ništa nije istaknuto i vrednost roditeljskog isFancy state-a je false. U desnom delu dijagrama vrednost roditeljskog isFancy state-a se promenila na true i istaknuta je žutom bojom, kao i prop balon ispod, čija isFancy vrednost se takođe promenila na true.">
 
-Updating the `App` state does not reset the `Counter` because `Counter` stays in the same position
+Ažuriranje `App` state-a ne resetuje `Counter` zato što `Counter` ostaje na istoj poziciji
 
 </Diagram>
 
 </DiagramGroup>
 
 
-It's the same component at the same position, so from React's perspective, it's the same counter.
+To je ista komponenta na istoj poziciji, pa je iz React perspektive to isti brojač.
 
 <Pitfall>
 
-Remember that **it's the position in the UI tree--not in the JSX markup--that matters to React!** This component has two `return` clauses with different `<Counter />` JSX tags inside and outside the `if`:
+Zapamtite da je **pozicija u UI stablu--ne u JSX markup-u--ono što je React-u bitno**! Ova komponenta ima dva `return` iskaza sa različitim `<Counter />` JSX tag-ovima unutar i izvan `if`-a:
 
 <Sandpack>
 
@@ -399,7 +399,7 @@ export default function App() {
               setIsFancy(e.target.checked)
             }}
           />
-          Use fancy styling
+          Koristi fensi stajling
         </label>
       </div>
     );
@@ -415,7 +415,7 @@ export default function App() {
             setIsFancy(e.target.checked)
           }}
         />
-        Use fancy styling
+        Koristi fensi stajling
       </label>
     </div>
   );
@@ -441,7 +441,7 @@ function Counter({ isFancy }) {
     >
       <h1>{score}</h1>
       <button onClick={() => setScore(score + 1)}>
-        Add one
+        Dodaj jedan
       </button>
     </div>
   );
@@ -476,15 +476,15 @@ label {
 
 </Sandpack>
 
-You might expect the state to reset when you tick checkbox, but it doesn't! This is because **both of these `<Counter />` tags are rendered at the same position.** React doesn't know where you place the conditions in your function. All it "sees" is the tree you return.
+Možda biste očekivali da se state resetuje kada promenite checkbox, ali to nije slučaj! To se dešava jer su **oba `<Counter />` tag-a renderovana na istoj poziciji**. React ne zna gde vi pravite uslove u vašoj funkciji. Sve što "vidi" je stablo koje vratite.
 
-In both cases, the `App` component returns a `<div>` with `<Counter />` as a first child. To React, these two counters have the same "address": the first child of the first child of the root. This is how React matches them up between the previous and next renders, regardless of how you structure your logic.
+U oba slučaja, `App` komponenta vraća `<div>` sa `<Counter />` kao prvim detetom. Za React, ova dva brojača imaju iste "adrese": prvo dete prvog deteta od korena. Ovako ih React poredi između prethodnih i narednih rendera, nezavisno od strukture vaše logike.
 
 </Pitfall>
 
-## Different components at the same position reset state {/*different-components-at-the-same-position-reset-state*/}
+## Različite komponente na istoj poziciji resetuju state {/*different-components-at-the-same-position-reset-state*/}
 
-In this example, ticking the checkbox will replace `<Counter>` with a `<p>`:
+U ovom primeru, štikliranje checkbox-a će zameniti `<Counter>` sa `<p>`:
 
 <Sandpack>
 
@@ -496,7 +496,7 @@ export default function App() {
   return (
     <div>
       {isPaused ? (
-        <p>See you later!</p> 
+        <p>Vidimo se posle!</p> 
       ) : (
         <Counter /> 
       )}
@@ -508,7 +508,7 @@ export default function App() {
             setIsPaused(e.target.checked)
           }}
         />
-        Take a break
+        Uzmi pauzu
       </label>
     </div>
   );
@@ -531,7 +531,7 @@ function Counter() {
     >
       <h1>{score}</h1>
       <button onClick={() => setScore(score + 1)}>
-        Add one
+        Dodaj jedan
       </button>
     </div>
   );
@@ -561,13 +561,13 @@ label {
 
 </Sandpack>
 
-Here, you switch between _different_ component types at the same position. Initially, the first child of the `<div>` contained a `Counter`. But when you swapped in a `p`, React removed the `Counter` from the UI tree and destroyed its state.
+Ovde menjate između _različitih_ tipova komponenti na istoj poziciji. Inicijalno, prvo dete `<div>`-a je bio `Counter`. Ali kad ste ga zamenili sa `p`, React je uklonio `Counter` iz UI stabla i uništio njegov state.
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_pt1" height={290} width={753} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'Counter' containing a state bubble labeled 'count' with value 3. The middle section has the same 'div' parent, but the child component has now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'p', highlighted in yellow.">
+<Diagram name="preserving_state_diff_pt1" height={290} width={753} alt="Dijagram sa tri dela i strelicom koja prelazi između njih. Prvi deo sadrži React komponentu nazvanu 'div' sa jednim detetom nazvanim 'Counter' koji sadrži state balon sa nazivom 'count' i vrednošću 3. Srednji deo ima istog 'div' roditelja, ali je dečja komponenta sada obrisana, što je označeno žutom 'poof' slikom. Treći deo ponovo ima istog 'div' roditelja, ali sada sa novim detetom nazvanim 'p', koji je istaknut žutom.">
 
-When `Counter` changes to `p`, the `Counter` is deleted and the `p` is added
+Kada se `Counter` zameni sa `p`, `Counter` je obrisan i `p` je dodat
 
 </Diagram>
 
@@ -575,15 +575,15 @@ When `Counter` changes to `p`, the `Counter` is deleted and the `p` is added
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_pt2" height={290} width={753} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'p'. The middle section has the same 'div' parent, but the child component has now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, highlighted in yellow.">
+<Diagram name="preserving_state_diff_pt2" height={290} width={753} alt="Dijagram sa tri dela i strelicom koja prelazi između njih. Prvi deo sadrži React komponentu nazvanu 'p'. Srednji deo ima istog 'div' roditelja, ali je dečja komponenta sada obrisana, što je označeno žutom 'poof' slikom. Treći deo ponovo ima istog 'div' roditelja, ali sada sa novim detetom nazvanim 'Counter' koji sadrži state balon sa nazivom 'count' i vrednošću 0 i istaknut je žutom.">
 
-When switching back, the `p` is deleted and the `Counter` is added
+Kada se ponovo promene, `p` je obrisan, a `Counter` je dodat
 
 </Diagram>
 
 </DiagramGroup>
 
-Also, **when you render a different component in the same position, it resets the state of its entire subtree.** To see how this works, increment the counter and then tick the checkbox:
+Takođe, **kada renderujete različitu komponentu na istoj poziciji, resetuje se state od čitavog podstabla**. Da vidite kako ovo radi, inkrementirajte brojač i onda štiklirajte checkbox:
 
 <Sandpack>
 
@@ -611,7 +611,7 @@ export default function App() {
             setIsFancy(e.target.checked)
           }}
         />
-        Use fancy styling
+        Koristi fensi stajling
       </label>
     </div>
   );
@@ -637,7 +637,7 @@ function Counter({ isFancy }) {
     >
       <h1>{score}</h1>
       <button onClick={() => setScore(score + 1)}>
-        Add one
+        Dodaj jedan
       </button>
     </div>
   );
@@ -672,13 +672,13 @@ label {
 
 </Sandpack>
 
-The counter state gets reset when you click the checkbox. Although you render a `Counter`, the first child of the `div` changes from a `section` to a `div`. When the child `section` was removed from the DOM, the whole tree below it (including the `Counter` and its state) was destroyed as well.
+State `Counter`-a se resetuje kada kliknete na checkbox. Iako renderujete `Counter`, prvo dete `div`-a se promeni sa `section` na `div`. Kada je dečji `section` uklonjen iz DOM-a, celokupno stablo ispod (uključujući `Counter` i njegov state) je takođe uništeno.
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_same_pt1" height={350} width={794} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'section', which has a single child labeled 'Counter' containing a state bubble labeled 'count' with value 3. The middle section has the same 'div' parent, but the child components have now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'div', highlighted in yellow, also with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, all highlighted in yellow.">
+<Diagram name="preserving_state_diff_same_pt1" height={350} width={794} alt="Dijagram sa tri dela i strelicom koja prelazi između njih. Prvi deo sadrži React komponentu nazvanu 'div' sa jednim detetom nazvanim 'section', koji ima jedno dete sa nazivom 'Counter' i sadrži state balon sa nazivom 'count' i vrednošću 3. Srednji deo ima istog 'div' roditelja, ali su dečje komponente sada obrisane, što je označeno žutom 'poof' slikom. Treći deo ponovo ima istog 'div' roditelja, ali sada sa novim detetom nazvanim 'div' i istaknutog žutom, takođe sa novim detetom nazvanim 'Counter' koji sadrži state balon sa nazivom 'count' i vrednošću 0, sve istaknuto žutom.">
 
-When `section` changes to `div`, the `section` is deleted and the new `div` is added
+Kada se `section` promeni u `div`, `section` je obrisan, a novi `div` je dodat
 
 </Diagram>
 
@@ -686,21 +686,21 @@ When `section` changes to `div`, the `section` is deleted and the new `div` is a
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_same_pt2" height={350} width={794} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'div', which has a single child labeled 'Counter' containing a state bubble labeled 'count' with value 0. The middle section has the same 'div' parent, but the child components have now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'section', highlighted in yellow, also with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, all highlighted in yellow.">
+<Diagram name="preserving_state_diff_same_pt2" height={350} width={794} alt="Dijagram sa tri dela i strelicom koja prelazi između njih. Prvi deo sadrži React komponentu nazvanu 'div' sa jednim detetom nazvanim 'div', koji ima jedno dete sa nazivom 'Counter' i sadrži state balon sa nazivom 'count' i vrednošću 0. Srednji deo ima istog 'div' roditelja, ali su dečje komponente sada obrisane, što je označeno žutom 'poof' slikom. Treći deo ponovo ima istog 'div' roditelja, ali sada sa novim detetom nazvanim 'section' i istaknutog žutom, takođe sa novim detetom nazvanim 'Counter' koji sadrži state balon sa nazivom 'count' i vrednošću 0, sve istaknuto žutom.">
 
-When switching back, the `div` is deleted and the new `section` is added
+Kada se ponovo promene, `div` je obrisan, a novi `section` je dodat
 
 </Diagram>
 
 </DiagramGroup>
 
-As a rule of thumb, **if you want to preserve the state between re-renders, the structure of your tree needs to "match up"** from one render to another. If the structure is different, the state gets destroyed because React destroys state when it removes a component from the tree.
+Kao pravilo, **ako želite da sačuvate state između ponovnih rendera, struktura vašeg stabla mora da se "poklapa"** od jednog do drugog rendera. Ako je struktura različita, state će biti uništen jer React uništava state kada uklanja komponentu iz stabla.
 
 <Pitfall>
 
-This is why you should not nest component function definitions.
+Zbog ovoga ne biste trebali da ugnježdavate definicije funkcija komponenti.
 
-Here, the `MyTextField` component function is defined *inside* `MyComponent`:
+Ovde je funkcija `MyTextField` komponente definisana *unutar* `MyComponent`:
 
 <Sandpack>
 
@@ -726,7 +726,7 @@ export default function MyComponent() {
       <MyTextField />
       <button onClick={() => {
         setCounter(counter + 1)
-      }}>Clicked {counter} times</button>
+      }}>Kliknuto {counter} puta</button>
     </>
   );
 }
@@ -735,13 +735,13 @@ export default function MyComponent() {
 </Sandpack>
 
 
-Every time you click the button, the input state disappears! This is because a *different* `MyTextField` function is created for every render of `MyComponent`. You're rendering a *different* component in the same position, so React resets all state below. This leads to bugs and performance problems. To avoid this problem, **always declare component functions at the top level, and don't nest their definitions.**
+Svaki put kad kliknete dugme, input state nestane! To se dešava jer je *različita* `MyTextField` funkcija kreirana za svaki render `MyComponent`-a. Renderujete *različitu* komponentu na istoj poziciji, pa React resetuje sve state-ove ispod. Ovo prouzrokuje bug-ove i probleme sa performansama. Da biste izbegli ovaj problem, **uvek deklarišite funkcije komponenti na najvišem nivou i nemojte ugnježdavati njihove definicije**.
 
 </Pitfall>
 
-## Resetting state at the same position {/*resetting-state-at-the-same-position*/}
+## Resetovanje state-a na istoj poziciji {/*resetting-state-at-the-same-position*/}
 
-By default, React preserves state of a component while it stays at the same position. Usually, this is exactly what you want, so it makes sense as the default behavior. But sometimes, you may want to reset a component's state. Consider this app that lets two players keep track of their scores during each turn:
+Po default-u, React čuva state komponente dok god ostaje na istoj poziciji. Uglavnom je to upravo ono što želite, pa ima smisla da je to default ponašanje. Ali, ponekad možete želeti da resetujete state komponente. Razmotrite ovu aplikaciju koja omogućava dvojici igrača da prate svoje poene tokom svakog poteza:
 
 <Sandpack>
 
@@ -760,7 +760,7 @@ export default function Scoreboard() {
       <button onClick={() => {
         setIsPlayerA(!isPlayerA);
       }}>
-        Next player!
+        Naredni igrač!
       </button>
     </div>
   );
@@ -781,9 +781,9 @@ function Counter({ person }) {
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
     >
-      <h1>{person}'s score: {score}</h1>
+      <h1>Poeni za osobu {person}: {score}</h1>
       <button onClick={() => setScore(score + 1)}>
-        Add one
+        Dodaj jedan
       </button>
     </div>
   );
@@ -811,19 +811,19 @@ h1 {
 
 </Sandpack>
 
-Currently, when you change the player, the score is preserved. The two `Counter`s appear in the same position, so React sees them as *the same* `Counter` whose `person` prop has changed.
+Trenutno, kada promenite igrača, poeni ostaju sačuvani. Dve `Counter` komponente se nalaze na istoj poziciji, pa ih React posmatra kao *isti* `Counter` čiji se `person` prop promenio.
 
-But conceptually, in this app they should be two separate counters. They might appear in the same place in the UI, but one is a counter for Taylor, and another is a counter for Sarah.
+Ali konceptualno, u ovoj aplikaciji to trebaju biti dva odvojena brojača. Iako se pojavljuju na istom mestu na UI-u, jedan brojač je za Taylor, a drugi za Sarah.
 
-There are two ways to reset state when switching between them:
+Postoje dva načina da resetujete state kada ih menjate:
 
-1. Render components in different positions
-2. Give each component an explicit identity with `key`
+1. Renderujte komponente na različitim pozicijama
+2. Dajte svakoj komponenti eksplicitni identitet sa `key`
 
 
-### Option 1: Rendering a component in different positions {/*option-1-rendering-a-component-in-different-positions*/}
+### Opcija 1: Renderovanje komponente na različitim pozicijama {/*option-1-rendering-a-component-in-different-positions*/}
 
-If you want these two `Counter`s to be independent, you can render them in two different positions:
+Ako želite da ova dva `Counter`-a budu nezavisna, možete ih renderovati na dve različite pozicije:
 
 <Sandpack>
 
@@ -843,7 +843,7 @@ export default function Scoreboard() {
       <button onClick={() => {
         setIsPlayerA(!isPlayerA);
       }}>
-        Next player!
+        Naredni igrač!
       </button>
     </div>
   );
@@ -864,9 +864,9 @@ function Counter({ person }) {
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
     >
-      <h1>{person}'s score: {score}</h1>
+      <h1>Poeni za osobu {person}: {score}</h1>
       <button onClick={() => setScore(score + 1)}>
-        Add one
+        Dodaj jedan
       </button>
     </div>
   );
@@ -894,42 +894,42 @@ h1 {
 
 </Sandpack>
 
-* Initially, `isPlayerA` is `true`. So the first position contains `Counter` state, and the second one is empty.
-* When you click the "Next player" button the first position clears but the second one now contains a `Counter`.
+* Inicijalno, `isPlayerA` je `true`. To znači da prva pozicija sadrži `Counter` state, a druga je prazna.
+* Kada kliknete dugme "Naredni igrač" prva pozicija se briše, a druga sada sadrži `Counter`.
 
 <DiagramGroup>
 
-<Diagram name="preserving_state_diff_position_p1" height={375} width={504} alt="Diagram with a tree of React components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'true'. The only child, arranged to the left, is labeled Counter with a state bubble labeled 'count' and value 0. All of the left child is highlighted in yellow, indicating it was added.">
+<Diagram name="preserving_state_diff_position_p1" height={375} width={504} alt="Dijagram sa stablom React komponenata. Roditelj se naziva 'Scoreboard' i sadrži state balon sa nazivom 'isPlayerA' i vrednošću 'true'. Jedino dete, raspoređeno levo, se naziva 'Counter' i sadrži state balon sa nazivom 'count' i vrednošću 0. Celokupno levo dete je istaknuto žutom, označavajući da je dodato.">
 
-Initial state
-
-</Diagram>
-
-<Diagram name="preserving_state_diff_position_p2" height={375} width={504} alt="Diagram with a tree of React components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'false'. The state bubble is highlighted in yellow, indicating that it has changed. The left child is replaced with a yellow 'poof' image indicating that it has been deleted and there is a new child on the right, highlighted in yellow indicating that it was added. The new child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0.">
-
-Clicking "next"
+Inicijalni state
 
 </Diagram>
 
-<Diagram name="preserving_state_diff_position_p3" height={375} width={504} alt="Diagram with a tree of React components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'true'. The state bubble is highlighted in yellow, indicating that it has changed. There is a new child on the left, highlighted in yellow indicating that it was added. The new child is labeled 'Counter' and contains a state bubble labeled 'count' with value 0. The right child is replaced with a yellow 'poof' image indicating that it has been deleted.">
+<Diagram name="preserving_state_diff_position_p2" height={375} width={504} alt="Dijagram sa stablom React komponenata. Roditelj se naziva 'Scoreboard' i sadrži state balon sa nazivom 'isPlayerA' i vrednošću 'false'. State balon je istaknut žutom, označavajući da je promenjen. Levo dete je zamenjeno sa žutom 'poof' slikom označavajući da je obrisano, a tu je novo dete sa desne strane, istaknuto žutom, označavajući da je dodato. Novo dete sa nazivom 'Counter' sadrži state balon sa nazivom 'count' i vrednošću 0.">
 
-Clicking "next" again
+Kliknuto "naredno"
+
+</Diagram>
+
+<Diagram name="preserving_state_diff_position_p3" height={375} width={504} alt="Dijagram sa stablom React komponenata. Roditelj se naziva 'Scoreboard' i sadrži state balon sa nazivom 'isPlayerA' i vrednošću 'true'. State balon je istaknut žutom, označavajući da je promenjen. Postoji novo dete na levoj strani, istaknuto žuto, označavajući da je dodato. Novo dete sa nazivom 'Counter' sadrži state balon sa nazivom 'count' i vrednošću 0. Desno dete je zamenjeno sa žutom 'poof' slikom označavajući da je obrisano.">
+
+Kliknuto "naredno" opet
 
 </Diagram>
 
 </DiagramGroup>
 
-Each `Counter`'s state gets destroyed each time it's removed from the DOM. This is why they reset every time you click the button.
+State svakog `Counter`-a bude uništen svaki put kad je uklonjen iz DOM-a. Zbog toga se resetuju svaki put kada kliknete dugme.
 
-This solution is convenient when you only have a few independent components rendered in the same place. In this example, you only have two, so it's not a hassle to render both separately in the JSX.
+Ovo rešenje je zgodno kada imate samo par komponenti renderovanih na istom mestu. U ovom primeru, imate ih samo dve, pa nije problem renderovati ih u različitom JSX-u.
 
-### Option 2: Resetting state with a key {/*option-2-resetting-state-with-a-key*/}
+### Opcija 2: Resetovanje state-a uz key {/*option-2-resetting-state-with-a-key*/}
 
-There is also another, more generic, way to reset a component's state.
+Postoji i drugi, više generički, način da resetujete state komponente.
 
-You might have seen `key`s when [rendering lists.](/learn/rendering-lists#keeping-list-items-in-order-with-key) Keys aren't just for lists! You can use keys to make React distinguish between any components. By default, React uses order within the parent ("first counter", "second counter") to discern between components. But keys let you tell React that this is not just a *first* counter, or a *second* counter, but a specific counter--for example, *Taylor's* counter. This way, React will know *Taylor's* counter wherever it appears in the tree!
+Možda ste videli `key`-eve tokom [renderovanja listi](/learn/rendering-lists#keeping-list-items-in-order-with-key). Ključevi nisu samo za liste! Možete koristiti ključeve da naterate React da razlikuje bilo koje komponente. Po default-u, React koristi redosled unutar roditelja ("prvi brojač", "drugi brojač") da razlikuje komponente. Ali, ključevi vam omogućavaju da kažete React-u da to nije samo *prvi* brojač, ili *drugi* brojač, već poseban brojač--na primer, *Taylor-ov* brojač. Na ovaj način, React će znati za *Taylor-ov* brojač gde god da se pojavi u stablu!
 
-In this example, the two `<Counter />`s don't share state even though they appear in the same place in JSX:
+U ovom primeru, dva `<Counter />`-a ne dele state iako se nalaze na istom mestu u JSX-u:
 
 <Sandpack>
 
@@ -948,7 +948,7 @@ export default function Scoreboard() {
       <button onClick={() => {
         setIsPlayerA(!isPlayerA);
       }}>
-        Next player!
+        Naredni igrač!
       </button>
     </div>
   );
@@ -969,9 +969,9 @@ function Counter({ person }) {
       onPointerEnter={() => setHover(true)}
       onPointerLeave={() => setHover(false)}
     >
-      <h1>{person}'s score: {score}</h1>
+      <h1>Poeni za osobu {person}: {score}</h1>
       <button onClick={() => setScore(score + 1)}>
-        Add one
+        Dodaj jedan
       </button>
     </div>
   );
@@ -999,7 +999,7 @@ h1 {
 
 </Sandpack>
 
-Switching between Taylor and Sarah does not preserve the state. This is because **you gave them different `key`s:**
+Menjanje između Taylor i Sarah ne čuva state. To je zato što ste **im dali različite `key`-eve:**
 
 ```js
 {isPlayerA ? (
@@ -1009,19 +1009,19 @@ Switching between Taylor and Sarah does not preserve the state. This is because 
 )}
 ```
 
-Specifying a `key` tells React to use the `key` itself as part of the position, instead of their order within the parent. This is why, even though you render them in the same place in JSX, React sees them as two different counters, and so they will never share state. Every time a counter appears on the screen, its state is created. Every time it is removed, its state is destroyed. Toggling between them resets their state over and over.
+Specificiranje `key`-a govori React-u da koristi `key` kao deo pozicije umesto rasporeda unutar roditelja. Zbog toga, iako ih renderujete na istom mestu u JSX-u, React ih vidi kao dva različita brojača, tako da nikad neće deliti state. Svaki put kad se brojač pojavi na ekranu, njegov state je kreiran. Svaki put kad je uklonjen, njegov state je uništen. Promena između njih resetuje njihov state iznova.
 
 <Note>
 
-Remember that keys are not globally unique. They only specify the position *within the parent*.
+Zapamtite da ključevi nisu jedinstveni globalno. Oni samo označavaju poziciju *unutar roditelja*.
 
 </Note>
 
-### Resetting a form with a key {/*resetting-a-form-with-a-key*/}
+### Resetovanje forme sa key-em {/*resetting-a-form-with-a-key*/}
 
-Resetting state with a key is particularly useful when dealing with forms.
+Resetovanje state-a uz key je posebno korisno kada radite sa formama.
 
-In this chat app, the `<Chat>` component contains the text input state:
+U ovoj aplikaciji za poruke, `<Chat>` komponenta sadrži state za tekstualni input:
 
 <Sandpack>
 
@@ -1084,11 +1084,11 @@ export default function Chat({ contact }) {
     <section className="chat">
       <textarea
         value={text}
-        placeholder={'Chat to ' + contact.name}
+        placeholder={'Piši korisniku ' + contact.name}
         onChange={e => setText(e.target.value)}
       />
       <br />
-      <button>Send to {contact.email}</button>
+      <button>Pošalji na {contact.email}</button>
     </section>
   );
 }
@@ -1116,17 +1116,17 @@ textarea {
 
 </Sandpack>
 
-Try entering something into the input, and then press "Alice" or "Bob" to choose a different recipient. You will notice that the input state is preserved because the `<Chat>` is rendered at the same position in the tree.
+Pokušajte da unesete nešto u input, a onda pritisnite "Alice" ili "Bob" da odaberete drugog primaoca. Primetićete da je input state sačuvan zato što je `<Chat>` renderovan na istoj poziciji u stablu.
 
-**In many apps, this may be the desired behavior, but not in a chat app!** You don't want to let the user send a message they already typed to a wrong person due to an accidental click. To fix it, add a `key`:
+**U mnogim aplikacijama ovo može biti željeno ponašanje, ali ne i u aplikaciji za poruke!** Ne želite da dopustite korisniku da pošalje već otkucanu poruku pogrešnoj osobi zbog slučajnog klika. Da biste ovo popravili, dodajte `key`:
 
 ```js
 <Chat key={to.id} contact={to} />
 ```
 
-This ensures that when you select a different recipient, the `Chat` component will be recreated from scratch, including any state in the tree below it. React will also re-create the DOM elements instead of reusing them.
+Ovo osigurava da kada odaberete drugog primaoca, da će `Chat` komponenta biti napravljena od nule, uključujući bilo koji state u stablu ispod. React će takođe ponovo kreirati DOM elemente umesto da ih ponovo iskoristi.
 
-Now switching the recipient always clears the text field:
+Sada promena primaoca uvek briše tekstualno polje:
 
 <Sandpack>
 
@@ -1189,11 +1189,11 @@ export default function Chat({ contact }) {
     <section className="chat">
       <textarea
         value={text}
-        placeholder={'Chat to ' + contact.name}
+        placeholder={'Piši korisniku ' + contact.name}
         onChange={e => setText(e.target.value)}
       />
       <br />
-      <button>Send to {contact.email}</button>
+      <button>Pošalji na {contact.email}</button>
     </section>
   );
 }
@@ -1223,24 +1223,24 @@ textarea {
 
 <DeepDive>
 
-#### Preserving state for removed components {/*preserving-state-for-removed-components*/}
+#### Čuvanje state-a za uklonjene komponente {/*preserving-state-for-removed-components*/}
 
-In a real chat app, you'd probably want to recover the input state when the user selects the previous recipient again. There are a few ways to keep the state "alive" for a component that's no longer visible:
+U pravoj aplikaciji za poruke, verovatno ćete želeti da povratite input state kada korisnik izabere prethodnog primaoca ponovo. Postoji par načina da držite state "živim" za komponentu koja nije više vidljiva:
 
-- You could render _all_ chats instead of just the current one, but hide all the others with CSS. The chats would not get removed from the tree, so their local state would be preserved. This solution works great for simple UIs. But it can get very slow if the hidden trees are large and contain a lot of DOM nodes.
-- You could [lift the state up](/learn/sharing-state-between-components) and hold the pending message for each recipient in the parent component. This way, when the child components get removed, it doesn't matter, because it's the parent that keeps the important information. This is the most common solution.
-- You might also use a different source in addition to React state. For example, you probably want a message draft to persist even if the user accidentally closes the page. To implement this, you could have the `Chat` component initialize its state by reading from the [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), and save the drafts there too.
+- Mogli biste da renderujete _sve_ chat-ove umesto samo jednog, ali da ostale sakrijete pomoću CSS-a. Chat-ovi neće biti uklonjeni iz stabla, pa će njihov lokalni state biti sačuvan. Ovo rešenje radi dobro za jednostavne UI-e. Ali, može postati dosta sporo ako su skrivena stabla velika i sadrže mnogo DOM čvorova.
+- Mogli biste [podići state](/learn/sharing-state-between-components) i čuvati poruke na čekanju za svakog primaoca u roditeljskoj komponenti. Na ovaj način, nije bitno ako dečje komponente budu uklonjene, jer njihov roditelj čuva bitne informacije. Ovo je najčešće rešenje.
+- Takođe možete koristiti i druge izvore informacija, kao ispomoć React state-u. Na primer, verovatno želite da sačuvate draft poruku čak iako korisnik slučajno zatvori stranicu. Da biste to implementirali, mogli biste napraviti da `Chat` komponenta inicijalizuje svoj state čitanjem iz [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)-a, a takođe i da čuva draft poruke tamo.
 
-No matter which strategy you pick, a chat _with Alice_ is conceptually distinct from a chat _with Bob_, so it makes sense to give a `key` to the `<Chat>` tree based on the current recipient.
+Nevezano za to koju strategiju odaberete, chat _sa Alice_ je konceptualno drugačiji od chat-a _sa Bob-om_, tako da ima smisla zadati `key` u `<Chat>` stablo na osnovu trenutnog primaoca.
 
 </DeepDive>
 
 <Recap>
 
-- React keeps state for as long as the same component is rendered at the same position.
-- State is not kept in JSX tags. It's associated with the tree position in which you put that JSX.
-- You can force a subtree to reset its state by giving it a different key.
-- Don't nest component definitions, or you'll reset state by accident.
+- React čuva state dok god se ista komponenta renderuje na istoj poziciji.
+- State se ne čuva u JSX tag-ovima. Povezan je sa pozicijom u stablu na koju stavljate taj JSX.
+- Možete forsirati podstablo da resetuje svoj state tako što ćete mu dati drugačiji key.
+- Nemojte ugnježdavati definicije komponenti, ili ćete slučajno resetovati state.
 
 </Recap>
 
@@ -1248,9 +1248,9 @@ No matter which strategy you pick, a chat _with Alice_ is conceptually distinct 
 
 <Challenges>
 
-#### Fix disappearing input text {/*fix-disappearing-input-text*/}
+#### Popraviti nestajući tekst u input-u {/*fix-disappearing-input-text*/}
 
-This example shows a message when you press the button. However, pressing the button also accidentally resets the input. Why does this happen? Fix it so that pressing the button does not reset the input text.
+Ovaj primer prikazuje poruku kada kliknete dugme. Međutim, klik na dugme slučajno resetuje input. Zašto se ovo dešava? Popravite to tako da klik na dugme ne resetuje tekst u input-u.
 
 <Sandpack>
 
@@ -1262,11 +1262,11 @@ export default function App() {
   if (showHint) {
     return (
       <div>
-        <p><i>Hint: Your favorite city?</i></p>
+        <p><i>Pomoć: Vaš omiljeni grad?</i></p>
         <Form />
         <button onClick={() => {
           setShowHint(false);
-        }}>Hide hint</button>
+        }}>Sakrij pomoć</button>
       </div>
     );
   }
@@ -1275,7 +1275,7 @@ export default function App() {
       <Form />
       <button onClick={() => {
         setShowHint(true);
-      }}>Show hint</button>
+      }}>Prikaži pomoć</button>
     </div>
   );
 }
@@ -1299,9 +1299,9 @@ textarea { display: block; margin: 10px 0; }
 
 <Solution>
 
-The problem is that `Form` is rendered in different positions. In the `if` branch, it is the second child of the `<div>`, but in the `else` branch, it is the first child. Therefore, the component type in each position changes. The first position changes between holding a `p` and a `Form`, while the second position changes between holding a `Form` and a `button`. React resets the state every time the component type changes.
+Problem je u tome što je `Form` renderovan na različitim pozicijama. U `if` grani, to je drugo dete od `<div>`-a, ali je u `else` grani prvo dete. Zbog toga se tip komponente na svakoj poziciji menja. Na prvoj poziciji se menjaju `p` i `Form`, dok se na drugoj poziciji menjaju `Form` i `button`. React resetuje state svaki put kada se tip komponente promeni.
 
-The easiest solution is to unify the branches so that `Form` always renders in the same position:
+Najlakše rešenje je da objedinite te dve grane da uvek renderuju `Form` na istoj poziciji:
 
 <Sandpack>
 
@@ -1313,17 +1313,17 @@ export default function App() {
   return (
     <div>
       {showHint &&
-        <p><i>Hint: Your favorite city?</i></p>
+        <p><i>Pomoć: Vaš omiljeni grad?</i></p>
       }
       <Form />
       {showHint ? (
         <button onClick={() => {
           setShowHint(false);
-        }}>Hide hint</button>
+        }}>Sakrij pomoć</button>
       ) : (
         <button onClick={() => {
           setShowHint(true);
-        }}>Show hint</button>
+        }}>Prikaži pomoć</button>
       )}
     </div>
   );
@@ -1347,7 +1347,7 @@ textarea { display: block; margin: 10px 0; }
 </Sandpack>
 
 
-Technically, you could also add `null` before `<Form />` in the `else` branch to match the `if` branch structure:
+Tehnički, mogli biste takođe dodati `null` pre `<Form />` u `else` grani kako bi se poklapala sa strukturom `if` grane:
 
 <Sandpack>
 
@@ -1359,11 +1359,11 @@ export default function App() {
   if (showHint) {
     return (
       <div>
-        <p><i>Hint: Your favorite city?</i></p>
+        <p><i>Pomoć: Vaš omiljeni grad?</i></p>
         <Form />
         <button onClick={() => {
           setShowHint(false);
-        }}>Hide hint</button>
+        }}>Sakrij pomoć</button>
       </div>
     );
   }
@@ -1373,7 +1373,7 @@ export default function App() {
       <Form />
       <button onClick={() => {
         setShowHint(true);
-      }}>Show hint</button>
+      }}>Prikaži pomoć</button>
     </div>
   );
 }
@@ -1395,19 +1395,19 @@ textarea { display: block; margin: 10px 0; }
 
 </Sandpack>
 
-This way, `Form` is always the second child, so it stays in the same position and keeps its state. But this approach is much less obvious and introduces a risk that someone else will remove that `null`.
+Na ovaj način, `Form` je uvek drugo dete, pa će ostati na istoj poziciji i sačuvati svoj state. Ali, ovaj pristup je mnogo manje očigledan i uvodi rizik da će neko ukloniti taj `null`.
 
 </Solution>
 
-#### Swap two form fields {/*swap-two-form-fields*/}
+#### Zameniti dva polja u formi {/*swap-two-form-fields*/}
 
-This form lets you enter first and last name. It also has a checkbox controlling which field goes first. When you tick the checkbox, the "Last name" field will appear before the "First name" field.
+Ova forma vam omogućava da unesete ime i prezime. Takođe ima i checkbox koji kontroliše koje polje je prvo. Kada štiklirate checkbox, polje "Prezime" će se pojaviti pre polja "Ime".
 
-It almost works, but there is a bug. If you fill in the "First name" input and tick the checkbox, the text will stay in the first input (which is now "Last name"). Fix it so that the input text *also* moves when you reverse the order.
+Zamalo da radi, ali postoji bug. Ako popunite input "Ime" i štiklirate checkbox, tekst će ostati u prvom input-u (što je sada "Prezime"). Popravite ovo tako da se input tekst *takođe* pomera kada obrnete redosled.
 
 <Hint>
 
-It seems like for these fields, their position within the parent is not enough. Is there some way to tell React how to match up the state between re-renders?
+Deluje da za ova polja nije dovoljna njihova pozicija unutar roditelja. Postoji li način da kažete React-u kako da poklopi state između ponovnih rendera?
 
 </Hint>
 
@@ -1425,22 +1425,22 @@ export default function App() {
         checked={reverse}
         onChange={e => setReverse(e.target.checked)}
       />
-      Reverse order
+      Obrni redosled
     </label>
   );
   if (reverse) {
     return (
       <>
-        <Field label="Last name" /> 
-        <Field label="First name" />
+        <Field label="Prezime" /> 
+        <Field label="Ime" />
         {checkbox}
       </>
     );
   } else {
     return (
       <>
-        <Field label="First name" /> 
-        <Field label="Last name" />
+        <Field label="Ime" /> 
+        <Field label="Prezime" />
         {checkbox}
       </>
     );    
@@ -1471,7 +1471,7 @@ label { display: block; margin: 10px 0; }
 
 <Solution>
 
-Give a `key` to both `<Field>` components in both `if` and `else` branches. This tells React how to "match up" the correct state for either `<Field>` even if their order within the parent changes:
+Dodelite `key` u obe `<Field>` komponente i u `if` i u `else` granu. Ovo govori React-u kako da "poklopi" ispravan state za svaki `<Field>` čak iako se njihov redosled unutar roditelja promeni:
 
 <Sandpack>
 
@@ -1487,22 +1487,22 @@ export default function App() {
         checked={reverse}
         onChange={e => setReverse(e.target.checked)}
       />
-      Reverse order
+      Obrni redosled
     </label>
   );
   if (reverse) {
     return (
       <>
-        <Field key="lastName" label="Last name" /> 
-        <Field key="firstName" label="First name" />
+        <Field key="lastName" label="Prezime" /> 
+        <Field key="firstName" label="Ime" />
         {checkbox}
       </>
     );
   } else {
     return (
       <>
-        <Field key="firstName" label="First name" /> 
-        <Field key="lastName" label="Last name" />
+        <Field key="firstName" label="Ime" /> 
+        <Field key="lastName" label="Prezime" />
         {checkbox}
       </>
     );    
@@ -1533,11 +1533,11 @@ label { display: block; margin: 10px 0; }
 
 </Solution>
 
-#### Reset a detail form {/*reset-a-detail-form*/}
+#### Resetovati formu sa detaljima {/*reset-a-detail-form*/}
 
-This is an editable contact list. You can edit the selected contact's details and then either press "Save" to update it, or "Reset" to undo your changes.
+Ovo je lista kontakata koja može da se menja. Možete menjati detalje odabranog kontakta i onda kliknuti "Sačuvaj" da ga ažurirate ili "Resetuj" da ukinete promene.
 
-When you select a different contact (for example, Alice), the state updates but the form keeps showing the previous contact's details. Fix it so that the form gets reset when the selected contact changes.
+Kada izaberete drugi kontakt (na primer, Alice), state se ažurira ali forma i dalje prikazuje detalje prethodnog kontakta. Popravite ovo tako da se forma resetuje kada se odabrani kontakt promeni.
 
 <Sandpack>
 
@@ -1629,7 +1629,7 @@ export default function EditContact({ initialData, onSave }) {
   return (
     <section>
       <label>
-        Name:{' '}
+        Ime:{' '}
         <input
           type="text"
           value={name}
@@ -1652,13 +1652,13 @@ export default function EditContact({ initialData, onSave }) {
         };
         onSave(updatedData);
       }}>
-        Save
+        Sačuvaj
       </button>
       <button onClick={() => {
         setName(initialData.name);
         setEmail(initialData.email);
       }}>
-        Reset
+        Resetuj
       </button>
     </section>
   );
@@ -1689,7 +1689,7 @@ button {
 
 <Solution>
 
-Give `key={selectedId}` to the `EditContact` component. This way, switching between different contacts will reset the form:
+Dodelite `key={selectedId}` u `EditContact` komponentu. Na ovaj način, promena kontakata će resetovati formu:
 
 <Sandpack>
 
@@ -1782,7 +1782,7 @@ export default function EditContact({ initialData, onSave }) {
   return (
     <section>
       <label>
-        Name:{' '}
+        Ime:{' '}
         <input
           type="text"
           value={name}
@@ -1805,13 +1805,13 @@ export default function EditContact({ initialData, onSave }) {
         };
         onSave(updatedData);
       }}>
-        Save
+        Sačuvaj
       </button>
       <button onClick={() => {
         setName(initialData.name);
         setEmail(initialData.email);
       }}>
-        Reset
+        Resetuj
       </button>
     </section>
   );
@@ -1842,13 +1842,13 @@ button {
 
 </Solution>
 
-#### Clear an image while it's loading {/*clear-an-image-while-its-loading*/}
+#### Ukloniti sliku dok se učitava {/*clear-an-image-while-its-loading*/}
 
-When you press "Next", the browser starts loading the next image. However, because it's displayed in the same `<img>` tag, by default you would still see the previous image until the next one loads. This may be undesirable if it's important for the text to always match the image. Change it so that the moment you press "Next", the previous image immediately clears.
+Kada kliknete "Naredno", pretraživač počinje da učitava narednu sliku. Međutim, pošto je prikazana u istom `<img>` tag-u, po default-u ćete i dalje videti prethodnu sliku dok se naredna ne učita. Ovo može biti neželjeno ako je bitno da se tekst uvek poklapa sa slikom. Promenite tako da u trenutku kada kliknete "Naredno", prethodna slika bude odmah uklonjena.
 
 <Hint>
 
-Is there a way to tell React to re-create the DOM instead of reusing it?
+Postoji li način da kažete React-a da ponovo kreira DOM umesto da ga ponovo iskoristi?
 
 </Hint>
 
@@ -1873,10 +1873,10 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleClick}>
-        Next
+        Naredno
       </button>
       <h3>
-        Image {index + 1} of {images.length}
+        Slika {index + 1} od {images.length}
       </h3>
       <img src={image.src} />
       <p>
@@ -1887,25 +1887,25 @@ export default function Gallery() {
 }
 
 let images = [{
-  place: 'Penang, Malaysia',
+  place: 'Penang, Malezija',
   src: 'https://i.imgur.com/FJeJR8M.jpg'
 }, {
-  place: 'Lisbon, Portugal',
+  place: 'Lisabon, Portugal',
   src: 'https://i.imgur.com/dB2LRbj.jpg'
 }, {
-  place: 'Bilbao, Spain',
+  place: 'Bilbao, Španija',
   src: 'https://i.imgur.com/z08o2TS.jpg'
 }, {
-  place: 'Valparaíso, Chile',
+  place: 'Valparaíso, Čile',
   src: 'https://i.imgur.com/Y3utgTi.jpg'
 }, {
-  place: 'Schwyz, Switzerland',
+  place: 'Švic, Švajcarska',
   src: 'https://i.imgur.com/JBbMpWY.jpg'
 }, {
-  place: 'Prague, Czechia',
+  place: 'Prag, Češka',
   src: 'https://i.imgur.com/QwUKKmF.jpg'
 }, {
-  place: 'Ljubljana, Slovenia',
+  place: 'Ljubljana, Slovenija',
   src: 'https://i.imgur.com/3aIiwfm.jpg'
 }];
 ```
@@ -1918,7 +1918,7 @@ img { width: 150px; height: 150px; }
 
 <Solution>
 
-You can provide a `key` to the `<img>` tag. When that `key` changes, React will re-create the `<img>` DOM node from scratch. This causes a brief flash when each image loads, so it's not something you'd want to do for every image in your app. But it makes sense if you want to ensure the image always matches the text.
+Možete dodeliti `key` u `<img>` tag. Kada se taj `key` promeni, React će ponovo kreirati `<img>` DOM čvor od nule. Ovo uzrokuje kratki bljesak kad se svaka učita, pa nije nešto što biste želeli za svaku sliku u aplikaciji. Ali, ima smisla ako želite da osigurate da se slika uvek poklapa sa tekstom.
 
 <Sandpack>
 
@@ -1941,10 +1941,10 @@ export default function Gallery() {
   return (
     <>
       <button onClick={handleClick}>
-        Next
+        Naredno
       </button>
       <h3>
-        Image {index + 1} of {images.length}
+        Slika {index + 1} od {images.length}
       </h3>
       <img key={image.src} src={image.src} />
       <p>
@@ -1955,25 +1955,25 @@ export default function Gallery() {
 }
 
 let images = [{
-  place: 'Penang, Malaysia',
+  place: 'Penang, Malezija',
   src: 'https://i.imgur.com/FJeJR8M.jpg'
 }, {
-  place: 'Lisbon, Portugal',
+  place: 'Lisabon, Portugal',
   src: 'https://i.imgur.com/dB2LRbj.jpg'
 }, {
-  place: 'Bilbao, Spain',
+  place: 'Bilbao, Španija',
   src: 'https://i.imgur.com/z08o2TS.jpg'
 }, {
-  place: 'Valparaíso, Chile',
+  place: 'Valparaíso, Čile',
   src: 'https://i.imgur.com/Y3utgTi.jpg'
 }, {
-  place: 'Schwyz, Switzerland',
+  place: 'Švic, Švajcarska',
   src: 'https://i.imgur.com/JBbMpWY.jpg'
 }, {
-  place: 'Prague, Czechia',
+  place: 'Prag, Češka',
   src: 'https://i.imgur.com/QwUKKmF.jpg'
 }, {
-  place: 'Ljubljana, Slovenia',
+  place: 'Ljubljana, Slovenija',
   src: 'https://i.imgur.com/3aIiwfm.jpg'
 }];
 ```
@@ -1986,11 +1986,11 @@ img { width: 150px; height: 150px; }
 
 </Solution>
 
-#### Fix misplaced state in the list {/*fix-misplaced-state-in-the-list*/}
+#### Popraviti pogrešno postavljen state u listi {/*fix-misplaced-state-in-the-list*/}
 
-In this list, each `Contact` has state that determines whether "Show email" has been pressed for it. Press "Show email" for Alice, and then tick the "Show in reverse order" checkbox. You will notice that it's _Taylor's_ email that is expanded now, but Alice's--which has moved to the bottom--appears collapsed.
+U ovoj listi, svaki `Contact` ima state koji odlučuje da li je "Prikaži email" pritisnut za njega. Pritisnite "Prikaži email" za Alice, a onda štiklirajte checkbox "Prikaži u obrnutom redosledu". Primetićete da je _Taylor-ov_ email sada proširen, a Alice-in--koji je pomeren na dno--sklopljen.
 
-Fix it so that the expanded state is associated with each contact, regardless of the chosen ordering.
+Popravite ovo tako da je proširen state povezan sa svakim kontaktom, nevezano od odabranog rasporeda.
 
 <Sandpack>
 
@@ -2016,7 +2016,7 @@ export default function ContactList() {
             setReverse(e.target.checked)
           }}
         />{' '}
-        Show in reverse order
+        Prikaži u obrnutom redosledu
       </label>
       <ul>
         {displayedContacts.map((contact, i) =>
@@ -2050,7 +2050,7 @@ export default function Contact({ contact }) {
       <button onClick={() => {
         setExpanded(!expanded);
       }}>
-        {expanded ? 'Hide' : 'Show'} email
+        {expanded ? 'Sakrij' : 'Prikaži'} email
       </button>
     </>
   );
@@ -2080,16 +2080,16 @@ button {
 
 <Solution>
 
-The problem is that this example was using index as a `key`:
+Problem je što ovaj primer koristi indeks kao `key`:
 
 ```js
 {displayedContacts.map((contact, i) =>
   <li key={i}>
 ```
 
-However, you want the state to be associated with _each particular contact_.
+Međutim, želite da state bude povezan sa _svakim posebnim kontaktom_.
 
-Using the contact ID as a `key` instead fixes the issue:
+Upotreba ID-a kontakta kao `key`-a popravlja problem:
 
 <Sandpack>
 
@@ -2115,7 +2115,7 @@ export default function ContactList() {
             setReverse(e.target.checked)
           }}
         />{' '}
-        Show in reverse order
+        Prikaži u obrnutom redosledu
       </label>
       <ul>
         {displayedContacts.map(contact =>
@@ -2149,7 +2149,7 @@ export default function Contact({ contact }) {
       <button onClick={() => {
         setExpanded(!expanded);
       }}>
-        {expanded ? 'Hide' : 'Show'} email
+        {expanded ? 'Sakrij' : 'Prikaži'} email
       </button>
     </>
   );
@@ -2177,7 +2177,7 @@ button {
 
 </Sandpack>
 
-State is associated with the tree position. A `key` lets you specify a named position instead of relying on order.
+State je povezan sa pozicijom u stablu. `key` vam omogućava da specificirate imenovanu poziciju umesto da se oslanjate na redosled.
 
 </Solution>
 

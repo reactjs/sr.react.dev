@@ -525,16 +525,16 @@ Pročitajte **[Održavanje komponenata čistim](/learn/keeping-components-pure)*
 
 </LearnMore>
 
-## Razumevanje vašeg UI kao stabla {/*understanding-your-ui-as-a-tree*/}
+## Razumevanje vašeg UI-a kao stabla {/*understanding-your-ui-as-a-tree*/}
 
 React koristi stabla da modeluje odnose između komponenata i modula.
 
-React render stablo je reprezentacija odnosa roditelj-dete između komponenata.
+React stablo renderovanja je reprezentacija odnosa roditelj-dete između komponenata.
 
 
 <Diagram name="generic_render_tree" height={250} width={500} alt="A tree graph with five nodes, with each node representing a component. The root node is located at the top the tree graph and is labelled 'Root Component'. It has two arrows extending down to two nodes labelled 'Component A' and 'Component C'. Each of the arrows is labelled with 'renders'. 'Component A' has a single 'renders' arrow to a node labelled 'Component B'. 'Component C' has a single 'renders' arrow to a node labelled 'Component D'.">
 
-Primer render stabla.
+Primer stabla renderovanja.
 
 </Diagram>
 
