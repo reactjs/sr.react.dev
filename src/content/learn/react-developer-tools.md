@@ -44,7 +44,7 @@ Sledeće, otvorite developer tools iz terminala:
 react-devtools
 ```
 
-Onda konektujte vaš sajt dodavanjem sledećeg `<script>` taga na početak `<head>` taga vašeg sajta:
+Onda konektujte vaš sajt dodavanjem sledećeg `<script>` tag-a na početak `<head>` tag-a vašeg sajta:
 
 ```html {3}
 <html>
