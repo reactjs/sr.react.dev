@@ -175,7 +175,7 @@ function Cup({ guest }) {
 }
 
 export default function TeaGathering() {
-  let cups = [];
+  const cups = [];
   for (let i = 1; i <= 12; i++) {
     cups.push(<Cup key={i} guest={i} />);
   }
@@ -245,7 +245,7 @@ Renderovanje je *proračun*, pa ne bi trebalo da pokuša da "radi" stvari. Može
 
 ```js src/Clock.js active
 export default function Clock({ time }) {
-  let hours = time.getHours();
+  const hours = time.getHours();
   if (hours >= 0 && hours <= 6) {
     document.getElementById('time').className = 'night';
   } else {
@@ -307,7 +307,7 @@ Možete popraviti komponentu računanjem `className`-a i uvrštavanjem u rezulta
 
 ```js src/Clock.js active
 export default function Clock({ time }) {
-  let hours = time.getHours();
+  const hours = time.getHours();
   let className;
   if (hours >= 0 && hours <= 6) {
     className = 'night';
@@ -606,14 +606,20 @@ export default function StoryTray({ stories }) {
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
+<<<<<<< HEAD
 let initialStories = [
   {id: 0, label: "Priča od Ankit" },
   {id: 1, label: "Priča od Taylor" },
+=======
+const initialStories = [
+  {id: 0, label: "Ankit's Story" },
+  {id: 1, label: "Taylor's Story" },
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ];
 
 export default function App() {
-  let [stories, setStories] = useState([...initialStories])
-  let time = useTime();
+  const [stories, setStories] = useState([...initialStories])
+  const time = useTime();
 
   // HACK: Prevent the memory from growing forever while you read docs.
   // We're breaking our own rules here.
@@ -702,14 +708,20 @@ export default function StoryTray({ stories }) {
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
+<<<<<<< HEAD
 let initialStories = [
   {id: 0, label: "Priča od Ankit" },
   {id: 1, label: "Priča od Taylor" },
+=======
+const initialStories = [
+  {id: 0, label: "Ankit's Story" },
+  {id: 1, label: "Taylor's Story" },
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ];
 
 export default function App() {
-  let [stories, setStories] = useState([...initialStories])
-  let time = useTime();
+  const [stories, setStories] = useState([...initialStories])
+  const time = useTime();
 
   // HACK: Prevent the memory from growing forever while you read docs.
   // We're breaking our own rules here.
@@ -769,8 +781,13 @@ Alternativno, možete napraviti _novi_ niz (kopiranjem postojećeg) pre nego št
 
 ```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
+<<<<<<< HEAD
   // Kopiranje niza!
   let storiesToDisplay = stories.slice();
+=======
+  // Copy the array!
+  const storiesToDisplay = stories.slice();
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
   // Ne utiče na originalni niz:
   storiesToDisplay.push({
@@ -794,14 +811,20 @@ export default function StoryTray({ stories }) {
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
+<<<<<<< HEAD
 let initialStories = [
   {id: 0, label: "Priča od Ankit" },
   {id: 1, label: "Priča od Taylor" },
+=======
+const initialStories = [
+  {id: 0, label: "Ankit's Story" },
+  {id: 1, label: "Taylor's Story" },
+>>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ];
 
 export default function App() {
-  let [stories, setStories] = useState([...initialStories])
-  let time = useTime();
+  const [stories, setStories] = useState([...initialStories])
+  const time = useTime();
 
   // HACK: Prevent the memory from growing forever while you read docs.
   // We're breaking our own rules here.
