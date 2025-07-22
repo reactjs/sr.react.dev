@@ -606,15 +606,9 @@ export default function StoryTray({ stories }) {
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
-<<<<<<< HEAD
-let initialStories = [
+const initialStories = [
   {id: 0, label: "Priča od Ankit" },
   {id: 1, label: "Priča od Taylor" },
-=======
-const initialStories = [
-  {id: 0, label: "Ankit's Story" },
-  {id: 1, label: "Taylor's Story" },
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ];
 
 export default function App() {
@@ -708,15 +702,9 @@ export default function StoryTray({ stories }) {
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
-<<<<<<< HEAD
-let initialStories = [
+const initialStories = [
   {id: 0, label: "Priča od Ankit" },
   {id: 1, label: "Priča od Taylor" },
-=======
-const initialStories = [
-  {id: 0, label: "Ankit's Story" },
-  {id: 1, label: "Taylor's Story" },
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ];
 
 export default function App() {
@@ -781,13 +769,8 @@ Alternativno, možete napraviti _novi_ niz (kopiranjem postojećeg) pre nego št
 
 ```js src/StoryTray.js active
 export default function StoryTray({ stories }) {
-<<<<<<< HEAD
   // Kopiranje niza!
-  let storiesToDisplay = stories.slice();
-=======
-  // Copy the array!
   const storiesToDisplay = stories.slice();
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 
   // Ne utiče na originalni niz:
   storiesToDisplay.push({
@@ -811,15 +794,9 @@ export default function StoryTray({ stories }) {
 import { useState, useEffect } from 'react';
 import StoryTray from './StoryTray.js';
 
-<<<<<<< HEAD
-let initialStories = [
+const initialStories = [
   {id: 0, label: "Priča od Ankit" },
   {id: 1, label: "Priča od Taylor" },
-=======
-const initialStories = [
-  {id: 0, label: "Ankit's Story" },
-  {id: 1, label: "Taylor's Story" },
->>>>>>> 50d6991ca6652f4bc4c985cf0c0e593864f2cc91
 ];
 
 export default function App() {
