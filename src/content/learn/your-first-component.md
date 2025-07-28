@@ -215,7 +215,11 @@ Vaša React aplikacija počinje sa "root" komponentom. Obično je ona kreirana k
 
 Većina React aplikacija koristi komponente svuda. To znači da nećete koristiti komponente samo za reusable delove poput dugmića, već i za veće, kao što su sidebar-ovi, liste, pa čak i cele stranice! Komponente su zgodan način za organizaciju UI koda i markup-a, iako su neke se od njih koriste samo na jednom mestu.
 
+<<<<<<< HEAD
 [React-based framework-ovi](/learn/creating-a-react-app) odlaze korak dalje. Umesto da koristite prazan HTML fajl i da pustite React-u "da preuzme" upravljanje stranicom uz pomoć JavaScript-a, oni *takođe* automatski generišu HTML na osnovu vaših React komponenata. Na ovaj način vaša aplikacija može prikazati neki sadržaj pre neko što se JavaScript kod učita.
+=======
+[React-based frameworks](/learn/start-a-new-react-project) take this a step further. Instead of using an empty HTML file and letting React "take over" managing the page with JavaScript, they *also* generate the HTML automatically from your React components. This allows your app to show some content before the JavaScript code loads.
+>>>>>>> e07ac94bc2c1ffd817b13930977be93325e5bea9
 
 Međutim, veliki broj sajtova koristi React samo za [dodavanje interaktivnosti na postojeće HTML stranice](/learn/add-react-to-an-existing-project#using-react-for-a-part-of-your-existing-page). Oni imaju više root komponenata umesto jedne za čitavu stranicu. Možete koristiti React koliko god mnogo, ili malo, da vam treba.
 
