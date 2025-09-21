@@ -72,7 +72,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Effect-i su "evakuacioni izlaz" u React paradigmi. Nemojte koristiti Effect-e da orkestrirate tok podataka u vašoj aplikaciji. Ako ne interagujete sa eksternim sistemom, [možda vam neće biti potreban Effect](/learn/you-might-not-need-an-effect).
+Effect-i su "evakuacioni izlaz" u React paradigmi. Nemojte koristiti Effect-e da orkestrirate tok podataka u vašoj aplikaciji. Ako ne interagujete sa eksternim sistemom, [možda vam neće trebati Effect](/learn/you-might-not-need-an-effect).
 
 Postoje dve retko korišćene varijante `useEffect`-a sa razlikama u tajmingu:
 
