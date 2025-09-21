@@ -1,35 +1,35 @@
 ---
-title: Escape Hatches
+title: Evakuacioni izlazi
 ---
 
 <Intro>
 
-Some of your components may need to control and synchronize with systems outside of React. For example, you might need to focus an input using the browser API, play and pause a video player implemented without React, or connect and listen to messages from a remote server. In this chapter, you'll learn the escape hatches that let you "step outside" React and connect to external systems. Most of your application logic and data flow should not rely on these features.
+Neke od vaših komponenata će možda trebati da kontrolišu i da se sinhronizuju sa sistemima izvan React-a. Na primer, možda ćete morati da fokusirate input uz pomoć API-ja pretraživača, da pustite i pauzirate video plejer koji nije implementiran u React-u ili da se povežete i slušate poruke sa udaljenog servera. U ovom poglavlju naučićete evakuacione izlaze koji vam omogućavaju da "izađete iz" React-a i povežete se na eksterne sisteme. Većina logike u vašoj aplikaciji, kao i tok podataka, ne bi trebalo da se oslanjaju na ove funkcionalnosti.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to "remember" information without re-rendering](/learn/referencing-values-with-refs)
-* [How to access DOM elements managed by React](/learn/manipulating-the-dom-with-refs)
-* [How to synchronize components with external systems](/learn/synchronizing-with-effects)
-* [How to remove unnecessary Effects from your components](/learn/you-might-not-need-an-effect)
-* [How an Effect's lifecycle is different from a component's](/learn/lifecycle-of-reactive-effects)
-* [How to prevent some values from re-triggering Effects](/learn/separating-events-from-effects)
-* [How to make your Effect re-run less often](/learn/removing-effect-dependencies)
-* [How to share logic between components](/learn/reusing-logic-with-custom-hooks)
+* [Kako da "upamtite" informaciju bez ponovnog renderovanja](/learn/referencing-values-with-refs)
+* [Kako da pristupite DOM elementima kojima upravlja React](/learn/manipulating-the-dom-with-refs)
+* [Kako da sinhronizujete komponente sa eksternim sistemima](/learn/synchronizing-with-effects)
+* [Kako da uklonite nepotrebne Effect-e iz vaših komponenti](/learn/you-might-not-need-an-effect)
+* [Kako se životni ciklus Effect-a razlikuje od životnog ciklusa komponente](/learn/lifecycle-of-reactive-effects)
+* [Kako da sprečite da neke vrednosti ponovo pokrenu Effect-e](/learn/separating-events-from-effects)
+* [Kako da učinite da se vaš Effect ređe pokreće](/learn/removing-effect-dependencies)
+* [Kako da delite logiku među komponentama](/learn/reusing-logic-with-custom-hooks)
 
 </YouWillLearn>
 
-## Referencing values with refs {/*referencing-values-with-refs*/}
+## Referenciranje vrednosti sa ref-ovima {/*referencing-values-with-refs*/}
 
-When you want a component to "remember" some information, but you don't want that information to [trigger new renders](/learn/render-and-commit), you can use a *ref*:
+Kada želite da komponenta "upamti" neku informaciju, ali ne želite da ta informacija [pokrene nove rendere](/learn/render-and-commit), možete koristiti *ref*:
 
 ```js
 const ref = useRef(0);
 ```
 
-Like state, refs are retained by React between re-renders. However, setting state re-renders a component. Changing a ref does not! You can access the current value of that ref through the `ref.current` property.
+Kao i state, React čuva ref-ove između rendera. Međutim, postavljanje state-a ponovo renderuje komponentu. Promena ref-a to ne radi! Možete pristupiti trenutnoj vrednosti tog ref-a kroz `ref.current` polje.
 
 <Sandpack>
 
@@ -41,12 +41,12 @@ export default function Counter() {
 
   function handleClick() {
     ref.current = ref.current + 1;
-    alert('You clicked ' + ref.current + ' times!');
+    alert('Kliknuli ste ' + ref.current + ' puta!');
   }
 
   return (
     <button onClick={handleClick}>
-      Click me!
+      Klikni me!
     </button>
   );
 }
@@ -54,17 +54,17 @@ export default function Counter() {
 
 </Sandpack>
 
-A ref is like a secret pocket of your component that React doesn't track. For example, you can use refs to store [timeout IDs](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#return_value), [DOM elements](https://developer.mozilla.org/en-US/docs/Web/API/Element), and other objects that don't impact the component's rendering output.
+Ref je kao tajni džep vaše komponente koji React ne prati. Na primer, možete koristiti ref-ove da čuvate [timeout ID-eve](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout#return_value), [DOM elemente](https://developer.mozilla.org/en-US/docs/Web/API/Element) i ostale objekte koji ne utiču na izlaz renderovanja komponente.
 
 <LearnMore path="/learn/referencing-values-with-refs">
 
-Read **[Referencing Values with Refs](/learn/referencing-values-with-refs)** to learn how to use refs to remember information.
+Pročitajte **[Referenciranje vrednosti sa Ref-ovima](/learn/referencing-values-with-refs)** da naučite kako da koristite ref-ove da upamtite informaciju.
 
 </LearnMore>
 
-## Manipulating the DOM with refs {/*manipulating-the-dom-with-refs*/}
+## Manipulisanje DOM-om sa ref-ovima {/*manipulating-the-dom-with-refs*/}
 
-React automatically updates the DOM to match your render output, so your components won't often need to manipulate it. However, sometimes you might need access to the DOM elements managed by React—for example, to focus a node, scroll to it, or measure its size and position. There is no built-in way to do those things in React, so you will need a ref to the DOM node. For example, clicking the button will focus the input using a ref:
+React automatski ažurira DOM kako bi odgovarao izlazu renderovanja, tako da vaše komponente neće često morati da manipulišu DOM-om. Međutim, ponekad vam može biti potreban pristup DOM elementima kojima upravlja React—na primer, da biste se fokusirali na čvor, scroll-ovali na njega ili izmerili njegovu veličinu i poziciju. Ne postoji ugrađeni način da to uradite u React-u, pa će vam biti potreban ref na DOM čvor. Na primer, klik na dugme će fokusirati input upotrebom ref-a:
 
 <Sandpack>
 
@@ -82,7 +82,7 @@ export default function Form() {
     <>
       <input ref={inputRef} />
       <button onClick={handleClick}>
-        Focus the input
+        Fokusiraj input
       </button>
     </>
   );
@@ -93,15 +93,15 @@ export default function Form() {
 
 <LearnMore path="/learn/manipulating-the-dom-with-refs">
 
-Read **[Manipulating the DOM with Refs](/learn/manipulating-the-dom-with-refs)** to learn how to access DOM elements managed by React.
+Pročitajte **[Manipulisanje DOM-om sa Ref-ovima](/learn/manipulating-the-dom-with-refs)** da naučite kako da pristupite DOM elementima kojima upravlja React.
 
 </LearnMore>
 
-## Synchronizing with Effects {/*synchronizing-with-effects*/}
+## Sinhronizacija sa Effect-ima {/*synchronizing-with-effects*/}
 
-Some components need to synchronize with external systems. For example, you might want to control a non-React component based on the React state, set up a server connection, or send an analytics log when a component appears on the screen. Unlike event handlers, which let you handle particular events, *Effects* let you run some code after rendering. Use them to synchronize your component with a system outside of React.
+Neke komponente trebaju da se sinhronizuju sa eksternim sistemima. Na primer, želite da kontrolišete komponente koje nisu pisane u React-u na osnovu React state-a, da uspostavite konekciju sa serverom ili da pošaljete analitički log kad se komponenta pojavi na ekranu. Za razliku od event handler-a, koji vam omogućavaju da rukujete određenim event-ima, *Effect-i* vam omogućavaju da izvršite kod nakon rendera. Koristite ih da sinhronizujete vaše komponente sa sistemom izvan React-a.
 
-Press Play/Pause a few times and see how the video player stays synchronized to the `isPlaying` prop value:
+Kliknite na Pusti/Pauziraj nekoliko puta da vidite kako video plejer ostaje sinhronizovan sa vrednošću `isPlaying` prop-a:
 
 <Sandpack>
 
@@ -127,7 +127,7 @@ export default function App() {
   return (
     <>
       <button onClick={() => setIsPlaying(!isPlaying)}>
-        {isPlaying ? 'Pause' : 'Play'}
+        {isPlaying ? 'Pauziraj' : 'Pusti'}
       </button>
       <VideoPlayer
         isPlaying={isPlaying}
@@ -145,7 +145,7 @@ video { width: 250px; }
 
 </Sandpack>
 
-Many Effects also "clean up" after themselves. For example, an Effect that sets up a connection to a chat server should return a *cleanup function* that tells React how to disconnect your component from that server:
+Mnogi Effect-i takođe i "čiste" za sobom. Na primer, Effect koji uspostavlja konekciju sa serverom za dopisivanje bi trebao da vrati *cleanup funkciju* koja govori React-u kako da diskonektuje vašu komponentu sa tog servera:
 
 <Sandpack>
 
@@ -159,19 +159,19 @@ export default function ChatRoom() {
     connection.connect();
     return () => connection.disconnect();
   }, []);
-  return <h1>Welcome to the chat!</h1>;
+  return <h1>Dobro došli u čet!</h1>;
 }
 ```
 
 ```js src/chat.js
 export function createConnection() {
-  // A real implementation would actually connect to the server
+  // Stvarna implementacija bi se zapravo konektovala na server
   return {
     connect() {
-      console.log('✅ Connecting...');
+      console.log('✅ Konektovanje...');
     },
     disconnect() {
-      console.log('❌ Disconnected.');
+      console.log('❌ Diskonektovano.');
     }
   };
 }
@@ -183,30 +183,30 @@ input { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-In development, React will immediately run and clean up your Effect one extra time. This is why you see `"✅ Connecting..."` printed twice. This ensures that you don't forget to implement the cleanup function.
+U toku razvoja, React će odmah pokrenuti i očistiti vaš Effect jedan dodatni put. Zbog toga vidite poruku `"✅ Konektovanje..."` dvaput. Ovo osigurava da ne zaboravite da implementirate cleanup funkciju.
 
 <LearnMore path="/learn/synchronizing-with-effects">
 
-Read **[Synchronizing with Effects](/learn/synchronizing-with-effects)** to learn how to synchronize components with external systems.
+Pročitajte **[Sinhronizacija sa Effect-ima](/learn/synchronizing-with-effects)** da biste naučili kako da sinhronizujete komponente sa eksternim sistemima.
 
 </LearnMore>
 
-## You Might Not Need An Effect {/*you-might-not-need-an-effect*/}
+## Možda vam neće trebati Effect {/*you-might-not-need-an-effect*/}
 
-Effects are an escape hatch from the React paradigm. They let you "step outside" of React and synchronize your components with some external system. If there is no external system involved (for example, if you want to update a component's state when some props or state change), you shouldn't need an Effect. Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
+Effect-i su evakuacioni izlaz u React paradigmi. Omogućavaju vam da "izađete iz" iz React-a i sinhronizujete vaše komponente sa nekim eksternim sistemom. Ako eksterni sistem ne postoji (na primer, ako želite da ažurirate state komponente kada se neki props-i ili state promene), neće vam trebati Effect. Uklanjanje nepotrebnih Effect-a će vaš kod učiniti lakšim za praćenje, bržim za pokretanje i biće manje podložan greškama.
 
-There are two common cases in which you don't need Effects:
-- **You don't need Effects to transform data for rendering.**
-- **You don't need Effects to handle user events.**
+Ovo su dva uobičajena slučaja u kojima vam ne trebaju Effect-i:
+- **Ne trebaju vam Effect-i da transformišete podatke za renderovanje.**
+- **Ne trebaju vam Effect-i da rukujete korisničkim event-ima.**
 
-For example, you don't need an Effect to adjust some state based on other state:
+Na primer, ne treba vam Effect da prilagodite neki state na osnovu drugog state-a:
 
 ```js {expectedErrors: {'react-compiler': [8]}} {5-9}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');
 
-  // 🔴 Avoid: redundant state and unnecessary Effect
+  // 🔴 Izbegavati: suvišan state i nepotreban Effect
   const [fullName, setFullName] = useState('');
   useEffect(() => {
     setFullName(firstName + ' ' + lastName);
@@ -215,31 +215,31 @@ function Form() {
 }
 ```
 
-Instead, calculate as much as you can while rendering:
+Umesto toga izračunajte koliko god možete tokom renderovanja:
 
 ```js {4-5}
 function Form() {
   const [firstName, setFirstName] = useState('Taylor');
   const [lastName, setLastName] = useState('Swift');
-  // ✅ Good: calculated during rendering
+  // ✅ Dobro: izračunato tokom renderovanja
   const fullName = firstName + ' ' + lastName;
   // ...
 }
 ```
 
-However, you *do* need Effects to synchronize with external systems. 
+Međutim, Effect-i su vam *potrebni* da se sinhronizujete sa eksternim sistemima.
 
 <LearnMore path="/learn/you-might-not-need-an-effect">
 
-Read **[You Might Not Need an Effect](/learn/you-might-not-need-an-effect)** to learn how to remove unnecessary Effects.
+Pročitajte **[Možda vam neće trebati Effect](/learn/you-might-not-need-an-effect)** da znate kako da uklonite nepotrebne Effect-e.
 
 </LearnMore>
 
-## Lifecycle of reactive effects {/*lifecycle-of-reactive-effects*/}
+## Životni ciklus reaktivnih effect-a {/*lifecycle-of-reactive-effects*/}
 
-Effects have a different lifecycle from components. Components may mount, update, or unmount. An Effect can only do two things: to start synchronizing something, and later to stop synchronizing it. This cycle can happen multiple times if your Effect depends on props and state that change over time.
+Effect-i imaju drugačiji životni ciklus od komponenata. Komponente se mogu montirati, ažurirati i demontirati. Effect može uraditi samo dve stvari: da započne sinhronizaciju nečega i da kasnije prekine tu sinhronizaciju. Ovaj ciklus se može dogoditi više puta ako vaš Effect zavisi od props-a i state-a koji se vremenom menjaju.
 
-This Effect depends on the value of the `roomId` prop. Props are *reactive values,* which means they can change on a re-render. Notice that the Effect *re-synchronizes* (and re-connects to the server) if `roomId` changes:
+Ovaj Effect zavisi od vrednosti `roomId` prop-a. Props-i su *reaktivne vrednosti*, što znači da se mogu promeniti pri ponovnom renderu. Primetite da se Effect *ponovo sinhronizuje* (i ponovo konektuje na server) ako se `roomId` promeni:
 
 <Sandpack>
 
@@ -256,22 +256,22 @@ function ChatRoom({ roomId }) {
     return () => connection.disconnect();
   }, [roomId]);
 
-  return <h1>Welcome to the {roomId} room!</h1>;
+  return <h1>Dobro došli u sobu {roomId}!</h1>;
 }
 
 export default function App() {
-  const [roomId, setRoomId] = useState('general');
+  const [roomId, setRoomId] = useState('opšte');
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Odaberi sobu za dopisivanje:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="opšte">opšte</option>
+          <option value="putovanje">putovanje</option>
+          <option value="muzika">muzika</option>
         </select>
       </label>
       <hr />
@@ -283,13 +283,13 @@ export default function App() {
 
 ```js src/chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Stvarna implementacija bi se zapravo konektovala na server
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Konektovanje na sobu "' + roomId + '" na adresi ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Diskonektovano iz sobe "' + roomId + '" na adresi ' + serverUrl);
     }
   };
 }
@@ -302,25 +302,25 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-React provides a linter rule to check that you've specified your Effect's dependencies correctly. If you forget to specify `roomId` in the list of dependencies in the above example, the linter will find that bug automatically.
+React vam pruža linter pravilo za proveru da li ste ispravno specificirali zavisnosti Effect-a. Ako zaboravite da specificirate `roomId` u listi zavisnosti u primeru iznad, linter će automatski pronaći taj bug.
 
 <LearnMore path="/learn/lifecycle-of-reactive-effects">
 
-Read **[Lifecycle of Reactive Events](/learn/lifecycle-of-reactive-effects)** to learn how an Effect's lifecycle is different from a component's.
+Pročitajte **[Životni ciklus reaktivnih Effect-a](/learn/lifecycle-of-reactive-effects)** da biste naučili kako se životni ciklus Effect-a razlikuje od životnog ciklusa komponente.
 
 </LearnMore>
 
-## Separating events from Effects {/*separating-events-from-effects*/}
+## Odvajanje event-ova od Effect-a {/*separating-events-from-effects*/}
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+Ova sekcija opisuje **eksperimentalni API koji još uvek nije deo** stabilne verzije React-a.
 
 </Wip>
 
-Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if any of the values they read, like props or state, are different than during last render. Sometimes, you want a mix of both behaviors: an Effect that re-runs in response to some values but not others.
+Event handler-i se ponovo pokreću samo kada ponovo izvršite istu interakciju. Za razliku od event handler-a, Effect-i se ponovo sinhronizuju kada se bilo koja vrednost koju čitaju, poput props-a ili state-a, razlikuje u odnosu na prethodni render. Ponekad želite kombinaciju ta dva ponašanja: Effect koji se ponovo pokreće kao odgovor na neke vrednosti, ali ne i na neke druge.
 
-All code inside Effects is *reactive.* It will run again if some reactive value it reads has changed due to a re-render. For example, this Effect will re-connect to the chat if either `roomId` or `theme` have changed:
+Sav kod unutar Effect-a je *reaktivan*. Pokrenuće se ponovo ako se neka reaktivna vrednost promenila zbog ponovnog rendera. Na primer, ovaj Effect će se ponovo konektovati na čet ako se `roomId` ili `theme` promene:
 
 <Sandpack>
 
@@ -352,29 +352,29 @@ function ChatRoom({ roomId, theme }) {
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.on('connected', () => {
-      showNotification('Connected!', theme);
+      showNotification('Konektovano!', theme);
     });
     connection.connect();
     return () => connection.disconnect();
   }, [roomId, theme]);
 
-  return <h1>Welcome to the {roomId} room!</h1>
+  return <h1>Dobro došli u sobu {roomId}!</h1>
 }
 
 export default function App() {
-  const [roomId, setRoomId] = useState('general');
+  const [roomId, setRoomId] = useState('opšte');
   const [isDark, setIsDark] = useState(false);
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Odaberi sobu za dopisivanje:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="opšte">opšte</option>
+          <option value="putovanje">putovanje</option>
+          <option value="muzika">muzika</option>
         </select>
       </label>
       <label>
@@ -383,7 +383,7 @@ export default function App() {
           checked={isDark}
           onChange={e => setIsDark(e.target.checked)}
         />
-        Use dark theme
+        Koristi tamnu temu
       </label>
       <hr />
       <ChatRoom
@@ -397,7 +397,7 @@ export default function App() {
 
 ```js src/chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Stvarna implementacija bi se zapravo konektovala na server
   let connectedCallback;
   let timeout;
   return {
@@ -410,10 +410,10 @@ export function createConnection(serverUrl, roomId) {
     },
     on(event, callback) {
       if (connectedCallback) {
-        throw Error('Cannot add the handler twice.');
+        throw Error('Ne možete dodati handler dvaput.');
       }
       if (event !== 'connected') {
-        throw Error('Only "connected" event is supported.');
+        throw Error('Samo je "connected" event podržan.');
       }
       connectedCallback = callback;
     },
@@ -448,7 +448,7 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-This is not ideal. You want to re-connect to the chat only if the `roomId` has changed. Switching the `theme` shouldn't re-connect to the chat! Move the code reading `theme` out of your Effect into an *Effect Event*:
+Ovo nije idealno. Želite da se ponovo konektujete na čet samo ako se `roomId` promeni. Promenom `theme` vrednosti ne bi trebalo da se ponovo konektujete na čet! Pomerite kod koji čita `theme` izvan vašeg Effect-a u *Effect Event*:
 
 <Sandpack>
 
@@ -479,7 +479,7 @@ const serverUrl = 'https://localhost:1234';
 
 function ChatRoom({ roomId, theme }) {
   const onConnected = useEffectEvent(() => {
-    showNotification('Connected!', theme);
+    showNotification('Konektovano!', theme);
   });
 
   useEffect(() => {
@@ -491,23 +491,23 @@ function ChatRoom({ roomId, theme }) {
     return () => connection.disconnect();
   }, [roomId]);
 
-  return <h1>Welcome to the {roomId} room!</h1>
+  return <h1>Dobro došli u sobu {roomId}!</h1>
 }
 
 export default function App() {
-  const [roomId, setRoomId] = useState('general');
+  const [roomId, setRoomId] = useState('opšte');
   const [isDark, setIsDark] = useState(false);
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Odaberi sobu za dopisivanje:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="opšte">opšte</option>
+          <option value="putovanje">putovanje</option>
+          <option value="muzika">muzika</option>
         </select>
       </label>
       <label>
@@ -516,7 +516,7 @@ export default function App() {
           checked={isDark}
           onChange={e => setIsDark(e.target.checked)}
         />
-        Use dark theme
+        Koristi tamnu temu
       </label>
       <hr />
       <ChatRoom
@@ -530,7 +530,7 @@ export default function App() {
 
 ```js src/chat.js
 export function createConnection(serverUrl, roomId) {
-  // A real implementation would actually connect to the server
+  // Stvarna implementacija bi se zapravo konektovala na server
   let connectedCallback;
   let timeout;
   return {
@@ -543,10 +543,10 @@ export function createConnection(serverUrl, roomId) {
     },
     on(event, callback) {
       if (connectedCallback) {
-        throw Error('Cannot add the handler twice.');
+        throw Error('Ne možete dodati handler dvaput.');
       }
       if (event !== 'connected') {
-        throw Error('Only "connected" event is supported.');
+        throw Error('Samo je "connected" event podržan.');
       }
       connectedCallback = callback;
     },
@@ -581,19 +581,19 @@ label { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-Code inside Effect Events isn't reactive, so changing the `theme` no longer makes your Effect re-connect.
+Kod unutar Effect Event-ova nije reaktivan, pa promena `theme` vrednosti ne pokreće ponovnu konekciju u Effect-u.
 
 <LearnMore path="/learn/separating-events-from-effects">
 
-Read **[Separating Events from Effects](/learn/separating-events-from-effects)** to learn how to prevent some values from re-triggering Effects.
+Pročitajte **[Odvajanje Event-ova od Effect-a](/learn/separating-events-from-effects)** da biste naučili kako da sprečite da neke vrednosti ponovo pokrenu Effect-e.
 
 </LearnMore>
 
-## Removing Effect dependencies {/*removing-effect-dependencies*/}
+## Uklanjanje zavisnosti Effect-a {/*removing-effect-dependencies*/}
 
-When you write an Effect, the linter will verify that you've included every reactive value (like props and state) that the Effect reads in the list of your Effect's dependencies. This ensures that your Effect remains synchronized with the latest props and state of your component. Unnecessary dependencies may cause your Effect to run too often, or even create an infinite loop. The way you remove them depends on the case.
+Kada pišete Effect, linter će verifikovati da li ste uključili svaku reaktivnu vrednost (poput props-a i state-a) koju Effect čita u listi zavisnosti vašeg Effect-a. Ovo osigurava da vaš Effect ostane sinhronizovan sa poslednjim props-ima i state-om vaše komponente. Nepotrebne zavisnosti mogu prouzrokovati da se vaš Effect pokreće previše često ili da čak naprave beskonačnu petlju. Način njihovog uklanjanja zavisi od slučaja.
 
-For example, this Effect depends on the `options` object which gets re-created every time you edit the input:
+Na primer, ovaj Effect zavisi od `options` objekta koji se ponovo kreira svaki put kada izmenite input:
 
 <Sandpack>
 
@@ -619,25 +619,25 @@ function ChatRoom({ roomId }) {
 
   return (
     <>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Dobro došli u sobu {roomId}!</h1>
       <input value={message} onChange={e => setMessage(e.target.value)} />
     </>
   );
 }
 
 export default function App() {
-  const [roomId, setRoomId] = useState('general');
+  const [roomId, setRoomId] = useState('opšte');
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Odaberi sobu za dopisivanje:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="opšte">opšte</option>
+          <option value="putovanje">putovanje</option>
+          <option value="muzika">muzika</option>
         </select>
       </label>
       <hr />
@@ -649,13 +649,13 @@ export default function App() {
 
 ```js src/chat.js
 export function createConnection({ serverUrl, roomId }) {
-  // A real implementation would actually connect to the server
+  // Stvarna implementacija bi se zapravo konektovala na server
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Konektovanje na sobu "' + roomId + '" na adresi ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Diskonektovano iz sobe "' + roomId + '" na adresi ' + serverUrl);
     }
   };
 }
@@ -668,7 +668,7 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-You don't want the chat to re-connect every time you start typing a message in that chat. To fix this problem, move creation of the `options` object inside the Effect so that the Effect only depends on the `roomId` string:
+Ne želite da se ponovo konektujete na čet svaki put kada pišete poruku u taj čet. Da biste popravili ovaj problem, pomerite pravljenje `options` objekta unutar Effect-a tako da Effect zavisi samo od `roomId` stringa:
 
 <Sandpack>
 
@@ -693,25 +693,25 @@ function ChatRoom({ roomId }) {
 
   return (
     <>
-      <h1>Welcome to the {roomId} room!</h1>
+      <h1>Dobro došli u sobu {roomId}!</h1>
       <input value={message} onChange={e => setMessage(e.target.value)} />
     </>
   );
 }
 
 export default function App() {
-  const [roomId, setRoomId] = useState('general');
+  const [roomId, setRoomId] = useState('opšte');
   return (
     <>
       <label>
-        Choose the chat room:{' '}
+        Odaberi sobu za dopisivanje:{' '}
         <select
           value={roomId}
           onChange={e => setRoomId(e.target.value)}
         >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
+          <option value="opšte">opšte</option>
+          <option value="putovanje">putovanje</option>
+          <option value="muzika">muzika</option>
         </select>
       </label>
       <hr />
@@ -723,13 +723,13 @@ export default function App() {
 
 ```js src/chat.js
 export function createConnection({ serverUrl, roomId }) {
-  // A real implementation would actually connect to the server
+  // Stvarna implementacija bi se zapravo konektovala na server
   return {
     connect() {
-      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+      console.log('✅ Konektovanje na sobu "' + roomId + '" na adresi ' + serverUrl + '...');
     },
     disconnect() {
-      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+      console.log('❌ Diskonektovano iz sobe "' + roomId + '" na adresi ' + serverUrl);
     }
   };
 }
@@ -742,19 +742,19 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-Notice that you didn't start by editing the dependency list to remove the `options` dependency. That would be wrong. Instead, you changed the surrounding code so that the dependency became *unnecessary.* Think of the dependency list as a list of all the reactive values used by your Effect's code. You don't intentionally choose what to put on that list. The list describes your code. To change the dependency list, change the code.
+Primetite da izmenu liste zavisnosti niste započeli uklanjanjem `options` zavisnosti. To bi bilo pogrešno. Umesto toga, promenili ste okolni kod tako da je ta zavisnost postala *nepotrebna*. Zamislite listu zavisnosti kao listu svih reaktivnih vrednosti koje se koriste u kodu vašeg Effect-a. Ne birate namerno šta da stavite u tu listu. Ta lista opisuje vaš kod. Da biste promenili listu zavisnosti, promenite kod.
 
 <LearnMore path="/learn/removing-effect-dependencies">
 
-Read **[Removing Effect Dependencies](/learn/removing-effect-dependencies)** to learn how to make your Effect re-run less often.
+Pročitajte **[Uklanjanje zavisnosti Effect-a](/learn/removing-effect-dependencies)** da biste saznali kako da učinite da se vaš Effect ređe pokreće.
 
 </LearnMore>
 
-## Reusing logic with custom Hooks {/*reusing-logic-with-custom-hooks*/}
+## Upotreba reusable logike sa prilagođenim Hook-ovima {/*reusing-logic-with-custom-hooks*/}
 
-React comes with built-in Hooks like `useState`, `useContext`, and `useEffect`. Sometimes, you’ll wish that there was a Hook for some more specific purpose: for example, to fetch data, to keep track of whether the user is online, or to connect to a chat room. To do this, you can create your own Hooks for your application's needs.
+React dolazi sa ugrađenim Hook-ovima poput `useState`, `useContext` i `useEffect`. Ponekad ćete poželeti da postoji Hook sa konkretnijom svrhom: na primer, za fetch-ovanje podataka, za praćenje da li je korisnik online ili za konekciju na sobu za dopisivanje. Da biste ovo uradili, možete napraviti sopstvene Hook-ove za potrebe vaše aplikacije.
 
-In this example, the `usePointerPosition` custom Hook tracks the cursor position, while `useDelayedValue` custom Hook returns a value that's "lagging behind" the value you passed by a certain number of milliseconds. Move the cursor over the sandbox preview area to see a moving trail of dots following the cursor:
+U ovom primeru, `usePointerPosition` prilagođeni Hook prati poziciju kursora, dok `useDelayedValue` prilagođeni Hook vraća vrednost koja "lag-uje" određeni broj milisekundi za vrednošću koju ste prosledili. Pomerajte kursor po sandbox-u da biste videli pokretni trag tačaka koji prati kursor:
 
 <Sandpack>
 
@@ -835,14 +835,14 @@ body { min-height: 300px; }
 
 </Sandpack>
 
-You can create custom Hooks, compose them together, pass data between them, and reuse them between components. As your app grows, you will write fewer Effects by hand because you'll be able to reuse custom Hooks you already wrote. There are also many excellent custom Hooks maintained by the React community.
+Možete napraviti prilagođene Hook-ove, sastaviti ih zajedno, proslediti podatke kroz njih i reuse-ovati ih između komponenata. Kako vaša aplikacija raste, pisaćete manje Effect-a ručno jer ćete moći da reuse-ujete prilagođene Hook-ove koje ste već napisali. Takođe, postoji mnogo odličnih prilagođenih Hook-ova koje održava React zajednica.
 
 <LearnMore path="/learn/reusing-logic-with-custom-hooks">
 
-Read **[Reusing Logic with Custom Hooks](/learn/reusing-logic-with-custom-hooks)** to learn how to share logic between components.
+Pročitajte **[Upotreba reusable logike sa prilagođenim Hook-ovima](/learn/reusing-logic-with-custom-hooks)** kako biste naučili da delite logiku između komponenata.
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## Šta je sledeće? {/*whats-next*/}
 
-Head over to [Referencing Values with Refs](/learn/referencing-values-with-refs) to start reading this chapter page by page!
+Pređite na [Referenciranje vrednosti sa Ref-ovima](/learn/referencing-values-with-refs) da biste počeli da čitate ovo poglavlje stranicu po stranicu!
