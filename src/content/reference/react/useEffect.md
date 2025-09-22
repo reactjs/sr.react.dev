@@ -1693,7 +1693,7 @@ Now that you define the `createOptions` function inside the Effect, the Effect i
 
 <Wip>
 
-This section describes an **experimental API that has not yet been released** in a stable version of React.
+Ova sekcija opisuje **eksperimentalni API koji još uvek nije deo** stabilne verzije React-a.
 
 </Wip>
 
