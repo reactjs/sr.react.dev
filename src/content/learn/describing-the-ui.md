@@ -475,7 +475,7 @@ Striktno pisanje vaših komponenata kao čistih funkcija može da izbegne čitav
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [5]}}
 let guest = 0;
 
 function Cup() {

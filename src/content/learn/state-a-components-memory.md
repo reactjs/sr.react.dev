@@ -23,7 +23,7 @@ Ovde je komponenta koja renderuje sliku skulpture. Klikom na dugme "Naredno" tre
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [7]}}
 import { sculptureList } from './data.js';
 
 export default function Gallery() {
@@ -1229,7 +1229,7 @@ Kada kucate u input polja, ništa se ne prikazuje. Kao da su input vrednosti "za
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [6]}}
 export default function Form() {
   let firstName = '';
   let lastName = '';
@@ -1337,7 +1337,7 @@ Postoje li ograničenja _gde_ se Hook-ovi mogu pozvati? Da li komponenta krši n
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [9]}}
 import { useState } from 'react';
 
 export default function FeedbackForm() {

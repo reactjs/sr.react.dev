@@ -37,7 +37,17 @@ React kompajler je alat za optimizaciju vremena izgradnje koji automatski memori
 * [Direktive](/reference/react-compiler/directives) - Direktive na nivou funkcija za kontrolu kompilacije.
 * [Kompajliranje biblioteka](/reference/react-compiler/compiling-libraries) - Uputstvo za isporuku prekompajliranog koda biblioteke.
 
+<<<<<<< HEAD
 ## Pravila React-a {/*rules-of-react*/}
+=======
+## ESLint Plugin React Hooks {/*eslint-plugin-react-hooks*/}
+
+The [ESLint plugin for React Hooks](/reference/eslint-plugin-react-hooks) helps enforce the Rules of React:
+
+* [Lints](/reference/eslint-plugin-react-hooks) - Detailed documentation for each lint with examples.
+
+## Rules of React {/*rules-of-react*/}
+>>>>>>> 366b5fbdadefecbbf9f6ef36c0342c083248c691
 
 React ima osobine — tj. pravila — za izražavanje šablona na način koji je lako razumljiv i čini aplikacije visokokvalitetnim:
 
