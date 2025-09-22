@@ -31,7 +31,7 @@ React-dom sadrži funkcionalnosti koje su podržane samo za web aplikacije (koje
 
 ## React kompajler {/*react-compiler*/}
 
-React kompajler je alat za optimizaciju vremena izgradnje koji automatski memoriše vaše React komponente i vrednosti:
+React kompajler je alat za optimizaciju vremena izgradnje koji automatski memoizuje vaše React komponente i vrednosti:
 
 * [Konfiguracija](/reference/react-compiler/configuration) - Opcije za konfiguraciju React kompajlera.
 * [Direktive](/reference/react-compiler/directives) - Direktive na nivou funkcija za kontrolu kompilacije.
