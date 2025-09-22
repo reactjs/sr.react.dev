@@ -55,7 +55,7 @@ Ovaj primer u state-u drži objekat koji predstavlja trenutnu poziciju kursora. 
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11]}}
 import { useState } from 'react';
 
 export default function MovingDot() {
@@ -209,7 +209,7 @@ Ova input polja ne rade jer `onChange` handler-i mutiraju state:
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11, 15, 19]}}
 import { useState } from 'react';
 
 export default function Form() {
@@ -832,7 +832,7 @@ Vaš zadatak je da popravite ove bug-ove. Kad ih popravite, objasnite zašto se 
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [11]}}
 import { useState } from 'react';
 
 export default function Scoreboard() {
@@ -988,7 +988,7 @@ Ako se nešto neočekivano promeni, postoji mutacija. Pronađite mutaciju u `App
 
 <Sandpack>
 
-```js src/App.js
+```js {expectedErrors: {'react-compiler': [17]}} src/App.js
 import { useState } from 'react';
 import Background from './Background.js';
 import Box from './Box.js';
@@ -1293,7 +1293,7 @@ Ovo je isti bug-oviti primer iz prethodnog izazova. Ovog puta, popravite mutacij
 
 <Sandpack>
 
-```js src/App.js
+```js {expectedErrors: {'react-compiler': [18]}} src/App.js
 import { useState } from 'react';
 import { useImmer } from 'use-immer';
 import Background from './Background.js';

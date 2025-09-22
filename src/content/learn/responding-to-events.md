@@ -546,7 +546,7 @@ Klikom na dugme bi se trebala promeniti pozadina stranice između bele i crne. M
 
 <Sandpack>
 
-```js
+```js {expectedErrors: {'react-compiler': [5, 7]}}
 export default function LightSwitch() {
   function handleClick() {
     let bodyStyle = document.body.style;
