@@ -4,7 +4,7 @@ title: useDebugValue
 
 <Intro>
 
-`useDebugValue` is a React Hook that lets you add a label to a custom Hook in [React DevTools.](/learn/react-developer-tools)
+`useDebugValue` je React Hook koji vam omogućava da dodate labelu za vaš prilagođeni Hook u [React DevTools-u](/learn/react-developer-tools).
 
 ```js
 useDebugValue(value, format?)
@@ -20,7 +20,7 @@ useDebugValue(value, format?)
 
 ### `useDebugValue(value, format?)` {/*usedebugvalue*/}
 
-Call `useDebugValue` at the top level of your [custom Hook](/learn/reusing-logic-with-custom-hooks) to display a readable debug value:
+Pozovite `useDebugValue` na vrhu vašeg [prilagođenog Hook-a](/learn/reusing-logic-with-custom-hooks) da biste prikazali čitljivu debug vrednost:
 
 ```js
 import { useDebugValue } from 'react';
@@ -32,22 +32,22 @@ function useOnlineStatus() {
 }
 ```
 
-[See more examples below.](#usage)
+[Pogledajte još primera ispod.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parametri {/*parameters*/}
 
-* `value`: The value you want to display in React DevTools. It can have any type.
-* **optional** `format`: A formatting function. When the component is inspected, React DevTools will call the formatting function with the `value` as the argument, and then display the returned formatted value (which may have any type). If you don't specify the formatting function, the original `value` itself will be displayed.
+* `value`: Vrednost koju želite da prikažete u React DevTools-u. Može imati bilo koji tip.
+* **opcioni** `format`: Funkcija za formatiranje. Kada se komponenta pregleda, React DevTools će pozvati funkciju za formatiranje sa argumentom `value`, a onda prikazati formatiranu vrednost koja je vraćena (koja može imati bilo koji tip). Ako ne specificirate funkciju za formatiranje, prikazaće se originalni `value`.
 
-#### Returns {/*returns*/}
+#### Povratne vrednosti {/*returns*/}
 
-`useDebugValue` does not return anything.
+`useDebugValue` ne vraća ništa.
 
-## Usage {/*usage*/}
+## Upotreba {/*usage*/}
 
-### Adding a label to a custom Hook {/*adding-a-label-to-a-custom-hook*/}
+### Dodavanje labele u prilagođeni Hook {/*adding-a-label-to-a-custom-hook*/}
 
-Call `useDebugValue` at the top level of your [custom Hook](/learn/reusing-logic-with-custom-hooks) to display a readable <CodeStep step={1}>debug value</CodeStep> for [React DevTools.](/learn/react-developer-tools)
+Pozovite `useDebugValue` na vrhu vašeg [prilagođenog Hook-a](/learn/reusing-logic-with-custom-hooks) da biste prikazali čitljivu <CodeStep step={1}>debug vrednost</CodeStep> za [React DevTools](/learn/react-developer-tools).
 
 ```js [[1, 5, "isOnline ? 'Online' : 'Offline'"]]
 import { useDebugValue } from 'react';
@@ -59,11 +59,11 @@ function useOnlineStatus() {
 }
 ```
 
-This gives components calling `useOnlineStatus` a label like `OnlineStatus: "Online"` when you inspect them:
+Ovo daje komponentama koje pozivaju `useOnlineStatus` labelu poput `OnlineStatus: "Online"` kada ih pregledate:
 
-![A screenshot of React DevTools showing the debug value](/images/docs/react-devtools-usedebugvalue.png)
+![Screenshot React DevTools-a koji prikazuje debug vrednost](/images/docs/react-devtools-usedebugvalue.png)
 
-Without the `useDebugValue` call, only the underlying data (in this example, `true`) would be displayed.
+Bez `useDebugValue` poziva, samo će podaci (u ovom primeru, `true`) biti prikazani.
 
 <Sandpack>
 
@@ -72,7 +72,7 @@ import { useOnlineStatus } from './useOnlineStatus.js';
 
 function StatusBar() {
   const isOnline = useOnlineStatus();
-  return <h1>{isOnline ? '✅ Online' : '❌ Disconnected'}</h1>;
+  return <h1>{isOnline ? '✅ Online' : '❌ Diskonektovano'}</h1>;
 }
 
 export default function App() {
@@ -103,20 +103,20 @@ function subscribe(callback) {
 
 <Note>
 
-Don't add debug values to every custom Hook. It's most valuable for custom Hooks that are part of shared libraries and that have a complex internal data structure that's difficult to inspect.
+Nemojte dodavati debug vrednosti u svaki prilagođeni Hook. Najkorisnije je za prilagođene Hook-ove koji su deo deljenih biblioteka i koji imaju kompleksnu unutrašnju strukturu podataka koju je teško pregledati.
 
 </Note>
 
 ---
 
-### Deferring formatting of a debug value {/*deferring-formatting-of-a-debug-value*/}
+### Odlaganje formatiranja debug vrednosti {/*deferring-formatting-of-a-debug-value*/}
 
-You can also pass a formatting function as the second argument to `useDebugValue`:
+Možete proslediti i funkciju za formatiranje kao drugi argument u `useDebugValue`:
 
 ```js [[1, 1, "date", 18], [2, 1, "date.toDateString()"]]
 useDebugValue(date, date => date.toDateString());
 ```
 
-Your formatting function will receive the <CodeStep step={1}>debug value</CodeStep> as a parameter and should return a <CodeStep step={2}>formatted display value</CodeStep>. When your component is inspected, React DevTools will call this function and display its result.
+Vaša funkcija za formatiranje će primiti <CodeStep step={1}>debug vrednost</CodeStep> kao parametar i trebalo bi da vrati <CodeStep step={2}>formatiranu vrednost za prikazivanje</CodeStep>. Kada vaša komponenta bude pregledana, React DevTools će pozvati ovu funkciju i prikazazi njen rezultat.
 
-This lets you avoid running potentially expensive formatting logic unless the component is actually inspected. For example, if `date` is a Date value, this avoids calling `toDateString()` on it for every render.
+Ovo vam omogućava da izbegnete izvršavanje potencijalno skupe logike formatiranja osim ako komponenta zapravo nije pregledana. Na primer, ako je `date`, vrednost Date tipa, ovo izbegava pozivanje `toDateString()` za svaki render.
