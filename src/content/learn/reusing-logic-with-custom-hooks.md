@@ -839,7 +839,7 @@ Every time your `ChatRoom` component re-renders, it passes the latest `roomId` a
 
 <Canary>
 
-**The `useEffectEvent` API is currently only available in React’s Canary and Experimental channels.** 
+**`useEffectEvent` API je trenutno dostupan samo na React Canary i Eksperimentalnim kanalima.**
 
 [Learn more about React’s release channels here.](/community/versioning-policy#all-release-channels)
 
