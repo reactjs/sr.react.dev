@@ -38,9 +38,15 @@ Započnite crtanjem granica oko svake komponente i subkomponente na mockup-u i p
 
 U zavisnosti od vašeg znanja, možete razmišljati o podeli dizajna na komponente na više načina:
 
+<<<<<<< HEAD
 * **Programiranje**--koristite iste tehnike odlučivanja kao da trebate kreirati novu funkciju ili objekat. Jedna takva tehnika je [princip jedne odgovornosti (single responsibility principle)](https://en.wikipedia.org/wiki/Single_responsibility_principle), što znači da bi komponenta idealno trebala raditi samo jednu stvar. Ako se komponenta povećava, trebalo bi je rasparčati na manje subkomponente.
 * **CSS**--razmotrite za šta biste kreirali class selector-e. (Ipak, komponente su malo granularnije.)
 * **Dizajn**--razmotrite kako biste organizovali slojeve dizajna.
+=======
+* **Programming**--use the same techniques for deciding if you should create a new function or object. One such technique is the [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns), that is, a component should ideally only be concerned with one thing. If it ends up growing, it should be decomposed into smaller subcomponents. 
+* **CSS**--consider what you would make class selectors for. (However, components are a bit less granular.)
+* **Design**--consider how you would organize the design's layers.
+>>>>>>> f8c81a0f4f8e454c850f0c854ad054b32313345c
 
 Ako je vaš JSON dobro struktuiran, često ćete primetiti da se prirodno mapira na strukturu komponenti na vašem UI-u. To je zato što UI i modeli podataka često imaju istu arhitekturu informacija, odnosno isti oblik. Podelite UI na komponente tako da svaka komponenta odgovara jednom delu modela podataka.
 
