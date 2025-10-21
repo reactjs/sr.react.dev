@@ -1,143 +1,143 @@
 ---
-title: Build a React app from Scratch
+title: Napraviti React aplikaciju od nule
 ---
 
 <Intro>
 
-If your app has constraints not well-served by existing frameworks, you prefer to build your own framework, or you just want to learn the basics of a React app, you can build a React app from scratch.
+Ako vaša aplikacija ima ograničenja koja nisu adekvatno rešena u postojećim framework-ovima, ako želite da napravite sopstveni framework, ili samo želite naučiti osnove React aplikacija, možete napraviti React aplikaciju od nule.
 
 </Intro>
 
 <DeepDive>
 
-#### Consider using a framework {/*consider-using-a-framework*/}
+#### Razmislite o korišćenju framework-a {/*consider-using-a-framework*/}
 
-Starting from scratch is an easy way to get started using React, but a major tradeoff to be aware of is that going this route is often the same as building your own adhoc framework. As your requirements evolve, you may need to solve more framework-like problems that our recommended frameworks already have well developed and supported solutions for. 
+Početak od nule je jednostavan način da počnete koristiti React, ali, glavni kompromis kojeg treba biti svestan, je da odabir ovog puta često znači isto kao i da pravite sopstveni adhoc framework. Kako vam se zahtevi menjaju, možda ćete trebati da rešavate sve više problema koji liče na probleme koje rešavaju framework-ovi, a za koje naši preporučeni framework-ovi već imaju dobro razvijena i podržana rešenja.
 
-For example, if in the future your app needs support for server-side rendering (SSR), static site generation (SSG), and/or React Server Components (RSC), you will have to implement those on your own. Similarly, future React features that require integrating at the framework level will have to be implemented on your own if you want to use them.
+Na primer, ako vaša aplikacija u budućnosti treba podržavati renderovanje na serverskoj strani (SSR), generisanje statičkog sajta (SSG) i/ili React Server Components (RSC), moraćete sami da ih implementirate. Slično tome, buduće React funkcionalnosti koje zahtevaju integraciju na nivou framework-a moraćete sami da implementirate ako budete želeli da ih koristite.
 
-Our recommended frameworks also help you build better performing apps. For example, reducing or eliminating waterfalls from network requests makes for a better user experience. This might not be a high priority when you are building a toy project, but if your app gains users you may want to improve its performance.
+Naši preporučeni framework-ovi vam takođe pomažu da pravite aplikacije sa boljim performansama. Na primer, smanjenje ili uklanjanje "vodopada" u mrežnim zahtevima doprinosi boljem korisničkom iskustvu. Ovo možda neće biti najviši prioritet kada pravite manji projekat, ali ako vaša aplikacija bude dobijala korisnike, poželećete da joj poboljšate performanse.
 
-Going this route also makes it more difficult to get support, since the way you develop routing, data-fetching, and other features will be unique to your situation. You should only choose this option if you are comfortable tackling these problems on your own, or if you’re confident that you will never need these features.
+Odabirom ovog puta takođe otežavate i podršku, pošto će način na koji razvijate rutiranje, fetch-ovanje podataka i ostale funkcionalnosti biti jedinstven za vašu situaciju. Trebali biste odabrati ovu opciju jedino ako ste spremni za samostalno rešavanje problema ili ako ste sigurni da vam nikada neće trebati ove funkcionalnosti.
 
-For a list of recommended frameworks, check out [Creating a React App](/learn/creating-a-react-app).
+Pogledajte spisak preporučenih framework-ova u [Kreiranje React aplikacije](/learn/creating-a-react-app).
 
 </DeepDive>
 
 
-## Step 1: Install a build tool {/*step-1-install-a-build-tool*/}
+## Korak 1: Instaliranje build alata {/*step-1-install-a-build-tool*/}
 
-The first step is to install a build tool like `vite`, `parcel`, or `rsbuild`. These build tools provide features to package and run source code, provide a development server for local development and a build command to deploy your app to a production server.
+Prvi korak je instaliranje build alata kao što su `vite`, `parcel` ili `rsbuild`. Ovi build alati pružaju funkcionalnosti za pakovanje i pokretanje izvornog koda, pružaju razvojni server za lokalni razvoj i build komandu za deploy-ovanje vaše aplikacije na produkcioni server.
 
 ### Vite {/*vite*/}
 
-[Vite](https://vite.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects.
+[Vite](https://vite.dev/) je build alat koji ima za cilj da pruži brže i efikasnije iskustvo razvoja za moderne web projekte.
 
 <TerminalBlock>
 npm create vite@latest my-app -- --template react-ts
 </TerminalBlock>
 
-Vite is opinionated and comes with sensible defaults out of the box. Vite has a rich ecosystem of plugins to support fast refresh, JSX,  Babel/SWC, and other common features. See Vite's [React plugin](https://vite.dev/plugins/#vitejs-plugin-react) or [React SWC plugin](https://vite.dev/plugins/#vitejs-plugin-react-swc) and [React SSR example project](https://vite.dev/guide/ssr.html#example-projects) to get started.
+Vite je zgodan jer dolazi sa razumnim default podešavanjima po instalaciji. Vite ima bogat ekosistem plugin-a za podršku brzog osvežavanja, JSX-a, Babel/SWC-a i ostalih uobičajenih funkcionalnosti. Pogledajte Vite [React plugin](https://vite.dev/plugins/#vitejs-plugin-react) ili [React SWC plugin](https://vite.dev/plugins/#vitejs-plugin-react-swc) i [primer React SSR projekta](https://vite.dev/guide/ssr.html#example-projects) da biste počeli.
 
-Vite is already being used as a build tool in one of our [recommended frameworks](/learn/creating-a-react-app): [React Router](https://reactrouter.com/start/framework/installation).
+Vite se već koristi kao build alat u jednom od naših [preporučenih framework-ova](/learn/creating-a-react-app): [React Router-u](https://reactrouter.com/start/framework/installation).
 
 ### Parcel {/*parcel*/}
 
-[Parcel](https://parceljs.org/) combines a great out-of-the-box development experience with a scalable architecture that can take your project from just getting started to massive production applications.
+[Parcel](https://parceljs.org/) kombinuje odlično iskustvo razvoja sa skalabilnom arhitekturom što može podržati vaš projekat od početne faze do velikih produkcionih aplikacija.
 
 <TerminalBlock>
 npm install --save-dev parcel
 </TerminalBlock>
 
-Parcel supports fast refresh, JSX, TypeScript, Flow, and styling out of the box. See [Parcel's React recipe](https://parceljs.org/recipes/react/#getting-started) to get started.
+Parcel po instalaciji podržava brzo osvežavanje, JSX, TypeScript, Flow i stilizaciju. Pogledajte [recept za Parcel-ov React](https://parceljs.org/recipes/react/#getting-started) da biste počeli.
 
 ### Rsbuild {/*rsbuild*/}
 
-[Rsbuild](https://rsbuild.dev/) is an Rspack-powered build tool that provides a seamless development experience for React applications. It comes with carefully tuned defaults and performance optimizations ready to use.
+[Rsbuild](https://rsbuild.dev/) je build alat zasnovan na Rspack-u koji pruža neometano iskustvo razvoja za React aplikacije. Dolazi sa pažljivo podešenim default podešavanjima i optimizacijama performansi koje su spremne za upotrebu.
 
 <TerminalBlock>
 npx create-rsbuild --template react
 </TerminalBlock>
 
-Rsbuild includes built-in support for React features like fast refresh, JSX, TypeScript, and styling. See [Rsbuild's React guide](https://rsbuild.dev/guide/framework/react) to get started.
+Rsbuild uključuje ugrađenu podršku za React funkcionalnosti poput brzog osvežavanja, JSX-a, TypeScript-a i stilizacije. Pogledajte [vodič za Rsbuild-ov React](https://rsbuild.dev/guide/framework/react) da biste počeli.
 
 <Note>
 
-#### Metro for React Native {/*react-native*/}
+#### Metro za React Native {/*react-native*/}
 
-If you're starting from scratch with React Native you'll need to use [Metro](https://metrobundler.dev/), the JavaScript bundler for React Native. Metro supports bundling for platforms like iOS and Android, but lacks many features when compared to the tools here. We recommend starting with Vite, Parcel, or Rsbuild unless your project requires React Native support.
+Ako počinjete od nule sa React Native-om trebaćete da koristite [Metro](https://metrobundler.dev/), JavaScript bundler za React Native. Metro podržava bundle-ovanje za platforme poput iOS-a i Android-a, ali mu nedostaju mnoge funkcionalnosti u poređenju sa alatima ovde. Preporučujemo da počnete sa Vite-om, Parcel-om ili Rsbuild-om osim ako vaš projekat ne zahteva podršku za React Native.
 
 </Note>
 
-## Step 2: Build Common Application Patterns {/*step-2-build-common-application-patterns*/}
+## Korak 2: Pravljenje uobičajenih šablona aplikacija {/*step-2-build-common-application-patterns*/}
 
-The build tools listed above start off with a client-only, single-page app (SPA), but don't include any further solutions for common functionality like routing, data fetching, or styling.
+Build alati nabrojani iznad započinju sa klijentskom, single-page aplikacijom (SPA), ali ne uključuju naredna rešenja za uobičajene funkcionalnosti poput rutiranja, fetch-ovanja podataka ili stilizacije.
 
-The React ecosystem includes many tools for these problems. We've listed a few that are widely used as a starting point, but feel free to choose other tools if those work better for you.
+React ekosistem uključuje mnogo alata za ove probleme. Izlistali smo nekoliko njih koji se naširoko koriste kao početna tačka, ali slobodno možete izabrati druge alate ukoliko vam više odgovaraju.
 
-### Routing {/*routing*/}
+### Rutiranje {/*routing*/}
 
-Routing determines what content or pages to display when a user visits a particular URL. You need to set up a router to map URLs to different parts of your app. You'll also need to handle nested routes, route parameters, and query parameters.  Routers can be configured within your code, or defined based on your component folder and file structures.
+Rutiranje odlučuje koji sadržaj ili stranica će biti prikazan kada korisnik poseti određeni URL. Potrebno je da podesite ruter da mapira URL-ove do različitih delova vaše aplikacije. Moraćete da rukujete sa ugnježdenim rutama, route parametrima i query parametrima. Ruteri mogu biti konfigurisani u vašem kodu ili definisani na nivou strukture foldera i fajlova vaših komponenata.
 
-Routers are a core part of modern applications, and are usually integrated with data fetching (including prefetching data for a whole page for faster loading), code splitting (to minimize client bundle sizes), and page rendering approaches (to decide how each page gets generated).
+Ruteri su sastavni deo modernih aplikacija i često su integrisani sa fetch-ovanjem podataka (uključujući i prefetch-ovanje podataka za celu stranicu radi bržeg učitavanja), razdvajanjem koda (minimizovanje veličine klijentskog bundle-a) i načinom renderovanja stranice (odlučivanje kako će svaka stranica biti generisana).
 
-We suggest using:
+Preporučujemo da koristite:
 
 - [React Router](https://reactrouter.com/start/data/custom)
 - [Tanstack Router](https://tanstack.com/router/latest)
 
 
-### Data Fetching {/*data-fetching*/}
+### Fetch-ovanje podataka {/*data-fetching*/}
 
-Fetching data from a server or other data source is a key part of most applications. Doing this properly requires handling loading states, error states, and caching the fetched data, which can be complex.
+Fetch-ovanje podataka sa servera ili drugih izvora podataka je ključan deo većine aplikacija. Da bi se ovo pravilno uradilo, neophodno je obraditi stanja učitavanja, stanja grešaka, kao i keširanje fetch-ovanih podataka, što može biti kompleksno.
 
-Purpose-built data fetching libraries do the hard work of fetching and caching the data for you, letting you focus on what data your app needs and how to display it.  These libraries are typically used directly in your components, but can also be integrated into routing loaders for faster pre-fetching and better performance, and in server rendering as well.
+Specijalizovane biblioteke za fetch-ovanje podataka rade teži posao fetch-ovanja i keširanja podataka za vas, dopuštajući vam da se fokusirate na to kakvi podaci su potrebni vašoj aplikaciji i kako da ih prikažete. Ove biblioteke se tipično koriste direktno u vašim komponentama, ali mogu biti i integrisane u loader-e rutiranja radi bržeg prefetching-a i boljih performansi, kao i za renderovanje na serveru.
 
-Note that fetching data directly in components can lead to slower loading times due to network request waterfalls, so we recommend prefetching data in router loaders or on the server as much as possible!  This allows a page's data to be fetched all at once as the page is being displayed.
+Primetite da fetch-ovanje podataka direktno u komponentama može usporiti vreme učitavanja zbog "vodopada" u mrežnim zahtevima, pa preporučujemo da, kad god je moguće, vršite prefetch-ovanje podataka u loader-ima rutiranja ili na serveru! Ovo omogućava da podaci na stranici budu fetch-ovani odjednom dok se stranica prikazuje.
 
-If you're fetching data from most backends or REST-style APIs, we suggest using:
+Ako podatke fetch-ujete uglavnom sa backend-a ili REST API-ja, preporučujemo da koristite:
 
 - [TanStack Query](https://tanstack.com/query/)
 - [SWR](https://swr.vercel.app/)
 - [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
 
-If you're fetching data from a GraphQL API, we suggest using:
+Ako podatke fetch-ujete sa GraphQL API-ja, preporučujemo da koristite:
 
 - [Apollo](https://www.apollographql.com/docs/react)
 - [Relay](https://relay.dev/)
 
 
-### Code-splitting {/*code-splitting*/}
+### Razdvajanje koda {/*code-splitting*/}
 
-Code-splitting is the process of breaking your app into smaller bundles that can be loaded on demand. An app's code size increases with every new feature and additional dependency. Apps can become slow to load because all of the code for the entire app needs to be sent before it can be used. Caching, reducing features/dependencies, and moving some code to run on the server can help mitigate slow loading but are incomplete solutions that can sacrifice functionality if overused.
+Razdvajanje koda je proces razlaganja vaše aplikacije u manje bundle-ove koji se mogu učitavati po potrebi. Veličina koda aplikacije raste sa svakom novom funkcionalnošću i dodatnom zavisnošću. Aplikacije mogu postati spore pri učitavanju, jer je neophodno poslati sav kod aplikacije pre nego što se može koristiti. Keširanje, smanjenje broja funkcionalnosti ili zavisnosti, kao i premeštanje koda na server mogu ublažiti sporo učitavanje, ali nisu potpuna rešenja, jer se njihovom preteranom upotrebom mogu izgubiti funkcionalnosti.
 
-Similarly, if you rely on the apps using your framework to split the code, you might encounter situations where loading becomes slower than if no code splitting were happening at all. For example, [lazily loading](/reference/react/lazy) a chart delays sending the code needed to render the chart, splitting the chart code from the rest of the app. [Parcel supports code splitting with React.lazy](https://parceljs.org/recipes/react/#code-splitting). However, if the chart loads its data *after* it has been initially rendered you are now waiting twice. This is a waterfall: rather than fetching the data for the chart and sending the code to render it simultaneously, you must wait for each step to complete one after the other.
+Slično tome, ako se oslanjate na to da aplikacije koje koriste vaš framework vrše razdvajanje koda, možete se naći u situacijama da učitavanje upotrebom razdvajanja koda bude sporije. Na primer, [odloženo (lazily) učitavanje](/reference/react/lazy) tabele odlaže slanje koda potrebnog za renderovanje tabele, jer se kod tabele razdvaja od ostatka aplikacije. [Parcel podržava razdvajanje koda pomoću React.lazy](https://parceljs.org/recipes/react/#code-splitting). Međutim, ako tabela učitava podatke *nakon* što se inicijalno renderovala, čekaćete dvaput. Ovo je "vodopad": umesto da istovremeno fetch-ujete podatke za tabelu i šaljete kod na renderovanje, morate čekati da se prvi korak završi, pre nego što počne sledeći.
 
-Splitting code by route, when integrated with bundling and data fetching, can reduce the initial load time of your app and the time it takes for the largest visible content of the app to render ([Largest Contentful Paint](https://web.dev/articles/lcp)).
+Razdvajanje koda po ruti integrisano sa bundle-ovanjem i fetch-ovanjem podataka može da skrati inicijalno vreme učitavanja vaše aplikacije, kao i vreme potrebno za renderovanje najvećeg vidljivog sadržaja ([Largest Contentful Paint](https://web.dev/articles/lcp)).
 
-For code-splitting instructions, see your build tool docs:
-- [Vite build optimizations](https://vite.dev/guide/features.html#build-optimizations)
-- [Parcel code splitting](https://parceljs.org/features/code-splitting/)
-- [Rsbuild code splitting](https://rsbuild.dev/guide/optimization/code-splitting)
+Za instrukcije o razdvajanju koda, pogledajte dokumentaciju build alata:
+- [Vite build optimizacije](https://vite.dev/guide/features.html#build-optimizations)
+- [Parcel razdvajanje koda](https://parceljs.org/features/code-splitting/)
+- [Rsbuild razdvajanje koda](https://rsbuild.dev/guide/optimization/code-splitting)
 
-### Improving Application Performance {/*improving-application-performance*/}
+### Poboljšanje performansi aplikacije {/*improving-application-performance*/}
 
-Since the build tool you select only supports single page apps (SPAs), you'll need to implement other [rendering patterns](https://www.patterns.dev/vanilla/rendering-patterns) like server-side rendering (SSR), static site generation (SSG), and/or React Server Components (RSC). Even if you don't need these features at first, in the future there may be some routes that would benefit SSR, SSG or RSC.
+Pošto vaš odabrani build alat podržava jedino single page aplikacije (SPA), potrebno je da implementirate ostale [šablone renderovanja](https://www.patterns.dev/vanilla/rendering-patterns) poput renderovanja na serverskoj strani (SSR), generisanja statičkog sajta (SSG) i/ili React Server Components (RSC). Iako vam ove funkcionalnosti ne trebaju na početku, u budućnosti mogu postojati neke rute koje bi imale koristi od SSR, SSG ili RSC.
 
-* **Single-page apps (SPA)** load a single HTML page and dynamically updates the page as the user interacts with the app. SPAs are easier to get started with, but they can have slower initial load times. SPAs are the default architecture for most build tools.
+* **Single-page aplikacije (SPA)** učitavaju jednu HTML stranicu i dinamički ažuriraju stranicu u skladu sa interakcijama korisnika sa aplikacijom. Lakše je započeti rad sa ovim aplikacijama, ali mogu biti sporije pri inicijalnom učitavanju. Većina build alata koristi SPA kao default arhitekturu.
 
-* **Streaming Server-side rendering (SSR)** renders a page on the server and sends the fully rendered page to the client. SSR can improve performance, but it can be more complex to set up and maintain than a single-page app. With the addition of streaming, SSR can be very complex to set up and maintain. See [Vite's SSR guide]( https://vite.dev/guide/ssr).
+* **Strimovano renderovanje na serverskoj strani (SSR)** renderuje stranicu na serveru i šalje potpuno izrenderovanu stranicu klijentu. SSR može poboljšati performanse, ali njegovo postavljanje i održavanje mogu biti kompleksniji od single-page aplikacija. Uz dodatak strimovanja, SSR može biti veoma kompleksan za postavljanje i održavanje. Pogledajte [Vite-ov vodič za SSR]( https://vite.dev/guide/ssr).
 
-* **Static site generation (SSG)** generates static HTML files for your app at build time. SSG can improve performance, but it can be more complex to set up and maintain than server-side rendering. See [Vite's SSG guide](https://vite.dev/guide/ssr.html#pre-rendering-ssg).
+* **Generisanje statičkog sajta (SSG)** generiše statičke HTML fajlove za vašu aplikaciju tokom vremena izgradnje. SSG može poboljšati performanse, ali može biti kompleksniji za postavljanje i održavanje od renderovanja na serverskoj strani. Pogledajte [Vite-ov vodič za SSG](https://vite.dev/guide/ssr.html#pre-rendering-ssg).
 
-* **React Server Components (RSC)** lets you mix build-time, server-only, and interactive components in a single React tree. RSC can improve performance, but it currently requires deep expertise to set up and maintain. See [Parcel's RSC examples](https://github.com/parcel-bundler/rsc-examples).
+* **React Server Components (RSC)** omogućava kombinovanje komponenata generisanih tokom vremena izgradnje, isključivo serverskih komponenata i interaktivnih komponenata u jedno React stablo. RSC može poboljšati performanse, ali trenutno zahteva duboko znanje za postavljanje i održavanje. Pogledajte [Parcel-ove primere RSC-a](https://github.com/parcel-bundler/rsc-examples).
 
-Your rendering strategies need to integrate with your router so apps built with your framework can choose the rendering strategy on a per-route level. This will enable different rendering strategies without having to rewrite your whole app. For example, the landing page for your app might benefit from being statically generated (SSG), while a page with a content feed might perform best with server-side rendering. 
+Vaše strategije renderovanja moraju biti integrisane sa vašim ruterom kako bi aplikacije napravljene pomoću vašeg framework-a mogle da biraju strategiju renderovanja na nivou rute. Ovo će omogućiti primenu različitih strategija renderovanja bez potrebe za ponovnim pisanjem cele aplikacije. Na primer, početna stranica vaše aplikacije može imati koristi od statičkog generisanja (SSG), dok bi stranica sa konkretnim sadržajem mogla imati najbolje performanse sa renderovanjem na serverskoj strani.
 
-Using the right rendering strategy for the right routes can decrease the time it takes for the first byte of content to be loaded ([Time to First Byte](https://web.dev/articles/ttfb)), the first piece of content to render ([First Contentful Paint](https://web.dev/articles/fcp)), and the largest visible content of the app to render ([Largest Contentful Paint](https://web.dev/articles/lcp)).
+Upotreba odgovarajuće strategije renderovanja za odgovarajuće rute može smanjiti vreme potrebno za učitavanje prvog bajta sadržaja ([Time to First Byte](https://web.dev/articles/ttfb)), vreme do renderovanja prvog dela sadržaja ([First Contentful Paint](https://web.dev/articles/fcp)), kao i vreme potrebno za renderovanje najvećeg vidljivog sadržaja ([Largest Contentful Paint](https://web.dev/articles/lcp)).
 
-### And more... {/*and-more*/}
+### I još... {/*and-more*/}
 
-These are just a few examples of the features a new app will need to consider when building from scratch. Many limitations you'll hit can be difficult to solve as each problem is interconnected with the others and can require deep expertise in problem areas you may not be familiar with. 
+Ovo su samo neki od primera funkcionalnosti koje treba razmotriti prilikom pravljenja nove aplikacije od nule. Mnoga ograničenja na koja ćete naići se teško mogu rešiti, jer su problemi međusobno povezani i zahtevaju duboko poznavanje oblasti sa kojima možda niste upoznati.
 
-If you don't want to solve these problems on your own, you can [get started with a framework](/learn/creating-a-react-app) that provides these features out of the box. 
+Ako ove probleme ne želite samostalno da rešavate, možete [početi sa framework-om](/learn/creating-a-react-app) koji pruža ove funkcionalnosti po instalaciji.
