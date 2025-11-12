@@ -63,13 +63,8 @@ Expo je održavan od strane [Expo (kompanije)](https://expo.dev/about). Kreiranj
 
 Postoji nekoliko nadolazećih framework-ova koji rade na našoj full stack React viziji:
 
-<<<<<<< HEAD
-- [TanStack Start (Beta)](https://tanstack.com/): TanStack Start je full-stack React framework nastao zbog TanStack Router-a. Pruža renderovanje celih dokumenata na serverskoj strani, strimovanje, serverske funkcije, bundle-ovanje i još mnogo toga koristeći alate poput Nitro-a i Vite-a.
-- [RedwoodJS](https://redwoodjs.com/): Redwood je full stack React framework sa mnogo unapred instaliranih paketa i konfiguracija koje olakšavaju pravljenje full-stack web aplikacija.
-=======
-- [TanStack Start (Beta)](https://tanstack.com/start/): TanStack Start is a full-stack React framework powered by TanStack Router. It provides a full-document SSR, streaming, server functions, bundling, and more using tools like Nitro and Vite.
-- [RedwoodSDK](https://rwsdk.com/): Redwood is a full stack React framework with lots of pre-installed packages and configuration that makes it easy to build full-stack web applications.
->>>>>>> d271a7ac11d2bf0d6e95ebdfacaf1038421f9be0
+- [TanStack Start (Beta)](https://tanstack.com/start/): TanStack Start je full-stack React framework nastao zbog TanStack Router-a. Pruža renderovanje celih dokumenata na serverskoj strani, strimovanje, serverske funkcije, bundle-ovanje i još mnogo toga koristeći alate poput Nitro-a i Vite-a.
+- [RedwoodSDK](https://rwsdk.com/): Redwood je full stack React framework sa mnogo unapred instaliranih paketa i konfiguracija koje olakšavaju pravljenje full-stack web aplikacija.
 
 <DeepDive>
 

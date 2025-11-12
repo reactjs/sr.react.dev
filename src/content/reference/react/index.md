@@ -21,24 +21,14 @@ Programske React funkcionalnosti:
 
 ## React DOM {/*react-dom*/}
 
-<<<<<<< HEAD
-React-dom sadrži funkcionalnosti koje su podržane samo za web aplikacije (koje su pokrenute u DOM okruženju pretraživača). Ova sekcija se deli na sledeće celine:
+React DOM sadrži funkcionalnosti koje su podržane samo za web aplikacije (koje su pokrenute u DOM okruženju pretraživača). Ova sekcija se deli na sledeće celine:
 
 * [Hook-ovi](/reference/react-dom/hooks) - Hook-ovi za web aplikacije koje su pokrenute u DOM okruženju pretraživača.
 * [Komponente](/reference/react-dom/components) - React sadrži sve HTML i SVG komponente ugrađene u pretraživač.
 * [API-ji](/reference/react-dom) - `react-dom` paket sadrži metode podržane samo u web aplikacijama.
 * [Klijentski API-ji](/reference/react-dom/client) - `react-dom/client` API-ji omogućavaju renderovanje React komponenata na klijentu (u pretraživaču).
 * [Serverski API-ji](/reference/react-dom/server) - `react-dom/server` API-ji omogućavaju renderovanje React komponenata u HTML na serveru.
-=======
-React DOM contains features that are only supported for web applications (which run in the browser DOM environment). This section is broken into the following:
-
-* [Hooks](/reference/react-dom/hooks) - Hooks for web applications which run in the browser DOM environment.
-* [Components](/reference/react-dom/components) - React supports all of the browser built-in HTML and SVG components.
-* [APIs](/reference/react-dom) - The `react-dom` package contains methods supported only in web applications.
-* [Client APIs](/reference/react-dom/client) - The `react-dom/client` APIs let you render React components on the client (in the browser).
-* [Server APIs](/reference/react-dom/server) - The `react-dom/server` APIs let you render React components to HTML on the server.
-* [Static APIs](/reference/react-dom/static) - The `react-dom/static` APIs let you generate static HTML for React components.
->>>>>>> d271a7ac11d2bf0d6e95ebdfacaf1038421f9be0
+* [Statički API-ji](/reference/react-dom/static) - `react-dom/static` API-ji omogućavaju generisanje statičkog HTML-a za React komponente.
 
 ## React kompajler {/*react-compiler*/}
 
