@@ -1,36 +1,36 @@
 ---
-title: Passing Data Deeply with Context
+title: Prosleđivanje podataka duboko uz Context
 ---
 
 <Intro>
 
-Usually, you will pass information from a parent component to a child component via props. But passing props can become verbose and inconvenient if you have to pass them through many components in the middle, or if many components in your app need the same information. *Context* lets the parent component make some information available to any component in the tree below it—no matter how deep—without passing it explicitly through props.
+Često ćete proslediti informaciju od roditeljske ka dečjoj komponenti kroz props. Ali, prosleđivanje props-a može postati opširno i nepogodno ako ih trebate proslediti kroz mnogo komponenata u sredini ili ako mnogo komponenata treba imati istu informaciju. *Context* omogućava roditeljskoj komponenti da neku informaciju učini dostupnom svakoj komponenti u stablu ispod nje—bez obzira koliko duboko—bez eksplicitnog prosleđivanja props-a.
 
 </Intro>
 
 <YouWillLearn>
 
-- What "prop drilling" is
-- How to replace repetitive prop passing with context
-- Common use cases for context
-- Common alternatives to context
+- Šta je to "prop drilling"
+- Kako da zamenite ponavljajuće prosleđivanje prop-a uz context
+- Uobičajene slučajeve korišćenja context-a
+- Uobičajene alternative za context
 
 </YouWillLearn>
 
-## The problem with passing props {/*the-problem-with-passing-props*/}
+## Problem sa prosleđivanjem props-a {/*the-problem-with-passing-props*/}
 
-[Passing props](/learn/passing-props-to-a-component) is a great way to explicitly pipe data through your UI tree to the components that use it.
+[Prosleđivanje props-a](/learn/passing-props-to-a-component) je sjajan način da usmerite podatke kroz vaš UI do komponenata koje ga koriste.
 
-But passing props can become verbose and inconvenient when you need to pass some prop deeply through the tree, or if many components need the same prop. The nearest common ancestor could be far removed from the components that need data, and [lifting state up](/learn/sharing-state-between-components) that high can lead to a situation called "prop drilling".
+Ali, prosleđivanje props-a može postati opširno i nepogodno ako neki prop trebate proslediti duboko u stablo ili ako je isti prop potreban u mnogo komponenata. Najbliži zajednički roditelj može biti veoma udaljen od komponenata kojima su potrebni podaci, pa [podizanje state-a](/learn/sharing-state-between-components) toliko visoko može dovesti do situacije pod imenom "prop drilling".
 
 <DiagramGroup>
 
-<Diagram name="passing_data_lifting_state" height={160} width={608} captionPosition="top" alt="Diagram with a tree of three components. The parent contains a bubble representing a value highlighted in purple. The value flows down to each of the two children, both highlighted in purple." >
+<Diagram name="passing_data_lifting_state" height={160} width={608} captionPosition="top" alt="Dijagram sa stablom od tri komponente. Roditelj sadrži balon koji predstavlja vrednost označenu ljubičastom bojom. Vrednost se prostire na dole ka obe dečje komponente koje su označene ljubičasto." >
 
-Lifting state up
+Podizanje state-a
 
 </Diagram>
-<Diagram name="passing_data_prop_drilling" height={430} width={608} captionPosition="top" alt="Diagram with a tree of ten nodes, each node with two children or less. The root node contains a bubble representing a value highlighted in purple. The value flows down through the two children, each of which pass the value but do not contain it. The left child passes the value down to two children which are both highlighted purple. The right child of the root passes the value through to one of its two children - the right one, which is highlighted purple. That child passed the value through its single child, which passes it down to both of its two children, which are highlighted purple.">
+<Diagram name="passing_data_prop_drilling" height={430} width={608} captionPosition="top" alt="Dijagram sa stablom od deset čvorova, gde svaki čvor ima dva deteta ili manje. Korenski čvor sadrži balon koji predstavlja vrednost označenu ljubičastom bojom. Vrednost se prostire na dole ka obe dečje komponente, a svaka dečja komponenta je prosleđuje i ne sadrži je. Levi čvor prosleđuje vrednost u dve dečje komponente koje su označene ljubičasto. Desno dete korenskog čvora prosleđuje vrednost kroz jedno od svoje dvoje dece - desno, koje je označeno ljubičasto. To dete prosleđuje vrednost jedinom detetu, koje je onda prosleđuje u oba svoja deteta, koja su označena ljubičastom bojom.">
 
 Prop drilling
 
@@ -38,11 +38,11 @@ Prop drilling
 
 </DiagramGroup>
 
-Wouldn't it be great if there were a way to "teleport" data to the components in the tree that need it without passing props? With React's context feature, there is!
+Zar ne bi bilo odlično da postoji način da "teleportujete" podatke u komponente unutar stabla kojima su potrebni bez prosleđivanja props-a? Uz React-ovu context funkcionalnost, postoji!
 
-## Context: an alternative to passing props {/*context-an-alternative-to-passing-props*/}
+## Context: alternativa za prosleđivanje props-a {/*context-an-alternative-to-passing-props*/}
 
-Context lets a parent component provide data to the entire tree below it. There are many uses for context. Here is one example. Consider this `Heading` component that accepts a `level` for its size:
+Context omogućava roditeljskoj komponenti da pruži podatke celokupnom stablu ispod. Postoji mnogo načina za upotrebu context-a. Evo jednog primera. Razmotrite ovu `Heading` komponentu koja prima `level` za svoju veličinu:
 
 <Sandpack>
 
@@ -90,7 +90,7 @@ export default function Heading({ level, children }) {
     case 6:
       return <h6>{children}</h6>;
     default:
-      throw Error('Unknown level: ' + level);
+      throw Error('Nepoznat nivo: ' + level);
   }
 }
 ```
@@ -106,7 +106,7 @@ export default function Heading({ level, children }) {
 
 </Sandpack>
 
-Let's say you want multiple headings within the same `Section` to always have the same size:
+Recimo da želite da više heading-a unutar jednog `Section`-a uvek ima istu veličinu:
 
 <Sandpack>
 
@@ -164,7 +164,7 @@ export default function Heading({ level, children }) {
     case 6:
       return <h6>{children}</h6>;
     default:
-      throw Error('Unknown level: ' + level);
+      throw Error('Nepoznat nivo: ' + level);
   }
 }
 ```
@@ -180,55 +180,55 @@ export default function Heading({ level, children }) {
 
 </Sandpack>
 
-Currently, you pass the `level` prop to each `<Heading>` separately:
+Trenutno, prosleđujete `level` prop u svaki `<Heading>` pojedinačno:
 
 ```js
 <Section>
-  <Heading level={3}>About</Heading>
-  <Heading level={3}>Photos</Heading>
-  <Heading level={3}>Videos</Heading>
+  <Heading level={3}>O aplikaciji</Heading>
+  <Heading level={3}>Slike</Heading>
+  <Heading level={3}>Videi</Heading>
 </Section>
 ```
 
-It would be nice if you could pass the `level` prop to the `<Section>` component instead and remove it from the `<Heading>`. This way you could enforce that all headings in the same section have the same size:
+Bilo bi dobro da možete proslediti `level` prop u `<Section>` komponentu i uklonite ga iz `<Heading>`-a. Na ovaj način možete osigurati da će svi headings-i unutar jednog section-a uvek imati istu veličinu:
 
 ```js
 <Section level={3}>
-  <Heading>About</Heading>
-  <Heading>Photos</Heading>
-  <Heading>Videos</Heading>
+  <Heading>O aplikaciji</Heading>
+  <Heading>Slike</Heading>
+  <Heading>Videi</Heading>
 </Section>
 ```
 
-But how can the `<Heading>` component know the level of its closest `<Section>`? **That would require some way for a child to "ask" for data from somewhere above in the tree.**
+Ali, kako `<Heading>` komponenta može da zna nivo najbližeg `<Section>`-a? **Za to je potreban način da dete "pita" za podatke koji se nalaze negde iznad u stablu.**
 
-You can't do it with props alone. This is where context comes into play. You will do it in three steps:
+To ne možete uraditi samo uz props. Ovde context ulazi u igru. Uradićete to u tri koraka:
 
-1. **Create** a context. (You can call it `LevelContext`, since it's for the heading level.)
-2. **Use** that context from the component that needs the data. (`Heading` will use `LevelContext`.)
-3. **Provide** that context from the component that specifies the data. (`Section` will provide `LevelContext`.)
+1. **Napraviti** context. (Možete ga nazvati `LevelContext`, jer predstavlja nivo naslova.)
+2. **Iskoristiti** taj context u komponenti kojoj su potrebni podaci. (`Heading` će koristiti `LevelContext`.)
+3. **Pružiti** taj context iz komponente koja specificira podatke. (`Section` će pružiti `LevelContext`.)
 
-Context lets a parent--even a distant one!--provide some data to the entire tree inside of it.
+Context omogućava roditelju--čak i veoma udaljenom!--da pruži neke podatke celokupnom stablu unutar njega.
 
 <DiagramGroup>
 
-<Diagram name="passing_data_context_close" height={160} width={608} captionPosition="top" alt="Diagram with a tree of three components. The parent contains a bubble representing a value highlighted in orange which projects down to the two children, each highlighted in orange." >
+<Diagram name="passing_data_context_close" height={160} width={608} captionPosition="top" alt="Dijagram sa stablom od tri komponentes. Roditelj sadrži balon koji predstavlja vrednost označenu narandžastom bojom koja se projektuje na dva deteta, oba označena narandžasto." >
 
-Using context in close children
+Upotreba context-a u bliskoj deci
 
 </Diagram>
 
-<Diagram name="passing_data_context_far" height={430} width={608} captionPosition="top" alt="Diagram with a tree of ten nodes, each node with two children or less. The root parent node contains a bubble representing a value highlighted in orange. The value projects down directly to four leaves and one intermediate component in the tree, which are all highlighted in orange. None of the other intermediate components are highlighted.">
+<Diagram name="passing_data_context_far" height={430} width={608} captionPosition="top" alt="Dijagram sa stablom od deset čvorova, gde svaki čvor ima dva deteta ili manje. Korenski čvor sadrži balon koji predstavlja vrednost označenu narandžastom bojom. Vrednost se projektuje direktno na dole ka četiri lista i jednoj središnjoj komponenti u stablu, i svi su označeni narandžasto. Nijedna druga središnja komponenta nije označena.">
 
-Using context in distant children
+Upotreba context-a u udaljenoj deci
 
 </Diagram>
 
 </DiagramGroup>
 
-### Step 1: Create the context {/*step-1-create-the-context*/}
+### Korak 1: Napraviti context {/*step-1-create-the-context*/}
 
-First, you need to create the context. You'll need to **export it from a file** so that your components can use it:
+Prvo, potrebno je da napravite context. Moraćete da ga **export-ujete iz fajla** kako bi ga vaše komponente mogle koristiti:
 
 <Sandpack>
 
@@ -286,7 +286,7 @@ export default function Heading({ level, children }) {
     case 6:
       return <h6>{children}</h6>;
     default:
-      throw Error('Unknown level: ' + level);
+      throw Error('Nepoznat nivo: ' + level);
   }
 }
 ```
@@ -308,18 +308,18 @@ export const LevelContext = createContext(1);
 
 </Sandpack>
 
-The only argument to `createContext` is the _default_ value. Here, `1` refers to the biggest heading level, but you could pass any kind of value (even an object). You will see the significance of the default value in the next step.
+Jedini argument u `createContext` je _podrazumevana_ vrednost. Ovde se `1` odnosi na najviši nivo naslova, ali možete proslediti bilo koju vrednost (čak i objekat). Videćete značaj podrazumevane vrednosti u narednom koraku.
 
-### Step 2: Use the context {/*step-2-use-the-context*/}
+### Korak 2: Iskoristiti context {/*step-2-use-the-context*/}
 
-Import the `useContext` Hook from React and your context:
+Import-ujte `useContext` Hook iz React-a, kao i vaš context:
 
 ```js
 import { useContext } from 'react';
 import { LevelContext } from './LevelContext.js';
 ```
 
-Currently, the `Heading` component reads `level` from props:
+Trenutno, `Heading` komponenta čita `level` iz props-a:
 
 ```js
 export default function Heading({ level, children }) {
@@ -327,7 +327,7 @@ export default function Heading({ level, children }) {
 }
 ```
 
-Instead, remove the `level` prop and read the value from the context you just imported, `LevelContext`:
+Umesto toga, uklonite `level` prop i čitajte vrednost iz context-a koji ste upravo import-ovali, `LevelContext`:
 
 ```js {2}
 export default function Heading({ children }) {
@@ -336,9 +336,9 @@ export default function Heading({ children }) {
 }
 ```
 
-`useContext` is a Hook. Just like `useState` and `useReducer`, you can only call a Hook immediately inside a React component (not inside loops or conditions). **`useContext` tells React that the `Heading` component wants to read the `LevelContext`.**
+`useContext` je Hook. Kao i `useState` i `useReducer`, možete pozvati Hook samo odmah unutar React komponente (ne unutar petlji i uslova). **`useContext` govori React-u da `Heading` komponenta želi da čita `LevelContext`.**
 
-Now that the `Heading` component doesn't have a `level` prop, you don't need to pass the level prop to `Heading` in your JSX like this anymore:
+Sad kada `Heading` komponenta nema `level` prop, ne morate više prosleđivati level prop u `Heading` iz vašeg JSX-a:
 
 ```js
 <Section>
@@ -348,7 +348,7 @@ Now that the `Heading` component doesn't have a `level` prop, you don't need to 
 </Section>
 ```
 
-Update the JSX so that it's the `Section` that receives it instead:
+Ažurirajte JSX tako da taj prop prima `Section`:
 
 ```jsx
 <Section level={4}>
@@ -358,7 +358,7 @@ Update the JSX so that it's the `Section` that receives it instead:
 </Section>
 ```
 
-As a reminder, this is the markup that you were trying to get working:
+Kao podsetnik, ovo je markup koji želite da napravite:
 
 <Sandpack>
 
@@ -420,7 +420,7 @@ export default function Heading({ children }) {
     case 6:
       return <h6>{children}</h6>;
     default:
-      throw Error('Unknown level: ' + level);
+      throw Error('Nepoznat nivo: ' + level);
   }
 }
 ```
@@ -442,13 +442,13 @@ export const LevelContext = createContext(1);
 
 </Sandpack>
 
-Notice this example doesn't quite work, yet! All the headings have the same size because **even though you're *using* the context, you have not *provided* it yet.** React doesn't know where to get it!
+Primetite da ovaj primer baš i ne radi, još uvek! Svi headings-i imaju istu veličinu jer **iako *koristite* context, još uvek ga niste *pružili***. React ne zna gde da ga dobije!
 
-If you don't provide the context, React will use the default value you've specified in the previous step. In this example, you specified `1` as the argument to `createContext`, so `useContext(LevelContext)` returns `1`, setting all those headings to `<h1>`. Let's fix this problem by having each `Section` provide its own context.
+Ako ne pružite context, React će koristiti podrazumevanu vrednost koju ste specificirali u prethodnom koraku. U ovom primeru, specificirali ste `1` kao argument u `createContext`, pa `useContext(LevelContext)` vraća `1`, postavljajući sve headings-e na `<h1>`. Popravimo ovaj problem tako što će svaki `Section` pružiti svoj context.
 
-### Step 3: Provide the context {/*step-3-provide-the-context*/}
+### Korak 3: Pružiti context {/*step-3-provide-the-context*/}
 
-The `Section` component currently renders its children:
+`Section` komponenta trenutno renderuje svoju decu:
 
 ```js
 export default function Section({ children }) {
@@ -460,7 +460,7 @@ export default function Section({ children }) {
 }
 ```
 
-**Wrap them with a context provider** to provide the `LevelContext` to them:
+**Obmotajte ih sa context provider-om** da im pružite `LevelContext`:
 
 ```js {1,6,8}
 import { LevelContext } from './LevelContext.js';
@@ -476,7 +476,7 @@ export default function Section({ level, children }) {
 }
 ```
 
-This tells React: "if any component inside this `<Section>` asks for `LevelContext`, give them this `level`." The component will use the value of the nearest `<LevelContext>` in the UI tree above it.
+Ovo govori React-u: "Ako bilo koja komponenta unutar ovog `<Section>`-a pita za `LevelContext`, daj joj ovaj `level`." Komponenta će koristiti najbliži `<LevelContext>` u stablu iznad.
 
 <Sandpack>
 
@@ -542,7 +542,7 @@ export default function Heading({ children }) {
     case 6:
       return <h6>{children}</h6>;
     default:
-      throw Error('Unknown level: ' + level);
+      throw Error('Nepoznat nivo: ' + level);
   }
 }
 ```
@@ -564,15 +564,15 @@ export const LevelContext = createContext(1);
 
 </Sandpack>
 
-It's the same result as the original code, but you did not need to pass the `level` prop to each `Heading` component! Instead, it "figures out" its heading level by asking the closest `Section` above:
+Rezultat je isti kao i u originalnom kodu, ali niste morali da prosleđujete `level` prop u svaku `Heading` komponentu! Umesto toga, komponenta "shvata" svoj nivo naslova tako što pita najbliži `Section` iznad:
 
-1. You pass a `level` prop to the `<Section>`.
-2. `Section` wraps its children into `<LevelContext value={level}>`.
-3. `Heading` asks the closest value of `LevelContext` above with `useContext(LevelContext)`.
+1. Prosleđujete `level` prop u `<Section>`.
+2. `Section` obmotava svoju decu sa `<LevelContext value={level}>`.
+3. `Heading` pita za najbližu vrednost `LevelContext`-a iznad sa `useContext(LevelContext)`.
 
-## Using and providing context from the same component {/*using-and-providing-context-from-the-same-component*/}
+## Upotreba i pružanje context-a iz iste komponente {/*using-and-providing-context-from-the-same-component*/}
 
-Currently, you still have to specify each section's `level` manually:
+Trenutno i dalje morate da specificirate `level` svakog section-a ručno:
 
 ```js
 export default function Page() {
@@ -585,7 +585,7 @@ export default function Page() {
           ...
 ```
 
-Since context lets you read information from a component above, each `Section` could read the `level` from the `Section` above, and pass `level + 1` down automatically. Here is how you could do it:
+Pošto vam context omogućava da čitate informaciju iz komponente iznad, `Section` bi mogao da čita `level` iz `Section`-a iznad i da prosledi `level + 1` na dole automatski. Evo kako to možete uraditi:
 
 ```js src/Section.js {5,8}
 import { useContext } from 'react';
@@ -603,7 +603,7 @@ export default function Section({ children }) {
 }
 ```
 
-With this change, you don't need to pass the `level` prop *either* to the `<Section>` or to the `<Heading>`:
+Sa ovom promenom, ne morate prosleđivati `level` prop *ni* u `<Section>` ni u `<Heading>`:
 
 <Sandpack>
 
@@ -659,7 +659,7 @@ export default function Heading({ children }) {
   const level = useContext(LevelContext);
   switch (level) {
     case 0:
-      throw Error('Heading must be inside a Section!');
+      throw Error('Heading mora biti unutar Section-a!');
     case 1:
       return <h1>{children}</h1>;
     case 2:
@@ -673,7 +673,7 @@ export default function Heading({ children }) {
     case 6:
       return <h6>{children}</h6>;
     default:
-      throw Error('Unknown level: ' + level);
+      throw Error('Nepoznat nivo: ' + level);
   }
 }
 ```
@@ -695,19 +695,19 @@ export const LevelContext = createContext(0);
 
 </Sandpack>
 
-Now both `Heading` and `Section` read the `LevelContext` to figure out how "deep" they are. And the `Section` wraps its children into the `LevelContext` to specify that anything inside of it is at a "deeper" level.
+Sada i `Heading` i `Section` čitaju `LevelContext` kako bi shvatili koliko su "duboko". A `Section` obmotava svoju decu sa `LevelContext` da bi specificirao da sve što je unutar njega pripada "dubljem" nivou.
 
 <Note>
 
-This example uses heading levels because they show visually how nested components can override context. But context is useful for many other use cases too. You can pass down any information needed by the entire subtree: the current color theme, the currently logged in user, and so on.
+Ovaj primer koristi nivoe naslova jer oni vizuelno prikazuju kako ugnježdene komponente mogu da override-uju context. Ali, context je koristan i u mnogim drugim slučajevima. Možete proslediti ispod bilo koju informaciju koja je potrebna celokupnom podstablu: trenutnu boju teme, trenutno ulogovanog korisnika, itd.
 
 </Note>
 
-## Context passes through intermediate components {/*context-passes-through-intermediate-components*/}
+## Context prolazi kroz središnje komponente {/*context-passes-through-intermediate-components*/}
 
-You can insert as many components as you like between the component that provides context and the one that uses it. This includes both built-in components like `<div>` and components you might build yourself.
+Možete ubaciti koliko god želite komponenata između komponente koja pruža i one koja koristi context. Ovo uključuje i ugrađene komponente poput `<div>`-a i komponente koje sami pravite.
 
-In this example, the same `Post` component (with a dashed border) is rendered at two different nesting levels. Notice that the `<Heading>` inside of it gets its level automatically from the closest `<Section>`:
+U ovom primeru, ista `Post` komponenta (sa isprekidanom ivicom) je renderovana na dva različita ugnježdena nivoa. Primetite da `<Heading>` unutar nje automatski dobija svoj nivo od najbližeg `<Section>`-a:
 
 <Sandpack>
 
@@ -718,10 +718,10 @@ import Section from './Section.js';
 export default function ProfilePage() {
   return (
     <Section>
-      <Heading>My Profile</Heading>
+      <Heading>Moj profil</Heading>
       <Post
-        title="Hello traveller!"
-        body="Read about my adventures."
+        title="Pozdrav putniče!"
+        body="Čitaj o mojim avanturama."
       />
       <AllPosts />
     </Section>
@@ -731,7 +731,7 @@ export default function ProfilePage() {
 function AllPosts() {
   return (
     <Section>
-      <Heading>Posts</Heading>
+      <Heading>Objave</Heading>
       <RecentPosts />
     </Section>
   );
@@ -740,14 +740,14 @@ function AllPosts() {
 function RecentPosts() {
   return (
     <Section>
-      <Heading>Recent Posts</Heading>
+      <Heading>Nedavne objave</Heading>
       <Post
-        title="Flavors of Lisbon"
-        body="...those pastéis de nata!"
+        title="Ukusi Lisabona"
+        body="...taj pastéis de nata!"
       />
       <Post
-        title="Buenos Aires in the rhythm of tango"
-        body="I loved it!"
+        title="Buenos Ajres u ritmu tanga"
+        body="Obožavao sam to!"
       />
     </Section>
   );
@@ -792,7 +792,7 @@ export default function Heading({ children }) {
   const level = useContext(LevelContext);
   switch (level) {
     case 0:
-      throw Error('Heading must be inside a Section!');
+      throw Error('Heading mora biti unutar Section-a!');
     case 1:
       return <h1>{children}</h1>;
     case 2:
@@ -806,7 +806,7 @@ export default function Heading({ children }) {
     case 6:
       return <h6>{children}</h6>;
     default:
-      throw Error('Unknown level: ' + level);
+      throw Error('Nepoznat nivo: ' + level);
   }
 }
 ```
@@ -832,58 +832,58 @@ export const LevelContext = createContext(0);
 
 </Sandpack>
 
-You didn't do anything special for this to work. A `Section` specifies the context for the tree inside it, so you can insert a `<Heading>` anywhere, and it will have the correct size. Try it in the sandbox above!
+Niste učinili ništa posebno da bi ovo radilo. `Section` specificira context za stablo unutar njega, tako da možete ubaciti `<Heading>` bilo gde i imaće ispravnu veličinu. Probajte u sandbox-u iznad!
 
-**Context lets you write components that "adapt to their surroundings" and display themselves differently depending on _where_ (or, in other words, _in which context_) they are being rendered.**
+**Context vam omogućava da pišete komponente koje se "prilagođavaju svom okruženju" i prikazuju sebe drugačije u zavisnosti _gde_ (ili, drugim rečima, _u kom context-u_) se renderuju.**
 
-How context works might remind you of [CSS property inheritance.](https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance) In CSS, you can specify `color: blue` for a `<div>`, and any DOM node inside of it, no matter how deep, will inherit that color unless some other DOM node in the middle overrides it with `color: green`. Similarly, in React, the only way to override some context coming from above is to wrap children into a context provider with a different value.
+Način funkcionisanja context-a vas može podsetiti na [CSS polje inheritance](https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance). U CSS-u, možete specificirati `color: blue` za `<div>` i svaki DOM čvor unutar, bez obzira koliko duboko, će naslediti tu boju, osim ako je neki drugi DOM čvor u sredini ne override-uje sa `color: green`. Slično tome, u React-u, jedini način da se override-uje context koji dolazi od gore je da se deca obmotaju sa context provider-om koji ima drugačiju vrednost.
 
-In CSS, different properties like `color` and `background-color` don't override each other. You can set all  `<div>`'s `color` to red without impacting `background-color`. Similarly, **different React contexts don't override each other.** Each context that you make with `createContext()` is completely separate from other ones, and ties together components using and providing *that particular* context. One component may use or provide many different contexts without a problem.
+U CSS-u, različita polja poput `color` i `background-color` ne override-uju jedno drugo. Možete postaviti `color` svih `<div>`-ova na crveno bez da utičete na `background-color`. Slično tome, **različiti React context-i ne override-uju jedan drugog**. Svaki context koji napravite sa `createContext()` je potpuno odvojen od ostalih i povezuje komponente koje koriste i pružaju *taj specifični* context. Jedna komponenta, bez problema, može koristiti ili pružati neograničen broj context-a.
 
-## Before you use context {/*before-you-use-context*/}
+## Pre nego što upotrebite context {/*before-you-use-context*/}
 
-Context is very tempting to use! However, this also means it's too easy to overuse it. **Just because you need to pass some props several levels deep doesn't mean you should put that information into context.**
+Context je veoma primamljiv za upotrebu! Međutim, ovo takođe znači da je lako preterati sa njegovom upotrebom. **To što je potrebno proslediti neke props-e par nivoa u dubinu ne znači da biste trebali tu informaciju staviti u context.**
 
-Here's a few alternatives you should consider before using context:
+Evo par alternativa koje biste trebali razmotriti pre upotrebe context-a:
 
-1. **Start by [passing props.](/learn/passing-props-to-a-component)** If your components are not trivial, it's not unusual to pass a dozen props down through a dozen components. It may feel like a slog, but it makes it very clear which components use which data! The person maintaining your code will be glad you've made the data flow explicit with props.
-2. **Extract components and [pass JSX as `children`](/learn/passing-props-to-a-component#passing-jsx-as-children) to them.** If you pass some data through many layers of intermediate components that don't use that data (and only pass it further down), this often means that you forgot to extract some components along the way. For example, maybe you pass data props like `posts` to visual components that don't use them directly, like `<Layout posts={posts} />`. Instead, make `Layout` take `children` as a prop, and render `<Layout><Posts posts={posts} /></Layout>`. This reduces the number of layers between the component specifying the data and the one that needs it.
+1. **Počnite sa [prosleđivanjem props-a](/learn/passing-props-to-a-component).** Ako vaše komponente nisu trivijalne, nije neuobičajeno da prosleđujete nekolicinu props-a kroz nekolicinu komponenata. Možda deluje naporno, ali jasno govori koje komponente koriste koje podatke! Osoba koja bude održavala vaš kod će biti srećna da ste eksplicitno označili tok podataka kroz props.
+2. **Izdvojite komponente i [prosledite im JSX kao `children`](/learn/passing-props-to-a-component#passing-jsx-as-children).** Ako prosleđujete podatke kroz mnogo slojeva središnjih komponenata koje ne koriste te podatke (i samo ih prosleđuju na dole), to obično znači da ste zaboravili da izdvojite neke komponente. Na primer, možda prosleđujete props-e poput `posts` u vizuelne komponente koje ih ne koriste direktno, npr. `<Layout posts={posts} />`. Umesto toga, napravite da `Layout` prima `children` kao prop i renderujte `<Layout><Posts posts={posts} /></Layout>`. Ovo smanjuje broj slojeva između komponente koja specificira podatke i one kojoj su podaci potrebni.
 
-If neither of these approaches works well for you, consider context.
+Ako nijedan od ovih pristupa ne radi dobro, razmotrite context.
 
-## Use cases for context {/*use-cases-for-context*/}
+## Slučajevi korišćenja context-a {/*use-cases-for-context*/}
 
-* **Theming:** If your app lets the user change its appearance (e.g. dark mode), you can put a context provider at the top of your app, and use that context in components that need to adjust their visual look.
-* **Current account:** Many components might need to know the currently logged in user. Putting it in context makes it convenient to read it anywhere in the tree. Some apps also let you operate multiple accounts at the same time (e.g. to leave a comment as a different user). In those cases, it can be convenient to wrap a part of the UI into a nested provider with a different current account value.
-* **Routing:** Most routing solutions use context internally to hold the current route. This is how every link "knows" whether it's active or not. If you build your own router, you might want to do it too.
-* **Managing state:** As your app grows, you might end up with a lot of state closer to the top of your app. Many distant components below may want to change it. It is common to [use a reducer together with context](/learn/scaling-up-with-reducer-and-context) to manage complex state and pass it down to distant components without too much hassle.
+* **Theming:** Ako vaša aplikacija dozvoljava korisniku da menja izgled (npr. tamni režim), možete postaviti context provider na vrh aplikacije i koristiti taj context u komponentama koje trebaju menjati svoj izgled.
+* **Trenutni nalog:** Mnogim komponentama može biti potreban trenutno ulogovani korisnik. Upotreba context-a čini čitanje podataka zgodnijim bilo gde u stablu. Neke aplikacije omogućavaju istovremeno korišćenje više naloga (npr. ostavljanje komentara u ime drugog korisnika). U tim slučajevima može biti zgodno da obmotate deo UI-a u ugnježdeni provider sa drugačijom vrednošću za trenutni nalog.
+* **Rutiranje:** Većina rešenja za rutiranje interno koristi context da čuva trenutnu rutu. Zbog toga svaki link "zna" da li je aktivan ili ne. Ako pravite sopstveni ruter, verovatno ćete i vi želeti ovo da koristite.
+* **Upravljanje state-om:** Kako vam aplikacija raste, možete završiti sa mnogo state-ova koji su blizu vrha aplikacije. Mnoge komponente ispod mogu želeti da ih promene. Za upravljanje kompleksnim state-ovima uobičajeno je da se [koristi reducer zajedno sa context-om](/learn/scaling-up-with-reducer-and-context), kako bi se podaci prosledili udaljenim komponentama bez mnogo muke.
   
-Context is not limited to static values. If you pass a different value on the next render, React will update all the components reading it below! This is why context is often used in combination with state.
+Context nije ograničen na statičke vrednosti. Ako prosledite drugačiju vrednost u narednom renderu, React će ažurirati sve komponente ispod koje ga čitaju! Zbog toga se context često koristi u kombinaciji sa state-om.
 
-In general, if some information is needed by distant components in different parts of the tree, it's a good indication that context will help you.
+U suštini, ako je neka informacija potrebna udaljenim komponentama u različitim delovima stabla, dobar je znak da vam context može pomoći.
 
 <Recap>
 
-* Context lets a component provide some information to the entire tree below it.
-* To pass context:
-  1. Create and export it with `export const MyContext = createContext(defaultValue)`.
-  2. Pass it to the `useContext(MyContext)` Hook to read it in any child component, no matter how deep.
-  3. Wrap children into `<MyContext value={...}>` to provide it from a parent.
-* Context passes through any components in the middle.
-* Context lets you write components that "adapt to their surroundings".
-* Before you use context, try passing props or passing JSX as `children`.
+* Context omogućava komponenti da pruži neku informaciju u celo stablo ispod.
+* Da biste prosledili context:
+  1. Napravite i export-ujte ga sa `export const MyContext = createContext(defaultValue)`.
+  2. Prosledite ga u `useContext(MyContext)` Hook kako biste mogli da ga čitate u bilo kojoj dečjoj komponenti, bez obzira koliko duboko bila.
+  3. Da biste context pružili iz roditelja, obmotajte decu sa `<MyContext value={...}>`.
+* Context prolazi kroz bilo koju središnju komponentu.
+* Context vam omogućava da pišete komponente koje se "prilagođavaju svom okruženju".
+* Pre nego što upotrebite context, probajte da prosledite props ili da prosledite JSX kao `children`.
 
 </Recap>
 
 <Challenges>
 
-#### Replace prop drilling with context {/*replace-prop-drilling-with-context*/}
+#### Zameniti prop drilling sa context-om {/*replace-prop-drilling-with-context*/}
 
-In this example, toggling the checkbox changes the `imageSize` prop passed to each `<PlaceImage>`. The checkbox state is held in the top-level `App` component, but each `<PlaceImage>` needs to be aware of it.
+U ovom primeru, klik na checkbox menja `imageSize` prop prosleđen u svaki `<PlaceImage>`. Checkbox state se čuva na vrhu, u `App` komponenti, ali svaki `<PlaceImage>` mora da zna za njega.
 
-Currently, `App` passes `imageSize` to `List`, which passes it to each `Place`, which passes it to the `PlaceImage`. Remove the `imageSize` prop, and instead pass it from the `App` component directly to `PlaceImage`.
+Trenutno, `App` prosleđuje `imageSize` u `List`, koji ga prosleđuje u svaki `Place`, koji ga prosleđuje u `PlaceImage`. Uklonite `imageSize` prop i umesto toga informaciju prosledite direktno iz `App` komponente u `PlaceImage`.
 
-You can declare context in `Context.js`.
+Možete deklarisati context u `Context.js`.
 
 <Sandpack>
 
@@ -905,7 +905,7 @@ export default function App() {
             setIsLarge(e.target.checked);
           }}
         />
-        Use large images
+        Koristi veće slike
       </label>
       <hr />
       <List imageSize={imageSize} />
@@ -959,38 +959,38 @@ function PlaceImage({ place, imageSize }) {
 ```js src/data.js
 export const places = [{
   id: 0,
-  name: 'Bo-Kaap in Cape Town, South Africa',
-  description: 'The tradition of choosing bright colors for houses began in the late 20th century.',
+  name: 'Bo-Kaap u Kejptaunu, Južna Afrika',
+  description: 'Tradicija odabira svetlih boja za kuće je započeta krajem 20. veka.',
   imageId: 'K9HVAGH'
 }, {
-  id: 1, 
-  name: 'Rainbow Village in Taichung, Taiwan',
-  description: 'To save the houses from demolition, Huang Yung-Fu, a local resident, painted all 1,200 of them in 1924.',
+  id: 1,
+  name: 'Selo duge u Taichung-u, Tajvan',
+  description: 'Kako bi spasio kuće od rušenja, lokalni stanovnik Huang Yung-Fu, 1924. godine je ofarbao svih 1,200 kuća.',
   imageId: '9EAYZrt'
 }, {
-  id: 2, 
-  name: 'Macromural de Pachuca, Mexico',
-  description: 'One of the largest murals in the world covering homes in a hillside neighborhood.',
+  id: 2,
+  name: 'Macromural de Pachuca, Meksiko',
+  description: 'Jedan od najvećih murala na svetu koji pokriva brdsko naselje.',
   imageId: 'DgXHVwu'
 }, {
-  id: 3, 
-  name: 'Selarón Staircase in Rio de Janeiro, Brazil',
-  description: 'This landmark was created by Jorge Selarón, a Chilean-born artist, as a "tribute to the Brazilian people."',
+  id: 3,
+  name: 'Stepenište Selarón u Rio de Žaneiru, Brazil',
+  description: 'Ovu znamenitost je napravio Jorge Selarón, čileanski umetnik, kao "počast brazilskom narodu".',
   imageId: 'aeO3rpI'
 }, {
-  id: 4, 
-  name: 'Burano, Italy',
-  description: 'The houses are painted following a specific color system dating back to 16th century.',
+  id: 4,
+  name: 'Burano, Italija',
+  description: 'Kuće su ofarbane specifičnim sistemom boja koji datira iz 16. veka.',
   imageId: 'kxsph5C'
 }, {
-  id: 5, 
-  name: 'Chefchaouen, Marocco',
-  description: 'There are a few theories on why the houses are painted blue, including that the color repels mosquitos or that it symbolizes sky and heaven.',
+  id: 5,
+  name: 'Chefchaouen, Maroko',
+  description: 'Postoji par teorija zašto su kuće ofarbane u plavo, od toga da ta boja odbija komarce do toga da označava nebo i raj.',
   imageId: 'rTqKo46'
 }, {
   id: 6,
-  name: 'Gamcheon Culture Village in Busan, South Korea',
-  description: 'In 2009, the village was converted into a cultural hub by painting the houses and featuring exhibitions and art installations.',
+  name: 'Selo kulture Gamcheon u Busanu, Južna Koreja',
+  description: 'Selo je 2009. godine pretvoreno u kulturni centar farbanjem kuća i postavljanjem izložbi i umetničkih instalacija.',
   imageId: 'ZfQOOzf'
 }];
 ```
@@ -1020,9 +1020,9 @@ li {
 
 <Solution>
 
-Remove `imageSize` prop from all the components.
+Uklonite `imageSize` prop iz svih komponenata.
 
-Create and export `ImageSizeContext` from `Context.js`. Then wrap the List into `<ImageSizeContext value={imageSize}>` to pass the value down, and `useContext(ImageSizeContext)` to read it in the `PlaceImage`:
+Napravite i export-ujte `ImageSizeContext` iz `Context.js`. Onda, obmotajte List sa `<ImageSizeContext value={imageSize}>` kako biste vrednost prosledili na dole, a onda iskoristite `useContext(ImageSizeContext)` da ga pročitate u `PlaceImage`:
 
 <Sandpack>
 
@@ -1047,7 +1047,7 @@ export default function App() {
             setIsLarge(e.target.checked);
           }}
         />
-        Use large images
+        Koristi veće slike
       </label>
       <hr />
       <List />
@@ -1098,38 +1098,38 @@ export const ImageSizeContext = createContext(500);
 ```js src/data.js
 export const places = [{
   id: 0,
-  name: 'Bo-Kaap in Cape Town, South Africa',
-  description: 'The tradition of choosing bright colors for houses began in the late 20th century.',
+  name: 'Bo-Kaap u Kejptaunu, Južna Afrika',
+  description: 'Tradicija odabira svetlih boja za kuće je započeta krajem 20. veka.',
   imageId: 'K9HVAGH'
 }, {
-  id: 1, 
-  name: 'Rainbow Village in Taichung, Taiwan',
-  description: 'To save the houses from demolition, Huang Yung-Fu, a local resident, painted all 1,200 of them in 1924.',
+  id: 1,
+  name: 'Selo duge u Taichung-u, Tajvan',
+  description: 'Kako bi spasio kuće od rušenja, lokalni stanovnik Huang Yung-Fu, 1924. godine je ofarbao svih 1,200 kuća.',
   imageId: '9EAYZrt'
 }, {
-  id: 2, 
-  name: 'Macromural de Pachuca, Mexico',
-  description: 'One of the largest murals in the world covering homes in a hillside neighborhood.',
+  id: 2,
+  name: 'Macromural de Pachuca, Meksiko',
+  description: 'Jedan od najvećih murala na svetu koji pokriva brdsko naselje.',
   imageId: 'DgXHVwu'
 }, {
-  id: 3, 
-  name: 'Selarón Staircase in Rio de Janeiro, Brazil',
+  id: 3,
+  name: 'Stepenište Selarón u Rio de Žaneiru, Brazil',
   description: 'This landmark was created by Jorge Selarón, a Chilean-born artist, as a "tribute to the Brazilian people".',
   imageId: 'aeO3rpI'
 }, {
-  id: 4, 
-  name: 'Burano, Italy',
-  description: 'The houses are painted following a specific color system dating back to 16th century.',
+  id: 4,
+  name: 'Burano, Italija',
+  description: 'Kuće su ofarbane specifičnim sistemom boja koji datira iz 16. veka.',
   imageId: 'kxsph5C'
 }, {
-  id: 5, 
-  name: 'Chefchaouen, Marocco',
-  description: 'There are a few theories on why the houses are painted blue, including that the color repels mosquitos or that it symbolizes sky and heaven.',
+  id: 5,
+  name: 'Chefchaouen, Maroko',
+  description: 'Postoji par teorija zašto su kuće ofarbane u plavo, od toga da ta boja odbija komarce do toga da označava nebo i raj.',
   imageId: 'rTqKo46'
 }, {
   id: 6,
-  name: 'Gamcheon Culture Village in Busan, South Korea',
-  description: 'In 2009, the village was converted into a cultural hub by painting the houses and featuring exhibitions and art installations.',
+  name: 'Selo kulture Gamcheon u Busanu, Južna Koreja',
+  description: 'Selo je 2009. godine pretvoreno u kulturni centar farbanjem kuća i postavljanjem izložbi i umetničkih instalacija.',
   imageId: 'ZfQOOzf'
 }];
 ```
@@ -1157,7 +1157,7 @@ li {
 
 </Sandpack>
 
-Note how components in the middle don't need to pass `imageSize` anymore.
+Primetite da središnje komponente više ne moraju da prosleđuju `imageSize`.
 
 </Solution>
 
