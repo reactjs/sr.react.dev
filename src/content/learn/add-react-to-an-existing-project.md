@@ -20,15 +20,9 @@ Recimo da imate postojeći veb sajt na `example.com` napravljen sa nekom drugom 
 
 Evo kako preporučujemo da to uradite:
 
-<<<<<<< HEAD
-1. **Napravite React deo vaše aplikacije** koristeći jedan od [React-based framework-a](/learn/start-a-new-react-project).
+1. **Napravite React deo vaše aplikacije** koristeći jedan od [React-based framework-a](/learn/creating-a-react-app).
 2. **Specifikujte `/some-app` kao *base path*** u konfiguraciji vašeg framework-a (evo kako: [Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
 3. **Konfigurišite vaš server ili proxy** tako da sve rute ispod `/some-app/` budu obrađene od strane vaše React aplikacije.
-=======
-1. **Build the React part of your app** using one of the [React-based frameworks](/learn/creating-a-react-app).
-2. **Specify `/some-app` as the *base path*** in your framework's configuration (here's how: [Next.js](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath), [Gatsby](https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/)).
-3. **Configure your server or a proxy** so that all requests under `/some-app/` are handled by your React app.
->>>>>>> 2534424ec6c433cc2c811d5a0bd5a65b75efa5f0
 
 Ovo će omogućiti React delu vaše aplikacije da [koristi najbolje prakse](/learn/build-a-react-app-from-scratch#consider-using-a-framework) koje su ugrađene u te framework-e.
 
@@ -157,11 +151,7 @@ root.render(<NavigationBar />);
 
 Primećujemo kako je originalni HTML sadržaj iz `index.html` sačuvan, ali vaša `NavigationBar` React komponenta sada se pojavljuje unutar `<nav id="navigation">` iz vašeg HTML-a. Pročitajte [createRoot dokumentaciju](/reference/react-dom/client/createRoot#rendering-a-page-partially-built-with-react) da biste saznali više o renderovanju React komponenti unutar postojeće HTML stranice.
 
-<<<<<<< HEAD
-Kada usvojite React u postojeći projekat, uobičajeno je da počnete sa malim interaktivnim komponentama (kao što su dugmad), i onda postepeno "idete na viši nivo" dok na kraju vaša cela stranica nije napravljena sa React-om. Ako ikada dođete do tog nivoa, preporučujemo da odmah nakon toga pređete na [React framework](/learn/start-a-new-react-project) da biste dobili najviše od React-a.
-=======
-When you adopt React in an existing project, it's common to start with small interactive components (like buttons), and then gradually keep "moving upwards" until eventually your entire page is built with React. If you ever reach that point, we recommend migrating to [a React framework](/learn/creating-a-react-app) right after to get the most out of React.
->>>>>>> 2534424ec6c433cc2c811d5a0bd5a65b75efa5f0
+Kada usvojite React u postojeći projekat, uobičajeno je da počnete sa malim interaktivnim komponentama (kao što su dugmad), i onda postepeno "idete na viši nivo" dok na kraju vaša cela stranica nije napravljena sa React-om. Ako ikada dođete do tog nivoa, preporučujemo da odmah nakon toga pređete na [React framework](/learn/creating-a-react-app) da biste dobili najviše od React-a.
 
 ## Koristite React Native u postojećoj mobilnoj aplikaciji {/*using-react-native-in-an-existing-mobile-app*/}
 
