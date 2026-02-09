@@ -79,6 +79,9 @@ Postoje dve retko korišćene varijante `useEffect`-a sa razlikama u tajmingu:
 * [`useLayoutEffect`](/reference/react/useLayoutEffect) se okida pre nego što pretraživač ponovo iscrta ekran. Ovde možete meriti layout.
 * [`useInsertionEffect`](/reference/react/useInsertionEffect) se okida pre nego što React napravi izmene u DOM-u. Biblioteke ovde mogu ubaciti dinamički CSS.
 
+You can also separate events from Effects:
+
+- [`useEffectEvent`](/reference/react/useEffectEvent) creates a non-reactive event to fire from any Effect hook.
 ---
 
 ## Hook-ovi performansi {/*performance-hooks*/}
