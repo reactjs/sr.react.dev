@@ -4,7 +4,7 @@ title: useId
 
 <Intro>
 
-`useId` is a React Hook for generating unique IDs that can be passed to accessibility attributes.
+`useId` je React Hook za generisanje jedinstvenih ID-eva koji se mogu proslediti atributima pristupačnosti.
 
 ```js
 const id = useId()
@@ -20,7 +20,7 @@ const id = useId()
 
 ### `useId()` {/*useid*/}
 
-Call `useId` at the top level of your component to generate a unique ID:
+Pozovite `useId` na vrhu vaše komponente da biste generisali jedinstveni ID:
 
 ```js
 import { useId } from 'react';
@@ -30,39 +30,39 @@ function PasswordField() {
   // ...
 ```
 
-[See more examples below.](#usage)
+[Pogledajte još primera ispod.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parametri {/*parameters*/}
 
-`useId` does not take any parameters.
+`useId` ne prima nikakve parametre.
 
-#### Returns {/*returns*/}
+#### Povratne vrednosti {/*returns*/}
 
-`useId` returns a unique ID string associated with this particular `useId` call in this particular component.
+`useId` vraća jedinstveni ID string asociran za specifični `useId` poziv u specifičnoj komponenti.
 
-#### Caveats {/*caveats*/}
+#### Upozorenja {/*caveats*/}
 
-* `useId` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
+* `useId` je Hook, pa ga možete pozvati samo **na vrhu vaše komponente** ili vaših Hook-ova. Ne možete ga pozvati unutar petlji i uslova. Ako vam je to potrebno, izdvojite novu komponentu i pomerite state u nju.
 
-* `useId` **should not be used to generate cache keys** for [use()](/reference/react/use). The ID is stable when a component is mounted but may change during rendering. Cache keys should be generated from your data.
+* `useId` **ne bi trebao da se koristi za generisanje keš ključeva** za [use()](/reference/react/use). ID je stabilan kada je komponenta montirana, ali se može promeniti tokom renderovanja. Trebalo bi generisati keš ključeve na osnovu vaših podataka.
 
-* `useId` **should not be used to generate keys** in a list. [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+* `useId` **ne bi trebao da se koristi za generisanje ključeva** u listi. [Ključevi trebaju biti generisani na osnovu vaših podataka.](/learn/rendering-lists#where-to-get-your-key)
 
-* `useId` currently cannot be used in [async Server Components](/reference/rsc/server-components#async-components-with-server-components).
+* `useId` se trenutno ne može koristiti u [asinhronim Server Components](/reference/rsc/server-components#async-components-with-server-components).
 
 ---
 
-## Usage {/*usage*/}
+## Upotreba {/*usage*/}
 
 <Pitfall>
 
-**Do not call `useId` to generate keys in a list.** [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+**Nemojte pozivati `useId` da biste generisali ključeve u listi.** [Ključevi trebaju biti generisani na osnovu vaših podataka.](/learn/rendering-lists#where-to-get-your-key)
 
 </Pitfall>
 
-### Generating unique IDs for accessibility attributes {/*generating-unique-ids-for-accessibility-attributes*/}
+### Generisanje jedinstvenih ID-eva za atribute pristupačnosti {/*generating-unique-ids-for-accessibility-attributes*/}
 
-Call `useId` at the top level of your component to generate a unique ID:
+Pozovite `useId` na vrhu vaše komponente da biste generisali jedinstveni ID:
 
 ```js [[1, 4, "passwordHintId"]]
 import { useId } from 'react';
@@ -72,7 +72,7 @@ function PasswordField() {
   // ...
 ```
 
-You can then pass the <CodeStep step={1}>generated ID</CodeStep> to different attributes:
+Onda možete proslediti <CodeStep step={1}>generisani ID</CodeStep> u različite atribute:
 
 ```js [[1, 2, "passwordHintId"], [1, 3, "passwordHintId"]]
 <>
@@ -81,26 +81,26 @@ You can then pass the <CodeStep step={1}>generated ID</CodeStep> to different at
 </>
 ```
 
-**Let's walk through an example to see when this is useful.**
+**Prođimo kroz primer da vidimo kada je ovo korisno.**
 
-[HTML accessibility attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) like [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) let you specify that two tags are related to each other. For example, you can specify that an element (like an input) is described by another element (like a paragraph).
+[HTML atributi pristupačnosti](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) kao što je [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) vam omogućavaju da specificirate dva tag-a koja su povezana. Na primer, možete specificirati da je element (kao što je input) opisan drugim elementom (kao što je paragraph).
 
-In regular HTML, you would write it like this:
+U običnom HTML-u napisali biste ovako nešto:
 
 ```html {5,8}
 <label>
-  Password:
+  Šifra:
   <input
     type="password"
     aria-describedby="password-hint"
   />
 </label>
 <p id="password-hint">
-  The password should contain at least 18 characters
+  Šifra treba da sadrži barem 18 karaktera
 </p>
 ```
 
-However, hardcoding IDs like this is not a good practice in React. A component may be rendered more than once on the page--but IDs have to be unique! Instead of hardcoding an ID, generate a unique ID with `useId`:
+Međutim, hardkodirani ID-evi poput ovih nisu dobra praksa u React-u. Komponenta može biti renderovana više od jednom na stranici--ali ID-evi moraju biti jedinstveni! Umesto da hardkodirate ID, generišite jedinstveni ID sa `useId`:
 
 ```js {4,11,14}
 import { useId } from 'react';
@@ -110,21 +110,21 @@ function PasswordField() {
   return (
     <>
       <label>
-        Password:
+        Šifra:
         <input
           type="password"
           aria-describedby={passwordHintId}
         />
       </label>
       <p id={passwordHintId}>
-        The password should contain at least 18 characters
+        Šifra treba da sadrži barem 18 karaktera
       </p>
     </>
   );
 }
 ```
 
-Now, even if `PasswordField` appears multiple times on the screen, the generated IDs won't clash.
+Sada, čak iako se `PasswordField` pojavi više puta na ekranu, generisani ID-evi se neće preklapati.
 
 <Sandpack>
 
@@ -136,14 +136,14 @@ function PasswordField() {
   return (
     <>
       <label>
-        Password:
+        Šifra:
         <input
           type="password"
           aria-describedby={passwordHintId}
         />
       </label>
       <p id={passwordHintId}>
-        The password should contain at least 18 characters
+        Šifra treba da sadrži barem 18 karaktera
       </p>
     </>
   );
@@ -152,9 +152,9 @@ function PasswordField() {
 export default function App() {
   return (
     <>
-      <h2>Choose password</h2>
+      <h2>Unesi šifru</h2>
       <PasswordField />
-      <h2>Confirm password</h2>
+      <h2>Potvrdi šifru</h2>
       <PasswordField />
     </>
   );
@@ -167,33 +167,33 @@ input { margin: 5px; }
 
 </Sandpack>
 
-[Watch this video](https://www.youtube.com/watch?v=0dNzNcuEuOo) to see the difference in the user experience with assistive technologies.
+[Pogledajte ovaj video](https://www.youtube.com/watch?v=0dNzNcuEuOo) da biste uočili razliku u korisničkom iskustvu sa pomoćnim tehnologijama.
 
 <Pitfall>
 
-With [server rendering](/reference/react-dom/server), **`useId` requires an identical component tree on the server and the client**. If the trees you render on the server and the client don't match exactly, the generated IDs won't match.
+Sa [renderovanjem na serveru](/reference/react-dom/server), **`useId` zahteva identično stablo komponente na serveru i na klijentu**. Ako se stabla koja renderujete na serveru i klijentu ne poklapaju, ni generisani ID-evi se neće poklapati.
 
 </Pitfall>
 
 <DeepDive>
 
-#### Why is useId better than an incrementing counter? {/*why-is-useid-better-than-an-incrementing-counter*/}
+#### Zašto je useId bolji od inkrementalnog brojača? {/*why-is-useid-better-than-an-incrementing-counter*/}
 
-You might be wondering why `useId` is better than incrementing a global variable like `nextId++`.
+Možda se pitate zašto je `useId` bolji od inkrementiranja globalne promenljive poput `nextId++`.
 
-The primary benefit of `useId` is that React ensures that it works with [server rendering.](/reference/react-dom/server) During server rendering, your components generate HTML output. Later, on the client, [hydration](/reference/react-dom/client/hydrateRoot) attaches your event handlers to the generated HTML. For hydration to work, the client output must match the server HTML.
+Primarna korist od `useId` je da React garantuje da radi sa [renderovanjem na serveru](/reference/react-dom/server). Tokom renderovanja na serveru, vaše komponente generišu HTML izlaz. Kasnije, na klijentu, [hidratacijom](/reference/react-dom/client/hydrateRoot) se povezuju vaši event handler-i sa generisanim HTML-om. Da bi hidratacija radila, klijentski izlaz se mora poklapati sa serverskim HTML-om.
 
-This is very difficult to guarantee with an incrementing counter because the order in which the Client Components are hydrated may not match the order in which the server HTML was emitted. By calling `useId`, you ensure that hydration will work, and the output will match between the server and the client.
+Ovo je teško garantovati sa inkrementalnim brojačem jer se redosled u kom se Client Components hidratizuju možda neće poklapati sa redosledom u kom je emitovan HTML sa servera. Pozivanjem `useId` osiguravate da će hidratacija raditi i da će se izlaz servera poklapati sa klijentskim.
 
-Inside React, `useId` is generated from the "parent path" of the calling component. This is why, if the client and the server tree are the same, the "parent path" will match up regardless of rendering order.
+Unutar React-a, `useId` je generisan na osnovu "roditeljske putanje" pozivajuće komponente. Zbog toga, ako se klijentsko i serversko stablo poklapaju, "roditeljska putanja" će se poklapati bez obzira na redosled.
 
 </DeepDive>
 
 ---
 
-### Generating IDs for several related elements {/*generating-ids-for-several-related-elements*/}
+### Generisanje ID-eva za više povezanih elemenata {/*generating-ids-for-several-related-elements*/}
 
-If you need to give IDs to multiple related elements, you can call `useId` to generate a shared prefix for them: 
+Ako vam je potrebno da napravite ID-eve za više povezanih elemenata, možete pozvati `useId` da generišete deljeni prefiks za njih:
 
 <Sandpack>
 
@@ -204,10 +204,10 @@ export default function Form() {
   const id = useId();
   return (
     <form>
-      <label htmlFor={id + '-firstName'}>First Name:</label>
+      <label htmlFor={id + '-firstName'}>Ime:</label>
       <input id={id + '-firstName'} type="text" />
       <hr />
-      <label htmlFor={id + '-lastName'}>Last Name:</label>
+      <label htmlFor={id + '-lastName'}>Prezime:</label>
       <input id={id + '-lastName'} type="text" />
     </form>
   );
@@ -220,13 +220,13 @@ input { margin: 5px; }
 
 </Sandpack>
 
-This lets you avoid calling `useId` for every single element that needs a unique ID.
+Ovo vam omogućava da izbegnete pozivanje `useId`-a za svaki pojedinačni element kojem je potreban jedinstveni ID.
 
 ---
 
-### Specifying a shared prefix for all generated IDs {/*specifying-a-shared-prefix-for-all-generated-ids*/}
+### Specificiranje deljenog prefiksa za sve generisane ID-eve {/*specifying-a-shared-prefix-for-all-generated-ids*/}
 
-If you render multiple independent React applications on a single page, pass `identifierPrefix` as an option to your [`createRoot`](/reference/react-dom/client/createRoot#parameters) or [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) calls. This ensures that the IDs generated by the two different apps never clash because every identifier generated with `useId` will start with the distinct prefix you've specified.
+Ako renderujete više nezavisnih React aplikacija na jednog stranici, prosledite `identifierPrefix` u vaše [`createRoot`](/reference/react-dom/client/createRoot#parameters) ili [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) pozive. Ovo osigurava da se ID-evi generisani u dve različite aplikacije nikad neće preklapati jer će svaki identifikator generisan sa `useId` početi sa različitim prefiksom koji ste specificirali.
 
 <Sandpack>
 
@@ -246,18 +246,18 @@ import { useId } from 'react';
 
 function PasswordField() {
   const passwordHintId = useId();
-  console.log('Generated identifier:', passwordHintId)
+  console.log('Generisani identifikator:', passwordHintId)
   return (
     <>
       <label>
-        Password:
+        Šifra:
         <input
           type="password"
           aria-describedby={passwordHintId}
         />
       </label>
       <p id={passwordHintId}>
-        The password should contain at least 18 characters
+        Šifra treba da sadrži barem 18 karaktera
       </p>
     </>
   );
@@ -266,7 +266,7 @@ function PasswordField() {
 export default function App() {
   return (
     <>
-      <h2>Choose password</h2>
+      <h2>Unesi šifru</h2>
       <PasswordField />
     </>
   );
@@ -309,9 +309,9 @@ input { margin: 5px; }
 
 ---
 
-### Using the same ID prefix on the client and the server {/*using-the-same-id-prefix-on-the-client-and-the-server*/}
+### Upotreba istog ID prefiksa na klijentu i serveru {/*using-the-same-id-prefix-on-the-client-and-the-server*/}
 
-If you [render multiple independent React apps on the same page](#specifying-a-shared-prefix-for-all-generated-ids), and some of these apps are server-rendered, make sure that the `identifierPrefix` you pass to the [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) call on the client side is the same as the `identifierPrefix` you pass to the [server APIs](/reference/react-dom/server) such as [`renderToPipeableStream`.](/reference/react-dom/server/renderToPipeableStream)
+Ako [renderujete više nezavisnih React aplikacija na istoj stranici](#specifying-a-shared-prefix-for-all-generated-ids), a neke od tih aplikacija su renderovane na serveru, postarajte se da `identifierPrefix` koji prosleđujete u [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) poziv na klijentskoj strani bude isti kao i `identifierPrefix` koji prosleđujete u [serverske API-je](/reference/react-dom/server) poput [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream).
 
 ```js
 // Server
@@ -324,7 +324,7 @@ const { pipe } = renderToPipeableStream(
 ```
 
 ```js
-// Client
+// Klijent
 import { hydrateRoot } from 'react-dom/client';
 
 const domNode = document.getElementById('root');
@@ -335,4 +335,4 @@ const root = hydrateRoot(
 );
 ```
 
-You do not need to pass `identifierPrefix` if you only have one React app on the page.
+Nije potrebno da prosleđujete `identifierPrefix` ako imate samo jednu React aplikaciju na stranici.
