@@ -104,7 +104,11 @@ Server Components i Suspense su funkcionalnosti React-a, a ne Next.js-a. Međuti
 
 Ako vaša aplikacija ima ograničenja koja nisu dobro rešena u postojećim framework-ovima, ako želite da napravite sopstveni framework, ili samo želite naučiti osnove React aplikacija, postoji još opcija za započinjanje React projekta od nule.
 
+<<<<<<< HEAD
 Početak od nule vam pruža više fleksibilnosti, ali zahteva da napravite odluku koje alate ćete koristiti za rutiranje, fetch-ovanje podataka i ostale često korišćene šablone. To je kao da pravite sopstveni framework, a ne da koristite već postojeći. [Framework-ovi koje preporučujemo](#full-stack-frameworks) imaju ugrađena rešenja za ovakve probleme.
+=======
+Starting from scratch gives you more flexibility, but does require that you make choices on which tools to use for routing, data fetching, and other common usage patterns.  It's a lot like building your own framework, instead of using a framework that already exists. The [frameworks we recommend](#full-stack-frameworks) have built-in solutions for these problems.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Ako želite napraviti vaša rešenja, pogledajte uputstvo kako [napraviti React aplikaciju od nule](/learn/build-a-react-app-from-scratch) za instrukcije oko postavki React projekta počevši od postojećih build alata kao što su [Vite](https://vite.dev/), [Parcel](https://parceljs.org/) ili [RSbuild](https://rsbuild.dev/).
 

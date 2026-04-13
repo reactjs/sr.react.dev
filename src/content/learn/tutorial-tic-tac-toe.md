@@ -337,7 +337,11 @@ import './styles.css';
 import App from './App';
 ```
 
+<<<<<<< HEAD
 Linije 1-5 spajaju sve potrebne delove zajedno:
+=======
+Lines 1-5 bring all the necessary pieces together:
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 - React
 - React-ov library za komunikaciju sa web browserima (React DOM)
@@ -551,7 +555,11 @@ export default function Board() {
 }
 ```
 
+<<<<<<< HEAD
 Obratite pažnju na to da, za razliku od browser-ovih `div`-ova, vaše component-e `Board` i `Square` moraju počinjati velikim slovom.
+=======
+Note how unlike the browser `div`s, your own components `Board` and `Square` must start with a capital letter.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Hajde da pogledamo:
 
@@ -1094,7 +1102,11 @@ function Square({ value, onSquareClick }) {
 }
 ```
 
+<<<<<<< HEAD
 Sada ćete povezati `onSquareClick` prop sa funkcijom u `Board` component-i koju ćete nazvati `handleClick`. Da biste povezali `onSquareClick` sa `handleClick`, prosledićete funkciju kao vrednost `onSquareClick` prop-u prve `Square` component-e:
+=======
+Now you'll connect the `onSquareClick` prop to a function in the `Board` component that you'll name `handleClick`. To connect `onSquareClick` to `handleClick` you'll pass a function to the `onSquareClick` prop of the first `Square` component:
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 ```js {7}
 export default function Board() {
@@ -2083,13 +2095,22 @@ export default function Game() {
 }
 ```
 
+<<<<<<< HEAD
 Možete videti kako vaš kod treba da izgleda ispod. Imajte na umu da biste u konzoli trebalo da vidite grešku koja kaže:
+=======
+You can see what your code should look like below. Note that you should see an error in the developer tools console that says:
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <ConsoleBlock level="warning">
 Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of &#96;Game&#96;.
 </ConsoleBlock>
+<<<<<<< HEAD
   
 Ovu grešku ćete rešiti u sledećem odeljku.
+=======
+
+You'll fix this error in the next section.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <Sandpack>
 

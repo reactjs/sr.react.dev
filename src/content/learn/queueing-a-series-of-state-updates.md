@@ -178,7 +178,11 @@ Tokom narednog rendera React prolazi kroz red čekanja za state:
 | "zameni sa `5`"           | `0` (neupotrebljeno) | `5`               |
 | `n => n + 1`              | `5`                  | `5 + 1 = 6`       |
 
+<<<<<<< HEAD
 React čuva `6` kao konačan rezultat i vraća ga iz `useState`.
+=======
+React stores `6` as the final result and returns it from `useState`.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <Note>
 
@@ -306,7 +310,11 @@ export default function RequestTracker() {
         Završeno: {completed}
       </h3>
       <button onClick={handleClick}>
+<<<<<<< HEAD
         Kupi     
+=======
+        Buy
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
       </button>
     </>
   );
@@ -350,7 +358,11 @@ export default function RequestTracker() {
         Završeno: {completed}
       </h3>
       <button onClick={handleClick}>
+<<<<<<< HEAD
         Kupi     
+=======
+        Buy
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
       </button>
     </>
   );

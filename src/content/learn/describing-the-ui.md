@@ -32,7 +32,7 @@ React aplikacije su izgrađene od izolovanih delova korisničkog interfejsa (UI)
 function Profile() {
   return (
     <img
-      src="https://i.imgur.com/MK3eW3As.jpg"
+      src="https://react.dev/images/docs/scientists/MK3eW3As.jpg"
       alt="Katherine Johnson"
     />
   );
@@ -98,7 +98,7 @@ export default function Gallery() {
 export default function Profile() {
   return (
     <img
-      src="https://i.imgur.com/QIrZWGIs.jpg"
+      src="https://react.dev/images/docs/scientists/QIrZWGIs.jpg"
       alt="Alan L. Hart"
     />
   );
@@ -131,7 +131,7 @@ export default function TodoList() {
     // Ovo baš i ne radi!
     <h1>Hedy Lamarr-ina Todo lista</h1>
     <img
-      src="https://i.imgur.com/yXOvdOSs.jpg"
+      src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
       alt="Hedy Lamarr"
       class="photo"
     >
@@ -160,7 +160,7 @@ export default function TodoList() {
     <>
       <h1>Hedy Lamarr-ina Todo lista</h1>
       <img
-        src="https://i.imgur.com/yXOvdOSs.jpg"
+        src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
         alt="Hedy Lamarr"
         className="photo"
       />
@@ -207,7 +207,7 @@ export default function TodoList() {
       <h1>{person.name}'s Todos</h1>
       <img
         className="avatar"
-        src="https://i.imgur.com/7vQD0fPs.jpg"
+        src="https://react.dev/images/docs/scientists/7vQD0fPs.jpg"
         alt="Gregorio Y. Zara"
       />
       <ul>
@@ -282,7 +282,7 @@ function Card({ children }) {
 ```js src/utils.js
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -435,7 +435,7 @@ export const people = [{
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     's.jpg'
   );
@@ -527,10 +527,16 @@ Pročitajte **[Održavanje komponenata čistim](/learn/keeping-components-pure)*
 
 ## Razumevanje vašeg UI-a kao stabla {/*understanding-your-ui-as-a-tree*/}
 
+<<<<<<< HEAD
 React koristi stabla da modeluje odnose između komponenata i modula.
 
 React stablo renderovanja je reprezentacija odnosa roditelj-dete između komponenata.
 
+=======
+React uses trees to model the relationships between components and modules.
+
+A React render tree is a representation of the parent and child relationship between components.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <Diagram name="generic_render_tree" height={250} width={500} alt="A tree graph with five nodes, with each node representing a component. The root node is located at the top the tree graph and is labelled 'Root Component'. It has two arrows extending down to two nodes labelled 'Component A' and 'Component C'. Each of the arrows is labelled with 'renders'. 'Component A' has a single 'renders' arrow to a node labelled 'Component B'. 'Component C' has a single 'renders' arrow to a node labelled 'Component D'.">
 
@@ -540,7 +546,11 @@ Primer stabla renderovanja.
 
 Komponente koje se nalaze bliže vrhu stabla, bliže korenu komponente, smatraju se komponentama najvišeg nivoa. Komponente bez podkomponenata su list komponente. Ova kategorizacija komponenata je korisna za razumevanje toka podataka i performansi renderovanja.
 
+<<<<<<< HEAD
 Modelovanje odnosa između JavaScript modula je još jedan koristan način za razumevanje vaše aplikacije. Mi ga nazivamo modul zavisnosti stablo.
+=======
+Modelling the relationship between JavaScript modules is another useful way to understand your app. We refer to it as a module dependency tree.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <Diagram name="generic_dependency_tree" height={250} width={500} alt="A tree graph with five nodes. Each node represents a JavaScript module. The top-most node is labelled 'RootModule.js'. It has three arrows extending to the nodes: 'ModuleA.js', 'ModuleB.js', and 'ModuleC.js'. Each arrow is labelled as 'imports'. 'ModuleC.js' node has a single 'imports' arrow that points to a node labelled 'ModuleD.js'.">
 
@@ -548,7 +558,11 @@ Primer modul zavisnosti stabla.
 
 </Diagram>
 
+<<<<<<< HEAD
 Drvo zavisnosti često je korišćeno od strane alata za izgradnju da bi se sve JavaScript datoteke relevantne za klijenta spakovale u jednu datoteku. Velika veličina paketa regresira korisničko iskustvo za React aplikacije. Razumevanje modul zavisnosti stabla je korisno za otklanjanje grešaka.
+=======
+A dependency tree is often used by build tools to bundle all the relevant JavaScript code for the client to download and render. A large bundle size regresses user experience for React apps. Understanding the module dependency tree is helpful to debug such issues.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <LearnMore path="/learn/understanding-your-ui-as-a-tree">
 
