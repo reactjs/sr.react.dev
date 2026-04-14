@@ -1114,7 +1114,7 @@ export const places = [{
 }, {
   id: 3,
   name: 'Stepenište Selarón u Rio de Žaneiru, Brazil',
-  description: 'This landmark was created by Jorge Selarón, a Chilean-born artist, as a "tribute to the Brazilian people".',
+  description: 'Ovu znamenitost je napravio Jorge Selarón, čileanski umetnik, kao "počast brazilskom narodu".',
   imageId: 'aeO3rpI'
 }, {
   id: 4,
