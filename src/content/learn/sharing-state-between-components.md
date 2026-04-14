@@ -323,11 +323,7 @@ Da biste videli kako ovo izgleda u praksi sa nekoliko komponenata, pročitajte [
 
 #### Sinhronizovani input-i {/*synced-inputs*/}
 
-<<<<<<< HEAD
-Ova dva input-a su nezavisna. Sinhronizujte ih: izmena jednog input-a treba da postavi isti tekst u drugi input, i obrnuto. 
-=======
-These two inputs are independent. Make them stay in sync: editing one input should update the other input with the same text, and vice versa.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+Ova dva input-a su nezavisna. Sinhronizujte ih: izmena jednog input-a treba da postavi isti tekst u drugi input, i obrnuto.
 
 <Hint>
 

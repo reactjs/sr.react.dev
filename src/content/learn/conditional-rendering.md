@@ -32,31 +32,17 @@ export default function PackingList() {
     <section>
       <h1>Lista za pakovanje od Sally Ride</h1>
       <ul>
-<<<<<<< HEAD
-        <Item 
-          isPacked={true} 
-          name="Svemirsko odelo" 
-        />
-        <Item 
-          isPacked={true} 
-          name="Kaciga sa zlatnim listom" 
-        />
-        <Item 
-          isPacked={false} 
-          name="Fotografija od Tam" 
-=======
         <Item
           isPacked={true}
-          name="Space suit"
+          name="Svemirsko odelo"
         />
         <Item
           isPacked={true}
-          name="Helmet with a golden leaf"
+          name="Kaciga sa zlatnim listom"
         />
         <Item
           isPacked={false}
-          name="Photo of Tam"
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+          name="Fotografija od Tam"
         />
       </ul>
     </section>
@@ -94,31 +80,17 @@ export default function PackingList() {
     <section>
       <h1>Lista za pakovanje od Sally Ride</h1>
       <ul>
-<<<<<<< HEAD
-        <Item 
-          isPacked={true} 
-          name="Svemirsko odelo" 
-        />
-        <Item 
-          isPacked={true} 
-          name="Kaciga sa zlatnim listom" 
-        />
-        <Item 
-          isPacked={false} 
-          name="Fotografija od Tam" 
-=======
         <Item
           isPacked={true}
-          name="Space suit"
+          name="Svemirsko odelo"
         />
         <Item
           isPacked={true}
-          name="Helmet with a golden leaf"
+          name="Kaciga sa zlatnim listom"
         />
         <Item
           isPacked={false}
-          name="Photo of Tam"
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+          name="Fotografija od Tam"
         />
       </ul>
     </section>
@@ -160,31 +132,17 @@ export default function PackingList() {
     <section>
       <h1>Lista za pakovanje od Sally Ride</h1>
       <ul>
-<<<<<<< HEAD
-        <Item 
-          isPacked={true} 
-          name="Svemirsko odelo" 
-        />
-        <Item 
-          isPacked={true} 
-          name="Kaciga sa zlatnim listom" 
-        />
-        <Item 
-          isPacked={false} 
-          name="Fotografija od Tam" 
-=======
         <Item
           isPacked={true}
-          name="Space suit"
+          name="Svemirsko odelo"
         />
         <Item
           isPacked={true}
-          name="Helmet with a golden leaf"
+          name="Kaciga sa zlatnim listom"
         />
         <Item
           isPacked={false}
-          name="Photo of Tam"
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+          name="Fotografija od Tam"
         />
       </ul>
     </section>
@@ -278,31 +236,17 @@ export default function PackingList() {
     <section>
       <h1>Lista za pakovanje od Sally Ride</h1>
       <ul>
-<<<<<<< HEAD
-        <Item 
-          isPacked={true} 
-          name="Svemirsko odelo" 
-        />
-        <Item 
-          isPacked={true} 
-          name="Kaciga sa zlatnim listom" 
-        />
-        <Item 
-          isPacked={false} 
-          name="Fotografija od Tam" 
-=======
         <Item
           isPacked={true}
-          name="Space suit"
+          name="Svemirsko odelo"
         />
         <Item
           isPacked={true}
-          name="Helmet with a golden leaf"
+          name="Kaciga sa zlatnim listom"
         />
         <Item
           isPacked={false}
-          name="Photo of Tam"
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+          name="Fotografija od Tam"
         />
       </ul>
     </section>
@@ -346,31 +290,17 @@ export default function PackingList() {
     <section>
       <h1>Lista za pakovanje od Sally Ride</h1>
       <ul>
-<<<<<<< HEAD
-        <Item 
-          isPacked={true} 
-          name="Svemirsko odelo" 
-        />
-        <Item 
-          isPacked={true} 
-          name="Kaciga sa zlatnim listom" 
-        />
-        <Item 
-          isPacked={false} 
-          name="Fotografija od Tam" 
-=======
         <Item
           isPacked={true}
-          name="Space suit"
+          name="Svemirsko odelo"
         />
         <Item
           isPacked={true}
-          name="Helmet with a golden leaf"
+          name="Kaciga sa zlatnim listom"
         />
         <Item
           isPacked={false}
-          name="Photo of Tam"
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+          name="Fotografija od Tam"
         />
       </ul>
     </section>
@@ -441,31 +371,17 @@ export default function PackingList() {
     <section>
       <h1>Lista za pakovanje od Sally Ride</h1>
       <ul>
-<<<<<<< HEAD
-        <Item 
-          isPacked={true} 
-          name="Svemirsko odelo" 
-        />
-        <Item 
-          isPacked={true} 
-          name="Kaciga sa zlatnim listom" 
-        />
-        <Item 
-          isPacked={false} 
-          name="Fotografija od Tam" 
-=======
         <Item
           isPacked={true}
-          name="Space suit"
+          name="Svemirsko odelo"
         />
         <Item
           isPacked={true}
-          name="Helmet with a golden leaf"
+          name="Kaciga sa zlatnim listom"
         />
         <Item
           isPacked={false}
-          name="Photo of Tam"
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+          name="Fotografija od Tam"
         />
       </ul>
     </section>
@@ -501,31 +417,17 @@ export default function PackingList() {
     <section>
       <h1>Lista za pakovanje od Sally Ride</h1>
       <ul>
-<<<<<<< HEAD
-        <Item 
-          isPacked={true} 
-          name="Svemirsko odelo" 
-        />
-        <Item 
-          isPacked={true} 
-          name="Kaciga sa zlatnim listom" 
-        />
-        <Item 
-          isPacked={false} 
-          name="Fotografija od Tam" 
-=======
         <Item
           isPacked={true}
-          name="Space suit"
+          name="Svemirsko odelo"
         />
         <Item
           isPacked={true}
-          name="Helmet with a golden leaf"
+          name="Kaciga sa zlatnim listom"
         />
         <Item
           isPacked={false}
-          name="Photo of Tam"
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+          name="Fotografija od Tam"
         />
       </ul>
     </section>
@@ -572,31 +474,17 @@ export default function PackingList() {
     <section>
       <h1>Lista za pakovanje od Sally Ride</h1>
       <ul>
-<<<<<<< HEAD
-        <Item 
-          isPacked={true} 
-          name="Svemirsko odelo" 
-        />
-        <Item 
-          isPacked={true} 
-          name="Kaciga sa zlatnim listom" 
-        />
-        <Item 
-          isPacked={false} 
-          name="Fotografija od Tam" 
-=======
         <Item
           isPacked={true}
-          name="Space suit"
+          name="Svemirsko odelo"
         />
         <Item
           isPacked={true}
-          name="Helmet with a golden leaf"
+          name="Kaciga sa zlatnim listom"
         />
         <Item
           isPacked={false}
-          name="Photo of Tam"
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+          name="Fotografija od Tam"
         />
       </ul>
     </section>
@@ -624,31 +512,17 @@ export default function PackingList() {
     <section>
       <h1>Lista za pakovanje od Sally Ride</h1>
       <ul>
-<<<<<<< HEAD
-        <Item 
-          isPacked={true} 
-          name="Svemirsko odelo" 
-        />
-        <Item 
-          isPacked={true} 
-          name="Kaciga sa zlatnim listom" 
-        />
-        <Item 
-          isPacked={false} 
-          name="Fotografija od Tam" 
-=======
         <Item
           isPacked={true}
-          name="Space suit"
+          name="Svemirsko odelo"
         />
         <Item
           isPacked={true}
-          name="Helmet with a golden leaf"
+          name="Kaciga sa zlatnim listom"
         />
         <Item
           isPacked={false}
-          name="Photo of Tam"
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+          name="Fotografija od Tam"
         />
       </ul>
     </section>
@@ -686,31 +560,17 @@ export default function PackingList() {
     <section>
       <h1>Lista za pakovanje od Sally Ride</h1>
       <ul>
-<<<<<<< HEAD
-        <Item 
-          importance={9} 
-          name="Svemirsko odelo" 
-        />
-        <Item 
-          importance={0} 
-          name="Kaciga sa zlatnim listom" 
-        />
-        <Item 
-          importance={6} 
-          name="Fotografija od Tam" 
-=======
         <Item
           importance={9}
-          name="Space suit"
+          name="Svemirsko odelo"
         />
         <Item
           importance={0}
-          name="Helmet with a golden leaf"
+          name="Kaciga sa zlatnim listom"
         />
         <Item
           importance={6}
-          name="Photo of Tam"
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+          name="Fotografija od Tam"
         />
       </ul>
     </section>
@@ -744,31 +604,17 @@ export default function PackingList() {
     <section>
       <h1>Lista za pakovanje od Sally Ride</h1>
       <ul>
-<<<<<<< HEAD
-        <Item 
-          importance={9} 
-          name="Svemirsko odelo" 
-        />
-        <Item 
-          importance={0} 
-          name="Kaciga sa zlatnim listom" 
-        />
-        <Item 
-          importance={6} 
-          name="Fotografija od Tam" 
-=======
         <Item
           importance={9}
-          name="Space suit"
+          name="Svemirsko odelo"
         />
         <Item
           importance={0}
-          name="Helmet with a golden leaf"
+          name="Kaciga sa zlatnim listom"
         />
         <Item
           importance={6}
-          name="Photo of Tam"
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+          name="Fotografija od Tam"
         />
       </ul>
     </section>

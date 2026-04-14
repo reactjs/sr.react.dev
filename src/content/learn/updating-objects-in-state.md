@@ -296,11 +296,7 @@ setPerson({
 });
 ```
 
-<<<<<<< HEAD
-Sada forma radi! 
-=======
-Now the form works!
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+Sada forma radi!
 
 Primetite da niste deklarisali posebnu state promenljivu za svako input polje. Za velike forme, grupisanje svih podataka u objekat je veoma zgodno--dok god ga ažurirate kako treba!
 
@@ -377,11 +373,7 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
-<<<<<<< HEAD
 Primetite da je `...` spread sintaksa "plitka"--kopira polja samo na prvom nivou dubine. Ovo je čini brzom, ali, takođe znači da ako želite ažurirati ugnježdeno polje, moraćete je koristiti više od jednom.
-=======
-Note that the `...` spread syntax is "shallow"--it only copies things one level deep. This makes it fast, but it also means that if you want to update a nested property, you'll have to use it more than once.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <DeepDive>
 

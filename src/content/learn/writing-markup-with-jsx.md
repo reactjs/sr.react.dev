@@ -69,17 +69,10 @@ JSX i React su dve odvojene stvari. Često se koriste zajedno, ali *možete* [ih
 Pretpostavimo da imate neki (potpuno validan) HTML:
 
 ```html
-<<<<<<< HEAD
 <h1>Hedy Lamarr-ina Todo lista</h1>
-<img 
-  src="https://i.imgur.com/yXOvdOSs.jpg" 
-  alt="Hedy Lamarr" 
-=======
-<h1>Hedy Lamarr's Todos</h1>
 <img
   src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
   alt="Hedy Lamarr"
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   class="photo"
 >
 <ul>
@@ -107,19 +100,11 @@ Ako uradite samo copy/paste, to neće raditi:
 ```js
 export default function TodoList() {
   return (
-<<<<<<< HEAD
     // Ovo baš i ne radi!
     <h1>Hedy Lamarr-ina Todo lista</h1>
-    <img 
-      src="https://i.imgur.com/yXOvdOSs.jpg" 
-      alt="Hedy Lamarr" 
-=======
-    // This doesn't quite work!
-    <h1>Hedy Lamarr's Todos</h1>
     <img
       src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
       alt="Hedy Lamarr"
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
       class="photo"
     >
     <ul>
@@ -155,17 +140,10 @@ Na primer, možete koristiti `<div>`:
 
 ```js {1,11}
 <div>
-<<<<<<< HEAD
   <h1>Hedy Lamarr-ina Todo lista</h1>
-  <img 
-    src="https://i.imgur.com/yXOvdOSs.jpg" 
-    alt="Hedy Lamarr" 
-=======
-  <h1>Hedy Lamarr's Todos</h1>
   <img
     src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
     alt="Hedy Lamarr"
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
     class="photo"
   >
   <ul>
@@ -179,17 +157,10 @@ Ako ne želite da dodate novi `<div>` u vaš markup, možete umesto toga koristi
 
 ```js {1,11}
 <>
-<<<<<<< HEAD
   <h1>Hedy Lamarr-ina Todo lista</h1>
-  <img 
-    src="https://i.imgur.com/yXOvdOSs.jpg" 
-    alt="Hedy Lamarr" 
-=======
-  <h1>Hedy Lamarr's Todos</h1>
   <img
     src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
     alt="Hedy Lamarr"
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
     class="photo"
   >
   <ul>
@@ -263,19 +234,11 @@ Ovo je konačni rezultat:
 export default function TodoList() {
   return (
     <>
-<<<<<<< HEAD
       <h1>Hedy Lamarr-ina Todo lista</h1>
-      <img 
-        src="https://i.imgur.com/yXOvdOSs.jpg" 
-        alt="Hedy Lamarr" 
-        className="photo" 
-=======
-      <h1>Hedy Lamarr's Todos</h1>
       <img
         src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
         alt="Hedy Lamarr"
         className="photo"
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
       />
       <ul>
         <li>Izmisli nove semafore</li>

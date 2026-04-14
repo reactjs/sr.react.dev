@@ -38,15 +38,9 @@ Započnite crtanjem granica oko svake komponente i subkomponente na mockup-u i p
 
 U zavisnosti od vašeg znanja, možete razmišljati o podeli dizajna na komponente na više načina:
 
-<<<<<<< HEAD
 * **Programiranje**--koristite iste tehnike odlučivanja kao da trebate kreirati novu funkciju ili objekat. Jedna takva tehnika je [razdvajanje odgovornosti (separation of concerns)](https://en.wikipedia.org/wiki/Separation_of_concerns), što znači da bi se komponenta idealno trebala baviti samo jednom stvari. Ako se komponenta povećava, trebalo bi je rasparčati na manje subkomponente.
 * **CSS**--razmotrite za šta biste kreirali class selector-e. (Ipak, komponente su malo granularnije.)
 * **Dizajn**--razmotrite kako biste organizovali slojeve dizajna.
-=======
-* **Programming**--use the same techniques for deciding if you should create a new function or object. One such technique is the [separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns), that is, a component should ideally only be concerned with one thing. If it ends up growing, it should be decomposed into smaller subcomponents.
-* **CSS**--consider what you would make class selectors for. (However, components are a bit less granular.)
-* **Design**--consider how you would organize the design's layers.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Ako je vaš JSON dobro struktuiran, često ćete primetiti da se prirodno mapira na strukturu komponenti na vašem UI-u. To je zato što UI i modeli podataka često imaju istu arhitekturu informacija, odnosno isti oblik. Podelite UI na komponente tako da svaka komponenta odgovara jednom delu modela podataka.
 
@@ -235,17 +229,10 @@ Ono što ostaje je verovatno state.
 
 Prođimo kroz podatke još jednom:
 
-<<<<<<< HEAD
 1. Originalna lista proizvoda je **prosleđena kao props, tako da nije state**.
 2. Tekst za pretragu deluje kao state zato što se vremenom menja i ne može biti izračunat.
 3. Vrednost checkbox-a deluje kao state zato što se vremenom menja i ne može biti izračunata.
 4. Filtrirana lista proizvoda **nije state zato što može biti izračunata** filtriranjem originalne liste proizvoda pomoću teksta za pretragu i vrednosti checkbox-a.
-=======
-1. The original list of products is **passed in as props, so it's not state.**
-2. The search text seems to be state since it changes over time and can't be computed from anything.
-3. The value of the checkbox seems to be state since it changes over time and can't be computed from anything.
-4. The filtered list of products **isn't state because it can be computed** by taking the original list of products and filtering it according to the search text and value of the checkbox.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Ovo znači da su samo tekst za pretragu i vrednost checkbox-a state-ovi! Dobar posao!
 
@@ -279,23 +266,13 @@ U prethodnom koraku, pronašli ste dva state-a u aplikaciji: tekst za pretragu i
 
 Primenimo našu strategiju za njih:
 
-<<<<<<< HEAD
 1. **Identifikovati komponente koje koriste state:**
-    * `ProductTable` treba da filtrira listu proizvoda na osnovu state-a (tekst za pretragu i vrednost checkbox-a). 
+    * `ProductTable` treba da filtrira listu proizvoda na osnovu state-a (tekst za pretragu i vrednost checkbox-a).
     * `SearchBar` treba da prikaže state (tekst za pretragu i vrednost checkbox-a).
 2. **Pronaći zajedničkog roditelja:** Prva komponenta koja sadrži obe komponente je `FilterableProductTable`.
 3. **Odlučiti gde živi state:** Držaćemo tekst za pretragu i vrednost checkbox-a u `FilterableProductTable`.
 
 Znači, state vrednosti će živeti u `FilterableProductTable`.
-=======
-1. **Identify components that use state:**
-    * `ProductTable` needs to filter the product list based on that state (search text and checkbox value).
-    * `SearchBar` needs to display that state (search text and checkbox value).
-2. **Find their common parent:** The first parent component both components share is `FilterableProductTable`.
-3. **Decide where the state lives**: We'll keep the filter text and checked state values in `FilterableProductTable`.
-
-So the state values will live in `FilterableProductTable`.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Dodajte state u komponentu pomoću [`useState()` Hook](/reference/react/useState)-a. Hook-ovi su posebne funkcije koje vam omogućavaju da "se zakačite" za React. Dodajte dve state promenljive na vrh `FilterableProductTable` i zadajte njihov početni state:
 
@@ -413,17 +390,10 @@ function ProductTable({ products, filterText, inStockOnly }) {
 function SearchBar({ filterText, inStockOnly }) {
   return (
     <form>
-<<<<<<< HEAD
-      <input 
-        type="text" 
-        value={filterText} 
-        placeholder="Pretraži..."/>
-=======
       <input
         type="text"
         value={filterText}
-        placeholder="Search..."/>
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+        placeholder="Pretraži..."/>
       <label>
         <input
           type="checkbox"
@@ -488,17 +458,10 @@ U sandbox-u iznad, `ProductTable` i `SearchBar` čitaju `filterText` i `inStockO
 function SearchBar({ filterText, inStockOnly }) {
   return (
     <form>
-<<<<<<< HEAD
-      <input 
-        type="text" 
-        value={filterText} 
-        placeholder="Pretraži..."/>
-=======
       <input
         type="text"
         value={filterText}
-        placeholder="Search..."/>
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+        placeholder="Pretraži..."/>
 ```
 
 Međutim, još uvek niste dodali kod koji bi odgovarao na korisničke akcije poput kucanja. To će biti naš poslednji korak.
@@ -506,11 +469,7 @@ Međutim, još uvek niste dodali kod koji bi odgovarao na korisničke akcije pop
 
 ## Korak 5: Dodati inverzni data flow {/*step-5-add-inverse-data-flow*/}
 
-<<<<<<< HEAD
 Trenutno, vaša aplikacija korektno renderuje props-e i state-ove koje komponente dobijaju od roditelja. Ali, da biste promenili state na osnovu korisničkog input-a, morate podržati data flow na drugačiji način: komponente duboko u hijerarhiji trebaju promeniti state u `FilterableProductTable`.
-=======
-Currently your app renders correctly with props and state flowing down the hierarchy. But to change the state according to user input, you will need to support data flowing the other way: the form components deep in the hierarchy need to update the state in `FilterableProductTable`.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 React eksplicitno podržava ovakav data flow, ali je potrebno malo više od dvosmernog data binding-a. Ako pokušate da kucate ili promenite vrednost checkbox-a u primeru iznad, videćete da React ignoriše vaš input. To je namerno urađeno. Kada napišete `<input value={filterText} />`, setovaćete `value` prop `input`-a da uvek bude jednak `filterText` state-u prosleđenom iz `FilterableProductTable`. Pošto se `filterText` state nikad ne menja, ni input se ne menja.
 
@@ -655,15 +614,9 @@ function SearchBar({
 }) {
   return (
     <form>
-<<<<<<< HEAD
-      <input 
-        type="text" 
-        value={filterText} placeholder="Pretraži..." 
-=======
       <input
         type="text"
-        value={filterText} placeholder="Search..."
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+        value={filterText} placeholder="Pretraži..."
         onChange={(e) => onFilterTextChange(e.target.value)} />
       <label>
         <input

@@ -121,11 +121,7 @@ const people = [{
 }, {
   id: 3,
   name: 'Percy Lavon Julian',
-<<<<<<< HEAD
   profession: 'hemičar',
-=======
-  profession: 'chemist',
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 }, {
   id: 4,
   name: 'Subrahmanyan Chandrasekhar',

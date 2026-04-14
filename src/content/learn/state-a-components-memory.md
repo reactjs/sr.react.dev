@@ -40,19 +40,11 @@ export default function Gallery() {
         Naredno
       </button>
       <h2>
-<<<<<<< HEAD
-        <i>{sculpture.name} </i> 
+        <i>{sculpture.name} </i>
         napravio/la {sculpture.artist}
       </h2>
-      <h3>  
-        ({index + 1} od {sculptureList.length})
-=======
-        <i>{sculpture.name} </i>
-        by {sculpture.artist}
-      </h2>
       <h3>
-        ({index + 1} of {sculptureList.length})
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+        ({index + 1} od {sculptureList.length})
       </h3>
       <img
         src={sculpture.url}
@@ -70,147 +62,75 @@ export default function Gallery() {
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
-<<<<<<< HEAD
   description: 'Iako je Marta Colvin pretežno poznata po apstraktnim temama koje aludiraju na pre-hispanske simbole, ova velika skulptura, koja je omaž neurohirurgiji, jedna je od njenih najpoznatijih remek dela.',
-  url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-  alt: 'Bronzana statua dve skrštene ruke koje pažljivo drže ljudski mozak vrhovima prstiju.'  
+  url: 'https://react.dev/images/docs/scientists/Mx7dA2Y.jpg',
+  alt: 'Bronzana statua dve skrštene ruke koje pažljivo drže ljudski mozak vrhovima prstiju.'
 }, {
   name: 'Floralis Genérica',
   artist: 'Eduardo Catalano',
   description: 'Ovaj ogromni (75 ft. ili 23m) srebrni cvet se nalazi u Buenos Ajresu. Dizajniran je da se pomera, zatvarajući svoje latice uveče ili kada duvaju jaki vetrovi, a otvarajući ih ujutru.',
-  url: 'https://i.imgur.com/ZF6s192m.jpg',
+  url: 'https://react.dev/images/docs/scientists/ZF6s192m.jpg',
   alt: 'Velika metalna skulptura cveta sa reflektujućim laticama nalik na ogledalo i snažnim prašnicima.'
 }, {
   name: 'Eternal Presence',
   artist: 'John Woodrow Wilson',
   description: 'Wilson je poznat po svojoj preokupiranosti jednakošću, socijalnom pravdom, kao i suštinskim i duhovnim kvalitetima čovečanstva. Ova masivna (7ft. ili 2,13m) bronzana skulptura predstavlja ono što je on objasnio kao "simbolično crno prisustvo prožeto osećajem univerzalne humanosti".',
-  url: 'https://i.imgur.com/aTtVpES.jpg',
+  url: 'https://react.dev/images/docs/scientists/aTtVpES.jpg',
   alt: 'Skulptura ljudske glave koja deluje sveprisutno i svečano. Zrači mirnoćom i spokojstvom.'
 }, {
   name: 'Moai',
   artist: 'Nepoznati umetnik',
   description: 'Nalazi se na Uskršnjem ostrvu, gde postoji oko 1,000 moai očuvanih monumentalnih skulptura, koje su napravili prvobitni Rapa Nui ljudi, za koje se veruje da predstavljaju pretke Bogova.',
-  url: 'https://i.imgur.com/RCwLEoQm.jpg',
+  url: 'https://react.dev/images/docs/scientists/RCwLEoQm.jpg',
   alt: 'Tri monumentalne biste sa neproporcionalno velikim glavama i namrštenim licima.'
 }, {
   name: 'Blue Nana',
   artist: 'Niki de Saint Phalle',
   description: 'Nane su trijumfalna stvorenja, simboli ženstvenosti i majčinstva. Inicijalno, Saint Phalle je koristila tkaninu i pronađene objekte za Nane, ali je kasnije uvela poliester kako bi napravila živopisniji dojam.',
-  url: 'https://i.imgur.com/Sd1AgUOm.jpg',
+  url: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
   alt: 'Velika mozaička skulptura neobične ženske figure u raznobojnom kostimu koji odiše radošću.'
 }, {
   name: 'Ultimate Form',
   artist: 'Barbara Hepworth',
   description: 'Ova apstraktna bronzana skulptura je deo The Family of Man serije koja se nalazi u Jorkširskom parku skulptura. Hepworth je odlučila da ne pravi bukvalne reprezentacije sveta, već apstraktne forme inspirisane ljudima i pejzažima.',
-  url: 'https://i.imgur.com/2heNQDcm.jpg',
+  url: 'https://react.dev/images/docs/scientists/2heNQDcm.jpg',
   alt: 'Visoka skulptura tri elementa jedna na drugom koja podseća na ljudsku figuru.'
 }, {
   name: 'Cavaliere',
   artist: 'Lamidi Olonade Fakeye',
   description: "Pošto potiče od četiri generacije drvorezbara, Fakeye-ova dela su mešavina tradicionalne i savremene Joruba tematike.",
-  url: 'https://i.imgur.com/wIdGuZwm.png',
+  url: 'https://react.dev/images/docs/scientists/wIdGuZwm.jpg',
   alt: 'Složena drvena skulptura ratnika čije lice je fokusirano na konja ukrašenim šarama.'
 }, {
   name: 'Big Bellies',
   artist: 'Alina Szapocznikow',
   description: "Alina je poznata po skulpturama izdeljenog tela kao metafore za krhkost i nestalnost mladosti i lepote. Ova skulptura prikazuje dva veoma realistična velika stomaka jednog na drugom, gde je svaki visok oko 5 stopa (1,5m).",
-  url: 'https://i.imgur.com/AlHTAdDm.jpg',
+  url: 'https://react.dev/images/docs/scientists/AlHTAdDm.jpg',
   alt: 'Ova skulptura podseća na slapove nabora i dosta se razlikuje od stomaka na klasičnim skulpturama.'
 }, {
   name: 'Terracotta Army',
   artist: 'Nepoznati umetnik',
   description: 'Terracotta Army je kolekcija terakota skulptura koje predstavljaju armiju Qin Shi Huang-a, prvog cara Kine. Armija se sastojala od preko 8,000 vojnika, 130 kola sa 520 konja i 150 članova konjice.',
-  url: 'https://i.imgur.com/HMFmH6m.jpg',
+  url: 'https://react.dev/images/docs/scientists/HMFmH6m.jpg',
   alt: '12 terakota skulptura svečanih vojnika, od kojih svaki ima jedinstvenu facijalnu ekspresiju i oklop.'
 }, {
   name: 'Lunar Landscape',
   artist: 'Louise Nevelson',
   description: 'Nevelson je poznata po uklanjanju objekata iz ruševina Njujorka, od kojih je kasnije pravila monumentalne konstrukcije. Za ovo je koristila rasparene delove poput noge od kreveta, palice za žongliranje i delove sedišta, zakucavajući ih i lepeći u kutije koje podsećaju na kubističku geometrijsku apstrakciju prostora i forme.',
-  url: 'https://i.imgur.com/rN7hY6om.jpg',
+  url: 'https://react.dev/images/docs/scientists/rN7hY6om.jpg',
   alt: 'Crna mat skulptura gde su pojedinačni delovi na početku bili neprimetni.'
 }, {
   name: 'Aureole',
   artist: 'Ranjani Shettar',
   description: 'Shettar spaja tradicionalno i moderno, prirodno i industrijsko. Njena umetnost se fokusira na vezu između čoveka i prirode. Njen rad se opisuje kao ubedljiv i apstraktno i figurativno, prokoseći gravitaciji, kao i "dobra sinteza neobičnih materijala".',
-  url: 'https://i.imgur.com/okTpbHhm.jpg',
+  url: 'https://react.dev/images/docs/scientists/okTpbHhm.jpg',
   alt: 'Bleda skulptura nalik na žicu postavljena na betonski zid spuštajući se na pod. Izgleda lako.'
 }, {
   name: 'Hippos',
   artist: 'Taipei Zoo',
   description: 'Zoološki vrt u Tajpeju je naručio trg nilskih konja koji se igraju zaronjeni.',
-  url: 'https://i.imgur.com/6o5Vuyu.jpg',
-  alt: 'Grupa bronzanih skulptura nilskih konja koji kao da isplivavaju na trotoar.'
-=======
-  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
-  url: 'https://react.dev/images/docs/scientists/Mx7dA2Y.jpg',
-  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'
-}, {
-  name: 'Floralis Genérica',
-  artist: 'Eduardo Catalano',
-  description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
-  url: 'https://react.dev/images/docs/scientists/ZF6s192m.jpg',
-  alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
-}, {
-  name: 'Eternal Presence',
-  artist: 'John Woodrow Wilson',
-  description: 'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
-  url: 'https://react.dev/images/docs/scientists/aTtVpES.jpg',
-  alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.'
-}, {
-  name: 'Moai',
-  artist: 'Unknown Artist',
-  description: 'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
-  url: 'https://react.dev/images/docs/scientists/RCwLEoQm.jpg',
-  alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.'
-}, {
-  name: 'Blue Nana',
-  artist: 'Niki de Saint Phalle',
-  description: 'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
-  url: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
-  alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.'
-}, {
-  name: 'Ultimate Form',
-  artist: 'Barbara Hepworth',
-  description: 'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
-  url: 'https://react.dev/images/docs/scientists/2heNQDcm.jpg',
-  alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.'
-}, {
-  name: 'Cavaliere',
-  artist: 'Lamidi Olonade Fakeye',
-  description: "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
-  url: 'https://react.dev/images/docs/scientists/wIdGuZwm.png',
-  alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.'
-}, {
-  name: 'Big Bellies',
-  artist: 'Alina Szapocznikow',
-  description: "Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.",
-  url: 'https://react.dev/images/docs/scientists/AlHTAdDm.jpg',
-  alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.'
-}, {
-  name: 'Terracotta Army',
-  artist: 'Unknown Artist',
-  description: 'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
-  url: 'https://react.dev/images/docs/scientists/HMFmH6m.jpg',
-  alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.'
-}, {
-  name: 'Lunar Landscape',
-  artist: 'Louise Nevelson',
-  description: 'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
-  url: 'https://react.dev/images/docs/scientists/rN7hY6om.jpg',
-  alt: 'A black matte sculpture where the individual elements are initially indistinguishable.'
-}, {
-  name: 'Aureole',
-  artist: 'Ranjani Shettar',
-  description: 'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
-  url: 'https://react.dev/images/docs/scientists/okTpbHhm.jpg',
-  alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.'
-}, {
-  name: 'Hippos',
-  artist: 'Taipei Zoo',
-  description: 'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
   url: 'https://react.dev/images/docs/scientists/6o5Vuyu.jpg',
-  alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+  alt: 'Grupa bronzanih skulptura nilskih konja koji kao da isplivavaju na trotoar.'
 }];
 ```
 
@@ -300,19 +220,11 @@ export default function Gallery() {
         Naredno
       </button>
       <h2>
-<<<<<<< HEAD
-        <i>{sculpture.name} </i> 
+        <i>{sculpture.name} </i>
         napravio/la {sculpture.artist}
       </h2>
-      <h3>  
-        ({index + 1} od {sculptureList.length})
-=======
-        <i>{sculpture.name} </i>
-        by {sculpture.artist}
-      </h2>
       <h3>
-        ({index + 1} of {sculptureList.length})
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+        ({index + 1} od {sculptureList.length})
       </h3>
       <img
         src={sculpture.url}
@@ -330,147 +242,75 @@ export default function Gallery() {
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
-<<<<<<< HEAD
   description: 'Iako je Marta Colvin pretežno poznata po apstraktnim temama koje aludiraju na pre-hispanske simbole, ova ogromna skulptura, koja je omaž neurohirurgiji, jedna je od njenih najpoznatijih remek dela.',
-  url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-  alt: 'Bronzana statua dve skrštene ruke koje pažljivo drže ljudski mozak vrhovima prstiju.'  
+  url: 'https://react.dev/images/docs/scientists/Mx7dA2Y.jpg',
+  alt: 'Bronzana statua dve skrštene ruke koje pažljivo drže ljudski mozak vrhovima prstiju.'
 }, {
   name: 'Floralis Genérica',
   artist: 'Eduardo Catalano',
   description: 'Ovaj ogromni (75 ft. ili 23m) srebrni cvet se nalazi u Buenos Ajresu. Dizajniran je da se pomera, zatvarajući svoje latice uveče ili kada duvaju jaki vetrovi, a otvarajući ih ujutru.',
-  url: 'https://i.imgur.com/ZF6s192m.jpg',
+  url: 'https://react.dev/images/docs/scientists/ZF6s192m.jpg',
   alt: 'Velika metalna skulptura cveta sa reflektujućim laticama nalik na ogledalo i snažnim prašnicima.'
 }, {
   name: 'Eternal Presence',
   artist: 'John Woodrow Wilson',
   description: 'Wilson je poznat po svojoj preokupiranosti jednakošću, socijalnom pravdom, kao i suštinskim i duhovnim kvalitetima čovečanstva. Ova masivna (7ft. ili 2,13m) bronzana skulptura predstavlja ono što je on objasnio kao "simbolično crno prisustvo prožeto osećajem univerzalne humanosti".',
-  url: 'https://i.imgur.com/aTtVpES.jpg',
+  url: 'https://react.dev/images/docs/scientists/aTtVpES.jpg',
   alt: 'Skulptura ljudske glave koja deluje sveprisutno i svečano. Zrači mirnoćom i spokojstvom.'
 }, {
   name: 'Moai',
   artist: 'Nepoznati umetnik',
   description: 'Nalazi se na Uskršnjem ostrvu, gde postoji oko 1,000 moai očuvanih monumentalnih skulptura, koje su napravili prvobitni Rapa Nui ljudi, za koje se veruje da predstavljaju pretke Bogova.',
-  url: 'https://i.imgur.com/RCwLEoQm.jpg',
+  url: 'https://react.dev/images/docs/scientists/RCwLEoQm.jpg',
   alt: 'Tri monumentalne biste sa neproporcionalno velikim glavama i namrštenim licima.'
 }, {
   name: 'Blue Nana',
   artist: 'Niki de Saint Phalle',
   description: 'Nane su trijumfalna stvorenja, simboli ženstvenosti i majčinstva. Inicijalno, Saint Phalle je koristila tkaninu i pronađene objekte za Nane, ali je kasnije uvela poliester kako bi napravila živopisniji dojam.',
-  url: 'https://i.imgur.com/Sd1AgUOm.jpg',
+  url: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
   alt: 'Velika mozaička skulptura neobične ženske figure u raznobojnom kostimu koji odiše radošću.'
 }, {
   name: 'Ultimate Form',
   artist: 'Barbara Hepworth',
   description: 'Ova apstraktna bronzana skulptura je deo The Family of Man serije koja se nalazi u Jorkširskom parku skulptura. Hepworth je odlučila da ne pravi bukvalne reprezentacije sveta, već apstraktne forme inspirisane ljudima i pejzažima.',
-  url: 'https://i.imgur.com/2heNQDcm.jpg',
+  url: 'https://react.dev/images/docs/scientists/2heNQDcm.jpg',
   alt: 'Visoka skulptura tri elementa jedna na drugom koja podseća na ljudsku figuru.'
 }, {
   name: 'Cavaliere',
   artist: 'Lamidi Olonade Fakeye',
   description: "Pošto potiče od četiri generacije drvorezbara, Fakeye-ova dela su mešavina tradicionalne i savremene Joruba tematike.",
-  url: 'https://i.imgur.com/wIdGuZwm.png',
+  url: 'https://react.dev/images/docs/scientists/wIdGuZwm.jpg',
   alt: 'Složena drvena skulptura ratnika čije lice je fokusirano na konja ukrašenim šarama.'
 }, {
   name: 'Big Bellies',
   artist: 'Alina Szapocznikow',
   description: "Alina je poznata po skulpturama izdeljenog tela kao metafore za krhkost i nestalnost mladosti i lepote. Ova skulptura prikazuje dva veoma realistična velika stomaka jednog na drugom, gde je svaki visok oko 5 stopa (1,5m).",
-  url: 'https://i.imgur.com/AlHTAdDm.jpg',
+  url: 'https://react.dev/images/docs/scientists/AlHTAdDm.jpg',
   alt: 'Ova skulptura podseća na slapove nabora i dosta se razlikuje od stomaka na klasičnim skulpturama.'
 }, {
   name: 'Terracotta Army',
   artist: 'Nepoznati umetnik',
   description: 'Terracotta Army je kolekcija terakota skulptura koje predstavljaju armiju Qin Shi Huang-a, prvog cara Kine. Armija se sastojala od preko 8,000 vojnika, 130 kola sa 520 konja i 150 članova konjice.',
-  url: 'https://i.imgur.com/HMFmH6m.jpg',
+  url: 'https://react.dev/images/docs/scientists/HMFmH6m.jpg',
   alt: '12 terakota skulptura svečanih vojnika, od kojih svaki ima jedinstvenu facijalnu ekspresiju i oklop.'
 }, {
   name: 'Lunar Landscape',
   artist: 'Louise Nevelson',
   description: 'Nevelson je poznata po uklanjanju objekata iz ruševina Njujorka, od kojih je kasnije pravila monumentalne konstrukcije. Za ovo je koristila rasparene delove poput noge od kreveta, palice za žongliranje i delove sedišta, zakucavajući ih i lepeći u kutije koje podsećaju na kubističku geometrijsku apstrakciju prostora i forme.',
-  url: 'https://i.imgur.com/rN7hY6om.jpg',
+  url: 'https://react.dev/images/docs/scientists/rN7hY6om.jpg',
   alt: 'Crna mat skulptura gde su pojedinačni delovi na početku bili neprimetni.'
 }, {
   name: 'Aureole',
   artist: 'Ranjani Shettar',
   description: 'Shettar spaja tradicionalno i moderno, prirodno i industrijsko. Njena umetnost se fokusira na vezu između čoveka i prirode. Njen rad se opisuje kao ubedljiv i apstraktno i figurativno, prokoseći gravitaciji, kao i "dobra sinteza neobičnih materijala".',
-  url: 'https://i.imgur.com/okTpbHhm.jpg',
+  url: 'https://react.dev/images/docs/scientists/okTpbHhm.jpg',
   alt: 'Bleda skulptura nalik na žicu postavljena na betonski zid spuštajući se na pod. Izgleda lako.'
 }, {
   name: 'Hippos',
   artist: 'Taipei Zoo',
   description: 'Zoološki vrt u Tajpeju je naručio trg nilskih konja koji se igraju zaronjeni.',
-  url: 'https://i.imgur.com/6o5Vuyu.jpg',
-  alt: 'Grupa bronzanih skulptura nilskih konja koji kao da isplivavaju na trotoar.'
-=======
-  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
-  url: 'https://react.dev/images/docs/scientists/Mx7dA2Y.jpg',
-  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'
-}, {
-  name: 'Floralis Genérica',
-  artist: 'Eduardo Catalano',
-  description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
-  url: 'https://react.dev/images/docs/scientists/ZF6s192m.jpg',
-  alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
-}, {
-  name: 'Eternal Presence',
-  artist: 'John Woodrow Wilson',
-  description: 'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
-  url: 'https://react.dev/images/docs/scientists/aTtVpES.jpg',
-  alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.'
-}, {
-  name: 'Moai',
-  artist: 'Unknown Artist',
-  description: 'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
-  url: 'https://react.dev/images/docs/scientists/RCwLEoQm.jpg',
-  alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.'
-}, {
-  name: 'Blue Nana',
-  artist: 'Niki de Saint Phalle',
-  description: 'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
-  url: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
-  alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.'
-}, {
-  name: 'Ultimate Form',
-  artist: 'Barbara Hepworth',
-  description: 'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
-  url: 'https://react.dev/images/docs/scientists/2heNQDcm.jpg',
-  alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.'
-}, {
-  name: 'Cavaliere',
-  artist: 'Lamidi Olonade Fakeye',
-  description: "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
-  url: 'https://react.dev/images/docs/scientists/wIdGuZwm.png',
-  alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.'
-}, {
-  name: 'Big Bellies',
-  artist: 'Alina Szapocznikow',
-  description: "Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.",
-  url: 'https://react.dev/images/docs/scientists/AlHTAdDm.jpg',
-  alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.'
-}, {
-  name: 'Terracotta Army',
-  artist: 'Unknown Artist',
-  description: 'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
-  url: 'https://react.dev/images/docs/scientists/HMFmH6m.jpg',
-  alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.'
-}, {
-  name: 'Lunar Landscape',
-  artist: 'Louise Nevelson',
-  description: 'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
-  url: 'https://react.dev/images/docs/scientists/rN7hY6om.jpg',
-  alt: 'A black matte sculpture where the individual elements are initially indistinguishable.'
-}, {
-  name: 'Aureole',
-  artist: 'Ranjani Shettar',
-  description: 'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
-  url: 'https://react.dev/images/docs/scientists/okTpbHhm.jpg',
-  alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.'
-}, {
-  name: 'Hippos',
-  artist: 'Taipei Zoo',
-  description: 'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
   url: 'https://react.dev/images/docs/scientists/6o5Vuyu.jpg',
-  alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+  alt: 'Grupa bronzanih skulptura nilskih konja koji kao da isplivavaju na trotoar.'
 }];
 ```
 
@@ -521,11 +361,7 @@ Konvencija je da se par nazove ovako `const [something, setSomething]`. Možete 
 
 </Note>
 
-<<<<<<< HEAD
-Jedini argument u `useState` je **inicijalna vrednost** vaše state promenljive. U ovom primeru, inicijalna vrednost `index`-a je postavljena na `0` sa `useState(0)`. 
-=======
-The only argument to `useState` is the **initial value** of your state variable. In this example, the `index`'s initial value is set to `0` with `useState(0)`.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+Jedini argument u `useState` je **inicijalna vrednost** vaše state promenljive. U ovom primeru, inicijalna vrednost `index`-a je postavljena na `0` sa `useState(0)`.
 
 Svaki put kad se komponenta renderuje, `useState` vam daje niz koji sadrži dve vrednosti:
 
@@ -572,19 +408,11 @@ export default function Gallery() {
         Naredno
       </button>
       <h2>
-<<<<<<< HEAD
-        <i>{sculpture.name} </i> 
+        <i>{sculpture.name} </i>
         napravio/la {sculpture.artist}
       </h2>
-      <h3>  
-        ({index + 1} od {sculptureList.length})
-=======
-        <i>{sculpture.name} </i>
-        by {sculpture.artist}
-      </h2>
       <h3>
-        ({index + 1} of {sculptureList.length})
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+        ({index + 1} od {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
         {showMore ? 'Sakrij' : 'Prikaži'} detalje
@@ -603,147 +431,75 @@ export default function Gallery() {
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
-<<<<<<< HEAD
   description: 'Iako je Marta Colvin pretežno poznata po apstraktnim temama koje aludiraju na pre-hispanske simbole, ova ogromna skulptura, koja je omaž neurohirurgiji, jedna je od njenih najpoznatijih remek dela.',
-  url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-  alt: 'Bronzana statua dve skrštene ruke koje pažljivo drže ljudski mozak vrhovima prstiju.'  
+  url: 'https://react.dev/images/docs/scientists/Mx7dA2Y.jpg',
+  alt: 'Bronzana statua dve skrštene ruke koje pažljivo drže ljudski mozak vrhovima prstiju.'
 }, {
   name: 'Floralis Genérica',
   artist: 'Eduardo Catalano',
   description: 'Ovaj ogromni (75 ft. ili 23m) srebrni cvet se nalazi u Buenos Ajresu. Dizajniran je da se pomera, zatvarajući svoje latice uveče ili kada duvaju jaki vetrovi, a otvarajući ih ujutru.',
-  url: 'https://i.imgur.com/ZF6s192m.jpg',
+  url: 'https://react.dev/images/docs/scientists/ZF6s192m.jpg',
   alt: 'Velika metalna skulptura cveta sa reflektujućim laticama nalik na ogledalo i snažnim prašnicima.'
 }, {
   name: 'Eternal Presence',
   artist: 'John Woodrow Wilson',
   description: 'Wilson je poznat po svojoj preokupiranosti jednakošću, socijalnom pravdom, kao i suštinskim i duhovnim kvalitetima čovečanstva. Ova masivna (7ft. ili 2,13m) bronzana skulptura predstavlja ono što je on objasnio kao "simbolično crno prisustvo prožeto osećajem univerzalne humanosti".',
-  url: 'https://i.imgur.com/aTtVpES.jpg',
+  url: 'https://react.dev/images/docs/scientists/aTtVpES.jpg',
   alt: 'Skulptura ljudske glave koja deluje sveprisutno i svečano. Zrači mirnoćom i spokojstvom.'
 }, {
   name: 'Moai',
   artist: 'Nepoznati umetnik',
   description: 'Nalazi se na Uskršnjem ostrvu, gde postoji oko 1,000 moai očuvanih monumentalnih skulptura, koje su napravili prvobitni Rapa Nui ljudi, za koje se veruje da predstavljaju pretke Bogova.',
-  url: 'https://i.imgur.com/RCwLEoQm.jpg',
+  url: 'https://react.dev/images/docs/scientists/RCwLEoQm.jpg',
   alt: 'Tri monumentalne biste sa neproporcionalno velikim glavama i namrštenim licima.'
 }, {
   name: 'Blue Nana',
   artist: 'Niki de Saint Phalle',
   description: 'Nane su trijumfalna stvorenja, simboli ženstvenosti i majčinstva. Inicijalno, Saint Phalle je koristila tkaninu i pronađene objekte za Nane, ali je kasnije uvela poliester kako bi napravila živopisniji dojam.',
-  url: 'https://i.imgur.com/Sd1AgUOm.jpg',
+  url: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
   alt: 'Velika mozaička skulptura neobične ženske figure u raznobojnom kostimu koji odiše radošću.'
 }, {
   name: 'Ultimate Form',
   artist: 'Barbara Hepworth',
   description: 'Ova apstraktna bronzana skulptura je deo The Family of Man serije koja se nalazi u Jorkširskom parku skulptura. Hepworth je odlučila da ne pravi bukvalne reprezentacije sveta, već apstraktne forme inspirisane ljudima i pejzažima.',
-  url: 'https://i.imgur.com/2heNQDcm.jpg',
+  url: 'https://react.dev/images/docs/scientists/2heNQDcm.jpg',
   alt: 'Visoka skulptura tri elementa jedna na drugom koja podseća na ljudsku figuru.'
 }, {
   name: 'Cavaliere',
   artist: 'Lamidi Olonade Fakeye',
   description: "Pošto potiče od četiri generacije drvorezbara, Fakeye-ova dela su mešavina tradicionalne i savremene Joruba tematike.",
-  url: 'https://i.imgur.com/wIdGuZwm.png',
+  url: 'https://react.dev/images/docs/scientists/wIdGuZwm.jpg',
   alt: 'Složena drvena skulptura ratnika čije lice je fokusirano na konja ukrašenim šarama.'
 }, {
   name: 'Big Bellies',
   artist: 'Alina Szapocznikow',
   description: "Alina je poznata po skulpturama izdeljenog tela kao metafore za krhkost i nestalnost mladosti i lepote. Ova skulptura prikazuje dva veoma realistična velika stomaka jednog na drugom, gde je svaki visok oko 5 stopa (1,5m).",
-  url: 'https://i.imgur.com/AlHTAdDm.jpg',
+  url: 'https://react.dev/images/docs/scientists/AlHTAdDm.jpg',
   alt: 'Ova skulptura podseća na slapove nabora i dosta se razlikuje od stomaka na klasičnim skulpturama.'
 }, {
   name: 'Terracotta Army',
   artist: 'Nepoznati umetnik',
   description: 'Terracotta Army je kolekcija terakota skulptura koje predstavljaju armiju Qin Shi Huang-a, prvog cara Kine. Armija se sastojala od preko 8,000 vojnika, 130 kola sa 520 konja i 150 članova konjice.',
-  url: 'https://i.imgur.com/HMFmH6m.jpg',
+  url: 'https://react.dev/images/docs/scientists/HMFmH6m.jpg',
   alt: '12 terakota skulptura svečanih vojnika, od kojih svaki ima jedinstvenu facijalnu ekspresiju i oklop.'
 }, {
   name: 'Lunar Landscape',
   artist: 'Louise Nevelson',
   description: 'Nevelson je poznata po uklanjanju objekata iz ruševina Njujorka, od kojih je kasnije pravila monumentalne konstrukcije. Za ovo je koristila rasparene delove poput noge od kreveta, palice za žongliranje i delove sedišta, zakucavajući ih i lepeći u kutije koje podsećaju na kubističku geometrijsku apstrakciju prostora i forme.',
-  url: 'https://i.imgur.com/rN7hY6om.jpg',
+  url: 'https://react.dev/images/docs/scientists/rN7hY6om.jpg',
   alt: 'Crna mat skulptura gde su pojedinačni delovi na početku bili neprimetni.'
 }, {
   name: 'Aureole',
   artist: 'Ranjani Shettar',
   description: 'Shettar spaja tradicionalno i moderno, prirodno i industrijsko. Njena umetnost se fokusira na vezu između čoveka i prirode. Njen rad se opisuje kao ubedljiv i apstraktno i figurativno, prokoseći gravitaciji, kao i "dobra sinteza neobičnih materijala".',
-  url: 'https://i.imgur.com/okTpbHhm.jpg',
+  url: 'https://react.dev/images/docs/scientists/okTpbHhm.jpg',
   alt: 'Bleda skulptura nalik na žicu postavljena na betonski zid spuštajući se na pod. Izgleda lako.'
 }, {
   name: 'Hippos',
   artist: 'Taipei Zoo',
   description: 'Zoološki vrt u Tajpeju je naručio trg nilskih konja koji se igraju zaronjeni.',
-  url: 'https://i.imgur.com/6o5Vuyu.jpg',
-  alt: 'Grupa bronzanih skulptura nilskih konja koji kao da isplivavaju na trotoar.'
-=======
-  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
-  url: 'https://react.dev/images/docs/scientists/Mx7dA2Y.jpg',
-  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'
-}, {
-  name: 'Floralis Genérica',
-  artist: 'Eduardo Catalano',
-  description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
-  url: 'https://react.dev/images/docs/scientists/ZF6s192m.jpg',
-  alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
-}, {
-  name: 'Eternal Presence',
-  artist: 'John Woodrow Wilson',
-  description: 'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
-  url: 'https://react.dev/images/docs/scientists/aTtVpES.jpg',
-  alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.'
-}, {
-  name: 'Moai',
-  artist: 'Unknown Artist',
-  description: 'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
-  url: 'https://react.dev/images/docs/scientists/RCwLEoQm.jpg',
-  alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.'
-}, {
-  name: 'Blue Nana',
-  artist: 'Niki de Saint Phalle',
-  description: 'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
-  url: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
-  alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.'
-}, {
-  name: 'Ultimate Form',
-  artist: 'Barbara Hepworth',
-  description: 'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
-  url: 'https://react.dev/images/docs/scientists/2heNQDcm.jpg',
-  alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.'
-}, {
-  name: 'Cavaliere',
-  artist: 'Lamidi Olonade Fakeye',
-  description: "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
-  url: 'https://react.dev/images/docs/scientists/wIdGuZwm.png',
-  alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.'
-}, {
-  name: 'Big Bellies',
-  artist: 'Alina Szapocznikow',
-  description: "Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.",
-  url: 'https://react.dev/images/docs/scientists/AlHTAdDm.jpg',
-  alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.'
-}, {
-  name: 'Terracotta Army',
-  artist: 'Unknown Artist',
-  description: 'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
-  url: 'https://react.dev/images/docs/scientists/HMFmH6m.jpg',
-  alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.'
-}, {
-  name: 'Lunar Landscape',
-  artist: 'Louise Nevelson',
-  description: 'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
-  url: 'https://react.dev/images/docs/scientists/rN7hY6om.jpg',
-  alt: 'A black matte sculpture where the individual elements are initially indistinguishable.'
-}, {
-  name: 'Aureole',
-  artist: 'Ranjani Shettar',
-  description: 'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
-  url: 'https://react.dev/images/docs/scientists/okTpbHhm.jpg',
-  alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.'
-}, {
-  name: 'Hippos',
-  artist: 'Taipei Zoo',
-  description: 'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
   url: 'https://react.dev/images/docs/scientists/6o5Vuyu.jpg',
-  alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+  alt: 'Grupa bronzanih skulptura nilskih konja koji kao da isplivavaju na trotoar.'
 }];
 ```
 
@@ -871,147 +627,75 @@ let image = document.getElementById('image');
 let sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
-<<<<<<< HEAD
   description: 'Iako je Marta Colvin pretežno poznata po apstraktnim temama koje aludiraju na pre-hispanske simbole, ova ogromna skulptura, koja je omaž neurohirurgiji, jedna je od njenih najpoznatijih remek dela.',
-  url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-  alt: 'Bronzana statua dve skrštene ruke koje pažljivo drže ljudski mozak vrhovima prstiju.'  
+  url: 'https://react.dev/images/docs/scientists/Mx7dA2Y.jpg',
+  alt: 'Bronzana statua dve skrštene ruke koje pažljivo drže ljudski mozak vrhovima prstiju.'
 }, {
   name: 'Floralis Genérica',
   artist: 'Eduardo Catalano',
   description: 'Ovaj ogromni (75 ft. ili 23m) srebrni cvet se nalazi u Buenos Ajresu. Dizajniran je da se pomera, zatvarajući svoje latice uveče ili kada duvaju jaki vetrovi, a otvarajući ih ujutru.',
-  url: 'https://i.imgur.com/ZF6s192m.jpg',
+  url: 'https://react.dev/images/docs/scientists/ZF6s192m.jpg',
   alt: 'Velika metalna skulptura cveta sa reflektujućim laticama nalik na ogledalo i snažnim prašnicima.'
 }, {
   name: 'Eternal Presence',
   artist: 'John Woodrow Wilson',
   description: 'Wilson je poznat po svojoj preokupiranosti jednakošću, socijalnom pravdom, kao i suštinskim i duhovnim kvalitetima čovečanstva. Ova masivna (7ft. ili 2,13m) bronzana skulptura predstavlja ono što je on objasnio kao "simbolično crno prisustvo prožeto osećajem univerzalne humanosti".',
-  url: 'https://i.imgur.com/aTtVpES.jpg',
+  url: 'https://react.dev/images/docs/scientists/aTtVpES.jpg',
   alt: 'Skulptura ljudske glave koja deluje sveprisutno i svečano. Zrači mirnoćom i spokojstvom.'
 }, {
   name: 'Moai',
   artist: 'Nepoznati umetnik',
   description: 'Nalazi se na Uskršnjem ostrvu, gde postoji oko 1,000 moai očuvanih monumentalnih skulptura, koje su napravili prvobitni Rapa Nui ljudi, za koje se veruje da predstavljaju pretke Bogova.',
-  url: 'https://i.imgur.com/RCwLEoQm.jpg',
+  url: 'https://react.dev/images/docs/scientists/RCwLEoQm.jpg',
   alt: 'Tri monumentalne biste sa neproporcionalno velikim glavama i namrštenim licima.'
 }, {
   name: 'Blue Nana',
   artist: 'Niki de Saint Phalle',
   description: 'Nane su trijumfalna stvorenja, simboli ženstvenosti i majčinstva. Inicijalno, Saint Phalle je koristila tkaninu i pronađene objekte za Nane, ali je kasnije uvela poliester kako bi napravila živopisniji dojam.',
-  url: 'https://i.imgur.com/Sd1AgUOm.jpg',
+  url: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
   alt: 'Velika mozaička skulptura neobične ženske figure u raznobojnom kostimu koji odiše radošću.'
 }, {
   name: 'Ultimate Form',
   artist: 'Barbara Hepworth',
   description: 'Ova apstraktna bronzana skulptura je deo The Family of Man serije koja se nalazi u Jorkširskom parku skulptura. Hepworth je odlučila da ne pravi bukvalne reprezentacije sveta, već apstraktne forme inspirisane ljudima i pejzažima.',
-  url: 'https://i.imgur.com/2heNQDcm.jpg',
+  url: 'https://react.dev/images/docs/scientists/2heNQDcm.jpg',
   alt: 'Visoka skulptura tri elementa jedna na drugom koja podseća na ljudsku figuru.'
 }, {
   name: 'Cavaliere',
   artist: 'Lamidi Olonade Fakeye',
   description: "Pošto potiče od četiri generacije drvorezbara, Fakeye-ova dela su mešavina tradicionalne i savremene Joruba tematike.",
-  url: 'https://i.imgur.com/wIdGuZwm.png',
+  url: 'https://react.dev/images/docs/scientists/wIdGuZwm.jpg',
   alt: 'Složena drvena skulptura ratnika čije lice je fokusirano na konja ukrašenim šarama.'
 }, {
   name: 'Big Bellies',
   artist: 'Alina Szapocznikow',
   description: "Alina je poznata po skulpturama izdeljenog tela kao metafore za krhkost i nestalnost mladosti i lepote. Ova skulptura prikazuje dva veoma realistična velika stomaka jednog na drugom, gde je svaki visok oko 5 stopa (1,5m).",
-  url: 'https://i.imgur.com/AlHTAdDm.jpg',
+  url: 'https://react.dev/images/docs/scientists/AlHTAdDm.jpg',
   alt: 'Ova skulptura podseća na slapove nabora i dosta se razlikuje od stomaka na klasičnim skulpturama.'
 }, {
   name: 'Terracotta Army',
   artist: 'Nepoznati umetnik',
   description: 'Terracotta Army je kolekcija terakota skulptura koje predstavljaju armiju Qin Shi Huang-a, prvog cara Kine. Armija se sastojala od preko 8,000 vojnika, 130 kola sa 520 konja i 150 članova konjice.',
-  url: 'https://i.imgur.com/HMFmH6m.jpg',
+  url: 'https://react.dev/images/docs/scientists/HMFmH6m.jpg',
   alt: '12 terakota skulptura svečanih vojnika, od kojih svaki ima jedinstvenu facijalnu ekspresiju i oklop.'
 }, {
   name: 'Lunar Landscape',
   artist: 'Louise Nevelson',
   description: 'Nevelson je poznata po uklanjanju objekata iz ruševina Njujorka, od kojih je kasnije pravila monumentalne konstrukcije. Za ovo je koristila rasparene delove poput noge od kreveta, palice za žongliranje i delove sedišta, zakucavajući ih i lepeći u kutije koje podsećaju na kubističku geometrijsku apstrakciju prostora i forme.',
-  url: 'https://i.imgur.com/rN7hY6om.jpg',
+  url: 'https://react.dev/images/docs/scientists/rN7hY6om.jpg',
   alt: 'Crna mat skulptura gde su pojedinačni delovi na početku bili neprimetni.'
 }, {
   name: 'Aureole',
   artist: 'Ranjani Shettar',
   description: 'Shettar spaja tradicionalno i moderno, prirodno i industrijsko. Njena umetnost se fokusira na vezu između čoveka i prirode. Njen rad se opisuje kao ubedljiv i apstraktno i figurativno, prokoseći gravitaciji, kao i "dobra sinteza neobičnih materijala".',
-  url: 'https://i.imgur.com/okTpbHhm.jpg',
+  url: 'https://react.dev/images/docs/scientists/okTpbHhm.jpg',
   alt: 'Bleda skulptura nalik na žicu postavljena na betonski zid spuštajući se na pod. Izgleda lako.'
 }, {
   name: 'Hippos',
   artist: 'Taipei Zoo',
   description: 'Zoološki vrt u Tajpeju je naručio trg nilskih konja koji se igraju zaronjeni.',
-  url: 'https://i.imgur.com/6o5Vuyu.jpg',
-  alt: 'Grupa bronzanih skulptura nilskih konja koji kao da isplivavaju na trotoar.'
-=======
-  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
-  url: 'https://react.dev/images/docs/scientists/Mx7dA2Y.jpg',
-  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'
-}, {
-  name: 'Floralis Genérica',
-  artist: 'Eduardo Catalano',
-  description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
-  url: 'https://react.dev/images/docs/scientists/ZF6s192m.jpg',
-  alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
-}, {
-  name: 'Eternal Presence',
-  artist: 'John Woodrow Wilson',
-  description: 'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
-  url: 'https://react.dev/images/docs/scientists/aTtVpES.jpg',
-  alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.'
-}, {
-  name: 'Moai',
-  artist: 'Unknown Artist',
-  description: 'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
-  url: 'https://react.dev/images/docs/scientists/RCwLEoQm.jpg',
-  alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.'
-}, {
-  name: 'Blue Nana',
-  artist: 'Niki de Saint Phalle',
-  description: 'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
-  url: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
-  alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.'
-}, {
-  name: 'Ultimate Form',
-  artist: 'Barbara Hepworth',
-  description: 'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
-  url: 'https://react.dev/images/docs/scientists/2heNQDcm.jpg',
-  alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.'
-}, {
-  name: 'Cavaliere',
-  artist: 'Lamidi Olonade Fakeye',
-  description: "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
-  url: 'https://react.dev/images/docs/scientists/wIdGuZwm.png',
-  alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.'
-}, {
-  name: 'Big Bellies',
-  artist: 'Alina Szapocznikow',
-  description: "Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.",
-  url: 'https://react.dev/images/docs/scientists/AlHTAdDm.jpg',
-  alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.'
-}, {
-  name: 'Terracotta Army',
-  artist: 'Unknown Artist',
-  description: 'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
-  url: 'https://react.dev/images/docs/scientists/HMFmH6m.jpg',
-  alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.'
-}, {
-  name: 'Lunar Landscape',
-  artist: 'Louise Nevelson',
-  description: 'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
-  url: 'https://react.dev/images/docs/scientists/rN7hY6om.jpg',
-  alt: 'A black matte sculpture where the individual elements are initially indistinguishable.'
-}, {
-  name: 'Aureole',
-  artist: 'Ranjani Shettar',
-  description: 'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
-  url: 'https://react.dev/images/docs/scientists/okTpbHhm.jpg',
-  alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.'
-}, {
-  name: 'Hippos',
-  artist: 'Taipei Zoo',
-  description: 'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
   url: 'https://react.dev/images/docs/scientists/6o5Vuyu.jpg',
-  alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+  alt: 'Grupa bronzanih skulptura nilskih konja koji kao da isplivavaju na trotoar.'
 }];
 
 // Učini da UI prikazuje inicijalni state.
@@ -1089,19 +773,11 @@ export default function Gallery() {
         Naredno
       </button>
       <h2>
-<<<<<<< HEAD
-        <i>{sculpture.name} </i> 
+        <i>{sculpture.name} </i>
         napravio/la {sculpture.artist}
       </h2>
-      <h3>  
-        ({index + 1} od {sculptureList.length})
-=======
-        <i>{sculpture.name} </i>
-        by {sculpture.artist}
-      </h2>
       <h3>
-        ({index + 1} of {sculptureList.length})
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+        ({index + 1} od {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
         {showMore ? 'Sakrij' : 'Prikaži'} detalje
@@ -1120,147 +796,75 @@ export default function Gallery() {
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
-<<<<<<< HEAD
   description: 'Iako je Marta Colvin pretežno poznata po apstraktnim temama koje aludiraju na pre-hispanske simbole, ova ogromna skulptura, koja je omaž neurohirurgiji, jedna je od njenih najpoznatijih remek dela.',
-  url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-  alt: 'Bronzana statua dve skrštene ruke koje pažljivo drže ljudski mozak vrhovima prstiju.'  
+  url: 'https://react.dev/images/docs/scientists/Mx7dA2Y.jpg',
+  alt: 'Bronzana statua dve skrštene ruke koje pažljivo drže ljudski mozak vrhovima prstiju.'
 }, {
   name: 'Floralis Genérica',
   artist: 'Eduardo Catalano',
   description: 'Ovaj ogromni (75 ft. ili 23m) srebrni cvet se nalazi u Buenos Ajresu. Dizajniran je da se pomera, zatvarajući svoje latice uveče ili kada duvaju jaki vetrovi, a otvarajući ih ujutru.',
-  url: 'https://i.imgur.com/ZF6s192m.jpg',
+  url: 'https://react.dev/images/docs/scientists/ZF6s192m.jpg',
   alt: 'Velika metalna skulptura cveta sa reflektujućim laticama nalik na ogledalo i snažnim prašnicima.'
 }, {
   name: 'Eternal Presence',
   artist: 'John Woodrow Wilson',
   description: 'Wilson je poznat po svojoj preokupiranosti jednakošću, socijalnom pravdom, kao i suštinskim i duhovnim kvalitetima čovečanstva. Ova masivna (7ft. ili 2,13m) bronzana skulptura predstavlja ono što je on objasnio kao "simbolično crno prisustvo prožeto osećajem univerzalne humanosti".',
-  url: 'https://i.imgur.com/aTtVpES.jpg',
+  url: 'https://react.dev/images/docs/scientists/aTtVpES.jpg',
   alt: 'Skulptura ljudske glave koja deluje sveprisutno i svečano. Zrači mirnoćom i spokojstvom.'
 }, {
   name: 'Moai',
   artist: 'Nepoznati umetnik',
   description: 'Nalazi se na Uskršnjem ostrvu, gde postoji oko 1,000 moai očuvanih monumentalnih skulptura, koje su napravili prvobitni Rapa Nui ljudi, za koje se veruje da predstavljaju pretke Bogova.',
-  url: 'https://i.imgur.com/RCwLEoQm.jpg',
+  url: 'https://react.dev/images/docs/scientists/RCwLEoQm.jpg',
   alt: 'Tri monumentalne biste sa neproporcionalno velikim glavama i namrštenim licima.'
 }, {
   name: 'Blue Nana',
   artist: 'Niki de Saint Phalle',
   description: 'Nane su trijumfalna stvorenja, simboli ženstvenosti i majčinstva. Inicijalno, Saint Phalle je koristila tkaninu i pronađene objekte za Nane, ali je kasnije uvela poliester kako bi napravila živopisniji dojam.',
-  url: 'https://i.imgur.com/Sd1AgUOm.jpg',
+  url: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
   alt: 'Velika mozaička skulptura neobične ženske figure u raznobojnom kostimu koji odiše radošću.'
 }, {
   name: 'Ultimate Form',
   artist: 'Barbara Hepworth',
   description: 'Ova apstraktna bronzana skulptura je deo The Family of Man serije koja se nalazi u Jorkširskom parku skulptura. Hepworth je odlučila da ne pravi bukvalne reprezentacije sveta, već apstraktne forme inspirisane ljudima i pejzažima.',
-  url: 'https://i.imgur.com/2heNQDcm.jpg',
+  url: 'https://react.dev/images/docs/scientists/2heNQDcm.jpg',
   alt: 'Visoka skulptura tri elementa jedna na drugom koja podseća na ljudsku figuru.'
 }, {
   name: 'Cavaliere',
   artist: 'Lamidi Olonade Fakeye',
   description: "Pošto potiče od četiri generacije drvorezbara, Fakeye-ova dela su mešavina tradicionalne i savremene Joruba tematike.",
-  url: 'https://i.imgur.com/wIdGuZwm.png',
+  url: 'https://react.dev/images/docs/scientists/wIdGuZwm.jpg',
   alt: 'Složena drvena skulptura ratnika čije lice je fokusirano na konja ukrašenim šarama.'
 }, {
   name: 'Big Bellies',
   artist: 'Alina Szapocznikow',
   description: "Alina je poznata po skulpturama izdeljenog tela kao metafore za krhkost i nestalnost mladosti i lepote. Ova skulptura prikazuje dva veoma realistična velika stomaka jednog na drugom, gde je svaki visok oko 5 stopa (1,5m).",
-  url: 'https://i.imgur.com/AlHTAdDm.jpg',
+  url: 'https://react.dev/images/docs/scientists/AlHTAdDm.jpg',
   alt: 'Ova skulptura podseća na slapove nabora i dosta se razlikuje od stomaka na klasičnim skulpturama.'
 }, {
   name: 'Terracotta Army',
   artist: 'Nepoznati umetnik',
   description: 'Terracotta Army je kolekcija terakota skulptura koje predstavljaju armiju Qin Shi Huang-a, prvog cara Kine. Armija se sastojala od preko 8,000 vojnika, 130 kola sa 520 konja i 150 članova konjice.',
-  url: 'https://i.imgur.com/HMFmH6m.jpg',
+  url: 'https://react.dev/images/docs/scientists/HMFmH6m.jpg',
   alt: '12 terakota skulptura svečanih vojnika, od kojih svaki ima jedinstvenu facijalnu ekspresiju i oklop.'
 }, {
   name: 'Lunar Landscape',
   artist: 'Louise Nevelson',
   description: 'Nevelson je poznata po uklanjanju objekata iz ruševina Njujorka, od kojih je kasnije pravila monumentalne konstrukcije. Za ovo je koristila rasparene delove poput noge od kreveta, palice za žongliranje i delove sedišta, zakucavajući ih i lepeći u kutije koje podsećaju na kubističku geometrijsku apstrakciju prostora i forme.',
-  url: 'https://i.imgur.com/rN7hY6om.jpg',
+  url: 'https://react.dev/images/docs/scientists/rN7hY6om.jpg',
   alt: 'Crna mat skulptura gde su pojedinačni delovi na početku bili neprimetni.'
 }, {
   name: 'Aureole',
   artist: 'Ranjani Shettar',
   description: 'Shettar spaja tradicionalno i moderno, prirodno i industrijsko. Njena umetnost se fokusira na vezu između čoveka i prirode. Njen rad se opisuje kao ubedljiv i apstraktno i figurativno, prokoseći gravitaciji, kao i "dobra sinteza neobičnih materijala".',
-  url: 'https://i.imgur.com/okTpbHhm.jpg',
+  url: 'https://react.dev/images/docs/scientists/okTpbHhm.jpg',
   alt: 'Bleda skulptura nalik na žicu postavljena na betonski zid spuštajući se na pod. Izgleda lako.'
 }, {
   name: 'Hippos',
   artist: 'Taipei Zoo',
   description: 'Zoološki vrt u Tajpeju je naručio trg nilskih konja koji se igraju zaronjeni.',
-  url: 'https://i.imgur.com/6o5Vuyu.jpg',
-  alt: 'Grupa bronzanih skulptura nilskih konja koji kao da isplivavaju na trotoar.'
-=======
-  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
-  url: 'https://react.dev/images/docs/scientists/Mx7dA2Y.jpg',
-  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'
-}, {
-  name: 'Floralis Genérica',
-  artist: 'Eduardo Catalano',
-  description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
-  url: 'https://react.dev/images/docs/scientists/ZF6s192m.jpg',
-  alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
-}, {
-  name: 'Eternal Presence',
-  artist: 'John Woodrow Wilson',
-  description: 'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
-  url: 'https://react.dev/images/docs/scientists/aTtVpES.jpg',
-  alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.'
-}, {
-  name: 'Moai',
-  artist: 'Unknown Artist',
-  description: 'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
-  url: 'https://react.dev/images/docs/scientists/RCwLEoQm.jpg',
-  alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.'
-}, {
-  name: 'Blue Nana',
-  artist: 'Niki de Saint Phalle',
-  description: 'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
-  url: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
-  alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.'
-}, {
-  name: 'Ultimate Form',
-  artist: 'Barbara Hepworth',
-  description: 'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
-  url: 'https://react.dev/images/docs/scientists/2heNQDcm.jpg',
-  alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.'
-}, {
-  name: 'Cavaliere',
-  artist: 'Lamidi Olonade Fakeye',
-  description: "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
-  url: 'https://react.dev/images/docs/scientists/wIdGuZwm.png',
-  alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.'
-}, {
-  name: 'Big Bellies',
-  artist: 'Alina Szapocznikow',
-  description: "Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.",
-  url: 'https://react.dev/images/docs/scientists/AlHTAdDm.jpg',
-  alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.'
-}, {
-  name: 'Terracotta Army',
-  artist: 'Unknown Artist',
-  description: 'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
-  url: 'https://react.dev/images/docs/scientists/HMFmH6m.jpg',
-  alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.'
-}, {
-  name: 'Lunar Landscape',
-  artist: 'Louise Nevelson',
-  description: 'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
-  url: 'https://react.dev/images/docs/scientists/rN7hY6om.jpg',
-  alt: 'A black matte sculpture where the individual elements are initially indistinguishable.'
-}, {
-  name: 'Aureole',
-  artist: 'Ranjani Shettar',
-  description: 'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
-  url: 'https://react.dev/images/docs/scientists/okTpbHhm.jpg',
-  alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.'
-}, {
-  name: 'Hippos',
-  artist: 'Taipei Zoo',
-  description: 'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
   url: 'https://react.dev/images/docs/scientists/6o5Vuyu.jpg',
-  alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+  alt: 'Grupa bronzanih skulptura nilskih konja koji kao da isplivavaju na trotoar.'
 }];
 ```
 
@@ -1340,19 +944,11 @@ export default function Gallery() {
         Naredno
       </button>
       <h2>
-<<<<<<< HEAD
-        <i>{sculpture.name} </i> 
+        <i>{sculpture.name} </i>
         napravio/la {sculpture.artist}
       </h2>
-      <h3>  
-        ({index + 1} od {sculptureList.length})
-=======
-        <i>{sculpture.name} </i>
-        by {sculpture.artist}
-      </h2>
       <h3>
-        ({index + 1} of {sculptureList.length})
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+        ({index + 1} od {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
         {showMore ? 'Sakrij' : 'Prikaži'} detalje
@@ -1371,147 +967,75 @@ export default function Gallery() {
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
-<<<<<<< HEAD
   description: 'Iako je Marta Colvin pretežno poznata po apstraktnim temama koje aludiraju na pre-hispanske simbole, ova ogromna skulptura, koja je omaž neurohirurgiji, jedna je od njenih najpoznatijih remek dela.',
-  url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-  alt: 'Bronzana statua dve skrštene ruke koje pažljivo drže ljudski mozak vrhovima prstiju.'  
+  url: 'https://react.dev/images/docs/scientists/Mx7dA2Y.jpg',
+  alt: 'Bronzana statua dve skrštene ruke koje pažljivo drže ljudski mozak vrhovima prstiju.'
 }, {
   name: 'Floralis Genérica',
   artist: 'Eduardo Catalano',
   description: 'Ovaj ogromni (75 ft. ili 23m) srebrni cvet se nalazi u Buenos Ajresu. Dizajniran je da se pomera, zatvarajući svoje latice uveče ili kada duvaju jaki vetrovi, a otvarajući ih ujutru.',
-  url: 'https://i.imgur.com/ZF6s192m.jpg',
+  url: 'https://react.dev/images/docs/scientists/ZF6s192m.jpg',
   alt: 'Velika metalna skulptura cveta sa reflektujućim laticama nalik na ogledalo i snažnim prašnicima.'
 }, {
   name: 'Eternal Presence',
   artist: 'John Woodrow Wilson',
   description: 'Wilson je poznat po svojoj preokupiranosti jednakošću, socijalnom pravdom, kao i suštinskim i duhovnim kvalitetima čovečanstva. Ova masivna (7ft. ili 2,13m) bronzana skulptura predstavlja ono što je on objasnio kao "simbolično crno prisustvo prožeto osećajem univerzalne humanosti".',
-  url: 'https://i.imgur.com/aTtVpES.jpg',
+  url: 'https://react.dev/images/docs/scientists/aTtVpES.jpg',
   alt: 'Skulptura ljudske glave koja deluje sveprisutno i svečano. Zrači mirnoćom i spokojstvom.'
 }, {
   name: 'Moai',
   artist: 'Nepoznati umetnik',
   description: 'Nalazi se na Uskršnjem ostrvu, gde postoji oko 1,000 moai očuvanih monumentalnih skulptura, koje su napravili prvobitni Rapa Nui ljudi, za koje se veruje da predstavljaju pretke Bogova.',
-  url: 'https://i.imgur.com/RCwLEoQm.jpg',
+  url: 'https://react.dev/images/docs/scientists/RCwLEoQm.jpg',
   alt: 'Tri monumentalne biste sa neproporcionalno velikim glavama i namrštenim licima.'
 }, {
   name: 'Blue Nana',
   artist: 'Niki de Saint Phalle',
   description: 'Nane su trijumfalna stvorenja, simboli ženstvenosti i majčinstva. Inicijalno, Saint Phalle je koristila tkaninu i pronađene objekte za Nane, ali je kasnije uvela poliester kako bi napravila živopisniji dojam.',
-  url: 'https://i.imgur.com/Sd1AgUOm.jpg',
+  url: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
   alt: 'Velika mozaička skulptura neobične ženske figure u raznobojnom kostimu koji odiše radošću.'
 }, {
   name: 'Ultimate Form',
   artist: 'Barbara Hepworth',
   description: 'Ova apstraktna bronzana skulptura je deo The Family of Man serije koja se nalazi u Jorkširskom parku skulptura. Hepworth je odlučila da ne pravi bukvalne reprezentacije sveta, već apstraktne forme inspirisane ljudima i pejzažima.',
-  url: 'https://i.imgur.com/2heNQDcm.jpg',
+  url: 'https://react.dev/images/docs/scientists/2heNQDcm.jpg',
   alt: 'Visoka skulptura tri elementa jedna na drugom koja podseća na ljudsku figuru.'
 }, {
   name: 'Cavaliere',
   artist: 'Lamidi Olonade Fakeye',
   description: "Pošto potiče od četiri generacije drvorezbara, Fakeye-ova dela su mešavina tradicionalne i savremene Joruba tematike.",
-  url: 'https://i.imgur.com/wIdGuZwm.png',
+  url: 'https://react.dev/images/docs/scientists/wIdGuZwm.jpg',
   alt: 'Složena drvena skulptura ratnika čije lice je fokusirano na konja ukrašenim šarama.'
 }, {
   name: 'Big Bellies',
   artist: 'Alina Szapocznikow',
   description: "Alina je poznata po skulpturama izdeljenog tela kao metafore za krhkost i nestalnost mladosti i lepote. Ova skulptura prikazuje dva veoma realistična velika stomaka jednog na drugom, gde je svaki visok oko 5 stopa (1,5m).",
-  url: 'https://i.imgur.com/AlHTAdDm.jpg',
+  url: 'https://react.dev/images/docs/scientists/AlHTAdDm.jpg',
   alt: 'Ova skulptura podseća na slapove nabora i dosta se razlikuje od stomaka na klasičnim skulpturama.'
 }, {
   name: 'Terracotta Army',
   artist: 'Nepoznati umetnik',
   description: 'Terracotta Army je kolekcija terakota skulptura koje predstavljaju armiju Qin Shi Huang-a, prvog cara Kine. Armija se sastojala od preko 8,000 vojnika, 130 kola sa 520 konja i 150 članova konjice.',
-  url: 'https://i.imgur.com/HMFmH6m.jpg',
+  url: 'https://react.dev/images/docs/scientists/HMFmH6m.jpg',
   alt: '12 terakota skulptura svečanih vojnika, od kojih svaki ima jedinstvenu facijalnu ekspresiju i oklop.'
 }, {
   name: 'Lunar Landscape',
   artist: 'Louise Nevelson',
   description: 'Nevelson je poznata po uklanjanju objekata iz ruševina Njujorka, od kojih je kasnije pravila monumentalne konstrukcije. Za ovo je koristila rasparene delove poput noge od kreveta, palice za žongliranje i delove sedišta, zakucavajući ih i lepeći u kutije koje podsećaju na kubističku geometrijsku apstrakciju prostora i forme.',
-  url: 'https://i.imgur.com/rN7hY6om.jpg',
+  url: 'https://react.dev/images/docs/scientists/rN7hY6om.jpg',
   alt: 'Crna mat skulptura gde su pojedinačni delovi na početku bili neprimetni.'
 }, {
   name: 'Aureole',
   artist: 'Ranjani Shettar',
   description: 'Shettar spaja tradicionalno i moderno, prirodno i industrijsko. Njena umetnost se fokusira na vezu između čoveka i prirode. Njen rad se opisuje kao ubedljiv i apstraktno i figurativno, prokoseći gravitaciji, kao i "dobra sinteza neobičnih materijala".',
-  url: 'https://i.imgur.com/okTpbHhm.jpg',
+  url: 'https://react.dev/images/docs/scientists/okTpbHhm.jpg',
   alt: 'Bleda skulptura nalik na žicu postavljena na betonski zid spuštajući se na pod. Izgleda lako.'
 }, {
   name: 'Hippos',
   artist: 'Taipei Zoo',
   description: 'Zoološki vrt u Tajpeju je naručio trg nilskih konja koji se igraju zaronjeni.',
-  url: 'https://i.imgur.com/6o5Vuyu.jpg',
-  alt: 'Grupa bronzanih skulptura nilskih konja koji kao da isplivavaju na trotoar.'
-=======
-  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
-  url: 'https://react.dev/images/docs/scientists/Mx7dA2Y.jpg',
-  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'
-}, {
-  name: 'Floralis Genérica',
-  artist: 'Eduardo Catalano',
-  description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
-  url: 'https://react.dev/images/docs/scientists/ZF6s192m.jpg',
-  alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
-}, {
-  name: 'Eternal Presence',
-  artist: 'John Woodrow Wilson',
-  description: 'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
-  url: 'https://react.dev/images/docs/scientists/aTtVpES.jpg',
-  alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.'
-}, {
-  name: 'Moai',
-  artist: 'Unknown Artist',
-  description: 'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
-  url: 'https://react.dev/images/docs/scientists/RCwLEoQm.jpg',
-  alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.'
-}, {
-  name: 'Blue Nana',
-  artist: 'Niki de Saint Phalle',
-  description: 'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
-  url: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
-  alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.'
-}, {
-  name: 'Ultimate Form',
-  artist: 'Barbara Hepworth',
-  description: 'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
-  url: 'https://react.dev/images/docs/scientists/2heNQDcm.jpg',
-  alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.'
-}, {
-  name: 'Cavaliere',
-  artist: 'Lamidi Olonade Fakeye',
-  description: "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
-  url: 'https://react.dev/images/docs/scientists/wIdGuZwm.png',
-  alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.'
-}, {
-  name: 'Big Bellies',
-  artist: 'Alina Szapocznikow',
-  description: "Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.",
-  url: 'https://react.dev/images/docs/scientists/AlHTAdDm.jpg',
-  alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.'
-}, {
-  name: 'Terracotta Army',
-  artist: 'Unknown Artist',
-  description: 'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
-  url: 'https://react.dev/images/docs/scientists/HMFmH6m.jpg',
-  alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.'
-}, {
-  name: 'Lunar Landscape',
-  artist: 'Louise Nevelson',
-  description: 'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
-  url: 'https://react.dev/images/docs/scientists/rN7hY6om.jpg',
-  alt: 'A black matte sculpture where the individual elements are initially indistinguishable.'
-}, {
-  name: 'Aureole',
-  artist: 'Ranjani Shettar',
-  description: 'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
-  url: 'https://react.dev/images/docs/scientists/okTpbHhm.jpg',
-  alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.'
-}, {
-  name: 'Hippos',
-  artist: 'Taipei Zoo',
-  description: 'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
   url: 'https://react.dev/images/docs/scientists/6o5Vuyu.jpg',
-  alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+  alt: 'Grupa bronzanih skulptura nilskih konja koji kao da isplivavaju na trotoar.'
 }];
 ```
 
@@ -1582,19 +1106,11 @@ export default function Gallery() {
         Naredno
       </button>
       <h2>
-<<<<<<< HEAD
-        <i>{sculpture.name} </i> 
+        <i>{sculpture.name} </i>
         napravio/la {sculpture.artist}
       </h2>
-      <h3>  
-        ({index + 1} od {sculptureList.length})
-=======
-        <i>{sculpture.name} </i>
-        by {sculpture.artist}
-      </h2>
       <h3>
-        ({index + 1} of {sculptureList.length})
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+        ({index + 1} od {sculptureList.length})
       </h3>
       <button onClick={handleMoreClick}>
         {showMore ? 'Sakrij' : 'Prikaži'} detalje
@@ -1613,147 +1129,75 @@ export default function Gallery() {
 export const sculptureList = [{
   name: 'Homenaje a la Neurocirugía',
   artist: 'Marta Colvin Andrade',
-<<<<<<< HEAD
   description: 'Iako je Marta Colvin pretežno poznata po apstraktnim temama koje aludiraju na pre-hispanske simbole, ova ogromna skulptura, koja je omaž neurohirurgiji, jedna je od njenih najpoznatijih remek dela.',
-  url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-  alt: 'Bronzana statua dve skrštene ruke koje pažljivo drže ljudski mozak vrhovima prstiju.'  
+  url: 'https://react.dev/images/docs/scientists/Mx7dA2Y.jpg',
+  alt: 'Bronzana statua dve skrštene ruke koje pažljivo drže ljudski mozak vrhovima prstiju.'
 }, {
   name: 'Floralis Genérica',
   artist: 'Eduardo Catalano',
   description: 'Ovaj ogromni (75 ft. ili 23m) srebrni cvet se nalazi u Buenos Ajresu. Dizajniran je da se pomera, zatvarajući svoje latice uveče ili kada duvaju jaki vetrovi, a otvarajući ih ujutru.',
-  url: 'https://i.imgur.com/ZF6s192m.jpg',
+  url: 'https://react.dev/images/docs/scientists/ZF6s192m.jpg',
   alt: 'Velika metalna skulptura cveta sa reflektujućim laticama nalik na ogledalo i snažnim prašnicima.'
 }, {
   name: 'Eternal Presence',
   artist: 'John Woodrow Wilson',
   description: 'Wilson je poznat po svojoj preokupiranosti jednakošću, socijalnom pravdom, kao i suštinskim i duhovnim kvalitetima čovečanstva. Ova masivna (7ft. ili 2,13m) bronzana skulptura predstavlja ono što je on objasnio kao "simbolično crno prisustvo prožeto osećajem univerzalne humanosti".',
-  url: 'https://i.imgur.com/aTtVpES.jpg',
+  url: 'https://react.dev/images/docs/scientists/aTtVpES.jpg',
   alt: 'Skulptura ljudske glave koja deluje sveprisutno i svečano. Zrači mirnoćom i spokojstvom.'
 }, {
   name: 'Moai',
   artist: 'Nepoznati umetnik',
   description: 'Nalazi se na Uskršnjem ostrvu, gde postoji oko 1,000 moai očuvanih monumentalnih skulptura, koje su napravili prvobitni Rapa Nui ljudi, za koje se veruje da predstavljaju pretke Bogova.',
-  url: 'https://i.imgur.com/RCwLEoQm.jpg',
+  url: 'https://react.dev/images/docs/scientists/RCwLEoQm.jpg',
   alt: 'Tri monumentalne biste sa neproporcionalno velikim glavama i namrštenim licima.'
 }, {
   name: 'Blue Nana',
   artist: 'Niki de Saint Phalle',
   description: 'Nane su trijumfalna stvorenja, simboli ženstvenosti i majčinstva. Inicijalno, Saint Phalle je koristila tkaninu i pronađene objekte za Nane, ali je kasnije uvela poliester kako bi napravila živopisniji dojam.',
-  url: 'https://i.imgur.com/Sd1AgUOm.jpg',
+  url: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
   alt: 'Velika mozaička skulptura neobične ženske figure u raznobojnom kostimu koji odiše radošću.'
 }, {
   name: 'Ultimate Form',
   artist: 'Barbara Hepworth',
   description: 'Ova apstraktna bronzana skulptura je deo The Family of Man serije koja se nalazi u Jorkširskom parku skulptura. Hepworth je odlučila da ne pravi bukvalne reprezentacije sveta, već apstraktne forme inspirisane ljudima i pejzažima.',
-  url: 'https://i.imgur.com/2heNQDcm.jpg',
+  url: 'https://react.dev/images/docs/scientists/2heNQDcm.jpg',
   alt: 'Visoka skulptura tri elementa jedna na drugom koja podseća na ljudsku figuru.'
 }, {
   name: 'Cavaliere',
   artist: 'Lamidi Olonade Fakeye',
   description: "Pošto potiče od četiri generacije drvorezbara, Fakeye-ova dela su mešavina tradicionalne i savremene Joruba tematike.",
-  url: 'https://i.imgur.com/wIdGuZwm.png',
+  url: 'https://react.dev/images/docs/scientists/wIdGuZwm.jpg',
   alt: 'Složena drvena skulptura ratnika čije lice je fokusirano na konja ukrašenim šarama.'
 }, {
   name: 'Big Bellies',
   artist: 'Alina Szapocznikow',
   description: "Alina je poznata po skulpturama izdeljenog tela kao metafore za krhkost i nestalnost mladosti i lepote. Ova skulptura prikazuje dva veoma realistična velika stomaka jednog na drugom, gde je svaki visok oko 5 stopa (1,5m).",
-  url: 'https://i.imgur.com/AlHTAdDm.jpg',
+  url: 'https://react.dev/images/docs/scientists/AlHTAdDm.jpg',
   alt: 'Ova skulptura podseća na slapove nabora i dosta se razlikuje od stomaka na klasičnim skulpturama.'
 }, {
   name: 'Terracotta Army',
   artist: 'Nepoznati umetnik',
   description: 'Terracotta Army je kolekcija terakota skulptura koje predstavljaju armiju Qin Shi Huang-a, prvog cara Kine. Armija se sastojala od preko 8,000 vojnika, 130 kola sa 520 konja i 150 članova konjice.',
-  url: 'https://i.imgur.com/HMFmH6m.jpg',
+  url: 'https://react.dev/images/docs/scientists/HMFmH6m.jpg',
   alt: '12 terakota skulptura svečanih vojnika, od kojih svaki ima jedinstvenu facijalnu ekspresiju i oklop.'
 }, {
   name: 'Lunar Landscape',
   artist: 'Louise Nevelson',
   description: 'Nevelson je poznata po uklanjanju objekata iz ruševina Njujorka, od kojih je kasnije pravila monumentalne konstrukcije. Za ovo je koristila rasparene delove poput noge od kreveta, palice za žongliranje i delove sedišta, zakucavajući ih i lepeći u kutije koje podsećaju na kubističku geometrijsku apstrakciju prostora i forme.',
-  url: 'https://i.imgur.com/rN7hY6om.jpg',
+  url: 'https://react.dev/images/docs/scientists/rN7hY6om.jpg',
   alt: 'Crna mat skulptura gde su pojedinačni delovi na početku bili neprimetni.'
 }, {
   name: 'Aureole',
   artist: 'Ranjani Shettar',
   description: 'Shettar spaja tradicionalno i moderno, prirodno i industrijsko. Njena umetnost se fokusira na vezu između čoveka i prirode. Njen rad se opisuje kao ubedljiv i apstraktno i figurativno, prokoseći gravitaciji, kao i "dobra sinteza neobičnih materijala".',
-  url: 'https://i.imgur.com/okTpbHhm.jpg',
+  url: 'https://react.dev/images/docs/scientists/okTpbHhm.jpg',
   alt: 'Bleda skulptura nalik na žicu postavljena na betonski zid spuštajući se na pod. Izgleda lako.'
 }, {
   name: 'Hippos',
   artist: 'Taipei Zoo',
   description: 'Zoološki vrt u Tajpeju je naručio trg nilskih konja koji se igraju zaronjeni.',
-  url: 'https://i.imgur.com/6o5Vuyu.jpg',
-  alt: 'Grupa bronzanih skulptura nilskih konja koji kao da isplivavaju na trotoar.'
-=======
-  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
-  url: 'https://react.dev/images/docs/scientists/Mx7dA2Y.jpg',
-  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'
-}, {
-  name: 'Floralis Genérica',
-  artist: 'Eduardo Catalano',
-  description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
-  url: 'https://react.dev/images/docs/scientists/ZF6s192m.jpg',
-  alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
-}, {
-  name: 'Eternal Presence',
-  artist: 'John Woodrow Wilson',
-  description: 'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
-  url: 'https://react.dev/images/docs/scientists/aTtVpES.jpg',
-  alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.'
-}, {
-  name: 'Moai',
-  artist: 'Unknown Artist',
-  description: 'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
-  url: 'https://react.dev/images/docs/scientists/RCwLEoQm.jpg',
-  alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.'
-}, {
-  name: 'Blue Nana',
-  artist: 'Niki de Saint Phalle',
-  description: 'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
-  url: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
-  alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.'
-}, {
-  name: 'Ultimate Form',
-  artist: 'Barbara Hepworth',
-  description: 'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
-  url: 'https://react.dev/images/docs/scientists/2heNQDcm.jpg',
-  alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.'
-}, {
-  name: 'Cavaliere',
-  artist: 'Lamidi Olonade Fakeye',
-  description: "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
-  url: 'https://react.dev/images/docs/scientists/wIdGuZwm.png',
-  alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.'
-}, {
-  name: 'Big Bellies',
-  artist: 'Alina Szapocznikow',
-  description: "Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.",
-  url: 'https://react.dev/images/docs/scientists/AlHTAdDm.jpg',
-  alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.'
-}, {
-  name: 'Terracotta Army',
-  artist: 'Unknown Artist',
-  description: 'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
-  url: 'https://react.dev/images/docs/scientists/HMFmH6m.jpg',
-  alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.'
-}, {
-  name: 'Lunar Landscape',
-  artist: 'Louise Nevelson',
-  description: 'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
-  url: 'https://react.dev/images/docs/scientists/rN7hY6om.jpg',
-  alt: 'A black matte sculpture where the individual elements are initially indistinguishable.'
-}, {
-  name: 'Aureole',
-  artist: 'Ranjani Shettar',
-  description: 'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
-  url: 'https://react.dev/images/docs/scientists/okTpbHhm.jpg',
-  alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.'
-}, {
-  name: 'Hippos',
-  artist: 'Taipei Zoo',
-  description: 'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
   url: 'https://react.dev/images/docs/scientists/6o5Vuyu.jpg',
-  alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+  alt: 'Grupa bronzanih skulptura nilskih konja koji kao da isplivavaju na trotoar.'
 }];
 ```
 
@@ -2002,11 +1446,7 @@ export default function FeedbackForm() {
 
 Pokušajte da pomerite drugi `useState` poziv nakon `if` uslova i vidite kako ponovo neće raditi.
 
-<<<<<<< HEAD
-Ako je vaš linter [konfigurisan za React](/learn/editor-setup#linting), trebali biste videti lint grešku kad uradite ovako nešto. Ako ne vidite grešku kada napišete neispravan kod lokalno, potrebno je da postavite linting za vaš projekat. 
-=======
-If your linter is [configured for React](/learn/editor-setup#linting), you should see a lint error when you make a mistake like this. If you don't see an error when you try the faulty code locally, you need to set up linting for your project.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+Ako je vaš linter [konfigurisan za React](/learn/editor-setup#linting), trebali biste videti lint grešku kad uradite ovako nešto. Ako ne vidite grešku kada napišete neispravan kod lokalno, potrebno je da postavite linting za vaš projekat.
 
 </Solution>
 

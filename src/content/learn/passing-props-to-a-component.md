@@ -453,21 +453,12 @@ export default function Gallery() {
         />
         <ul>
           <li>
-<<<<<<< HEAD
-            <b>Profesija: </b> 
+            <b>Profesija: </b>
             fizičar i hemičar
           </li>
           <li>
-            <b>Nagrade: 4 </b> 
+            <b>Nagrade: 4 </b>
             (Nobelova nagrada za fiziku, Nobelova nagrada za hemiju, Davy medalja, Matteucci medalja)
-=======
-            <b>Profession: </b>
-            physicist and chemist
-          </li>
-          <li>
-            <b>Awards: 4 </b>
-            (Nobel Prize in Physics, Nobel Prize in Chemistry, Davy Medal, Matteucci Medal)
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
           </li>
           <li>
             <b>Otkrića: </b>
@@ -486,21 +477,12 @@ export default function Gallery() {
         />
         <ul>
           <li>
-<<<<<<< HEAD
-            <b>Profesija: </b> 
+            <b>Profesija: </b>
             geohemičar
           </li>
           <li>
-            <b>Nagrade: 2 </b> 
+            <b>Nagrade: 2 </b>
             (Miyake nagrada za geohemiju, Tanaka nagrada)
-=======
-            <b>Profession: </b>
-            geochemist
-          </li>
-          <li>
-            <b>Awards: 2 </b>
-            (Miyake Prize for geochemistry, Tanaka Prize)
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
           </li>
           <li>
             <b>Otkrića: </b>
