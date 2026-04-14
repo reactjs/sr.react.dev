@@ -8,7 +8,7 @@ Ako želite da napravite novu aplikaciju ili novi sajt koristeći React, preporu
 
 </Intro>
 
-Ako vaša aplikacija ima ograničenja koja nisu dobro rešena u postojećim framework-ovima, ako želite da napravite sopstveni framework, ili samo želite naučiti osnove React aplikacija, možete [napraviti React aplikaciju od nule](/learn/build-a-react-app-from-scratch).
+Ako vaša aplikacija ima ograničenja koja nisu adekvatno rešena u postojećim framework-ovima, ako želite da napravite sopstveni framework, ili samo želite naučiti osnove React aplikacija, možete [napraviti React aplikaciju od nule](/learn/build-a-react-app-from-scratch).
 
 ## Full-stack framework-ovi {/*full-stack-frameworks*/}
 
@@ -102,7 +102,7 @@ Server Components i Suspense su funkcionalnosti React-a, a ne Next.js-a. Međuti
 
 ## Početak od nule {/*start-from-scratch*/}
 
-Ako vaša aplikacija ima ograničenja koja nisu dobro rešena u postojećim framework-ovima, ako želite da napravite sopstveni framework, ili samo želite naučiti osnove React aplikacija, postoji još opcija za započinjanje React projekta od nule.
+Ako vaša aplikacija ima ograničenja koja nisu adekvatno rešena u postojećim framework-ovima, ako želite da napravite sopstveni framework, ili samo želite naučiti osnove React aplikacija, postoji još opcija za započinjanje React projekta od nule.
 
 Početak od nule vam pruža više fleksibilnosti, ali zahteva da napravite odluku koje alate ćete koristiti za rutiranje, fetch-ovanje podataka i ostale često korišćene šablone. To je kao da pravite sopstveni framework, a ne da koristite već postojeći. [Framework-ovi koje preporučujemo](#full-stack-frameworks) imaju ugrađena rešenja za ovakve probleme.
 
