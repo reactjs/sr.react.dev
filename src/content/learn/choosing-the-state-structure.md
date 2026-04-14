@@ -458,11 +458,7 @@ export default function Menu() {
 
   return (
     <>
-<<<<<<< HEAD
-      <h2>Koja je vaša grickalica za put?</h2> 
-=======
-      <h2>What's your travel snack?</h2>
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+      <h2>Koja je vaša grickalica za put?</h2>
       <ul>
         {items.map((item, index) => (
           <li key={item.id}>
@@ -924,13 +920,8 @@ export const initialTravelPlan = {
   },
   10: {
     id: 10,
-<<<<<<< HEAD
     title: 'Amerika',
-    childIds: [11, 12, 13, 14, 15, 16, 17, 18],   
-=======
-    title: 'Americas',
     childIds: [11, 12, 13, 14, 15, 16, 17, 18],
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   },
   11: {
     id: 11,
@@ -974,13 +965,8 @@ export const initialTravelPlan = {
   },
   19: {
     id: 19,
-<<<<<<< HEAD
     title: 'Azija',
-    childIds: [20, 21, 22, 23, 24, 25],   
-=======
-    title: 'Asia',
     childIds: [20, 21, 22, 23, 24, 25],
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   },
   20: {
     id: 20,
@@ -1014,13 +1000,8 @@ export const initialTravelPlan = {
   },
   26: {
     id: 26,
-<<<<<<< HEAD
     title: 'Evropa',
-    childIds: [27, 28, 29, 30, 31, 32, 33],   
-=======
-    title: 'Europe',
     childIds: [27, 28, 29, 30, 31, 32, 33],
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   },
   27: {
     id: 27,
@@ -1059,13 +1040,8 @@ export const initialTravelPlan = {
   },
   34: {
     id: 34,
-<<<<<<< HEAD
     title: 'Okeanija',
-    childIds: [35, 36, 37, 38, 39, 40, 41],   
-=======
-    title: 'Oceania',
     childIds: [35, 36, 37, 38, 39, 40, 41],
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   },
   35: {
     id: 35,
@@ -1280,13 +1256,8 @@ export const initialTravelPlan = {
   },
   10: {
     id: 10,
-<<<<<<< HEAD
     title: 'Amerika',
-    childIds: [11, 12, 13, 14, 15, 16, 17, 18],   
-=======
-    title: 'Americas',
     childIds: [11, 12, 13, 14, 15, 16, 17, 18],
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   },
   11: {
     id: 11,
@@ -1330,13 +1301,8 @@ export const initialTravelPlan = {
   },
   19: {
     id: 19,
-<<<<<<< HEAD
     title: 'Azija',
-    childIds: [20, 21, 22, 23, 24, 25],   
-=======
-    title: 'Asia',
     childIds: [20, 21, 22, 23, 24, 25],
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   },
   20: {
     id: 20,
@@ -1370,13 +1336,8 @@ export const initialTravelPlan = {
   },
   26: {
     id: 26,
-<<<<<<< HEAD
     title: 'Evropa',
-    childIds: [27, 28, 29, 30, 31, 32, 33],   
-=======
-    title: 'Europe',
     childIds: [27, 28, 29, 30, 31, 32, 33],
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   },
   27: {
     id: 27,
@@ -1415,13 +1376,8 @@ export const initialTravelPlan = {
   },
   34: {
     id: 34,
-<<<<<<< HEAD
     title: 'Okeanija',
-    childIds: [35, 36, 37, 38, 39, 40, 41],   
-=======
-    title: 'Oceania',
     childIds: [35, 36, 37, 38, 39, 40, 41],
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   },
   35: {
     id: 35,
@@ -1639,13 +1595,8 @@ export const initialTravelPlan = {
   },
   10: {
     id: 10,
-<<<<<<< HEAD
     title: 'Amerika',
-    childIds: [11, 12, 13, 14, 15, 16, 17, 18],   
-=======
-    title: 'Americas',
     childIds: [11, 12, 13, 14, 15, 16, 17, 18],
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   },
   11: {
     id: 11,
@@ -1689,13 +1640,8 @@ export const initialTravelPlan = {
   },
   19: {
     id: 19,
-<<<<<<< HEAD
     title: 'Azija',
-    childIds: [20, 21, 22, 23, 24, 25,],   
-=======
-    title: 'Asia',
     childIds: [20, 21, 22, 23, 24, 25,],
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   },
   20: {
     id: 20,
@@ -1729,13 +1675,8 @@ export const initialTravelPlan = {
   },
   26: {
     id: 26,
-<<<<<<< HEAD
     title: 'Evropa',
-    childIds: [27, 28, 29, 30, 31, 32, 33],   
-=======
-    title: 'Europe',
     childIds: [27, 28, 29, 30, 31, 32, 33],
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   },
   27: {
     id: 27,
@@ -1774,13 +1715,8 @@ export const initialTravelPlan = {
   },
   34: {
     id: 34,
-<<<<<<< HEAD
     title: 'Okeanija',
-    childIds: [35, 36, 37, 38, 39, 40, 41],   
-=======
-    title: 'Oceania',
     childIds: [35, 36, 37, 38, 39, 40, 41],
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   },
   35: {
     id: 35,
@@ -1885,7 +1821,6 @@ Ponekad, možete smanjiti ugnježdenost state-a pomeranjem nekih ugnježdenih ob
 
 <Recap>
 
-<<<<<<< HEAD
 * Ako se dve state promenljive uvek istovremeno ažuriraju, pokušajte da ih spojite u jednu.
 * Pažljivo birajte state promenljive da biste izbegli kreiranje "nemogućih" stanja.
 * Strukturirajte state na način koji smanjuje šanse za pravljenje grešaka prilikom ažuriranja.
@@ -1893,15 +1828,6 @@ Ponekad, možete smanjiti ugnježdenost state-a pomeranjem nekih ugnježdenih ob
 * Ne stavljajte props *unutar* state-a osim ako specifično želite da sprečite ažuriranja.
 * Za UI šablone poput odabira, u state-u čuvajte ID ili indeks umesto celog objekta.
 * Ako je ažuriranje duboko ugnježdenog state-a komplikovano, probajte da ga flatten-ujete.
-=======
-* If two state variables always update together, consider merging them into one.
-* Choose your state variables carefully to avoid creating "impossible" states.
-* Structure your state in a way that reduces the chances that you'll make a mistake updating it.
-* Avoid redundant and duplicate state so that you don't need to keep it in sync.
-* Don't put props *into* state unless you specifically want to prevent updates.
-* For UI patterns like selection, keep ID or index in state instead of the object itself.
-* If updating deeply nested state is complicated, try flattening it.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 </Recap>
 

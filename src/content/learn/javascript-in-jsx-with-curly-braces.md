@@ -40,11 +40,7 @@ export default function Avatar() {
 
 </Sandpack>
 
-<<<<<<< HEAD
-Ovde, `"https://i.imgur.com/7vQD0fPs.jpg"` i `"Gregorio Y. Zara"` se prosleđuju kao stringovi.
-=======
-Here, `"https://react.dev/images/docs/scientists/7vQD0fPs.jpg"` and `"Gregorio Y. Zara"` are being passed as strings.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
+Ovde, `"https://react.dev/images/docs/scientists/7vQD0fPs.jpg"` i `"Gregorio Y. Zara"` se prosleđuju kao stringovi.
 
 Ali šta ako želite da dinamički odredite `src` ili `alt` tekst? Možete **koristiti vrednost iz JavaScript-a zamenom `"` i `"` sa `{` i `}`**:
 
@@ -431,13 +427,9 @@ body > div > div { padding: 20px; }
 
 #### Napisati jedan izraz unutar vitičastih zagrada {/*write-one-expression-inside-curly-braces*/}
 
-<<<<<<< HEAD
 U objektu ispod, puni URL slike je podeljen na četiri dela: bazni URL, `imageId`, `imageSize` i ekstenzija fajla.
-=======
-We want the image URL to combine these attributes together: base URL (always `'https://react.dev/images/docs/scientists/'`), `imageId` (`'7vQD0fP'`), `imageSize` (`'s'`), and file extension (always `'.jpg'`). However, something is wrong with how the `<img>` tag specifies its `src`.
->>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
-Mi želimo da URL slike kombinuje ove atribute zajedno: bazni URL (uvek `'https://i.imgur.com/'`), `imageId` (`'7vQD0fP'`), `imageSize` (`'s'`) i ekstenzija fajla (uvek `'.jpg'`). Međutim, nešto nije u redu sa načinom na koji `<img>` oznaka određuje svoj `src`.
+Mi želimo da URL slike kombinuje ove atribute zajedno: bazni URL (uvek `'https://react.dev/images/docs/scientists/'`), `imageId` (`'7vQD0fP'`), `imageSize` (`'s'`) i ekstenzija fajla (uvek `'.jpg'`). Međutim, nešto nije u redu sa načinom na koji `<img>` oznaka određuje svoj `src`.
 
 Možete li da popravite ovo?
 
