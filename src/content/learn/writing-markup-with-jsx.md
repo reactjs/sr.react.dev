@@ -69,10 +69,17 @@ JSX i React su dve odvojene stvari. Često se koriste zajedno, ali *možete* [ih
 Pretpostavimo da imate neki (potpuno validan) HTML:
 
 ```html
+<<<<<<< HEAD
 <h1>Hedy Lamarr-ina Todo lista</h1>
 <img 
   src="https://i.imgur.com/yXOvdOSs.jpg" 
   alt="Hedy Lamarr" 
+=======
+<h1>Hedy Lamarr's Todos</h1>
+<img
+  src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
+  alt="Hedy Lamarr"
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
   class="photo"
 >
 <ul>
@@ -100,11 +107,19 @@ Ako uradite samo copy/paste, to neće raditi:
 ```js
 export default function TodoList() {
   return (
+<<<<<<< HEAD
     // Ovo baš i ne radi!
     <h1>Hedy Lamarr-ina Todo lista</h1>
     <img 
       src="https://i.imgur.com/yXOvdOSs.jpg" 
       alt="Hedy Lamarr" 
+=======
+    // This doesn't quite work!
+    <h1>Hedy Lamarr's Todos</h1>
+    <img
+      src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
+      alt="Hedy Lamarr"
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
       class="photo"
     >
     <ul>
@@ -140,10 +155,17 @@ Na primer, možete koristiti `<div>`:
 
 ```js {1,11}
 <div>
+<<<<<<< HEAD
   <h1>Hedy Lamarr-ina Todo lista</h1>
   <img 
     src="https://i.imgur.com/yXOvdOSs.jpg" 
     alt="Hedy Lamarr" 
+=======
+  <h1>Hedy Lamarr's Todos</h1>
+  <img
+    src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
+    alt="Hedy Lamarr"
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
     class="photo"
   >
   <ul>
@@ -157,10 +179,17 @@ Ako ne želite da dodate novi `<div>` u vaš markup, možete umesto toga koristi
 
 ```js {1,11}
 <>
+<<<<<<< HEAD
   <h1>Hedy Lamarr-ina Todo lista</h1>
   <img 
     src="https://i.imgur.com/yXOvdOSs.jpg" 
     alt="Hedy Lamarr" 
+=======
+  <h1>Hedy Lamarr's Todos</h1>
+  <img
+    src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
+    alt="Hedy Lamarr"
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
     class="photo"
   >
   <ul>
@@ -187,9 +216,9 @@ Ovako izgledaju Hedy Lamarr-ina slika i lista zatvoreni:
 
 ```js {2-6,8-10}
 <>
-  <img 
-    src="https://i.imgur.com/yXOvdOSs.jpg" 
-    alt="Hedy Lamarr" 
+  <img
+    src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
+    alt="Hedy Lamarr"
     class="photo"
    />
   <ul>
@@ -207,9 +236,9 @@ JSX se pretvara u JavaScript i atributi napisani u JSX-u postaju ključevi za Ja
 Zato se, u React-u, većina HTML i SVG atributa pišu u camelCase-u. Na primer, umesto `stroke-width` koristićete `strokeWidth`. Pošto je `class` rezervisana reč, u React-u ćete pisati `className`, koji je nastao na osnovu [odgovarajućeg polja u DOM-u](https://developer.mozilla.org/en-US/docs/Web/API/Element/className):
 
 ```js {4}
-<img 
-  src="https://i.imgur.com/yXOvdOSs.jpg" 
-  alt="Hedy Lamarr" 
+<img
+  src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
+  alt="Hedy Lamarr"
   className="photo"
 />
 ```
@@ -234,11 +263,19 @@ Ovo je konačni rezultat:
 export default function TodoList() {
   return (
     <>
+<<<<<<< HEAD
       <h1>Hedy Lamarr-ina Todo lista</h1>
       <img 
         src="https://i.imgur.com/yXOvdOSs.jpg" 
         alt="Hedy Lamarr" 
         className="photo" 
+=======
+      <h1>Hedy Lamarr's Todos</h1>
+      <img
+        src="https://react.dev/images/docs/scientists/yXOvdOSs.jpg"
+        alt="Hedy Lamarr"
+        className="photo"
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
       />
       <ul>
         <li>Izmisli nove semafore</li>

@@ -27,7 +27,7 @@ export default function Avatar() {
   return (
     <img
       className="avatar"
-      src="https://i.imgur.com/7vQD0fPs.jpg"
+      src="https://react.dev/images/docs/scientists/7vQD0fPs.jpg"
       alt="Gregorio Y. Zara"
     />
   );
@@ -40,7 +40,11 @@ export default function Avatar() {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Ovde, `"https://i.imgur.com/7vQD0fPs.jpg"` i `"Gregorio Y. Zara"` se prosleđuju kao stringovi.
+=======
+Here, `"https://react.dev/images/docs/scientists/7vQD0fPs.jpg"` and `"Gregorio Y. Zara"` are being passed as strings.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Ali šta ako želite da dinamički odredite `src` ili `alt` tekst? Možete **koristiti vrednost iz JavaScript-a zamenom `"` i `"` sa `{` i `}`**:
 
@@ -48,7 +52,7 @@ Ali šta ako želite da dinamički odredite `src` ili `alt` tekst? Možete **kor
 
 ```js
 export default function Avatar() {
-  const avatar = 'https://i.imgur.com/7vQD0fPs.jpg';
+  const avatar = 'https://react.dev/images/docs/scientists/7vQD0fPs.jpg';
   const description = 'Gregorio Y. Zara';
   return (
     <img
@@ -190,7 +194,7 @@ export default function TodoList() {
       <h1>{person.name} lista</h1>
       <img
         className="avatar"
-        src="https://i.imgur.com/7vQD0fPs.jpg"
+        src="https://react.dev/images/docs/scientists/7vQD0fPs.jpg"
         alt="Gregorio Y. Zara"
       />
       <ul>
@@ -266,7 +270,7 @@ export default function TodoList() {
       <h1>{person} lista</h1>
       <img
         className="avatar"
-        src="https://i.imgur.com/7vQD0fPs.jpg"
+        src="https://react.dev/images/docs/scientists/7vQD0fPs.jpg"
         alt="Gregorio Y. Zara"
       />
       <ul>
@@ -314,7 +318,7 @@ export default function TodoList() {
       <h1>{person.name} lista </h1>
       <img
         className="avatar"
-        src="https://i.imgur.com/7vQD0fPs.jpg"
+        src="https://react.dev/images/docs/scientists/7vQD0fPs.jpg"
         alt="Gregorio Y. Zara"
       />
       <ul>
@@ -358,7 +362,7 @@ export default function TodoList() {
       <h1>{person.name} lista</h1>
       <img
         className="avatar"
-        src="https://i.imgur.com/7vQD0fPs.jpg"
+        src="https://react.dev/images/docs/scientists/7vQD0fPs.jpg"
         alt="Gregorio Y. Zara"
       />
       <ul>
@@ -388,7 +392,7 @@ Pomerite URL slike u svojstvo `person.imageUrl` i pročitajte ga iz `<img>` ozna
 ```js
 const person = {
   name: 'Gregorio Y. Zara',
-  imageUrl: "https://i.imgur.com/7vQD0fPs.jpg",
+  imageUrl: "https://react.dev/images/docs/scientists/7vQD0fPs.jpg",
   theme: {
     backgroundColor: 'black',
     color: 'pink'
@@ -427,7 +431,11 @@ body > div > div { padding: 20px; }
 
 #### Napisati jedan izraz unutar vitičastih zagrada {/*write-one-expression-inside-curly-braces*/}
 
+<<<<<<< HEAD
 U objektu ispod, puni URL slike je podeljen na četiri dela: bazni URL, `imageId`, `imageSize` i ekstenzija fajla.
+=======
+We want the image URL to combine these attributes together: base URL (always `'https://react.dev/images/docs/scientists/'`), `imageId` (`'7vQD0fP'`), `imageSize` (`'s'`), and file extension (always `'.jpg'`). However, something is wrong with how the `<img>` tag specifies its `src`.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Mi želimo da URL slike kombinuje ove atribute zajedno: bazni URL (uvek `'https://i.imgur.com/'`), `imageId` (`'7vQD0fP'`), `imageSize` (`'s'`) i ekstenzija fajla (uvek `'.jpg'`). Međutim, nešto nije u redu sa načinom na koji `<img>` oznaka određuje svoj `src`.
 
@@ -437,7 +445,7 @@ Možete li da popravite ovo?
 
 ```js
 
-const baseUrl = 'https://i.imgur.com/';
+const baseUrl = 'https://react.dev/images/docs/scientists/';
 const person = {
   name: 'Gregorio Y. Zara',
   imageId: '7vQD0fP',
@@ -488,7 +496,7 @@ Možete napisati kao `src={baseUrl + person.imageId + person.imageSize + '.jpg'}
 <Sandpack>
 
 ```js
-const baseUrl = 'https://i.imgur.com/';
+const baseUrl = 'https://react.dev/images/docs/scientists/';
 const person = {
   name: 'Gregorio Y. Zara',
   imageId: '7vQD0fP',
@@ -565,7 +573,7 @@ export default function TodoList() {
 ```js src/utils.js
 export function getImageUrl(person) {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     person.imageSize +
     '.jpg'

@@ -169,7 +169,11 @@ Ovo omogućava tim dugmićima da prikažu različite poruke. Probajte da promeni
 
 ### Prosleđivanje event handler-a kao prop-a {/*passing-event-handlers-as-props*/}
 
+<<<<<<< HEAD
 Često ćete želeti da roditeljska komponenta specificira dečji event handler. Razmotrite dugmiće: u zavisnosti od toga gde koristite `Button` komponentu, možete poželeti da izvršite različite funkcije—jedna da pušta film, druga da upload-uje sliku. 
+=======
+Often you'll want the parent component to specify a child's event handler. Consider buttons: depending on where you're using a `Button` component, you might want to execute a different function—perhaps one plays a movie and another uploads an image.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Da biste to uradili, prosledite prop koji komponenta primi od roditelja kao event handler:
 
@@ -312,12 +316,21 @@ button { margin-right: 10px; }
 
 </Sandpack>
 
+<<<<<<< HEAD
 Primetite da `App` komponenta ne mora da zna *šta* će `Toolbar` uraditi sa `onPlayMovie` i `onUploadImage`. To je implementacijski detalj u `Toolbar`-u. Takođe, `Toolbar` ih prosleđuje kao `onClick` handler-e u svoje `Button`-e, ali ih kasnije može okinuti i za prečicu na tastaturi. Imenovanje event handler props-a na osnovu koncepata specifičnih za aplikaciju poput `onPlayMovie` vam daje fleksibilnost da kasnije menjate kako se koriste.
   
 <Note>
 
 Postarajte se da koristite odgovarajuće HTML tag-ove za event handler-e. Na primer, za klikove, koristite [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) umesto `<div onClick={handleClick}>`. Korišćenjem `<button>`-a u pretraživaču omogućavate ugrađena ponašanja pretraživača poput navigacije pomoću tastature. Ako vam se ne sviđa default stajling dugmeta u pretraživaču i želite da liči na link ili drugi UI element, to možete učititi pomoću CSS-a. [Naučite više o pisanju pristupačnog markup-a](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML).
   
+=======
+Notice how the `App` component does not need to know *what* `Toolbar` will do with `onPlayMovie` or `onUploadImage`. That's an implementation detail of the `Toolbar`. Here, `Toolbar` passes them down as `onClick` handlers to its `Button`s, but it could later also trigger them on a keyboard shortcut. Naming props after app-specific interactions like `onPlayMovie` gives you the flexibility to change how they're used later.
+
+<Note>
+
+Make sure that you use the appropriate HTML tags for your event handlers. For example, to handle clicks, use [`<button onClick={handleClick}>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) instead of `<div onClick={handleClick}>`. Using a real browser `<button>` enables built-in browser behaviors like keyboard navigation. If you don't like the default browser styling of a button and want to make it look more like a link or a different UI element, you can achieve it with CSS. [Learn more about writing accessible markup.](https://developer.mozilla.org/en-US/docs/Learn/Accessibility/HTML)
+
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 </Note>
 
 ## Propagacija event-ova {/*event-propagation*/}
@@ -411,12 +424,21 @@ button { margin: 5px; }
 
 Kada kliknete na dugme:
 
+<<<<<<< HEAD
 1. React poziva `onClick` handler prosleđen u `<button>`. 
 2. Taj handler, definisan u `Button`-u, radi sledeće:
    * Poziva `e.stopPropagation()`, sprečavajući da se event propagira dalje.
    * Poziva `onClick` funkciju, koja je prop prosleđen iz `Toolbar` komponente.
 3. Ta funkcija, definisana u `Toolbar` komponenti, prikazuje poruku specifičnu za dugme.
 4. Pošto je propagacija zaustavljena, `onClick` handler u roditeljskom `<div>`-u se *ne* pokreće.
+=======
+1. React calls the `onClick` handler passed to `<button>`.
+2. That handler, defined in `Button`, does the following:
+   * Calls `e.stopPropagation()`, preventing the event from bubbling further.
+   * Calls the `onClick` function, which is a prop passed from the `Toolbar` component.
+3. That function, defined in the `Toolbar` component, displays the button's own alert.
+4. Since the propagation was stopped, the parent `<div>`'s `onClick` handler does *not* run.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Kao rezultat od `e.stopPropagation()`, klik na dugmiće prikazuje samo jednu poruku (iz `<button>`-a) umesto dve (iz `<button>`-a i iz roditeljskog toolbar `<div>`-a). Kliktanje dugmeta nije isto kao kliktanje okružujućeg toolbar-a, tako da zaustavljanje propagacije ima smisla za ovaj UI.
 
@@ -433,11 +455,19 @@ U retkim slučajevima, možete poželeti da uhvatite sve event-e iz dečjih elem
 </div>
 ```
 
+<<<<<<< HEAD
 Svaki event se propagira u tri faze:
 
 1. Putuje na dole, pozivajući sve `onClickCapture` handler-e.
 2. Pokreće `onClick` handler na kliknutom elementu. 
 3. Putuje na gore, pozivajući sve `onClick` handler-e.
+=======
+Each event propagates in three phases:
+
+1. It travels down, calling all `onClickCapture` handlers.
+2. It runs the clicked element's `onClick` handler.
+3. It travels upwards, calling all `onClick` handlers.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Capture event-i su korisni za rutere i analitiku, ali ih verovatno nećete koristiti u kodu aplikacije.
 

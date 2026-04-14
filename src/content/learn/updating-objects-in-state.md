@@ -199,7 +199,7 @@ setPosition({
 
 Mutacija je jedino problematična kada menjate *postojeće* objekte koji su već u state-u. Mutiranje objekta koji ste upravo kreirali je u redu zato što *ga ništa ne referencira još uvek*. Njegovom promenom ne možete slučajno uticati na nešto što zavisi od njega. Ovo se naziva "lokalna mutacija". Možete koristiti lokalnu mutaciju i [tokom renderovanja](/learn/keeping-components-pure#local-mutation-your-components-little-secret). Veoma zgodno i potpuno u redu!
 
-</DeepDive>  
+</DeepDive>
 
 ## Kopiranje objekata sa spread sintaksom {/*copying-objects-with-the-spread-syntax*/}
 
@@ -296,7 +296,11 @@ setPerson({
 });
 ```
 
+<<<<<<< HEAD
 Sada forma radi! 
+=======
+Now the form works!
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Primetite da niste deklarisali posebnu state promenljivu za svako input polje. Za velike forme, grupisanje svih podataka u objekat je veoma zgodno--dok god ga ažurirate kako treba!
 
@@ -373,7 +377,11 @@ input { margin-left: 5px; margin-bottom: 5px; }
 
 </Sandpack>
 
+<<<<<<< HEAD
 Primetite da je `...` spread sintaksa "plitka"--kopira polja samo na prvom nivou dubine. Ovo je čini brzom, ali, takođe znači da ako želite ažurirati ugnježdeno polje, moraćete je koristiti više od jednom.
+=======
+Note that the `...` spread syntax is "shallow"--it only copies things one level deep. This makes it fast, but it also means that if you want to update a nested property, you'll have to use it more than once.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <DeepDive>
 
@@ -457,7 +465,7 @@ const [person, setPerson] = useState({
   artwork: {
     title: 'Blue Nana',
     city: 'Hamburg',
-    image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+    image: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
   }
 });
 ```
@@ -501,7 +509,7 @@ export default function Form() {
     artwork: {
       title: 'Blue Nana',
       city: 'Hamburg',
-      image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+      image: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
     }
   });
 
@@ -579,8 +587,8 @@ export default function Form() {
         <br />
         (locirano u {person.artwork.city})
       </p>
-      <img 
-        src={person.artwork.image} 
+      <img
+        src={person.artwork.image}
         alt={person.artwork.title}
       />
     </>
@@ -608,7 +616,7 @@ let obj = {
   artwork: {
     title: 'Blue Nana',
     city: 'Hamburg',
-    image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+    image: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
   }
 };
 ```
@@ -619,7 +627,7 @@ Međutim, "ugnježdavanje" je netačan način za razmišljanje o tome kako se ob
 let obj1 = {
   title: 'Blue Nana',
   city: 'Hamburg',
-  image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+  image: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
 };
 
 let obj2 = {
@@ -634,7 +642,7 @@ Objekat `obj1` nije "unutar" `obj2`. Na primer, `obj3` bi mogao da "pokazuje" na
 let obj1 = {
   title: 'Blue Nana',
   city: 'Hamburg',
-  image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+  image: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
 };
 
 let obj2 = {
@@ -650,7 +658,7 @@ let obj3 = {
 
 Ako biste mutirali `obj3.artwork.city`, to bi uticalo na `obj2.artwork.city` i `obj1.city` takođe. To se dešava zato što su `obj3.artwork`, `obj2.artwork` i `obj1` isti objekat. Ovo je teško da se primeti kada mislite o objektima kao da su "ugnježdeni". Umesto toga, to su odvojeni objekti koji "pokazuju" jedni na druge preko svojih polja.
 
-</DeepDive>  
+</DeepDive>
 
 ### Pisanje koncizne logike ažuriranja sa Immer-om {/*write-concise-update-logic-with-immer*/}
 
@@ -690,7 +698,7 @@ export default function Form() {
     artwork: {
       title: 'Blue Nana',
       city: 'Hamburg',
-      image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+      image: 'https://react.dev/images/docs/scientists/Sd1AgUOm.jpg',
     }
   });
 
@@ -755,8 +763,8 @@ export default function Form() {
         <br />
         (locirano u {person.artwork.city})
       </p>
-      <img 
-        src={person.artwork.image} 
+      <img
+        src={person.artwork.image}
         alt={person.artwork.title}
       />
     </>

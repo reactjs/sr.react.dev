@@ -27,6 +27,7 @@ Možda ste već upoznati sa jednim primerom čistih funkcija: formulama u matema
 
 Pogledajte ovu matematičku formulu: <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>.
 
+<<<<<<< HEAD
 Ako je <Math><MathI>x</MathI> = 2</Math> onda je <Math><MathI>y</MathI> = 4</Math>. Uvek.
 
 Ako je <Math><MathI>x</MathI> = 3</Math> onda je <Math><MathI>y</MathI> = 6</Math>. Uvek.
@@ -34,6 +35,15 @@ Ako je <Math><MathI>x</MathI> = 3</Math> onda je <Math><MathI>y</MathI> = 6</Mat
 Ako je <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> neće ponekad biti <Math>9</Math> ili <Math>–1</Math> ili <Math>2.5</Math> u zavisnosti od trenutnog vremena ili stanja na berzi.
 
 Ako je <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> i <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> će _uvek_ biti <Math>6</Math>. 
+=======
+If <Math><MathI>x</MathI> = 2</Math> then <Math><MathI>y</MathI> = 4</Math>. Always.
+
+If <Math><MathI>x</MathI> = 3</Math> then <Math><MathI>y</MathI> = 6</Math>. Always.
+
+If <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> won't sometimes be <Math>9</Math> or <Math>–1</Math> or <Math>2.5</Math> depending on the time of day or the state of the stock market.
+
+If <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> and <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> will _always_ be <Math>6</Math>.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Ako prebacimo ovo u JavaScript funkciju, izgledalo bi ovako:
 
@@ -52,10 +62,17 @@ React je dizajniran oko ovog koncepta. **React pretpostavlja da je svaka kompone
 ```js src/App.js
 function Recipe({ drinkers }) {
   return (
+<<<<<<< HEAD
     <ol>    
       <li>Skuvati {drinkers} časa sa vodom.</li>
       <li>Dodati {drinkers} kašika čaja i {0.5 * drinkers} kašika začina.</li>
       <li>Dodati {0.5 * drinkers} šolja mleka da provri i šećer po ukusu.</li>
+=======
+    <ol>
+      <li>Boil {drinkers} cups of water.</li>
+      <li>Add {drinkers} spoons of tea and {0.5 * drinkers} spoons of spice.</li>
+      <li>Add {0.5 * drinkers} cups of milk to boil and sugar to taste.</li>
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
     </ol>
   );
 }
@@ -75,11 +92,19 @@ export default function App() {
 
 </Sandpack>
 
+<<<<<<< HEAD
 Kada prosledite `drinkers={2}` u `Recipe`, on će vratiti JSX koji sadrži `2 časa sa vodom`. Uvek. 
+=======
+When you pass `drinkers={2}` to `Recipe`, it will return JSX containing `2 cups of water`. Always.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Ako prosledite `drinkers={4}`, on će vratiti JSX koji sadrži `4 časa sa vodom`. Uvek.
 
+<<<<<<< HEAD
 Baš kao matematička formula. 
+=======
+Just like a math formula.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 Možete gledati vaše komponente kao recepte: ako ih pratite i ne dodajete nove sastojke tokom kuvanja, svaki put ćete dobiti isto jelo. To "jelo" je JSX koji će komponenta servirati React-u da [renderuje](/learn/render-and-commit).
 
@@ -215,6 +240,7 @@ Svaka nova React funkcionalnost koju pravimo koristi prednosti čistoće. Održa
 
 <Recap>
 
+<<<<<<< HEAD
 * Komponenta mora biti čista, što znači da:
   * **Gleda samo svoja posla.** Ne bi trebalo da menja nikakve objekte ili promenljive koji su postojali pre renderovanja.
   * **Isti input-i, isti rezultat.** Dobijanjem istih input-a, komponenta treba uvek da vrati isti JSX. 
@@ -222,11 +248,20 @@ Svaka nova React funkcionalnost koju pravimo koristi prednosti čistoće. Održa
 * Ne bi trebali da menjate nijedan od input-a koje komponenta koristi za renderovanje. To uključuje props, state i context. Da biste ažurirali prikaz, ["setujte" state](/learn/state-a-components-memory) umesto da menjate već postojeće objekte.
 * Težite da izrazite logiku komponente u JSX-u koji vraćate. Kada trebate "menjati stvari", uglavnom ćete želeti da to uradite u event handler-u. Kao poslednje rešenje, možete koristiti `useEffect`.
 * Pisanje čistih funkcija zahteva malo iskustva, ali otključava moć React paradigme.
+=======
+* A component must be pure, meaning:
+  * **It minds its own business.** It should not change any objects or variables that existed before rendering.
+  * **Same inputs, same output.** Given the same inputs, a component should always return the same JSX.
+* Rendering can happen at any time, so components should not depend on each others' rendering sequence.
+* You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, ["set" state](/learn/state-a-components-memory) instead of mutating preexisting objects.
+* Strive to express your component's logic in the JSX you return. When you need to "change things", you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
+* Writing pure functions takes a bit of practice, but it unlocks the power of React's paradigm.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 </Recap>
 
 
-  
+
 <Challenges>
 
 #### Popraviti pokvaren sat {/*fix-a-broken-clock*/}
@@ -451,7 +486,7 @@ export default function App() {
 ```js src/utils.js hidden
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'
@@ -549,7 +584,7 @@ export default function App() {
 ```js src/utils.js hidden
 export function getImageUrl(person, size = 's') {
   return (
-    'https://i.imgur.com/' +
+    'https://react.dev/images/docs/scientists/' +
     person.imageId +
     size +
     '.jpg'

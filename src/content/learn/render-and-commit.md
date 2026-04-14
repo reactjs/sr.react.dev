@@ -54,8 +54,13 @@ root.render(<Image />);
 export default function Image() {
   return (
     <img
+<<<<<<< HEAD
       src="https://i.imgur.com/ZF6s192.jpg"
       alt="'Floralis Genérica' napravio Eduardo Catalano: ogromna metalik skulptura cveta sa reflektujućim laticama"
+=======
+      src="https://react.dev/images/docs/scientists/ZF6s192.jpg"
+      alt="'Floralis Genérica' by Eduardo Catalano: a gigantic metallic flower sculpture with reflective petals"
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
     />
   );
 }
@@ -103,8 +108,13 @@ export default function Gallery() {
 function Image() {
   return (
     <img
+<<<<<<< HEAD
       src="https://i.imgur.com/ZF6s192.jpg"
       alt="'Floralis Genérica' napravio Eduardo Catalano: ogromna metalik skulptura cveta sa reflektujućim laticama"
+=======
+      src="https://react.dev/images/docs/scientists/ZF6s192.jpg"
+      alt="'Floralis Genérica' by Eduardo Catalano: a gigantic metallic flower sculpture with reflective petals"
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
     />
   );
 }
@@ -124,8 +134,13 @@ img { margin: 0 10px 10px 0; }
 
 </Sandpack>
 
+<<<<<<< HEAD
 * **Tokom inicijalnog rendera** React će [kreirati DOM čvorove](https://developer.mozilla.org/docs/Web/API/Document/createElement) za `<section>`, `<h1>` i tri `<img>` tag-a. 
 * **Tokom ponovnog rendera** React će izračunati koja od njihovih polja (ili nijedno) su se promenila od prethodnog rendera. Neće uraditi ništa sa tom informacijom do narednog koraka, commit faze.
+=======
+* **During the initial render,** React will [create the DOM nodes](https://developer.mozilla.org/docs/Web/API/Document/createElement) for `<section>`, `<h1>`, and three `<img>` tags.
+* **During a re-render,** React will calculate which of their properties, if any, have changed since the previous render. It won't do anything with that information until the next step, the commit phase.
+>>>>>>> abe931a8cb3aee3e8b15ef7e187214789164162a
 
 <Pitfall>
 
