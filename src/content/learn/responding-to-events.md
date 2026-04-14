@@ -436,7 +436,7 @@ U retkim slučajevima, možete poželeti da uhvatite sve event-e iz dečjih elem
 Svaki event se propagira u tri faze:
 
 1. Putuje na dole, pozivajući sve `onClickCapture` handler-e.
-2. Pokreće `onClick` handler na kliknutom elementu. 
+2. Pokreće `onClick` handler na kliknutom elementu.
 3. Putuje na gore, pozivajući sve `onClick` handler-e.
 
 Capture event-i su korisni za rutere i analitiku, ali ih verovatno nećete koristiti u kodu aplikacije.
