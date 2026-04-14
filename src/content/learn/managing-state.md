@@ -697,7 +697,7 @@ Pročitajte **[Izdvajanje state logike u reducer](/learn/extracting-state-logic-
 
 </LearnMore>
 
-## Prosleđivanje podataka duboko uz context {/*passing-data-deeply-with-context*/}
+## Prosleđivanje podataka duboko uz Context {/*passing-data-deeply-with-context*/}
 
 Često ćete proslediti informaciju od roditeljske ka dečjoj komponenti kroz props. Ali, prosleđivanje props-a može postati nepogodno ako trebate proslediti neki prop kroz mnogo komponenata ili ako mnogo komponenata treba imati istu informaciju. Context omogućava roditeljskoj komponenti da neku informaciju učini dostupnom svakoj komponenti u stablu ispod nje—bez obzira koliko duboko—bez eksplicitnog prosleđivanja props-a.
 
@@ -795,7 +795,7 @@ export const LevelContext = createContext(0);
 
 <LearnMore path="/learn/passing-data-deeply-with-context">
 
-Pročitajte **[Prosleđivanje podataka duboko uz context](/learn/passing-data-deeply-with-context)** da naučite da koristite context kao alternativu prosleđivanju props-a.
+Pročitajte **[Prosleđivanje podataka duboko uz Context](/learn/passing-data-deeply-with-context)** da naučite da koristite context kao alternativu prosleđivanju props-a.
 
 </LearnMore>
 
