@@ -899,33 +899,19 @@ body {
 
 ### React Developer Tools {/*react-developer-tools*/}
 
-<<<<<<< HEAD
-React DevTools vam omogućava da proverite props i stanje vaših React component-i. Možete pronaći karticu React DevTools na dnu sekcije *browser* u CodeSandbox-u:
+React Developer Tools vam omogućava da proverite props i stanje vaših React component-i. Dostupan je kao ekstenzija za [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) i [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) pretraživač.
 
-![React DevTools u CodeSandbox-u](../images/tutorial/codesandbox-devtools.png)
+Nakon što je instalirate, novi *Components* tab će se pojaviti u Developer Tools-u vašeg pretraživača za sajtove koji koriste React. Ako pratite sa CodeSandbox-om, prvo trebate otvoriti sandbox u novom tabu:
 
-Da biste pregledali određenu component-u na ekranu, koristite dugme u gornjem levom uglu React DevTools-a:
+![otvaranje u novom tabu](../images/tutorial/sandbox-new-tab.png)
 
-![Biranje component-i na stranici sa React DevTools](../images/tutorial/devtools-select.gif)
-=======
-React Developer Tools let you check the props and the state of your React components. It is available as a [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), and [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browser extension.
-
-After you install it, a new *Components* tab will appear in your browser Developer Tools for sites using React. If you're following along in CodeSandbox, you'd need to first open your sandbox preview in a new tab:
-
-![opening in new tab](../images/tutorial/sandbox-new-tab.png)
-
-Then, on the preview page, open your browser's DevTools and find the *Components* tab:
->>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
+Onda, na stranici za pregled, otvorite DevTools pretraživača i pronađite *Components* tab:
 
 ![components tab](../images/tutorial/components-tab.png)
 
-<<<<<<< HEAD
-Za rad u lokalnom okruženju, React DevTools je dostupan kao ekstenzija za [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), i [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browsere. Instalirajte je, i *Components* tab će se pojaviti u Developer Tools vašeg browser-a za sajtove koji koriste React.
-=======
-To inspect a particular component on the screen, use the button in the top left corner of the Components tab:
+Da biste pregledali određenu component-u na ekranu, koristite dugme u gornjem levom uglu Components tab-a:
 
-![inspecting with devtools](../images/tutorial/devtools-inspect.gif)
->>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
+![pregledanje sa devtools-om](../images/tutorial/devtools-inspect.gif)
 
 
 ## Završavanje igre {/*completing-the-game*/}
