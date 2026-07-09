@@ -899,6 +899,7 @@ body {
 
 ### React Developer Tools {/*react-developer-tools*/}
 
+<<<<<<< HEAD
 React DevTools vam omogućava da proverite props i stanje vaših React component-i. Možete pronaći karticu React DevTools na dnu sekcije *browser* u CodeSandbox-u:
 
 ![React DevTools u CodeSandbox-u](../images/tutorial/codesandbox-devtools.png)
@@ -906,12 +907,26 @@ React DevTools vam omogućava da proverite props i stanje vaših React component
 Da biste pregledali određenu component-u na ekranu, koristite dugme u gornjem levom uglu React DevTools-a:
 
 ![Biranje component-i na stranici sa React DevTools](../images/tutorial/devtools-select.gif)
+=======
+React Developer Tools let you check the props and the state of your React components. It is available as a [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), and [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browser extension.
 
-<Note>
+After you install it, a new *Components* tab will appear in your browser Developer Tools for sites using React. If you're following along in CodeSandbox, you'd need to first open your sandbox preview in a new tab:
 
+![opening in new tab](../images/tutorial/sandbox-new-tab.png)
+
+Then, on the preview page, open your browser's DevTools and find the *Components* tab:
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
+
+![components tab](../images/tutorial/components-tab.png)
+
+<<<<<<< HEAD
 Za rad u lokalnom okruženju, React DevTools je dostupan kao ekstenzija za [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), i [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browsere. Instalirajte je, i *Components* tab će se pojaviti u Developer Tools vašeg browser-a za sajtove koji koriste React.
+=======
+To inspect a particular component on the screen, use the button in the top left corner of the Components tab:
 
-</Note>
+![inspecting with devtools](../images/tutorial/devtools-inspect.gif)
+>>>>>>> 2639f369946f763fff9a2572b0d7c4b9e2f83ebd
+
 
 ## Završavanje igre {/*completing-the-game*/}
 
