@@ -86,15 +86,7 @@ Tokom ažuriranja, <CodeStep step={2}>odložena vrednost</CodeStep> će "lag-ova
 
 <Note>
 
-<<<<<<< HEAD
-Ovaj primer očekuje da koristite izvor podataka koji podržava Suspense:
-
-- Fetch-ovanje podataka sa framework-ovima koji podržavaju Suspense, npr. [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) i [Next.js](https://nextjs.org/docs/app/getting-started/fetching-data#with-suspense)
-- Lazy-loading koda komponente sa [`lazy`](/reference/react/lazy)
-- Čitanje vrednosti Promise-a sa [`use`](/reference/react/use)
-=======
-This example assumes you use a data source that [activates a Suspense boundary](/reference/react/Suspense#what-activates-a-suspense-boundary), such as a Promise you read with [`use`](/reference/react/use).
->>>>>>> 6be2b020a0cabf2fd6dbff5c42c399b8ac323bca
+Ovaj primer očekuje da koristite izvor podataka koji [aktivira Suspense granicu](/reference/react/Suspense#what-activates-a-suspense-boundary), kao što je Promise koji čitate sa [`use`](/reference/react/use).
 
 [Naučite više o Suspense-u i njegovim ograničenjima.](/reference/react/Suspense)
 
