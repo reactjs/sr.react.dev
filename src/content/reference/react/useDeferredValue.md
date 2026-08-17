@@ -88,11 +88,7 @@ Tokom ažuriranja, <CodeStep step={2}>odložena vrednost</CodeStep> će "lag-ova
 
 Ovaj primer očekuje da koristite izvor podataka koji [aktivira Suspense granicu](/reference/react/Suspense#what-activates-a-suspense-boundary), kao što je Promise koji čitate sa [`use`](/reference/react/use).
 
-<<<<<<< HEAD
-[Naučite više o Suspense-u i njegovim ograničenjima.](/reference/react/Suspense)
-=======
-[Learn more about Suspense.](/reference/react/Suspense)
->>>>>>> 383a1e9239c8c084a16a19daa4fc2a7ad04e2a3a
+[Naučite više o Suspense-u.](/reference/react/Suspense)
 
 </Note>
 
