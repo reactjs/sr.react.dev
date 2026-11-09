@@ -874,11 +874,7 @@ Reducer-i imaju i mane! Evo par načina da ih poredite:
 - **Testiranje:** Reducer je čista funkcija koja ne zavisi od vaše komponente. To znači da je možete export-ovati i testirati izolovano. Iako je obično najbolje testirati komponente u realističnijem okruženju, za kompleksniju logiku ažuriranja state-a može biti korisno da se uverite da vaš reducer vraća određeni state za određeni inicijalni state i akciju.
 - **Lična preferenca:** Neki ljudi vole reducer-e, ostali ne vole. To je u redu. Stvar je preferenci. Uvek možete menjati između `useState` i `useReducer`: jednaki su!
 
-<<<<<<< HEAD
 Preporučujemo da koristite reducer ako često nailazite na bug-ove zbog neispravnog ažuriranja state-a u nekoj komponenti i želite da uvedete veću strukturu u njen kod. Ne morate koristiti reducer-e za sve: slobodno kombinujte! Možete čak koristiti `useState` i `useReducer` u istoj komponenti.
-=======
-We recommend using a reducer if you often encounter bugs due to incorrect state updates in some component, and want to introduce more structure to its code. You don't have to use reducers for everything: feel free to mix and match! You can even use `useState` and `useReducer` in the same component.
->>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 ## Pravilno pisanje reducer-a {/*writing-reducers-well*/}
 

@@ -17,11 +17,7 @@ TypeScript je popularan način za dodavanje definicija tipova u JavaScript kod. 
 
 ## React Developer Tools {/*react-developer-tools*/}
 
-<<<<<<< HEAD
-React Developer Tools je ekstenzija za pretraživač koja može da inspektuje React komponente, menja props-e i state, kao i da identifikuje probleme u performansama. Naučite kako da je instalirate [ovde](learn/react-developer-tools).
-=======
-React Developer Tools is a browser extension that can inspect React components, edit props and state, and identify performance problems. Learn how to install it [here](/learn/react-developer-tools).
->>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
+React Developer Tools je ekstenzija za pretraživač koja može da inspektuje React komponente, menja props-e i state, kao i da identifikuje probleme u performansama. Naučite kako da je instalirate [ovde](/learn/react-developer-tools).
 
 ## React kompajler {/*react-compiler*/}
 

@@ -1138,11 +1138,7 @@ JavaScript podržava [closures](https://developer.mozilla.org/en-US/docs/Web/Jav
 
 </Note>
 
-<<<<<<< HEAD
-Sada možete dodati X-ove na tablu... ali samo u gornji levi kvadrat. Vaša funkcija `handleClick` je trenutno hardkodirana da update-uje indeks gornjeg levog kvadrata (`0`). Napravimo update `handleClick` tako da može update-ovati bilo koji kvadrat. Dodajte argument `i` funkciji `handleClick` koji prima indeks kvadrata koji treba update-ovati:
-=======
-Now you can add X's to the board...  but only to the upper left square. Your `handleClick` function is hardcoded to update the index for the upper left square (`0`). Let's update `handleClick` to be able to update any square. Add a parameter `i` to the `handleClick` function that takes the index of the square to update:
->>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
+Sada možete dodati X-ove na tablu... ali samo u gornji levi kvadrat. Vaša funkcija `handleClick` je trenutno hardkodirana da update-uje indeks gornjeg levog kvadrata (`0`). Napravimo update `handleClick` tako da može update-ovati bilo koji kvadrat. Dodajte parametar `i` funkciji `handleClick` koji prima indeks kvadrata koji treba update-ovati:
 
 ```js {4,6}
 export default function Board() {

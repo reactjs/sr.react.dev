@@ -1366,11 +1366,7 @@ Možda imate provider bez `value` u stablu:
 
 Ako zaboravite specificirati `value`, to je kao da prosleđujete `value={undefined}`.
 
-<<<<<<< HEAD
 Možda ste greškom iskoristili drugo ime za prop:
-=======
-You may have also used a different prop name by mistake:
->>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 ```js {1,2}
 // 🚩 Ne radi: prop treba da se zove "value"

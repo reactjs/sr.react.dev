@@ -336,11 +336,7 @@ function MyButton() {
 }
 ```
 
-<<<<<<< HEAD
-React će ponovo pozvati funkciju vaše komponente. Ovaj put, `count` će biti `1`. Zatim će biti `2`. I tako dalje.
-=======
-Calling `setCount` tells React to call your component function again. This is called a *re-render*. This time, `count` will be `1`. Then it will be `2`. And so on.
->>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
+Pozivanje `setCount`-a govori React-u da ponovo pozove funkciju vaše komponente. Ovo se naziva *ponovni render*. Ovaj put, `count` će biti `1`. Zatim će biti `2`. I tako dalje.
 
 Ako renderujete istu komponentu više puta, svaka će dobiti svoje sopstveni state. Kliknite svako dugme posebno:
 
