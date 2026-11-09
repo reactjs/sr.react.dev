@@ -18,7 +18,11 @@ State je izolovan između komponenata. React prati koji state pripada kojoj komp
 
 ## State je povezan sa pozicijom u stablu renderovanja {/*state-is-tied-to-a-position-in-the-tree*/}
 
+<<<<<<< HEAD
 React pravi [stabla renderovanja](learn/understanding-your-ui-as-a-tree#the-render-tree) za strukturu komponenti na vašem UI-u.
+=======
+React builds [render trees](/learn/understanding-your-ui-as-a-tree#the-render-tree) for the component structure in your UI.
+>>>>>>> f5fa1e82edacdf8c6bfc4dfd9cf52029a96d5fd3
 
 Kada komponenti date state, možete pomisliti da state "živi" unutar komponente. Ali, state se zapravo čuva unutar React-a. React povezuje svaki deo state-a sa tačnom komponentom na osnovu mesta na kom se ta komponenta nalazi u stablu renderovanja.
 
